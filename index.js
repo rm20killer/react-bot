@@ -16,7 +16,7 @@ client.on('message', msg => {
     }
     if(msg.content === '!madeby') {
         console.log('!madeby');
-        msg.channel.send('This was made by RM20');
+        msg.channel.send('This was made by RM20 with the help from RootAtKali');
     }
     if(msg.content === '&requirements') {
     	msg.channel.send('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 Kbps\n> Audio bitrate: At least 150 Kbps');
@@ -44,7 +44,7 @@ client.on('message', message => {
                     .addField('Bad submission by', message.author.username)
                     message.channel.send(embed);
                     message.delete();
-                } else if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2)){
+                } else if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2){
                 	const embed = new Discord.MessageEmbed()
                     .setTitle('Video aspect ratio is bad!')
                     .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
