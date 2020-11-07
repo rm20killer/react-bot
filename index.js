@@ -28,7 +28,7 @@ client.on('message', message => {
         if (attachments.length !== 0) {
             const nameArray = attachment.name.split('.'); //Split the name 
             const attEx = nameArray[nameArray.length - 1] //Grap the last value of the array.
-            if (attEx == "mp4" || attEx == "Other video") {
+            if (attEx == "mp4" || attEx == "webm" ||attEx == "MOV") {
                 // Note this doesn't check the file it check the format of the file.
                 const Mwidth = attachment.width;
                 const Mheight = attachment.height;
