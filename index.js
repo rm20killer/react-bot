@@ -49,5 +49,5 @@ client.on('message', message => {
     }
     
 });
-// client.login(process.env.token);
-client.login("TOkEN HERE");
+ client.login(process.env.token);
+//client.login("TOkEN HERE");
