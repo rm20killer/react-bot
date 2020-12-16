@@ -34,7 +34,7 @@ client.on('message', msg => {
     const cmd = args[0].slice(prefixl.length).toLowerCase();
 
     if(cmd === 'ping') {
-        msg.reply('pong');
+        msg.reply('pong, ' + `${Date.now() - msg.createdTimestamp}` + ' ms');
     }
     if(cmd=== 'madeby') {
         msg.channel.send('This was made by RM20 with the help from RootAtKali');
