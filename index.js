@@ -9,6 +9,9 @@ const prefixl = config.prefix
 const YouTube = require("discord-youtube-api"); 
 const youtube = new YouTube(config.youtubeAPI);
 
+//EnderEyeGames/RootAtKali: save username of the last user to submit something, so the bot can scold people for submitting two inadequate submissions.
+var lastBadSumbissionBy = "NONE YET";
+
 async function testAll() {
     const video1 = await youtube.getVideo("https://www.youtube.com/watch?v=5NPBIwQyPWE");
     const video2 = await youtube.getVideoByID("5NPBIwQyPWE");
@@ -67,18 +70,26 @@ client.on('message', message => {
                     .setTitle('Video resolution too low!')
                     .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                     .setColor(0xff0000)
-                    .setDescription('Video resolution is less than 720p.\nSubmissions must be 1280x720 or greater.\nType &requirements for more info.')
+                    .setDescription('Video resolution is less than 720p.\nSubmissions must be 1280x720 or greater.\nType &requirements for more info.\nPlease do not resubmit or resize this video.\nIf you have a better version, send that instead.')
                     .addField('Bad submission by', message.author.username)
                     message.channel.send(embed);
+                    if (message.author.username == lastBadSubmissionBy){
+                       message.channel.send('**Please do not re-submit inadequate clips.**');
+                    }
+                    lastBadSubmissionBy = message.author.username;
                     message.delete();
                 } else if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2){
                 	const embed = new Discord.MessageEmbed()
                     .setTitle('Video aspect ratio is bad!')
                     .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                     .setColor(0xff0000)
-                    .setDescription('Video aspect ratio is invalid.\nOnly ratios from 16:10 to 2:1 are accepted.\nType &requirements for more info.')
+                    .setDescription('Video aspect ratio is invalid.\nOnly ratios from 16:10 to 2:1 are accepted.\nType &requirements for more info.\nPlease do not resubmit, scale, or letterbox this video.')
                     .addField('Bad submission by', message.author.username)
                     message.channel.send(embed);
+                    if (message.author.username == lastBadSubmissionBy){
+                       message.channel.send('**Please do not re-submit inadequate clips.**');
+                    }
+                    lastBadSubmissionBy = message.author.username;
                     message.delete();
                 }
                 console.log("bot checked",message.id);
