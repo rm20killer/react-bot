@@ -118,7 +118,7 @@ client.on('message', message => {
             }
             else if (attEx=="mkv") {
                 const embed = new Discord.MessageEmbed()
-                .setTitle('Video resolution too low!')
+                .setTitle('non supported formant!')
                 .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                 .setColor(0xff0000)
                 .setDescription('Video format unsupported.\nSubmissions must viweable on discord.\nType &requirements for more info.')
