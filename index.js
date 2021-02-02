@@ -37,9 +37,9 @@ client.on('message', msg => {
         .setTitle('Requirements')
         .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
         .setColor(0xff0000)
-        .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 Kbps\n> Audio bitrate: At least 150 Kbps\n Must be viewable from discord\n Youtube video: must be under 2 min')
-        .addField('Bad submission by', message.author.username)
-        message.channel.send(embed);
+        .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 Kbps\n> Audio bitrate: At least 150 Kbps\n> Must be viewable from discord\n> Youtube video: must be under 2 min')
+        .addField('requested by', msg.author.username)
+        msg.channel.send(embed);
         console.log('&requirements');
     }
 })
@@ -47,11 +47,12 @@ client.on('message', msg => {
 
 client.on('message', message => {
     if (message.channel.id === config.ChannelID) {
-        if (message.content=== "www.youtube.com") {
+        if (message.content.includes('youtube.')) {
             console.log("youtube video recsived")
+            console.log(YouTube.duration(message.content))
             try {
-                YTdur = youtube.durationSeconds(message.content);
-                if (YTdur>150){
+                var YTdur = YouTube.durationSeconds(message.content);
+                if (YTdur>=150){
                     if (message.author.username == lastBadSubmissionBy){
                         message.channel.send('**Please do not re-submit inadequate clips.**');
                     }
@@ -64,14 +65,14 @@ client.on('message', message => {
                         .addField('Bad submission by', message.author.username)
                         message.channel.send(embed);
                     }
-                    lastBadSubmissionBy = message.author.username;
+                    lastBadSubmissionBy === message.author.username;
                     message.delete();
                 }
             }
-            catch(error) {
-
+            catch(e) {
+                console.error
             }
-        };
+        }
         const attachments = (message.attachments).array(); // Get list of attachments
         const attachment = attachments[0]; // Take the first attachment
         if (attachments.length !== 0) {
