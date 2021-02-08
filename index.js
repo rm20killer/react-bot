@@ -47,6 +47,7 @@ client.on('message', msg => {
 
 client.on('message', message => {
     if (message.channel.id === config.ChannelID) {
+	    //youtube part causing errors
         if (message.content.includes('youtube.')) {
             console.log("youtube video recsived")
             console.log(YouTube.duration(message.content))
@@ -98,7 +99,7 @@ client.on('message', message => {
                     lastBadSubmissionBy = message.author.username;
                     message.delete();
                 }  
-                if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2){
+                else if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2){
                     if (message.author.username == lastBadSubmissionBy){
                         message.channel.send('**Please do not re-submit inadequate clips.**');
                     }
@@ -114,18 +115,30 @@ client.on('message', message => {
                     lastBadSubmissionBy = message.author.username;
                     message.delete();
                 }
+                else if (nameArray[0].length > 10 && nameArray[0].slice(-10) == "_Trim_Trim"){
+					message.channel.send("Imagine using an online video trimmer twice :Hhhhhheee:");
+					// You can omit this if you want.
+					// I just find it rather funny when someone uses that instead of a video editor.
+					// FFmpeg is also a better choice, and probably what the online trimmer uses, but internet is slower than an SSD.
+					// ffmpeg -ss 00:13:37 -i too_long_video.mp4 -t 15 -c copy trimmed_video_15seconds.mp4
+				}
                 console.log("bot checked",message.id);
             }
-            else if (attEx=="mkv") {
-                const embed = new Discord.MessageEmbed()
-                .setTitle('non supported formant!')
-                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-                .setColor(0xff0000)
-                .setDescription('Video format unsupported.\nSubmissions must viweable on discord.\nType &requirements for more info.')
-                .addField('Bad submission by', message.author.username)
-                message.delete();
-                console.log("bot checked",message.id);
-            }
+            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v") {
+				var convertTip = "OBS Studio can convert MKV to MP4.\nGo to File -> Remux Recordings.";
+				if (attEx != "mkv"){
+					convertTip = "Use FFmpeg or Handbrake to convert your video\nto MP4, WebM, or MOV format. *Avoid online tools.*";
+				}
+				const embed = new Discord.MessageEmbed()
+				.setTitle('Video format unsupported!')
+				.setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+				.setColor(0xff0000)
+				.setDescription('Video format unsupported.\nFile submissions must preview in Discord.\n' + convertTip)
+				.addField('Bad submission by', message.author.username)
+				message.channel.send(embed);
+				message.delete();
+				console.log("bot checked",message.id);
+			}
         }
     }
     
