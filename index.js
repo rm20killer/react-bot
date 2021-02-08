@@ -47,6 +47,7 @@ client.on('message', msg => {
 
 client.on('message', message => {
     if (message.channel.id === config.ChannelID) {
+	    //youtube part causing errors
         if (message.content.includes('youtube.')) {
             console.log("youtube video recsived")
             console.log(YouTube.duration(message.content))
