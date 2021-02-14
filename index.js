@@ -6,10 +6,13 @@ const config = require("./config");
 const prefixl = config.prefix
 
 //youtube api
-const YouTube = require("discord-youtube-api"); 
-const youtube = new YouTube(config.youtubeAPI);
+
+//youtube stuff not working yet
+//const YouTube = require("discord-youtube-api"); 
+//const youtube = new YouTube(config.youtubeAPI);
 
 //EnderEyeGames/RootAtKali: save username of the last user to submit something, so the bot can scold people for submitting two inadequate submissions.
+//RM: This is not fully working and causing an error when trying to call the var.
 var lastBadSumbissionBy = "NONE YET";
 
 
@@ -48,10 +51,14 @@ client.on('message', msg => {
 client.on('message', message => {
     if (message.channel.id === config.ChannelID) {
 	    //youtube part causing errors
+        `
         if (message.content.includes('youtube.')) {
             console.log("youtube video recsived")
-            console.log(YouTube.duration(message.content))
+            //console.log(YouTube.duration(message.content))
             try {
+                const ytvid = youtube.getVideo(message);
+                console.log(ytvid)
+                console.log(ytvid.durationSeconds)
                 var YTdur = YouTube.durationSeconds(message.content);
                 if (YTdur>=150){
                     if (message.author.username == lastBadSubmissionBy){
@@ -74,6 +81,7 @@ client.on('message', message => {
                 console.error
             }
         }
+        `
         const attachments = (message.attachments).array(); // Get list of attachments
         const attachment = attachments[0]; // Take the first attachment
         if (attachments.length !== 0) {
@@ -96,7 +104,7 @@ client.on('message', message => {
                         .addField('Bad submission by', message.author.username)
                         message.channel.send(embed);
                     }
-                    lastBadSubmissionBy = message.author.username;
+                    //lastBadSubmissionBy = message.author.username;
                     message.delete();
                 }  
                 else if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2){
@@ -112,7 +120,7 @@ client.on('message', message => {
                         .addField('Bad submission by', message.author.username)
                         message.channel.send(embed);
                     }
-                    lastBadSubmissionBy = message.author.username;
+                    //lastBadSubmissionBy = message.author.username;
                     message.delete();
                 }
                 else if (nameArray[0].length > 10 && nameArray[0].slice(-10) == "_Trim_Trim"){
