@@ -50,7 +50,7 @@ client.on('message', msg => {
 
 client.on('message', message => {
     if (message.channel.id === config.ChannelID) {
-	    //youtube part causing errors
+	    //youtube part causing errors, someone fix this :)
         `
         if (message.content.includes('youtube.')) {
             console.log("youtube video recsived")
