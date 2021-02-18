@@ -92,9 +92,7 @@ client.on('message', message => {
                 const Mwidth = attachment.width;
                 const Mheight = attachment.height;
                 if (Mwidth < 1280 || Mheight < 720) {
-                    if (message.author.username == lastBadSubmissionBy){
-                        message.channel.send('**Please do not re-submit inadequate clips.**');
-                    }
+
                     else {
                         const embed = new Discord.MessageEmbed()
                         .setTitle('Video resolution too low!')
@@ -108,9 +106,7 @@ client.on('message', message => {
                     message.delete();
                 }  
                 else if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2){
-                    if (message.author.username == lastBadSubmissionBy){
-                        message.channel.send('**Please do not re-submit inadequate clips.**');
-                    }
+                  
                     else {
                 	    const embed = new Discord.MessageEmbed()
                         .setTitle('Video aspect ratio is bad!')
