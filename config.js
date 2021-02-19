@@ -3,16 +3,14 @@
 const { Channel } = require("discord.js");
 
 module.exports ={
-    //discord bot token
-    BotToken: 'token',
-    youtubeAPI: 'token',
+    //Discord bot token
 
+    //The thing before a command to call the bot
     prefix:'&',
 
     //Channel to check id
     ChannelID: '696131644871933972',
 
-
 }
-//export {BotToken};
+
 
