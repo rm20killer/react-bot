@@ -92,8 +92,6 @@ client.on('message', message => {
                 const Mwidth = attachment.width;
                 const Mheight = attachment.height;
                 if (Mwidth < 1280 || Mheight < 720) {
-
-                    else {
                         const embed = new Discord.MessageEmbed()
                         .setTitle('Video resolution too low!')
                         .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
@@ -101,13 +99,10 @@ client.on('message', message => {
                         .setDescription('Video resolution is less than 720p.\nSubmissions must be 1280x720 or greater.\nType &requirements for more info.')
                         .addField('Bad submission by', message.author.username)
                         message.channel.send(embed);
-                    }
                     //lastBadSubmissionBy = message.author.username;
                     message.delete();
                 }  
                 else if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2){
-                  
-                    else {
                 	    const embed = new Discord.MessageEmbed()
                         .setTitle('Video aspect ratio is bad!')
                         .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
@@ -115,7 +110,7 @@ client.on('message', message => {
                         .setDescription('Video aspect ratio is invalid.\nOnly ratios from 16:10 to 2:1 are accepted.\nType &requirements for more info.\nPlease do not resubmit, scale, or letterbox this video.')
                         .addField('Bad submission by', message.author.username)
                         message.channel.send(embed);
-                    }
+                    
                     //lastBadSubmissionBy = message.author.username;
                     message.delete();
                 }
