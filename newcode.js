@@ -5,6 +5,8 @@ const client = new Discord.Client();
 const config = require("./config");
 const prefixl = config.prefix
 
+//Discord.js v12+ is needed for this to work
+
 //youtube api
 
 //youtube stuff not working yet
@@ -22,18 +24,18 @@ client.on("ready", () =>{
     //client.user.setPresence({ game: { name: 'Videos' , type: 'WATCHING' }, status: 'idle' })
     .then(console.log)
     .catch(console.error);
-    client.api.applications(client.user.id).guilds('629695220065239061').commands.post({
+    //-
+    //this is for slash commands to work
+    client.api.applications(client.user.id).commands.post({
         data: {
             name: "madeby",
             description: "find out who made me",
-            // possible options here e.g. options: [{...}]
         } 
     });
-    client.api.applications(client.user.id).guilds('629695220065239061').commands.post({
+    client.api.applications(client.user.id).commands.post({
         data: {
             name: "requirements",
             description: "get clips requirements"
-            // possible options here e.g. options: [{...}]
         } 
     });
 
@@ -44,8 +46,6 @@ client.on("ready", () =>{
         const args = interaction.data.options;
 
         if (command === 'madeby'){ 
-            // here you could do anything. in this sample
-            // i reply with an api interaction
             client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
                     type: 4,
@@ -71,8 +71,10 @@ client.on("ready", () =>{
             })
         }
     });
+    //-
 });
 
+//all below are the same just removed the !(command)
 client.on('message', msg => {
     if (!msg.content.startsWith(prefixl)) return;
     const args = msg.content.trim().split(/ +/g);
@@ -146,7 +148,7 @@ client.on('message', message => {
     }
     
 });
-
+//this is for slash commands
 async function createAPImessage(interaction,content){
     const apimessage = await Discord.APIMessage.create(client.channels.resolve(interaction.channel_id),content) 
         .resolveData()
