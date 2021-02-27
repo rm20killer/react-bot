@@ -24,8 +24,8 @@ client.on("ready", () =>{
     .catch(console.error);
     client.api.applications(client.user.id).guilds('629695220065239061').commands.post({
         data: {
-            name: "hello",
-            description: "hello world command (test command)",
+            name: "madeby",
+            description: "find out who made me",
             // possible options here e.g. options: [{...}]
         } 
     });
@@ -36,13 +36,7 @@ client.on("ready", () =>{
             // possible options here e.g. options: [{...}]
         } 
     });
-    client.api.applications(client.user.id).guilds('629695220065239061').commands.post({
-        data: {
-            name: "blog",
-            description: "get latest hytale blot"
-            // possible options here e.g. options: [{...}]
-        } 
-    });
+
 
 
     client.ws.on('INTERACTION_CREATE', async interaction => {
@@ -86,16 +80,6 @@ client.on('message', msg => {
 
     if(cmd === 'ping') {
         msg.reply('pong, ' + `${Date.now() - msg.createdTimestamp}` + ' ms');
-    }
-    if(cmd === 'requirements') {
-        const embed = new Discord.MessageEmbed()
-        .setTitle('Requirements')
-        .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-        .setColor(0xff0000)
-        .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 Kbps\n> Audio bitrate: At least 150 Kbps\n> Must be viewable from discord\n> Youtube video: must be under 2 min')
-        .addField('requested by', msg.author.username)
-        msg.channel.send(embed);
-        console.log('&requirements');
     }
 })
 
