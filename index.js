@@ -5,6 +5,8 @@ const client = new Discord.Client();
 const config = require("./config");
 const prefixl = config.prefix
 
+//Discord.js v12+ is needed for this to work
+
 //youtube api
 
 //youtube stuff not working yet
@@ -12,7 +14,7 @@ const prefixl = config.prefix
 //const youtube = new YouTube(config.youtubeAPI);
 
 //EnderEyeGames/RootAtKali: save username of the last user to submit something, so the bot can scold people for submitting two inadequate submissions.
-//RM: This is not fully working and causing an error when trying to call the var.
+//RM: This is not fully working and causing an error when trying to call the var. I think I know a work around which should be added when I add slash commands
 var lastBadSumbissionBy = "NONE YET";
 
 
@@ -22,8 +24,58 @@ client.on("ready", () =>{
     //client.user.setPresence({ game: { name: 'Videos' , type: 'WATCHING' }, status: 'idle' })
     .then(console.log)
     .catch(console.error);
+    //-
+    //this is for slash commands to work
+
+
+    //if you have commands to add tell me
+    client.api.applications(client.user.id).commands.post({
+        data: {
+            name: "madeby",
+            description: "find out who made me",
+        } 
+    });
+    client.api.applications(client.user.id).commands.post({
+        data: {
+            name: "requirements",
+            description: "get clips requirements"
+        } 
+    });
+
+
+    client.ws.on('INTERACTION_CREATE', async interaction => {
+        const command = interaction.data.name.toLowerCase();
+        const args = interaction.data.options;
+
+        if (command === 'madeby'){ 
+            client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                    type: 4,
+                    data: {
+                        content: "This was made by RM20 with the help from RootAtKali, source code can be found at https://github.com/rm20killer/react-bot"
+                    }
+                }
+            })
+        }
+        if (command === 'requirements'){
+            const embed = new Discord.MessageEmbed()
+            .setTitle('Requirements')
+            .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+            .setColor(0xff0000)
+            .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 Kbps\n> Audio bitrate: At least 150 Kbps\n> Must be viewable from discord\n> Youtube video: must be under 2 min')
+
+            client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                    type: 4,
+                    data: await createAPImessage(interaction, embed)
+                }
+            })
+        }
+    });
+    //-
 });
 
+//all below are the same just removed the !(command)
 client.on('message', msg => {
     if (!msg.content.startsWith(prefixl)) return;
     const args = msg.content.trim().split(/ +/g);
@@ -32,56 +84,11 @@ client.on('message', msg => {
     if(cmd === 'ping') {
         msg.reply('pong, ' + `${Date.now() - msg.createdTimestamp}` + ' ms');
     }
-    if(cmd=== 'madeby') {
-        msg.channel.send('This was made by RM20 with the help from RootAtKali');
-    }
-    if(cmd === 'requirements') {
-        const embed = new Discord.MessageEmbed()
-        .setTitle('Requirements')
-        .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-        .setColor(0xff0000)
-        .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 Kbps\n> Audio bitrate: At least 150 Kbps\n> Must be viewable from discord\n> Youtube video: must be under 2 min')
-        .addField('requested by', msg.author.username)
-        msg.channel.send(embed);
-        console.log('&requirements');
-    }
 })
 
 
 client.on('message', message => {
     if (message.channel.id === config.ChannelID) {
-	    //youtube part causing errors, someone fix this :)
-        `
-        if (message.content.includes('youtube.')) {
-            console.log("youtube video recsived")
-            //console.log(YouTube.duration(message.content))
-            try {
-                const ytvid = youtube.getVideo(message);
-                console.log(ytvid)
-                console.log(ytvid.durationSeconds)
-                var YTdur = YouTube.durationSeconds(message.content);
-                if (YTdur>=150){
-                    if (message.author.username == lastBadSubmissionBy){
-                        message.channel.send('**Please do not re-submit inadequate clips.**');
-                    }
-                    else {
-                        const embed = new Discord.MessageEmbed()
-                        .setTitle('Video resolution too low!')
-                        .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-                        .setColor(0xff0000)
-                        .setDescription('Video longer than 2 min.\nSubmissions must be under 2 min.\nType &requirements for more info.')
-                        .addField('Bad submission by', message.author.username)
-                        message.channel.send(embed);
-                    }
-                    lastBadSubmissionBy === message.author.username;
-                    message.delete();
-                }
-            }
-            catch(e) {
-                console.error
-            }
-        }
-        `
         const attachments = (message.attachments).array(); // Get list of attachments
         const attachment = attachments[0]; // Take the first attachment
         if (attachments.length !== 0) {
@@ -142,6 +149,15 @@ client.on('message', message => {
     }
     
 });
+
+//this is for embed message for slash commands
+async function createAPImessage(interaction,content){
+    const apimessage = await Discord.APIMessage.create(client.channels.resolve(interaction.channel_id),content) 
+        .resolveData()
+        .resolveFiles();
+
+    return  {...apimessage.data, files: apimessage.files};
+}
 
 // client.login(process.env.token);
 client.login(config.BotToken);
