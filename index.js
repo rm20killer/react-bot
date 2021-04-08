@@ -27,7 +27,6 @@ client.on("ready", () =>{
     //-
     //this is for slash commands to work
 
-
     //if you have commands to add tell me
     client.api.applications(client.user.id).commands.post({
         data: {

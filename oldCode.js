@@ -45,6 +45,9 @@ client.on('message', msg => {
         msg.channel.send(embed);
         console.log('&requirements');
     }
+    if(cmd==='rm') {
+        msg.channel.send("RM is busy and does not check/rate clips");
+    }
 })
 
 
