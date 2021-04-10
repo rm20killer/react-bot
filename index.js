@@ -40,6 +40,13 @@ client.on("ready", () =>{
             description: "get clips requirements"
         } 
     });
+    
+    client.api.applications(client.user.id).guilds('629695220065239061').commands.post({
+        data:{
+            name: "compress",
+            description: "if you your clip is topp big for discord use this", 
+        }
+    });
 
 
     client.ws.on('INTERACTION_CREATE', async interaction => {
@@ -52,6 +59,16 @@ client.on("ready", () =>{
                     type: 4,
                     data: {
                         content: "This was made by RM20 with the help from RootAtKali, source code can be found at https://github.com/rm20killer/react-bot"
+                    }
+                }
+            })
+        }
+        if (command === 'compress'){ 
+            client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                    type: 4,
+                    data: {
+                        content: "To compress size so you send on discord you can use: https://8mb.video/ \n enable  `Extra quality (slower)` in options for best quality"
                     }
                 }
             })
@@ -88,6 +105,7 @@ client.on('message', msg => {
 
 client.on('message', message => {
     if (message.channel.id === config.ChannelID) {
+
         const attachments = (message.attachments).array(); // Get list of attachments
         const attachment = attachments[0]; // Take the first attachment
         if (attachments.length !== 0) {
