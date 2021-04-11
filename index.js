@@ -93,21 +93,29 @@ client.on("ready", () =>{
 });
 
 //all below are the same just removed the !(command)
-client.on('message', msg => {
-    if (!msg.content.startsWith(prefixl)) return;
-    const args = msg.content.trim().split(/ +/g);
+client.on('message', message => {
+    if (!message.content.startsWith(prefixl)) return;
+    const args = message.content.trim().split(/ +/g);
     const cmd = args[0].slice(prefixl.length).toLowerCase();
 
     if(cmd === 'ping') {
-        msg.reply('pong, ' + `${Date.now() - msg.createdTimestamp}` + ' ms');
+        message.reply('pong, ' + `${Date.now() - message.createdTimestamp}` + ' ms');
+    }
+    if (message.member.roles.cache.find(r=>r.id === '795456110421213214'))
+    {
+        if(cmd==='rm') {
+            message.channel.send("RM is busy and does not check/rate clips");
+            message.delete();
+        }
     }
 })
 
 
 client.on('message', message => {
     if (message.channel.id === config.ChannelID) {
-        //
+        //checks for links
         let links =["www.dropbox.com/","https://drive.google.com/","www.mediafire.com/file","www.awesomescreenshot.com/"]
+
         const messa = message.content.toLowerCase();
         for (var i = 0; i < links.length; i++) {
             if (messa.includes(links[i])) {
@@ -122,7 +130,7 @@ client.on('message', message => {
             break;
             }
         }
-        //
+        //checks attachments
         const attachments = (message.attachments).array(); // Get list of attachments
         const attachment = attachments[0]; // Take the first attachment
         if (attachments.length !== 0) {
