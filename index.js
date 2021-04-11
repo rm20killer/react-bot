@@ -120,10 +120,10 @@ client.on('message', message => {
         for (var i = 0; i < links.length; i++) {
             if (messa.includes(links[i])) {
                 const embed = new Discord.MessageEmbed()
-                .setTitle('Video resolution too low!')
+                .setTitle('Video must be playable on discord!')
                 .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                 .setColor(0xff0000)
-                .setDescription('Video you sent must be downloaded.\nSubmissions must be viewable on discord.\nType /requirements for more info.\nuse /compress for easy compress or youtube to upload big file')
+                .setDescription('Submissions must be viewable on discord.\nType /requirements for more info.\nuse /compress for easy compress or youtube to upload big file')
                 .addField('Bad submission by', message.author.username)
                 message.channel.send(embed);
             message.delete();
