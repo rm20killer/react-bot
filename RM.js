@@ -38,9 +38,6 @@ client.on('message', msg => {
   if(cmd==='rm') {
     msg.channel.send("RM is busy and does not check/rate clips");
   }
-  if(cmd==="compress") {
-    msg.channel.send("To compress size so you send on discord you can use: https://8mb.video/")
-  }
 })
 
 // client.login(process.env.token);

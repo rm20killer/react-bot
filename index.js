@@ -1,4 +1,5 @@
 /* eslint-disable no-inline-comments */
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
@@ -105,7 +106,23 @@ client.on('message', msg => {
 
 client.on('message', message => {
     if (message.channel.id === config.ChannelID) {
-
+        //
+        let links =["www.dropbox.com/","https://drive.google.com/","www.mediafire.com/file","www.awesomescreenshot.com/"]
+        const messa = message.content.toLowerCase();
+        for (var i = 0; i < links.length; i++) {
+            if (messa.includes(links[i])) {
+                const embed = new Discord.MessageEmbed()
+                .setTitle('Video resolution too low!')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('Video you sent must be downloaded.\nSubmissions must be viewable on discord.\nType /requirements for more info.\nuse /compress for easy compress or youtube to upload big file')
+                .addField('Bad submission by', message.author.username)
+                message.channel.send(embed);
+            message.delete();
+            break;
+            }
+        }
+        //
         const attachments = (message.attachments).array(); // Get list of attachments
         const attachment = attachments[0]; // Take the first attachment
         if (attachments.length !== 0) {
