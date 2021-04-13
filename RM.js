@@ -31,12 +31,25 @@ client.on("ready", () =>{
 
 
 client.on('message', msg => {
+  const messa = msg.content.toLowerCase();
+  console.log(messa);
+  if(messa.includes("@!144567396835917824")) {
+    msg.reply('dont ping riz')
+    msg.channel.send("https://media.giphy.com/media/QTi0jJ17OTHwEqkEIA/giphy.gif")
+  }
+
   if (!msg.content.startsWith(prefixl)) return;
   const args = msg.content.trim().split(/ +/g);
   const cmd = args[0].slice(prefixl.length).toLowerCase();
 
-  if(cmd==='rm') {
-    msg.channel.send("RM is busy and does not check/rate clips");
+  if (msg.member.roles.cache.find(r=>r.id === '795456110421213214'))
+  {
+      if(cmd==='respond') {
+          msg.channel.send("Did you read Discord TOS");
+          msg.delete();
+      }
+      
+  
   }
 })
 

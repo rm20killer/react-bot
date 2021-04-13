@@ -93,7 +93,17 @@ client.on("ready", () =>{
 });
 
 //all below are the same just removed the !(command)
+
 client.on('message', message => {
+    if (message.channel.id === "629695220065239064"||message.channel.id === "696131644871933972"||message.channel.id==="757866905263538176") {
+        const messa = message.content.toLowerCase();
+        if(messa.includes("@!144567396835917824")) { //227490301688676354  144567396835917824
+            message.reply('dont ping riz');
+            message.channel.send("https://media.giphy.com/media/QTi0jJ17OTHwEqkEIA/giphy.gif");
+            console.log("pinged");
+            //message.delete();
+        }
+    }
     if (!message.content.startsWith(prefixl)) return;
     const args = message.content.trim().split(/ +/g);
     const cmd = args[0].slice(prefixl.length).toLowerCase();
