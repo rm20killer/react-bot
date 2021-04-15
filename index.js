@@ -201,7 +201,23 @@ client.on('message', message => {
     }
     
 });
+//youtube bash
 
+//boost checker
+client.on('guildMemberUpdate', function(oldMember, newMember){
+    console.log("role checking")
+    //const hadRole = oldMember.roles.find(role => role.name === 'DJ');//Nitro Booster
+    const hasRole = newMember.roles.cache.find(role => role.name === 'DJ');
+  
+    if (hasRole) {
+      newMember.guild.channels.cache.get("716762885522456677").send('Someone boosted the server');
+    }
+  
+    // if you want to check which members are boosted, you can check how many have the `Nitro Booster` role:
+    //const boostedUsers = newMember.guild.members.array().filter(member => member.roles.find(role => role.name === 'Nitro Booster'));
+  
+    //console.log(boostedUsers.length); // how many members are boosted
+  });
 //this is for embed message for slash commands
 async function createAPImessage(interaction,content){
     const apimessage = await Discord.APIMessage.create(client.channels.resolve(interaction.channel_id),content) 
