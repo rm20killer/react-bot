@@ -206,17 +206,22 @@ client.on('message', message => {
 //boost checker
 client.on('guildMemberUpdate', function(oldMember, newMember){
     console.log("role checking")
-    //const hadRole = oldMember.roles.find(role => role.name === 'DJ');//Nitro Booster
-    const hasRole = newMember.roles.cache.find(role => role.name === 'DJ');
+    const hadRole = oldMember.roles.cache.find(role => role.name === 'Server Booster');//server Booster
+    const hasRole = newMember.roles.cache.find(role => role.name === 'Server Booster');//server Booster
   
-    if (hasRole) {
-      newMember.guild.channels.cache.get("716762885522456677").send('Someone boosted the server');
+    const boostemote = client.emojis.cache.get(`832556719770566657`);
+    if (!hadRole && hasRole) {
+        newMember.guild.channels.cache.get("788078716546318418").send(`${boostemote} ` + newMember.displayName+ " boosted the server");
     }
   
-    // if you want to check which members are boosted, you can check how many have the `Nitro Booster` role:
-    //const boostedUsers = newMember.guild.members.array().filter(member => member.roles.find(role => role.name === 'Nitro Booster'));
-  
-    //console.log(boostedUsers.length); // how many members are boosted
+//    const boostedUsers = newMember.guild.members.cache.array().filter(member => member.roles.cache.find(role => role.name === 'Server Booster'));
+//    if (!hadRole && hasRole) {
+//    console.log(boostedUsers.length); // how many members are boosted
+//        for (var i = 0; i < boostedUsers.length; i++) {
+//            newMember.guild.channels.cache.get("788078716546318418").send(`${boostemote} ` + boostedUsers[i].displayName+ " boosted the server");
+//
+//        }
+//    }
   });
 //this is for embed message for slash commands
 async function createAPImessage(interaction,content){
