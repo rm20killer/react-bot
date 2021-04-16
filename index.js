@@ -27,7 +27,8 @@ client.on("ready", () =>{
     .catch(console.error);
     //-
     //this is for slash commands to work
-
+    console.log(client.api.applications(client.user.id).commands.get())
+    console.log(client.api.applications(client.user.id).guilds(`629695220065239061`).commands.get())
     //if you have commands to add tell me
     client.api.applications(client.user.id).commands.post({
         data: {
@@ -45,7 +46,7 @@ client.on("ready", () =>{
     client.api.applications(client.user.id).guilds('629695220065239061').commands.post({
         data:{
             name: "compress",
-            description: "if you your clip is topp big for discord use this", 
+            description: "if your clip is too big for discord use this", 
         }
     });
 
