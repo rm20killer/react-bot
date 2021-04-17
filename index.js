@@ -103,7 +103,7 @@ client.on("ready", () =>{
 //all below are the same just removed the !(command)
 
 client.on('message', message => {
-    if (message.channel.id === "629695220065239064"||message.channel.id === "696131644871933972"||message.channel.id==="757866905263538176"||message.channel.id === "700790402890072205"||message.channel.id==="716762885522456677" ) {
+    if (message.channel.id === "629695220065239064"||message.channel.id === "696131644871933972"||message.channel.id==="757866905263538176"||message.channel.id === "700790402890072205"||message.channel.id==="716762885522456677"||message.channel.id==="833078102958931968" ) {
         const messa = message.content.toLowerCase();
         if(messa.includes("@!144567396835917824")) { //227490301688676354  144567396835917824
             message.reply('dont ping riz');
@@ -112,30 +112,15 @@ client.on('message', message => {
             //message.delete();
         }
         //FAQbot but Submit clips
-        if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677" ) {
-            for (var i = 0; i < text.length; i++) {
-                if (messa.includes(text[i])) {
-                    message.reply("submit clips in <#696131644871933972>. Make sure clips meet `/requirements`");
-                    break;
-                }
+        if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677"||message.channel.id==="833078102958931968" ) {
+            const regex = /(how|where|want).+(submit|post).+(clip|video)/i;
+            const str = messa;
+            let m;
+            if ((m = regex.exec(str)) !== null) {
+                // The result can be accessed through the `m`-variable.
+                message.reply("submit clips in <#696131644871933972>. Make sure clips meet `/requirements`");
             }
         }
-//        if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677" ) {
-//            for (var i = 0; i < where.length; i++) {
-//                if (messa.includes(where[i])) {
-//                    for (var i = 0; i < sub.length; i++) {
-//                        if (messa.includes(sub[i])) {
-//                            for (var i = 0; i < video.length; i++) {
-//                                if (messa.includes(video[i])) {
-//                                    message.reply("submit clips in <#696131644871933972>. Make sure clips meet `/requirements`");
-//                                    break;
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
- //           }
- //       }
     }
     if (!message.content.startsWith(prefixl)) return;
     const args = message.content.trim().split(/ +/g);
