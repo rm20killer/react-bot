@@ -19,8 +19,12 @@ const prefixl = config.prefix
 var lastBadSumbissionBy = "NONE YET";
 
 //added read FAQ bot but submit clips
-let text =["how do i submit clips","where to send it","can i submit a clip","i wanna submit"] 
+let text =["how do i submit clips","where to send it","can i submit a clip","i wanna submit","where do i post clips","how to post clips","How do I post a clip","Where do I post a clip?"] 
 
+//now sytem
+let where=["where","how","can"]
+let sub =["submit","post"]
+let video=["clip","video"]
 //start 
 client.on("ready", () =>{
     console.log(`Logged in as ${client.user.tag}!`);
@@ -112,10 +116,26 @@ client.on('message', message => {
             for (var i = 0; i < text.length; i++) {
                 if (messa.includes(text[i])) {
                     message.reply("submit clips in <#696131644871933972>. Make sure clips meet `/requirements`");
-                break;
+                    break;
                 }
             }
         }
+//        if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677" ) {
+//            for (var i = 0; i < where.length; i++) {
+//                if (messa.includes(where[i])) {
+//                    for (var i = 0; i < sub.length; i++) {
+//                        if (messa.includes(sub[i])) {
+//                            for (var i = 0; i < video.length; i++) {
+//                                if (messa.includes(video[i])) {
+//                                    message.reply("submit clips in <#696131644871933972>. Make sure clips meet `/requirements`");
+//                                    break;
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+ //           }
+ //       }
     }
     if (!message.content.startsWith(prefixl)) return;
     const args = message.content.trim().split(/ +/g);
