@@ -18,7 +18,10 @@ const prefixl = config.prefix
 //RM: This is not fully working and causing an error when trying to call the var. I think I know a work around which should be added when I add slash commands
 var lastBadSumbissionBy = "NONE YET";
 
+//added read FAQ bot but submit clips
+let text =["how do i submit clips","where to send it","can i submit a clip","i wanna submit"] 
 
+//start 
 client.on("ready", () =>{
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity("your Clips", { type: "WATCHING"})
@@ -96,13 +99,22 @@ client.on("ready", () =>{
 //all below are the same just removed the !(command)
 
 client.on('message', message => {
-    if (message.channel.id === "629695220065239064"||message.channel.id === "696131644871933972"||message.channel.id==="757866905263538176") {
+    if (message.channel.id === "629695220065239064"||message.channel.id === "696131644871933972"||message.channel.id==="757866905263538176"||message.channel.id === "700790402890072205"||message.channel.id==="716762885522456677" ) {
         const messa = message.content.toLowerCase();
         if(messa.includes("@!144567396835917824")) { //227490301688676354  144567396835917824
             message.reply('dont ping riz');
             message.channel.send("https://media.giphy.com/media/QTi0jJ17OTHwEqkEIA/giphy.gif");
             console.log("pinged");
             //message.delete();
+        }
+        //FAQbot but Submit clips
+        if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677" ) {
+            for (var i = 0; i < text.length; i++) {
+                if (messa.includes(text[i])) {
+                    message.reply("submit clips in <#696131644871933972>. Make sure clips meet `/requirements`");
+                break;
+                }
+            }
         }
     }
     if (!message.content.startsWith(prefixl)) return;
@@ -119,6 +131,7 @@ client.on('message', message => {
             message.delete();
         }
         if(cmd==`kill`){
+            //kill command ONLY TO BE USED BY HOST
             let filter = m => m.author.id === message.author.id
             message.channel.send(`Are you sure you want to kill? \`YES\` / \`NO\``).then(() => {
               message.channel.awaitMessages(filter, {
