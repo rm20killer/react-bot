@@ -18,13 +18,6 @@ const prefixl = config.prefix
 //RM: This is not fully working and causing an error when trying to call the var. I think I know a work around which should be added when I add slash commands
 var lastBadSumbissionBy = "NONE YET";
 
-//added read FAQ bot but submit clips
-let text =["how do i submit clips","where to send it","can i submit a clip","i wanna submit","where do i post clips","how to post clips","How do I post a clip","Where do I post a clip?"] 
-
-//now sytem
-let where=["where","how","can"]
-let sub =["submit","post"]
-let video=["clip","video"]
 //start 
 client.on("ready", () =>{
     console.log(`Logged in as ${client.user.tag}!`);
@@ -113,7 +106,7 @@ client.on('message', message => {
         }
         //FAQbot but Submit clips
         if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677"||message.channel.id==="833078102958931968" ) {
-            const regex = /(how|where|want).+(submit|post|sub).+(clip|video)/i;
+            const regex = /(how|where|want).+(submit|post|sub|share|send).+(clip|video)/i;
             const str = messa;
             let m;
             if ((m = regex.exec(str)) !== null) {
@@ -136,7 +129,7 @@ client.on('message', message => {
             message.delete();
         }
         if(cmd==`kill`){
-            //kill command ONLY TO BE USED BY HOST
+            //kill command ONLY TO BE USED BY HOST (RM)
             let filter = m => m.author.id === message.author.id
             message.channel.send(`Are you sure you want to kill? \`YES\` / \`NO\``).then(() => {
               message.channel.awaitMessages(filter, {
