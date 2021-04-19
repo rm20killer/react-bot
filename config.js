@@ -11,7 +11,7 @@ module.exports ={
     //Channel to check id 
     //716762885522456677 testing
     //696131644871933972
-    ChannelID: '716762885522456677',
+    ChannelID: '696131644871933972',
 
 }
 
