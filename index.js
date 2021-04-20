@@ -81,7 +81,39 @@ client.on("ready", () =>{
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
             .setColor(0xff0000)
             .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 Kbps\n> Audio bitrate: At least 150 Kbps\n> Must be viewable from discord\n> Youtube video: must be under 2 min')
-
+	    // RootAtKali: Allow arguments to call attention to a specific requirement
+	    // Possible arguments: vbr, abr, res, aspect, fps, lag, watermark, mobile, screen, misc
+	    // These map to:
+	    // vbr: Video bitrate
+	    // abr: Audio bitrate
+	    // res: Resolution
+	    // aspect: Aspect ratio
+	    // fps: FPS
+	    // lag: Unwatchable due to game lag
+	    // watermark: Contains watermark of bad software
+	    // mobile: Mobile clip with controls showing
+	    // screen: Must be a screen capture and not a camera recording
+	    // misc: Extremely low production quality for some other reason
+	    const possibleArgs = ["vbr", "abr", "res", "aspect", "fps", "lag", "watermark", "mobile", "screen", "misc"];
+	    const mappedResponses = [
+		    "Submissions should meet this requirement:\nVideo bitrate: At least 1500 kbps\nThis refers to the equivalent of 1500 kbps\nencoded with the x264 medium preset.\nThis is about 3200 kbps on ultrafast or\n1200 kbps on veryslow.",
+		    "Submissions should meet this requirement:\nAudio bitrate: At least 150 kbps\nWe essentially just require reasonably\ngood quality audio.",
+		    "Submissions should meet this requirement:\nVideo resolution: At least 1280x720\nUpscaling a video to 1280x720 does NOT count.\nThe clip must be mastered at 1280x720 or greater.",
+		    "Submissions should meet this requirement:\nVideo aspect ratio: Between 16:10 and 2:1, inclusive\nLetterboxing/padding or stretching does NOT count",
+		    "Submissions should meet this requirement:\nVideo framerate: At least 30 (29.97) FPS\nThis refers to the actual framerate, not the nominal framerate\n(i.e duplicated frames don't count)",
+		    "Submissions should meet this requirement:\nGameplay lag: Gameplay should be smooth enough to be\ncomfortably watchable at all times",
+		    "Submissions should meet this requirement:\nWatermarks: No watermarks should be present on clips",
+		    "Submissions should meet this requirement:\nMobile videos: Must hide controls or make the GUI sufficiently small",
+		    "Submissions should meet this requirement:\nScreen capture: Submissions must be captured with OBS or another\nscreen recording tool. Absolutely\nno camera recordings of a screen.\n[Get OBS Studio](https://obsproject.com)",
+		    "Submissions should meet this requirement:\nProduction quality: Submissions should generally be of decent quality\nand at least somewhat entertaining."
+	    ];
+	    if (args.length > 0){
+		    if(possibleArgs.indexOf(args) > -1){
+			    embed.setDescription(mappedResponses[possibleArgs.indexOf(args)]);
+		    }
+		    // else say it's an invalid argument somehow, no implementation now
+	    }
+	    // Will this work? I have no idea.
             client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
                     type: 4,
