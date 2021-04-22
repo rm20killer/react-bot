@@ -177,6 +177,7 @@ client.on('message', message => {
             break;
             }
         }
+
         //checks attachments
         const attachments = (message.attachments).array(); // Get list of attachments
         const attachment = attachments[0]; // Take the first attachment
@@ -199,18 +200,18 @@ client.on('message', message => {
                     message.delete();
                 }  
                 else if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2){
-			var problem = " too tall.";
-			if ((Mwidth / Mheight) > 2) {
-				problem = " too wide.";
-			}
-                	const embed = new Discord.MessageEmbed()
+                    var problem = " too tall.";
+                    if ((Mwidth / Mheight) > 2) {
+                        problem = " too wide.";
+                    }
+                    const embed = new Discord.MessageEmbed()
                         .setTitle('Video aspect ratio is bad!')
                         .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                         .setColor(0xff0000)
                         .setDescription('Video aspect ratio is invalid.\nOnly ratios from 16:10 to 2:1 are accepted.\nYour clip was ' + Mwidth + 'x' + Mheight + ', which is' + problem + '\nType /requirements for more info.\nPlease do not resubmit, scale, or letterbox this video.')
                         .addField('Bad submission by', message.author.username)
                         message.channel.send(embed);
-                    
+                            
                     //lastBadSubmissionBy = message.author.username;
                     message.delete();
                 }
@@ -237,10 +238,10 @@ client.on('message', message => {
 				message.channel.send(embed);
 				message.delete();
 				console.log("bot checked",message.id);
-			}
+			
+            }
         }
     }
-    
 });
 //youtube bash
 
