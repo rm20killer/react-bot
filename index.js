@@ -188,7 +188,18 @@ client.on('message', message => {
                 // Note this doesn't check the file it check the format of the file.
                 const Mwidth = attachment.width;
                 const Mheight = attachment.height;
-                if (Mwidth < 1280 || Mheight < 720) {
+                if (Mwidth < 1 || Mheight < 1) {
+                    const embed = new Discord.MessageEmbed()
+                    .setTitle('Video format unsupported!')
+                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                    .setColor(0xff0000)
+                    .setDescription('Video format unsupported.\nFile submissions must preview in Discord.\nuse FFmpeg or Handbrake to convert your video to H.264, VP8, or VP9, avoid online tools')
+                    .addField('Bad submission by', message.author.username)
+                    message.channel.send(embed);
+                    message.delete();
+                
+                }
+                else if (Mwidth < 1280 || Mheight < 720) {
                         const embed = new Discord.MessageEmbed()
                         .setTitle('Video resolution too low!')
                         .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
