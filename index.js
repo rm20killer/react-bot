@@ -193,7 +193,7 @@ client.on('message', message => {
                     .setTitle('Video format unsupported!')
                     .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                     .setColor(0xff0000)
-                    .setDescription('Discord, while it can play extension files, cannot play this codec. \nIt may have been HEVC or AV1. Use FFmpeg or Handbrake to convert your video to H.264, VP8, or\nVP9 in an MP4, WebM, or MOV container.')
+                    .setDescription('Discord, while it can play .' attEx + ' files, cannot play this \ncodec. It may have been HEVC or AV1. Use FFmpeg or\nHandbrake to convert your video to H.264, VP8, or\nVP9 in an MP4, WebM, or MOV container.\n*Avoid online tools, they usually reduce quality.*')
                     .addField('Bad submission by', message.author.username)
                     message.channel.send(embed);
                     message.delete();
