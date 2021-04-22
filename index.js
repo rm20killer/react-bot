@@ -106,7 +106,7 @@ client.on('message', message => {
         }
         //FAQbot but Submit clips
         if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677"||message.channel.id==="833078102958931968" ) {
-            const regex = /(how|where|want).+(submit|post|sub|share|send).+(clip|video)/i;
+            const regex = /(how|where|want).+(submit|post|share|send).+(clip|video)/i;
             const str = messa;
             let m;
             if ((m = regex.exec(str)) !== null) {
