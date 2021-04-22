@@ -192,18 +192,22 @@ client.on('message', message => {
                         .setTitle('Video resolution too low!')
                         .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                         .setColor(0xff0000)
-                        .setDescription('Video resolution is less than 720p.\nSubmissions must be 1280x720 or greater.\nType /requirements for more info.')
+                        .setDescription('Video resolution is less than 720p.\nSubmissions must be 1280x720 or greater.\nYour clip was ' + Mwidth + 'x' + Mheight + ', which is too low.' + '\nType /requirements for more info.')
                         .addField('Bad submission by', message.author.username)
                         message.channel.send(embed);
                     //lastBadSubmissionBy = message.author.username;
                     message.delete();
                 }  
                 else if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2){
-                	    const embed = new Discord.MessageEmbed()
+			var problem = " too tall.";
+			if ((Mwidth / Mheight) > 2) {
+				problem = " too wide.";
+			}
+                	const embed = new Discord.MessageEmbed()
                         .setTitle('Video aspect ratio is bad!')
                         .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                         .setColor(0xff0000)
-                        .setDescription('Video aspect ratio is invalid.\nOnly ratios from 16:10 to 2:1 are accepted.\nType /requirements for more info.\nPlease do not resubmit, scale, or letterbox this video.')
+                        .setDescription('Video aspect ratio is invalid.\nOnly ratios from 16:10 to 2:1 are accepted.\nYour clip was ' + Mwidth + 'x' + Mheight + ', which is' + problem + '\nType /requirements for more info.\nPlease do not resubmit, scale, or letterbox this video.')
                         .addField('Bad submission by', message.author.username)
                         message.channel.send(embed);
                     
@@ -219,10 +223,10 @@ client.on('message', message => {
 				}
                 console.log("bot checked",message.id);
             }
-            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v") {
+            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx = "wmv" || attEx = "mxf" || attEx = "y4m") {
 				var convertTip = "OBS Studio can convert MKV to MP4.\nGo to File -> Remux Recordings.";
 				if (attEx != "mkv"){
-					convertTip = "Use FFmpeg or Handbrake to convert your video\nto MP4, WebM, or MOV format. *Avoid online tools.*";
+					convertTip = "Use FFmpeg or Handbrake to convert your " + attEx + " video\nto MP4, WebM, or MOV format. *Avoid online tools.*";
 				}
 				const embed = new Discord.MessageEmbed()
 				.setTitle('Video format unsupported!')
