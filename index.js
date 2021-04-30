@@ -105,13 +105,27 @@ client.on('message', message => {
             //message.delete();
         }
         //FAQbot but Submit clips
-        if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677"||message.channel.id==="833078102958931968" ) {
+        if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677"||message.channel.id==="833078102958931968"||message.channel.id==="696131644871933972" ) {
             const regex = /(how|where|want).+(submit|post|share|send).+(clip|video)/i;
             const str = messa;
             let m;
             if ((m = regex.exec(str)) !== null) {
                 // The result can be accessed through the `m`-variable.
-                message.reply("submit clips in <#696131644871933972>. Make sure clips meet `/requirements`");
+		if (message.channel.id === "696131644871933972" ){
+			message.reply("Simply post your link or file here. Make sure clips meet `/requirements`"); //If the question was in #submit-clips say this
+		}else{
+                	message.reply("Submit clips in <#696131644871933972>. Make sure clips meet `/requirements`"); //Otherwise say this
+		}
+            }
+        }
+	//FAQbot but Streamer role
+        if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677"||message.channel.id==="833078102958931968"||message.channel.id==="696131644871933972" ) {
+            const regex = /(how|where|want).+(streamer|content creator|youtuber).+(role|rank)/i;
+            const str = messa;
+            let m;
+            if ((m = regex.exec(str)) !== null) {
+                // The result can be accessed through the `m`-variable.
+                message.reply("The streamer role is given to users featured in a Gamers React compilation.\nIf you have been featured, message a mod with a timestamp and link to the video.");
             }
         }
     }
