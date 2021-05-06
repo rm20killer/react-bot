@@ -138,6 +138,11 @@ client.on('message', message => {
     }
     if (message.member.roles.cache.find(r=>r.id === '795456110421213214'))
     {
+        if(cmd==="say"){
+            msg.channel.send(msg.content.slice(4));
+            msg.delete();
+        }  
+
         if(cmd==='rm') {
             message.channel.send("RM is busy and does not check/rate clips");
             message.delete();

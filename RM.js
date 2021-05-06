@@ -44,11 +44,14 @@ client.on('message', msg => {
 
   if (msg.member.roles.cache.find(r=>r.id === '795456110421213214'))
   {
-      if(cmd==='respond') {
-          msg.channel.send("Did you read Discord TOS");
-          msg.delete();
-      }
-      
+    if(cmd==='respond') {
+        msg.channel.send("dont make me get the bot up");
+        msg.delete();
+    }
+    if(cmd==="say"){
+      msg.channel.send(msg.content.slice(4));
+      msg.delete();
+    }  
   
   }
 })
