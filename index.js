@@ -80,7 +80,7 @@ client.on("ready", () =>{
             .setTitle('Requirements')
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
             .setColor(0xff0000)
-            .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 kbps (x264 medium)\n> Audio bitrate: At least 150 kbps (AAC-LC)\n> Must embed on discord\n> Must be under 2 minutess. No timestamps!\nDeliberately scaling or padding a video to fool me\ndoes **not** pass the requirements.')
+            .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 kbps (x264 medium)\n> Audio bitrate: At least 150 kbps (AAC-LC)\n> Must embed on discord\n> Must be under 2 minutes. No timestamps!\nDeliberately scaling or padding a video to fool me\ndoes **not** pass the requirements.')
 
             client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
@@ -90,7 +90,7 @@ client.on("ready", () =>{
             })
         }
     });
-    //-
+    //
 });
 
 //all below are the same just removed the !(command)
@@ -136,8 +136,9 @@ client.on('message', message => {
     if(cmd === 'ping') {
         message.reply('pong, ' + `${Date.now() - message.createdTimestamp}` + ' ms');
     }
-    if (message.member.roles.cache.find(r=>r.id === '795456110421213214'))
-    {
+
+    //Admin only commands
+    if (message.member.roles.cache.find(r=>r.id === '795456110421213214')){
         if(cmd === "say"){
             const say = message.content.slice(4);
             if(say) {
@@ -286,21 +287,32 @@ client.on('guildMemberUpdate', function(oldMember, newMember){
     console.log("role checking")
     const hadRole = oldMember.roles.cache.find(role => role.name === 'Server Booster');//server Booster
     const hasRole = newMember.roles.cache.find(role => role.name === 'Server Booster');//server Booster
-  
+    
+    const shadRole = oldMember.roles.cache.find(role => role.name === 'Streamers');//streamers
+    const shasRole = newMember.roles.cache.find(role => role.name === 'Streamers');//streamers
+
     const boostemote = client.emojis.cache.get(`832556719770566657`);
+    //streamers
+    if (!shadRole && shasRole){
+        newMember.guild.channels.cache.get("841018811657355354").send("<@"+newMember.id+ "> has got into a gamer react video");
+        return;
+    }
+
+    //Server Booster
     if (!hadRole && hasRole) {
         newMember.guild.channels.cache.get("788078716546318418").send(`${boostemote} ` + newMember.displayName+ " boosted the server");
     }
-  
-//    const boostedUsers = newMember.guild.members.cache.array().filter(member => member.roles.cache.find(role => role.name === 'Server Booster'));
-//    if (!hadRole && hasRole) {
-//    console.log(boostedUsers.length); // how many members are boosted
-//        for (var i = 0; i < boostedUsers.length; i++) {
-//            newMember.guild.channels.cache.get("788078716546318418").send(`${boostemote} ` + boostedUsers[i].displayName+ " boosted the server");
-//
-//        }
-//    }
-  });
+`
+if (!shadRole && shasRole) {
+    const boostedUsers = newMember.guild.members.cache.array().filter(member => member.roles.cache.find(role => role.name === 'Streamers'));
+    console.log(boostedUsers.length); // how many members are boosted
+    for (var i = 0; i < boostedUsers.length; i++) {
+      newMember.guild.channels.cache.get("841018811657355354").send("<@"+boostedUsers[i].id+ "> has got into a gamer react video");
+    }
+  }
+`
+});
+
 //this is for embed message for slash commands
 async function createAPImessage(interaction,content){
     const apimessage = await Discord.APIMessage.create(client.channels.resolve(interaction.channel_id),content) 

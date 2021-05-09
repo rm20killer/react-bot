@@ -56,5 +56,33 @@ client.on('message', msg => {
   }
 })
 
+`
+client.on('guildMemberUpdate', function(oldMember, newMember){
+
+  console.log("role checking")
+  const hadRole = oldMember.roles.cache.find(role => role.name === 'Server Booster');//server Booster
+  const hasRole = newMember.roles.cache.find(role => role.name === 'Server Booster');//server Booster
+  
+  const shadRole = oldMember.roles.cache.find(role => role.name === 'Streamers');//streamers
+  const shasRole = newMember.roles.cache.find(role => role.name === 'Streamers');//streamers
+
+  const boostemote = client.emojis.cache.get("832556719770566657");
+  if (!shadRole && shasRole){
+      newMember.guild.channels.cache.get("841018811657355354").send("<@"+newMember.id+ "> has got into a gamer react video");
+  }
+  if (!hadRole && hasRole) {
+      newMember.guild.channels.cache.get("788078716546318418").send("${boostemote} " + newMember.displayName+ " boosted the server");
+  }
+
+  if (!shadRole && shasRole) {
+    const boostedUsers = newMember.guild.members.cache.array().filter(member => member.roles.cache.find(role => role.name === 'Streamers'));
+    console.log(boostedUsers.length); // how many members are boosted
+    for (var i = 0; i < boostedUsers.length; i++) {
+      newMember.guild.channels.cache.get("841018811657355354").send("<@"+boostedUsers[i].id+ "> has got into a gamer react video");
+    }
+  }
+
+});
+`
 // client.login(process.env.token);
 client.login(config.BotToken);
