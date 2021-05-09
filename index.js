@@ -70,7 +70,7 @@ client.on("ready", () =>{
                 data: {
                     type: 4,
                     data: {
-                        content: "To compress size so you send on discord you can use: https://8mb.video/ \nYou must enable `Extra quality (slower)` in options if longer than 20 seconds."
+                        content: "To compress size so you send on discord you can use: https://8mb.video/ \n **You must** enable `Extra quality (slower)` in options if longer than 20 seconds."
                     }
                 }
             })
