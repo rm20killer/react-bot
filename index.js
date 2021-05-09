@@ -99,7 +99,7 @@ client.on('message', message => {
     if (message.channel.id === "629695220065239064"||message.channel.id === "696131644871933972"||message.channel.id==="757866905263538176"||message.channel.id === "700790402890072205"||message.channel.id==="716762885522456677"||message.channel.id==="833078102958931968" ) {
         const messa = message.content.toLowerCase();
         if(messa.includes("@!144567396835917824")) { //227490301688676354  144567396835917824
-            message.reply('dont ping riz');
+            message.reply('dont ping riz, If you need help feel free to ask @ moderator');
             message.channel.send("https://media.giphy.com/media/QTi0jJ17OTHwEqkEIA/giphy.gif");
             console.log("pinged");
             //message.delete();
@@ -138,9 +138,15 @@ client.on('message', message => {
     }
     if (message.member.roles.cache.find(r=>r.id === '795456110421213214'))
     {
-        if(cmd==="say"){
-            msg.channel.send(msg.content.slice(4));
-            msg.delete();
+        if(cmd === "say"){
+            const say = message.content.slice(4);
+            if(say) {
+                message.channel.send(say);
+                message.delete();
+            }
+            else(
+            message.reply("nothing to say")
+            )
         }  
 
         if(cmd==='rm') {
