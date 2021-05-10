@@ -284,7 +284,7 @@ client.on('message', message => {
 
 //boost checker
 client.on('guildMemberUpdate', function(oldMember, newMember){
-    console.log("role checking")
+    console.log("role checking - " + newMember.id)
     const hadRole = oldMember.roles.cache.find(role => role.name === 'Server Booster');//server Booster
     const hasRole = newMember.roles.cache.find(role => role.name === 'Server Booster');//server Booster
     
