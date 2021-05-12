@@ -285,11 +285,11 @@ client.on('message', message => {
 //boost checker
 client.on('guildMemberUpdate', function(oldMember, newMember){
     console.log("role checking - " + newMember.id)
-    const hadRole = oldMember.roles.cache.find(role => role.name === 'Server Booster');//server Booster
-    const hasRole = newMember.roles.cache.find(role => role.name === 'Server Booster');//server Booster
+    const hadRole = oldMember.roles.cache.find(role => role.name === 'Server Booster');//Server Booster
+    const hasRole = newMember.roles.cache.find(role => role.name === 'Server Booster');//Server Booster
     
-    const shadRole = oldMember.roles.cache.find(role => role.name === 'Streamers');//streamers
-    const shasRole = newMember.roles.cache.find(role => role.name === 'Streamers');//streamers
+    const shadRole = oldMember.roles.cache.find(role => role.name === 'Streamers');//Streamers
+    const shasRole = newMember.roles.cache.find(role => role.name === 'Streamers');//Streamers
 
     const boostemote = client.emojis.cache.get(`832556719770566657`);
     //streamers
@@ -301,6 +301,12 @@ client.on('guildMemberUpdate', function(oldMember, newMember){
     //Server Booster
     if (!hadRole && hasRole) {
         newMember.guild.channels.cache.get("788078716546318418").send(`${boostemote} ` + newMember.displayName+ " boosted the server");
+        newMember.roles.add('830069139770441728');
+        return;
+    }
+    if (hadRole && !hasRole) {
+        //console.log("removing DJ")
+        newMember.roles.remove('830069139770441728');
     }
 `
 if (!shadRole && shasRole) {
