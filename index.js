@@ -297,13 +297,17 @@ client.on('guildMemberUpdate', function(oldMember, newMember){
         newMember.guild.channels.cache.get("841018811657355354").send("<@"+newMember.id+ "> has got into a gamer react video");
         return;
     }
-
     //Server Booster
     if (!hadRole && hasRole) {
         newMember.guild.channels.cache.get("788078716546318418").send(`${boostemote} ` + newMember.displayName+ " boosted the server");
         newMember.roles.add('830069139770441728');
         return;
     }
+    //does nothing if mod
+    if (newMember.roles.cache.find(role => role.id === '696134129497931857')||newMember.roles.cache.find(role => role.id === '830118190541176904')||newMember.roles.cache.find(role => role.id === '821059585606942750')) {
+        return;
+    }
+    //dj remove when not boosting
     if (hadRole && !hasRole) {
         //console.log("removing DJ")
         newMember.roles.remove('830069139770441728');
