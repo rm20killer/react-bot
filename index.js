@@ -138,7 +138,7 @@ client.on('message', message => {
     }
 
     //Admin only commands
-    if (message.member.roles.cache.find(r=>r.id === '795456110421213214')){
+    if (message.member.roles.cache.find(r=>r.id === '696134129497931857')){
         if(cmd === "say"){
             const say = message.content.slice(4);
             if(say) {
