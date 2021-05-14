@@ -261,9 +261,9 @@ client.on('message', message => {
 				}
                 console.log("bot checked",message.id);
             }
-            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m") {
+            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m" ||attEx == "flv") {
 				var convertTip = "OBS Studio can convert MKV to MP4.\nGo to File -> Remux Recordings.";
-				if (attEx != "mkv"){
+				if (attEx != "mkv"||attEx != "flv"){
 					convertTip = "Use FFmpeg or Handbrake to convert your " + attEx + " video\nto MP4, WebM, or MOV format. *Avoid online tools.*";
 				}
 				const embed = new Discord.MessageEmbed()
