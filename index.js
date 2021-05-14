@@ -137,7 +137,7 @@ client.on('message', message => {
         message.reply('pong, ' + `${Date.now() - message.createdTimestamp}` + ' ms');
     }
 
-    //Admin only commands
+    //mod only commands
     if (message.member.roles.cache.find(r=>r.id === '696134129497931857')){
         if(cmd === "say"){
             const say = message.content.slice(4);
@@ -154,6 +154,9 @@ client.on('message', message => {
             message.channel.send("RM is busy and does not check/rate clips");
             message.delete();
         }
+    }
+    //admin only commands
+    if (message.member.roles.cache.find(r=>r.id === '795456110421213214')){
         if(cmd==`kill`){
             //kill command ONLY TO BE USED BY HOST (RM)
             let filter = m => m.author.id === message.author.id
