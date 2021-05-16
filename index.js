@@ -96,6 +96,10 @@ client.on("ready", () =>{
 //all below are the same just removed the !(command)
 
 client.on('message', message => {
+    if(message.guild === null) {
+        console.log("dm= " + message.author.username + " - " + message.content);
+        return;
+    }
     if (message.channel.id === "629695220065239064"||message.channel.id === "696131644871933972"||message.channel.id==="757866905263538176"||message.channel.id === "700790402890072205"||message.channel.id==="716762885522456677"||message.channel.id==="833078102958931968" ) {
         const messa = message.content.toLowerCase();
         if(messa.includes("@!144567396835917824")) { //227490301688676354  144567396835917824
