@@ -98,16 +98,35 @@ client.on("ready", () =>{
 client.on('message', message => {
     if(message.guild === null) {
         //dm checker
-        const embed = new Discord.MessageEmbed()
-        .setTitle('Someone DMed me')
-        .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-        .setColor(0x4287f5)
-        .setDescription(message.content)
-        .addField('person', message.author.username)
-        
-        const channel = client.channels.cache.find(channel => channel.name === "bot-audit-log");
-        channel.send(embed);
-        return;
+        const attachments = (message.attachments).array(); // Get list of attachments
+        const attachment = attachments[0]; // Take the first attachment
+        console.log(attachment);
+        if (attachment !== undefined){
+            const embed = new Discord.MessageEmbed()
+            .setTitle('Someone DMed me')
+            .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+            .setColor(0x4287f5)
+            .setDescription(message.content)
+            .addField(attachment.url)
+            .addField('person', message.author.username)
+            
+            const channel = client.channels.cache.find(channel => channel.name === "bot-audit-log");
+            channel.send(embed);
+            return;
+        }
+        else
+        {
+            const embed = new Discord.MessageEmbed()
+            .setTitle('Someone DMed me')
+            .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+            .setColor(0x4287f5)
+            .setDescription(message.content)
+            .addField('person', message.author.username)
+            
+            const channel = client.channels.cache.find(channel => channel.name === "bot-audit-log");
+            channel.send(embed);
+            return; 
+        }
     }
     //everything else
     if (message.channel.id === "629695220065239064"||message.channel.id === "696131644871933972"||message.channel.id==="757866905263538176"||message.channel.id === "700790402890072205"||message.channel.id==="716762885522456677"||message.channel.id==="833078102958931968" ) {
