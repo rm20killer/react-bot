@@ -142,7 +142,7 @@ client.on('message', message => {
     }
 
     //mod only commands
-    if (message.member.roles.cache.find(r=>r.id === '696134129497931857')){
+    if (message.member.roles.cache.find(r=>r.id === '696134129497931857')||message.member.roles.cache.find(r=>r.id === '795456110421213214')){
         if(cmd === "say"){
             const say = message.content.slice(4);
             if(say) {
