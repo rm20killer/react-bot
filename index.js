@@ -107,10 +107,11 @@ client.on('message', message => {
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
             .setColor(0x4287f5)
             .setDescription(message.content)
-            .addField(attachment.url)
-            .addField('person', message.author.username)
+            .addField("attachment", attachment.url)
+            .addField('person id', message.author.id)
+            .setFooter("person name" + message.author.username)
             
-            const channel = client.channels.cache.find(channel => channel.name === "bot-audit-log");
+            const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             channel.send(embed);
             return;
         }
@@ -121,9 +122,10 @@ client.on('message', message => {
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
             .setColor(0x4287f5)
             .setDescription(message.content)
-            .addField('person', message.author.username)
+            .addField('person id', message.author.id)
+            .setFooter("person name " + message.author.username)
             
-            const channel = client.channels.cache.find(channel => channel.name === "bot-audit-log");
+            const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             channel.send(embed);
             return; 
         }
@@ -186,6 +188,25 @@ client.on('message', message => {
         if(cmd==='rm') {
             message.channel.send("RM is busy and does not check/rate clips");
             message.delete();
+        }
+        if (cmd ==="rm2") {
+            message.channel.send("https://media.giphy.com/media/eiNLAAmHNZuy5nsKKq/giphy.gif");
+            message.delete();
+        }
+        if (cmd ==="dm"){
+            var str = message.content
+            const mess = str.split(">").pop();
+            const mention = message.mentions.users.first();
+            if (!mention){
+                message.reply("no mention")
+                return
+            }
+            else{
+                console.log(mention)
+                const user = client.users.cache.get(mention.id);
+                //console.log(mess);
+                user.send(mess);
+            }
         }
     }
     //admin only commands
