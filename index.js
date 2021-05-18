@@ -109,11 +109,10 @@ client.on('message', message => {
             .setDescription(message.content)
             .addField("attachment", attachment.url)
             .addField('person id', message.author.id)
-            .setFooter("person name" + message.author.username)
+            .setFooter("person name " + message.author.username)
             
             const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             channel.send(embed);
-            return;
         }
         else
         {
@@ -127,7 +126,21 @@ client.on('message', message => {
             
             const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             channel.send(embed);
-            return; 
+        }
+        if(message.author.bot) return;
+        
+        const regex = /(how|where|want).+(submit|post|share|send).+(clip|video)/i;
+        const messa = message.content.toLowerCase();
+        const str = messa;
+        let m;
+        if ((m = regex.exec(str)) !== null) {
+            message.reply("Submit clips in <#696131644871933972>. Make sure clips meet `/requirements`");
+        }
+
+        const sregex = /(how|where|want).+(streamer|content creator|youtuber).+(role|rank)/i;
+        if ((m = sregex.exec(str)) !== null) {
+            // The result can be accessed through the `m`-variable.
+            message.reply("The streamer role is given to users featured in a Gamers React compilation.\nIf you have been featured, message a mod with a timestamp and link to the video.");
         }
     }
     //everything else
