@@ -183,8 +183,12 @@ client.on('message', message => {
 
     if(cmd === 'ping') {
         message.reply('pong, ' + `${Date.now() - message.createdTimestamp}` + ' ms');
+        return;
     }
-
+    if (cmd === "rm3"){
+        message.channel.send("https://cdn.discordapp.com/attachments/629695220065239064/844968694550626334/5aatpw.gif");
+        message.delete();
+    }
     //mod only commands
     if (message.member.roles.cache.find(r=>r.id === '696134129497931857')||message.member.roles.cache.find(r=>r.id === '795456110421213214')){
         if(cmd === "say"){
