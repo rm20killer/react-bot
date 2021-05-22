@@ -109,7 +109,7 @@ client.on('message', message => {
             .setDescription(message.content)
             .addField("attachment", attachment.url)
             .addField('person id', message.author.id)
-            .setFooter("person name " + message.author.username)
+            .setFooter("person name " + message.author.tag)
             
             const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             channel.send(embed);
@@ -122,7 +122,7 @@ client.on('message', message => {
             .setColor(0x4287f5)
             .setDescription(message.content)
             .addField('person id', message.author.id)
-            .setFooter("person name " + message.author.username)
+            .setFooter("person name " + message.author.tag)
             
             const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             channel.send(embed);
@@ -335,12 +335,12 @@ client.on('message', message => {
 				}
                 console.log("bot checked",message.id);
             }
-            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m" ||attEx == "flv" || attEx == "wfp" || attEx == "kdenlive" || attEx == || "prproj" || attEx == "mlt" ) {
+            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m" ||attEx == "flv" || attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt" ) {
 				var convertTip = "OBS Studio can convert MKV to MP4.\nGo to File -> Remux Recordings.";
 				if (attEx != "mkv" && attEx != "flv"){
 					convertTip = "Use FFmpeg or Handbrake to convert your " + attEx + " video\nto MP4, WebM, or MOV format. *Avoid online tools.*";
 				}
-		    		if (attEx == "wfp" || attEx == "kdenlive" || attEx == || "prproj" || attEx == "mlt"){
+		    		if (attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"){
 					convertTip = "The " + attEx + " file you tried to submit is an editor project file,\nnot an actual video. It only contains references to\nfiles on your computer. Render the video as an\nMP4, WebM, or MOV with H.264, VP8, or VP9.";
 				}
 				const embed = new Discord.MessageEmbed()
