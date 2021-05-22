@@ -113,6 +113,7 @@ client.on('message', message => {
             
             const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             channel.send(embed);
+            message.reply("You don't need to DM me the videos, Just send them in <#696131644871933972>, to get access to this channel read the <#700789384131379371>")
         }
         else
         {
