@@ -135,7 +135,7 @@ client.on('message', message => {
         const str = messa;
         let m;
         if ((m = regex.exec(str)) !== null) {
-            message.reply("Submit clips in <#696131644871933972>. Make sure clips meet `/requirements`");
+            message.reply("Submit clips in <#696131644871933972>. Make sure clips meet `/requirements. To get access to this channel read the <#700789384131379371>`");
         }
 
         const sregex = /(how|where|want).+(streamer|content creator|youtuber).+(role|rank)/i;
