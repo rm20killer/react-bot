@@ -145,10 +145,18 @@ client.on('message', message => {
         }
     }
     //everything else
-    if (message.channel.id === "629695220065239064"||message.channel.id === "696131644871933972"||message.channel.id==="757866905263538176"||message.channel.id === "700790402890072205"||message.channel.id==="716762885522456677"||message.channel.id==="833078102958931968" ) {
+    try
+    {
+        var channelID = message.channel.parent.id
+    }
+    catch{
+        console.log("message not sent in catoragy")
+    }
+
+    if (channelID =='629695220065239063'||channelID=='716754944472121516'||channelID=='629695220065239065') {
         const messa = message.content.toLowerCase();
-        if(messa.includes("@!144567396835917824")) { //227490301688676354  144567396835917824
-            message.reply('dont ping riz, If you need help feel free to ask @ moderator');
+        if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
+            message.reply('dont ping riz, If you need help feel free to ask <@&696134129497931857>');
             message.channel.send("https://media.giphy.com/media/QTi0jJ17OTHwEqkEIA/giphy.gif");
             console.log("pinged");
             //message.delete();
