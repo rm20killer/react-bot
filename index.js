@@ -130,7 +130,7 @@ client.on('message', message => {
         }
         if(message.author.bot) return;
         
-        const regex = /(how|where|want).+(submit|post|share|send).+(clip|video)/i;
+        const regex = /(how|where|want|).+(submit|post|share|send|subit|give).+(clip|video)/i;
         const messa = message.content.toLowerCase();
         const str = messa;
         let m;
