@@ -150,9 +150,13 @@ client.on('message', message => {
         var channelID = message.channel.parent.id
     }
     catch{
-        console.log("message not sent in catoragy")
+        console.log("message not sent in catoragy");
     }
-
+    if (message.channel.id==='629695352454250508') {
+        const channel = client.channels.cache.find(channel => channel.id === "707304184524832879");
+        channel.send("Reminder: Publish message in <#629695352454250508>");
+        
+    }
     if (channelID =='629695220065239063'||channelID=='716754944472121516'||channelID=='629695220065239065') {
         const messa = message.content.toLowerCase();
         if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
