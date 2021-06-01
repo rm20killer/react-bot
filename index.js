@@ -233,7 +233,7 @@ client.on('message', message => {
         }
         if (cmd ==="dm"){
             var str = message.content
-            const mess = str.split(">").pop();
+            const mess = str.split(/>(.+)/)[1]
             const mention = message.mentions.users.first();
             if (!mention){
                 message.reply("no mention")
