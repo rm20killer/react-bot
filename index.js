@@ -2,6 +2,7 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const fetch = require("node-fetch");
 
 const config = require("./config");
 const prefixl = config.prefix
@@ -11,13 +12,28 @@ const prefixl = config.prefix
 //youtube api
 
 //youtube stuff not working yet
-//const YouTube = require("discord-youtube-api"); 
-//const youtube = new YouTube(config.youtubeAPI);
+const youtubeKey = config.youtubeKey
+const youtubeUser = config.youtubeUser
 
 //EnderEyeGames/RootAtKali: save username of the last user to submit something, so the bot can scold people for submitting two inadequate submissions.
 //RM: This is not fully working and causing an error when trying to call the var. I think I know a work around which should be added when I add slash commands
 var lastBadSumbissionBy = "NONE YET";
-
+const getSubscribers = async () => {
+  //return req.data;
+  fetch("https://www.googleapis.com/youtube/v3/channels?part=statistics&id="+youtubeUser+"&key="+youtubeKey)
+  .then(response => {
+      return response.json()
+  })
+  .then(data => {
+      console.log(data["items"][0].statistics.subscriberCount);
+      const sub = data["items"][0].statistics.subscriberCount;
+      subr=sub.slice(0, -4); 
+      subr = (subr / 100).toFixed(2);
+      const channel = client.channels.cache.find(channel => channel.id === "849642482702614528");
+      channel.setName("Subscribers: "+subr+" Mil");
+      //return(sub)
+  })
+}
 //start 
 client.on("ready", () =>{
     console.log(`Logged in as ${client.user.tag}!`);
@@ -198,6 +214,8 @@ client.on('message', message => {
             }
         }
     }
+
+
     if (!message.content.startsWith(prefixl)) return;
     const args = message.content.trim().split(/ +/g);
     const cmd = args[0].slice(prefixl.length).toLowerCase();
@@ -222,7 +240,9 @@ client.on('message', message => {
             message.reply("nothing to say")
             )
         }  
-
+        if(cmd==="subupdate") {
+            getSubscribers();
+        }
         if(cmd==='rm') {
             message.channel.send("RM is busy and does not check/rate clips");
             message.delete();
