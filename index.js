@@ -108,7 +108,6 @@ client.on("ready", () =>{
     });
     //
 });
-
 //all below are the same just removed the !(command)
 
 client.on('message', message => {
@@ -129,7 +128,21 @@ client.on('message', message => {
             
             const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             channel.send(embed);
-            message.reply("You don't need to DM me the videos, Just send them in <#696131644871933972>, to get access to this channel read the <#700789384131379371>")
+	//auto respond
+	    const nameArray = attachment.name.split('.'); // Split the name 
+            const attEx = nameArray[nameArray.length - 1].toLowerCase();
+	    const videos = ["webm","mkv","mov","mp4","mpg","avi","m4v","wmv","mxf","flv"];
+	    const editorprojs = ["wfp","prproj","kdenlive","mlt"];
+	    const unsupported = ["ofr","y4m"]; //obscure files that mods just straight up can't open
+	    if ( videos.indexOf(attEx) != -1 ) {
+                message.reply("You don't need to DM me the videos, Just send them in <#696131644871933972>, to get access to this channel read the <#700789384131379371>")
+	    }
+	    if ( editorprojs.indexOf(attEx) != -1 ) {
+  	        message.reply("That's a video editor project, and I can't watch that. Render it to MP4, WebM, or MOV before submitting it in <#696131644871933972>.");
+	    }
+            if ( unsupported.indexOf(attEx) != -1 ) {
+		message.reply("tf did you just send me? I can't open this type of file.");
+	    }
         }
         else
         {
