@@ -167,7 +167,7 @@ client.on('message', message => {
 	    // perhaps a "troll mode" could be toggled per-user so this doesn't tell the truth?
             message.reply("React Bot's DM system relays your messages to moderators in a hidden channel.\nModerators can command React Bot to send messages to members.");
         }
-    return
+    return;
     }
     //everything else
     try
@@ -230,7 +230,11 @@ client.on('message', message => {
         message.delete();
     }
     //mod only commands
-    if(message.member.roles)
+    if(message.member.roles=== null){
+        message.reply("Roles issue detected")
+        console.log(message.author+" roles issue "+message.content)
+        return;
+    }
     if (message.member.roles.cache.find(r=>r.id === '696134129497931857')||message.member.roles.cache.find(r=>r.id === '795456110421213214')){
         if(cmd === "say"){
             const say = message.content.slice(4);
@@ -259,7 +263,7 @@ client.on('message', message => {
             const mention = message.mentions.users.first();
             if (!mention){
                 message.reply("no mention")
-                return
+                return;
             }
             else{
                 console.log(mention)
