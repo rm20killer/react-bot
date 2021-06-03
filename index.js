@@ -90,9 +90,6 @@ client.on("ready", () =>{
                     }
                 }
             })
-￼
-[9:08 PM]
-i
         }
         if (command === 'requirements'){
             const embed = new Discord.MessageEmbed()
@@ -111,10 +108,6 @@ i
     });
     //
 });
-
-￼
-[9:08 PM]
-i
 //all below are the same just removed the !(command)
 
 client.on('message', message => {
@@ -135,6 +128,7 @@ client.on('message', message => {
             
             const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             channel.send(embed);
+	//auto respond
 	    const nameArray = attachment.name.split('.'); // Split the name 
             const attEx = nameArray[nameArray.length - 1].toLowerCase();
 	    const videos = ["webm","mkv","mov","mp4","mpg","avi","m4v","wmv","mxf","flv"];
