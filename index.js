@@ -133,7 +133,7 @@ client.on('message', message => {
             channel.send(embed);
 	//auto respond
 	    const nameArray = attachment.name.split('.'); // Split the name 
-            const attEx = nameArray[nameArray.length - 1].toLowerCase();
+        const attEx = nameArray[nameArray.length - 1].toLowerCase();
 	    const videos = ["webm","mkv","mov","mp4","mpg","avi","m4v","wmv","mxf","flv"];
 	    const editorprojs = ["wfp","prproj","kdenlive","mlt"];
 	    const unsupported = ["ofr","y4m"]; //obscure files that mods just straight up can't open
@@ -266,10 +266,10 @@ client.on('message', message => {
             }
         }
 	    //FAQbot but Streamer role
-        const regex = /(how|where|want).+(streamer|content creator|youtuber).+(role|rank)/i;
-        const str = messa;
-        let m;
-        if ((m = regex.exec(str)) !== null) {
+        const sregex = /(how|where|want).+(streamer|content creator|youtuber).+(role|rank)/i;
+        const sstr = messa;
+        let mx;
+        if ((mx = sregex.exec(sstr)) !== null) {
             // The result can be accessed through the `m`-variable.
             message.reply("The streamer role is given to users featured in a Gamers React compilation.\nIf you have been featured, message a mod with a timestamp and link to the video.");
             return;
