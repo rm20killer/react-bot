@@ -203,9 +203,9 @@ client.on('message', message => {
     if (channelID =='629695220065239063'||channelID=='716754944472121516'||channelID=='629695220065239065') {
         const messa = message.content.toLowerCase();
 	
-	// Some sort of worm has been spread which uses messages like this to spread.
-	const malregex = /(creator|publisher).+(enter|participate).+(beta|closed beta).+(bonus|reward).+(download|install).+(link|file)/i
-	const strx = messa;
+	    // Some sort of worm has been spread which uses messages like this to spread.
+	    const malregex = /(creator|publisher).+(enter|participate).+(beta|closed beta).+(bonus|reward).+(download|install).+(link|file)/i
+	    const strx = messa;
         let mal;
         if ((mal = malregex.exec(strx)) !== null) {
             // The result can be accessed through the `mal`-variable.
@@ -240,6 +240,7 @@ client.on('message', message => {
 
             channel.send(embed);
 		    message.delete();
+            return;
         }
 	    //End anti-worm code.
 	
@@ -250,28 +251,28 @@ client.on('message', message => {
             //message.delete();
         }
         //FAQbot but Submit clips
-        if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677"||message.channel.id==="833078102958931968"||message.channel.id==="696131644871933972" ) {
-            const regex = /(how|where|want).+(submit|post|share|send).+(clip|video)/i;
-            const str = messa;
-            let m;
-            if ((m = regex.exec(str)) !== null) {
+        const regex = /(how|where|want).+(submit|post|share|send).+(clip|video)/i;
+        const str = messa;
+        let m;
+        if ((m = regex.exec(str)) !== null) {
                 // The result can be accessed through the `m`-variable.
-		if (message.channel.id === "696131644871933972" ){
-			message.reply("Simply post your link or file here. Make sure clips meet `/requirements`"); //If the question was in #submit-clips say this
-		}else{
-                	message.reply("Submit clips in <#696131644871933972>. Make sure clips meet `/requirements`"); //Otherwise say this
-		}
+		    if (message.channel.id === "696131644871933972" ){
+			    message.reply("Simply post your link or file here. Make sure clips meet `/requirements`"); //If the question was in #submit-clips say this
+                return;
+		    }
+            else{
+                message.reply("Submit clips in <#696131644871933972>. Make sure clips meet `/requirements`"); //Otherwise say this
+                return;
             }
         }
-	//FAQbot but Streamer role
-        if(message.channel.id === "700790402890072205"|| message.channel.id ==="629695220065239064" ||message.channel.id ==="716762885522456677"||message.channel.id==="833078102958931968"||message.channel.id==="696131644871933972" ) {
-            const regex = /(how|where|want).+(streamer|content creator|youtuber).+(role|rank)/i;
-            const str = messa;
-            let m;
-            if ((m = regex.exec(str)) !== null) {
-                // The result can be accessed through the `m`-variable.
-                message.reply("The streamer role is given to users featured in a Gamers React compilation.\nIf you have been featured, message a mod with a timestamp and link to the video.");
-            }
+	    //FAQbot but Streamer role
+        const regex = /(how|where|want).+(streamer|content creator|youtuber).+(role|rank)/i;
+        const str = messa;
+        let m;
+        if ((m = regex.exec(str)) !== null) {
+            // The result can be accessed through the `m`-variable.
+            message.reply("The streamer role is given to users featured in a Gamers React compilation.\nIf you have been featured, message a mod with a timestamp and link to the video.");
+            return;
         }
     }
 
