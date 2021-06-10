@@ -199,6 +199,21 @@ client.on('message', message => {
     }
     if (channelID =='629695220065239063'||channelID=='716754944472121516'||channelID=='629695220065239065') {
         const messa = message.content.toLowerCase();
+	
+	// Some sort of worm has been spread which uses messages like this to spread.
+	const malregex = /(creator|publisher).+(enter|participate).+(beta|closed beta).+(bonus|reward).+(download|install).+(link|file)/i
+	const strx = messa;
+        let mal;
+        if ((mal = malregex.exec(strx)) !== null) {
+                // The result can be accessed through the `mal`-variable.
+                message.reply("Run a Windows Defender scan and change your password immediately.");
+		message.author.send("We noticed you've been compromised by self-spreading malware (a worm) which takes over your account to send download links to this worm to others.\nAs a precaution, the bot has kicked you from the Gamers React server.\nYou must run a Windows Defender full scan and change your password.\nTo join back, use this invite link: https://discord.gg/SnBhUmqSf8");
+		//message.author.kick();
+		//Do not enable kicking until it's been tested and is working
+		message.delete;
+        }
+	//End anti-worm code.
+	
         if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
             message.reply('dont ping riz, If you need help feel free to ask <@&696134129497931857>');
             message.channel.send("https://media.giphy.com/media/QTi0jJ17OTHwEqkEIA/giphy.gif");
@@ -324,7 +339,7 @@ client.on('message', message => {
     if (message.channel.id === config.ChannelID) {
         //checks for links
         let links =["www.dropbox.com/","https://drive.google.com/","www.mediafire.com/file","www.awesomescreenshot.com/","mega.nz/file/"]
-
+	
         const messa = message.content.toLowerCase();
         for (var i = 0; i < links.length; i++) {
             if (messa.includes(links[i])) {
@@ -339,7 +354,7 @@ client.on('message', message => {
             break;
             }
         }
-
+	
         //checks attachments
         const attachments = (message.attachments).array(); // Get list of attachments
         const attachment = attachments[0]; // Take the first attachment
