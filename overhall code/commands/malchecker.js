@@ -2,7 +2,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-module.exports={
+module.exports ={
     antiworm: function(messa,message,client){
         // Some sort of worm has been spread which uses messages like this to spread.
 	    const malregex = /(creator|publisher).+(enter|participate).+(beta|closed beta).+(bonus|reward).+(download|install).+(link|file)/i

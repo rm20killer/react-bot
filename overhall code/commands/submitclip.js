@@ -2,7 +2,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-module.exports={
+module.exports ={
     submitclip: function(messa,message,client){
         const regex = /(how|where|want).+(submit|post|share|send).+(clip|video)/i;
         const str = messa;

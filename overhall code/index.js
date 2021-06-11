@@ -15,10 +15,11 @@ const dmchecker = require('./commands/dmchecker');
 const antiw = require('./commands/malchecker');
 const submitclip = require('./commands/submitclip');
 const streamerrole = require('./commands/streamerrole');
-const kill = require('./commands/kill');
+//const kill = require('./commands/kill');
 const attachmentD = require('./commands/attachment');
 const rolechecker = require('./commands/rolechecker');
 const cmds = require('./commands/cmd');
+const slashcoms = require('./commands/slashcommands');
 //youtube api
 
 //youtube stuff not working yet
@@ -46,7 +47,9 @@ client.on("ready", () =>{
     console.log(client.api.applications(client.user.id).guilds(`629695220065239061`).commands.get())
     
     //this is for slash commands to work
-    slash.slashfun(client)
+    //slash.slashfun(client);
+
+
     //
 });
 //all below are the same just removed the !(command)
@@ -54,7 +57,7 @@ client.on("ready", () =>{
 client.on('message', message => {
     if(message.guild === null) {
         //dm checker
-        dmchecker.dmchecker(message,client)
+        dmchecker.dmchecker(message,client);
     }
     //everything else
     try
@@ -72,7 +75,7 @@ client.on('message', message => {
     if (channelID =='629695220065239063'||channelID=='716754944472121516'||channelID=='629695220065239065') {
         const messa = message.content.toLowerCase();
         
-        antiw.antiworm(messa,message,client)
+        antiw.antiworm(messa,message,client);
 	    //End anti-worm code.
 	
         if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
@@ -83,10 +86,10 @@ client.on('message', message => {
         }
 
         //FAQbot but Submit clips
-        submitclip.submitclip(messa,message,client)
+        submitclip.submitclip(messa,message,client);
 
 	    //FAQbot but Streamer role
-        streamerrole.streamerrole(messa,message,client)
+        streamerrole.streamerrole(messa,message,client);
     }
 
 
@@ -95,7 +98,7 @@ client.on('message', message => {
     const cmd = args[0].slice(prefixl.length).toLowerCase();
 
     
-    cmds.commands(cmd,args,messa,message,client)
+    cmds.commands(cmd,args,message,client);
 
 })
 
@@ -124,7 +127,7 @@ client.on('message', message => {
         const attachments = (message.attachments).array(); // Get list of attachments
         const attachment = attachments[0]; // Take the first attachment
         if (attachments.length !== 0) {
-            attachmentD.attachment(attachment,message,client)
+            attachmentD.attachmentchecker(attachment,message,client);
         }
     }
 });
@@ -132,7 +135,7 @@ client.on('message', message => {
 
 //boost checker
 client.on('guildMemberUpdate', function(oldMember, newMember){
-    rolechecker.rolecheck(oldMember,newMember,client)
+    rolechecker.rolecheck(oldMember,newMember,client);
 `
 if (!shadRole && shasRole) {
     const boostedUsers = newMember.guild.members.cache.array().filter(member => member.roles.cache.find(role => role.name === 'Streamers'));
@@ -144,7 +147,51 @@ if (!shadRole && shasRole) {
 `
 });
 
-//this is for embed message for slash commands
+
+
+// client.login(process.env.token);
+client.login(config.BotToken);
+client.ws.on('INTERACTION_CREATE', async interaction => {
+    //slashcom(interaction,client);
+    const command = interaction.data.name.toLowerCase();
+    const args = interaction.data.options;
+    if (command === 'madeby'){ 
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+                type: 4,
+                data: {
+                    content: "This was made by RM20 with the help from RootAtKali, source code can be found at https://github.com/rm20killer/react-bot"
+                }
+            }
+        })
+    }
+    if (command === 'compress'){ 
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+                type: 4,
+                data: {
+                    content: "To compress size so you send on discord you can use: https://8mb.video/ \n **You must** enable the `Extra quality (slower)` option.\nYour video cannot be longer than 40 seconds to meet requirements.\nUse the trim options to accomplish this."
+                }
+            }
+        })
+    }
+    if (command === 'requirements'){
+        const embed = new Discord.MessageEmbed()
+        .setTitle('Requirements')
+        .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+        .setColor(0xff0000)
+        .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 kbps (x264 medium)\n> Audio bitrate: At least 150 kbps (AAC-LC)\n> Must embed on discord\n> Must be under 2 minutes. No timestamps!\nDeliberately scaling or padding a video to fool me\ndoes **not** pass the requirements.')
+
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+                type: 4,
+                data: await createAPImessage(interaction, embed)
+            }
+        })
+    }
+
+});
+
 async function createAPImessage(interaction,content){
     const apimessage = await Discord.APIMessage.create(client.channels.resolve(interaction.channel_id),content) 
         .resolveData()
@@ -152,6 +199,3 @@ async function createAPImessage(interaction,content){
 
     return  {...apimessage.data, files: apimessage.files};
 }
-
-// client.login(process.env.token);
-client.login(config.BotToken);
