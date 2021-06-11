@@ -282,7 +282,7 @@ client.on('message', message => {
     const cmd = args[0].slice(prefixl.length).toLowerCase();
 
     if(cmd === 'ping') {
-        message.reply('pong, ' + `${Date.now() - message.createdTimestamp}` + ' ms');
+        message.reply("Pong: " + Math.round(client.ws.ping)+" ms")
         return;
     }
     if (cmd === "rm3"){
