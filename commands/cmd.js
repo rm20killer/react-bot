@@ -11,8 +11,7 @@ const youtubeUser = config.youtubeUser
 module.exports ={
     commands: function(cmd,args,message,client){   
         if(cmd === 'ping') {
-            message.reply('pong, ' + `${Date.now() - message.createdTimestamp}` + ' ms');
-            return;
+            ping(message,client)
         }
         if (cmd === "rm3"){
             message.channel.send("https://cdn.discordapp.com/attachments/629695220065239064/844968694550626334/5aatpw.gif");
@@ -92,6 +91,15 @@ module.exports ={
             }
         }
     }
+}
+
+const ping = async (message,client) => {
+    var resMsg = await message.channel.send('Ping is being appreciated...');
+    const ping = (resMsg.createdTimestamp - message.createdTimestamp);
+    //console.log(client.ws.ping);  
+    resMsg.edit("Ping: " + ping +" ms");
+    //message.reply('pong, ' + `${Date.now() - message.createdTimestamp}` + ' ms');
+    return;
 }
 
 const getSubscribers = async (message,client) => {
