@@ -2,6 +2,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const index = require('../index');
+
 module.exports = {
     kill: function(message,client){
         //kill command ONLY TO BE USED BY HOST (RM)
@@ -16,7 +18,7 @@ module.exports = {
             message = message.first()
             if (message.content.toUpperCase() == 'YES' || message.content.toUpperCase() == 'Y') {
                 message.channel.send(`shutting down`);
-                setTimeout(() => { client.destroy(); }, 500);
+                index.killclient(client)
                 console.log("kill command")
                 } else if (message.content.toUpperCase() == 'NO' || message.content.toUpperCase() == 'N') {
                     message.channel.send(`Terminated`)

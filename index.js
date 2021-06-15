@@ -192,6 +192,12 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
 
 });
 
+module.exports = {
+    killclient: function(client){
+        setTimeout(() => { client.destroy(); }, 500);
+    }
+}
+
 async function createAPImessage(interaction,content){
     const apimessage = await Discord.APIMessage.create(client.channels.resolve(interaction.channel_id),content) 
         .resolveData()
