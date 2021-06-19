@@ -17,6 +17,12 @@ module.exports ={
             message.channel.send("https://cdn.discordapp.com/attachments/629695220065239064/844968694550626334/5aatpw.gif");
             message.delete();
         }
+        if (cmd === "what") {
+            const rest = message.content.slice(5);
+            if (rest.includes("is the meaning of life")){
+                message.reply("To listen to minecraftcowboy, he is the wise one")
+            }
+        }
         //mod only commands
         if(message.member.roles=== null){
             message.reply("Roles issue detected")
