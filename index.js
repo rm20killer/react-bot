@@ -97,6 +97,35 @@ client.on('message', message => {
     const args = message.content.trim().split(/ +/g);
     const cmd = args[0].slice(prefixl.length).toLowerCase();
 
+    if (message.member.roles.cache.find(r=>r.id === '795456110421213214')){
+        if(cmd==`kill`){
+            //kill command ONLY TO BE USED BY HOST (RM)
+            let filter = m => m.author.id === message.author.id
+            message.channel.send(`Are you sure you want to kill? \`YES\` / \`NO\``).then(() => {
+            message.channel.awaitMessages(filter, {
+                max: 1,
+                time: 5000,
+                errors: ['time']
+            })
+            .then(message => {
+            message = message.first()
+            if (message.content.toUpperCase() == 'YES' || message.content.toUpperCase() == 'Y') {
+                message.channel.send(`shutting down`);
+                console.log("kill command")
+                process.exit();
+                setTimeout(() => { client.destroy(); }, 500);
+                } else if (message.content.toUpperCase() == 'NO' || message.content.toUpperCase() == 'N') {
+                    message.channel.send(`Terminated`)
+                } else {
+                    message.channel.send(`Terminated: Invalid Response`)
+                }
+            })
+            .catch(collected => {
+                message.channel.send('Timeout');
+                });
+            })
+        }
+    }
     
     cmds.commands(cmd,args,message,client);
 
@@ -194,7 +223,9 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
 
 module.exports = {
     killclient: function(client){
+        process.exitCode = 1
         setTimeout(() => { client.destroy(); }, 500);
+        process.exit(1)
     }
 }
 

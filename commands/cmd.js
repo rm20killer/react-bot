@@ -5,6 +5,8 @@ const fetch = require("node-fetch");
 
 const config = require("../config");
 
+const index = require('../index');
+
 const youtubeKey = config.youtubeKey
 const youtubeUser = config.youtubeUser
 
@@ -68,34 +70,6 @@ module.exports ={
             }
         }
         //admin only commands
-        if (message.member.roles.cache.find(r=>r.id === '795456110421213214')){
-            if(cmd==`kill`){
-                //kill command ONLY TO BE USED BY HOST (RM)
-                let filter = m => m.author.id === message.author.id
-                message.channel.send(`Are you sure you want to kill? \`YES\` / \`NO\``).then(() => {
-                message.channel.awaitMessages(filter, {
-                    max: 1,
-                    time: 5000,
-                    errors: ['time']
-                })
-                .then(message => {
-                message = message.first()
-                if (message.content.toUpperCase() == 'YES' || message.content.toUpperCase() == 'Y') {
-                    message.channel.send(`shutting down`);
-                    setTimeout(() => { client.destroy(); }, 500);
-                    console.log("kill command")
-                    } else if (message.content.toUpperCase() == 'NO' || message.content.toUpperCase() == 'N') {
-                        message.channel.send(`Terminated`)
-                    } else {
-                        message.channel.send(`Terminated: Invalid Response`)
-                    }
-                })
-                .catch(collected => {
-                    message.channel.send('Timeout');
-                    });
-                })
-            }
-        }
     }
 }
 
