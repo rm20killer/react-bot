@@ -84,7 +84,16 @@ client.on('message', message => {
             console.log("pinged");
             //message.delete();
         }
-
+	if(messa.indexOf("@everyone") !== -1 || messa.indexOf("@here") !== -1) { //Apparently, it's just plain text. Who would have guessed?
+	    if(messa.indexOf("@everyone") !== -1){
+		    message.reply("@ everyone ping fail");
+	    }else{
+		    message.reply("@ here ping fail"); //if someone puts both in their message, the bot says "everyone"
+	    }
+            message.channel.send("https://tenor.com/view/everyone-ping-everyone-fail-at-everyone-everyone-huge-fail-everyone-fails-ping-gif-21366472");
+            console.log("everyone ping fail");
+            //message.delete();
+        }
         //FAQbot but Submit clips
         submitclip.submitclip(messa,message,client);
 
