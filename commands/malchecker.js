@@ -8,8 +8,9 @@ module.exports ={
 	    const malregex = /(creator|publisher).+(enter|participate).+(beta|closed beta).+(bonus|reward).+(download|install).+(link|file)/i
 	    const strx = messa;
         let mal;
-        if ((mal = malregex.exec(strx)) !== null) {
+        if ((mal = malregex.exec(strx)) !== null || strx.indexOf("http://steancommunity.ru") !== -1) {
             // The result can be accessed through the `mal`-variable.
+            // steancommunity.ru is a PHISHING SITE, note that it is stean, not steam, and yes the link is sent as http:// for some reason and not https://
             message.reply("Run a Windows Defender scan and change your password immediately.");
 		    message.author.send("We noticed you've been compromised by self-spreading malware (a worm) which takes over your account to send download links to this worm to others.\nAs a precaution, the bot has kicked you from the Gamers React server.\nYou must run a Windows Defender full scan and change your password.\nTo join back, use this invite link: https://discord.gg/SnBhUmqSf8");
 		    //message.author.kick();
