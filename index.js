@@ -135,7 +135,7 @@ client.on('message', message => {
 client.on('message', message => {
     if (message.channel.id === config.ChannelID) {
         //checks for links
-        let links =["www.dropbox.com/","https://drive.google.com/","www.mediafire.com/file","www.awesomescreenshot.com/","mega.nz/file/","http://somup.com/","https://screencast-o-matic.com/"]
+        let links =["www.dropbox.com/","https://drive.google.com/","www.mediafire.com/file","www.awesomescreenshot.com/","mega.nz/file/","http://somup.com/","https://screencast-o-matic.com/","https://fb.watch/"]
 	
         const messa = message.content.toLowerCase();
         for (var i = 0; i < links.length; i++) {
