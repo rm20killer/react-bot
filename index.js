@@ -25,7 +25,8 @@ const slashcoms = require('./commands/slashcommands');
 //youtube stuff not working yet
 const youtubeKey = config.youtubeKey
 const youtubeUser = config.youtubeUser
-
+const modid = config.ModID
+const adminid = config.AdminID
 //EnderEyeGames/RootAtKali: save username of the last user to submit something, so the bot can scold people for submitting two inadequate submissions.
 //RM: This is not fully working and causing an error when trying to call the var. I think I know a work around which should be added when I add slash commands
 var lastBadSumbissionBy = "NONE YET";
@@ -62,7 +63,7 @@ client.on('message', message => {
     //everything else
     try
     {
-        var channelID = message.channel.parent.id
+        var channelParent = message.channel.parent.id
     }
     catch{
         console.log("message not sent in catoragy");
@@ -72,7 +73,7 @@ client.on('message', message => {
         channel.send("Reminder: Publish message in <#629695352454250508>");
         
     }
-    if (channelID =='629695220065239063'||channelID=='716754944472121516'||channelID=='629695220065239065') {
+    if (channelParent =='629695220065239063'||channelParent=='716754944472121516'||channelParent=='629695220065239065') {
         const messa = message.content.toLowerCase();
         
         antiw.antiworm(messa,message,client);
@@ -97,7 +98,7 @@ client.on('message', message => {
     const args = message.content.trim().split(/ +/g);
     const cmd = args[0].slice(prefixl.length).toLowerCase();
 
-    if (message.member.roles.cache.find(r=>r.id === '795456110421213214')){
+    if (message.member.roles.cache.find(r=>r.id === adminid)){
         if(cmd==`kill`){
             //kill command ONLY TO BE USED BY HOST (RM)
             let filter = m => m.author.id === message.author.id

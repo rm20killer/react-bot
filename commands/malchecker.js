@@ -8,7 +8,7 @@ module.exports ={
 	    const malregex = /(creator|publisher).+(enter|participate).+(beta|closed beta).+(bonus|reward).+(download|install).+(link|file)/i
 	    const strx = messa;
         let mal;
-        if ((mal = malregex.exec(strx)) !== null || strx.indexOf(".ru/tradeoffer/") !== -1) {
+        if ((mal = malregex.exec(strx)) !== null || strx.indexOf(".ru/t") !== -1) {
             // The result can be accessed through the `mal`-variable.
             // steancommunity.ru is a PHISHING SITE, note that it is stean, not steam, and yes the link is sent as http:// for some reason and not https://
             message.reply("Run a Windows Defender scan and change your password immediately.");

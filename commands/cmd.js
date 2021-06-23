@@ -9,6 +9,8 @@ const index = require('../index');
 
 const youtubeKey = config.youtubeKey
 const youtubeUser = config.youtubeUser
+const modid = config.ModID
+const adminid = config.AdminID
 
 module.exports ={
     commands: function(cmd,args,message,client){   
@@ -22,7 +24,7 @@ module.exports ={
         if (cmd === "what") {
             const rest = message.content.slice(5);
             if (rest.includes("is the meaning of life")){
-                message.reply("To listen to minecraftcowboy, he is the wise one")
+                message.reply("To listen to <@700788536189649006>, he is the wise one")
             }
         }
         //mod only commands
@@ -31,7 +33,7 @@ module.exports ={
             console.log(message.author+" roles issue "+message.content)
             return;
         }
-        if (message.member.roles.cache.find(r=>r.id === '696134129497931857')||message.member.roles.cache.find(r=>r.id === '795456110421213214')){
+        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
             if(cmd === "say"){
                 const say = message.content.slice(4);
                 if(say) {
