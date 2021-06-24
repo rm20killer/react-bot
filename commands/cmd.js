@@ -5,6 +5,8 @@ const fetch = require("node-fetch");
 
 const config = require("../config");
 
+const accountage = require("./accountage");
+
 const index = require('../index');
 
 const youtubeKey = config.youtubeKey
@@ -24,7 +26,7 @@ module.exports ={
         if (cmd === "what") {
             const rest = message.content.slice(5);
             if (rest.includes("is the meaning of life")){
-                message.reply("To listen to <@700788536189649006>, he is the wise one")
+                message.reply("To listen to minecraftcowboy, he is the wise one")
             }
         }
         //mod only commands
@@ -69,6 +71,9 @@ module.exports ={
                     //console.log(mess);
                     user.send(mess);    
                 }
+            }
+            if (cmd ==="age"){
+                accountage.accountage(args,message,client)
             }
         }
         //admin only commands
