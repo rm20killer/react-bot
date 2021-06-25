@@ -18,6 +18,7 @@ const streamerrole = require('./commands/streamerrole');
 //const kill = require('./commands/kill');
 const attachmentD = require('./commands/attachment');
 const rolechecker = require('./commands/rolechecker');
+const log = require('./commands/logs');
 const cmds = require('./commands/cmd');
 const slashcoms = require('./commands/slashcommands');
 //youtube api
@@ -68,29 +69,35 @@ client.on('message', message => {
     catch{
         console.log("message not sent in catoragy");
     }
-    if (message.channel.id==='629695352454250508') {
-        const channel = client.channels.cache.find(channel => channel.id === "707304184524832879");
-        channel.send("Reminder: Publish message in <#629695352454250508>");
-        
-    }
-    if (channelParent =='629695220065239063'||channelParent=='716754944472121516'||channelParent=='629695220065239065') {
-        const messa = message.content.toLowerCase();
-        
-        antiw.antiworm(messa,message,client);
-	    //End anti-worm code.
-	
-        if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
-            message.reply('dont ping riz, If you need help feel free to ask <@&696134129497931857>');
-            message.channel.send("https://media.giphy.com/media/QTi0jJ17OTHwEqkEIA/giphy.gif");
-            console.log("pinged");
-            //message.delete();
+    if (message.guild.id === "629695220065239061") { 
+        if(message.channel.id==="710123089094246482"){ 
+        log.log(message,client)
         }
-
-        //FAQbot but Submit clips
-        submitclip.submitclip(messa,message,client);
-
-	    //FAQbot but Streamer role
-        streamerrole.streamerrole(messa,message,client);
+        if (message.channel.id==='629695352454250508') {
+            const channel = client.channels.cache.find(channel => channel.id === "707304184524832879");
+            channel.send("Reminder: Publish message in <#629695352454250508>");
+            
+        }
+        
+        if (channelParent =='629695220065239063'||channelParent=='716754944472121516'||channelParent=='629695220065239065') {
+            const messa = message.content.toLowerCase();
+            
+            antiw.antiworm(messa,message,client);
+            //End anti-worm code.
+        
+            if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
+                message.reply('dont ping riz, If you need help feel free to ask <@&696134129497931857>');
+                message.channel.send("https://media.giphy.com/media/QTi0jJ17OTHwEqkEIA/giphy.gif");
+                console.log("pinged");
+                //message.delete();
+            }
+    
+            //FAQbot but Submit clips
+            submitclip.submitclip(messa,message,client);
+    
+            //FAQbot but Streamer role
+            streamerrole.streamerrole(messa,message,client);
+        }
     }
 
 
