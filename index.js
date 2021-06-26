@@ -60,6 +60,7 @@ client.on('message', message => {
     if(message.guild === null) {
         //dm checker
         dmchecker.dmchecker(message,client);
+        return;
     }
     //everything else
     try

@@ -47,27 +47,26 @@ module.exports = {
         }
         if(message.author.bot) return;
         
+        if(message.content.includes("https://")){
+            message.reply("Submit clips in <#696131644871933972>. Make sure clips meet `/requirements`. To get access to this channel read the <#700789384131379371>");
+            return;
+        }
+
         const regex = /(how|where|want).+(submit|post|share|send|subit|give).+(clip|video)/i;
         const messa = message.content.toLowerCase();
         const str = messa;
         let m;
         if ((m = regex.exec(str)) !== null) {
             message.reply("Submit clips in <#696131644871933972>. Make sure clips meet `/requirements`. To get access to this channel read the <#700789384131379371>");
+            return;
         }
 
         const sregex = /(how|where|want).+(streamer|content creator|youtuber).+(role|rank)/i;
         if ((m = sregex.exec(str)) !== null) {
             // The result can be accessed through the `m`-variable.
             message.reply("The streamer role is given to users featured in a Gamers React compilation.\nIf you have been featured, message a mod with a timestamp and link to the video.");
+            return;
         }
-	    const bregex = /(who|what|how).+(is|does|this).+(work|bot|this)/i;
-        //if ((m = bregex.exec(str)) !== null) {
-            // The result can be accessed through the `m`-variable.
-   	    // By RootAtKali
-	    // Example: "how does the bot work", "what is this", "what does the bot do", may be a bit too sensitive
-	    // perhaps a "troll mode" could be toggled per-user so this doesn't tell the truth?
-        //    message.reply("React Bot's DM system relays your messages to moderators in a hidden channel.\nModerators can command React Bot to send messages to members.");
-       // }
 
     }
 }
