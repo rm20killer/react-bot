@@ -30,7 +30,7 @@ const getSubscribers = async () => {
   })
 }
 function callEveryHour() {
-  setInterval(getSubscribers, 100 * 60 * 6  );
+  setInterval(getSubscribers, 1000 * 60 * 15  );
 }
 
 client.on("ready", () =>{
@@ -44,8 +44,8 @@ client.on("ready", () =>{
     callEveryHour()
   } else {
     nextDate.setHours(nextDate.getHours(0));
-    nextDate.setMinutes(0);
-    nextDate.setSeconds(nextDate.getSeconds(0)+30);// I wouldn't do milliseconds too ;)
+    nextDate.setMinutes(nextDate.getMinutes(0)+15);
+    nextDate.setSeconds(0);// I wouldn't do milliseconds too ;)
 
     var difference = nextDate - new Date();
     setTimeout(callEveryHour, difference);
