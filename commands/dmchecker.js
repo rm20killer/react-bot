@@ -22,7 +22,7 @@ module.exports = {
     	    const nameArray = attachment.name.split('.'); // Split the name 
             const attEx = nameArray[nameArray.length - 1].toLowerCase();
 	        const videos = ["webm","mkv","mov","mp4","mpg","avi","m4v","wmv","mxf","flv"];
-    	    const editorprojs = ["wfp","prproj","kdenlive","mlt"];
+    	    const editorprojs = ["wfp","prproj","kdenlive","mlt","vpj"];
 	        const unsupported = ["ofr","y4m"]; //obscure files that mods just straight up can't open
 	        if ( videos.indexOf(attEx) != -1 ) {
                 message.reply("You don't need to DM me the videos, Just send them in <#696131644871933972>, to get access to this channel read the <#700789384131379371>")

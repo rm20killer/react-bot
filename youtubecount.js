@@ -30,7 +30,7 @@ const getSubscribers = async () => {
   })
 }
 function callEveryHour() {
-  setInterval(getSubscribers, 1000 * 60 * 15  );
+  setInterval(getSubscribers, 100 * 60 * 15  );
 }
 
 client.on("ready", () =>{
