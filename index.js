@@ -2,6 +2,7 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const disbut = require('discord-buttons')(client);
 const fetch = require("node-fetch");
 
 const config = require("./config");
@@ -21,6 +22,7 @@ const rolechecker = require('./commands/rolechecker');
 const log = require('./commands/logs');
 const cmds = require('./commands/cmd');
 const slashcoms = require('./commands/slashcommands');
+//const ticketmanger = require('./commands/ticket/ticketmanger')
 //youtube api
 
 //youtube stuff not working yet
@@ -134,11 +136,97 @@ client.on('message', message => {
                 });
             })
         }
+        if(cmd==="ticket"){
+            const { MessageButton, MessageActionRow } = require("discord-buttons");
+        
+            let btn = new MessageButton()
+                .setStyle('green')
+                .setLabel('General Support') 
+                .setID('General');
+    
+            let btn2 = new MessageButton()
+                .setStyle('green')
+                .setLabel('Purchase Support') 
+                .setID('Purchase');
+    
+            let btn3 = new MessageButton()
+                .setStyle('green')
+                .setLabel('Ban Appeal') 
+                .setID('BanAppeal');
+    
+            let btn4 = new MessageButton()
+                .setStyle('red')
+                .setLabel('Player Report') 
+                .setID('Player');
+            let btn5 = new MessageButton()
+                .setStyle('red')
+                .setLabel('Staff Report') 
+                .setID('Staff');
+    
+            let row = new MessageActionRow()
+                .addComponent(btn)
+                .addComponent(btn2)
+                .addComponent(btn3);
+                //.addComponent(btn4);
+            let row2 = new MessageActionRow()
+                .addComponent(btn4)
+                .addComponent(btn5);
+            const embed = new Discord.MessageEmbed()
+                .setTitle(`**Welcome to ${message.guild.name}!**`)
+                .setColor(0x2f3136)
+                .setDescription("Click on one of the buttons below to start your ticket")  
+            message.channel.send({ embed: embed, component: row })
+            //ticketmanger.ticketmess(message,client);
+        }
     }
     
     cmds.commands(cmd,args,message,client);
 
 })
+
+client.ws.on('INTERACTION_CREATE', async interaction => {
+    if (!interaction.data.name) return;
+
+
+    //slashcom(interaction,client);
+    const command = interaction.data.name.toLowerCase();
+    const args = interaction.data.options;
+    if (command === 'madeby'){ 
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+                type: 4,
+                data: {
+                    content: "This was made by RM20 with the help from RootAtKali, sponser and source code can be found at https://github.com/rm20killer/react-bot"
+                }
+            }
+        })
+    }
+    if (command === 'compress'){ 
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+                type: 4,
+                data: {
+                    content: "To compress size so you send on discord you can use: https://8mb.video/ \n **You must** enable the `Extra quality (slower)` option.\nYour video cannot be longer than 40 seconds to meet requirements.\nUse the trim options to accomplish this."
+                }
+            }
+        })
+    }
+    if (command === 'requirements'){
+        const embed = new Discord.MessageEmbed()
+        .setTitle('Requirements')
+        .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+        .setColor(0xff0000)
+        .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 kbps (x264 medium)\n> Audio bitrate: At least 150 kbps (AAC-LC)\n> Must embed on discord\n> Must be under 2 minutes. No timestamps!\nDeliberately scaling or padding a video to fool me\ndoes **not** pass the requirements.')
+
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+                type: 4,
+                data: await createAPImessage(interaction, embed)
+            }
+        })
+    }
+
+});
 
 
 client.on('message', message => {
@@ -187,47 +275,161 @@ if (!shadRole && shasRole) {
 
 
 
-// client.login(process.env.token);
-client.login(config.BotToken);
-client.ws.on('INTERACTION_CREATE', async interaction => {
-    //slashcom(interaction,client);
-    const command = interaction.data.name.toLowerCase();
-    const args = interaction.data.options;
-    if (command === 'madeby'){ 
-        client.api.interactions(interaction.id, interaction.token).callback.post({
-            data: {
-                type: 4,
-                data: {
-                    content: "This was made by RM20 with the help from RootAtKali, sponser and source code can be found at https://github.com/rm20killer/react-bot"
+
+
+client.on('clickButton', async (button) => {
+    let member = button.clicker.user
+    let limit = 0
+
+    if(button.id === `General`) {
+        let mess = await button.reply.send('Creating a general ticket');
+    
+        function createChannel() {
+            button.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
+                await c.setTopic(member.id)
+                await c.setParent("858354610367627284")
+    
+                await c.updateOverwrite("629695220065239061", {
+                    VIEW_CHANNEL: false
+                })
+                await c.updateOverwrite(member.id, {
+                    VIEW_CHANNEL: true,
+                    SEND_MESSAGES: true
+                })
+                await c.updateOverwrite("696134129497931857", {
+                    VIEW_CHANNEL: true,
+                    SEND_MESSAGES: true
+                })
+                await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
+    
+                const embed = new Discord.MessageEmbed()
+                    .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
+                    .addField('Format', '```diff\n- Minecraft Username:\n- Question:```', true)
+                    .addField('Topic', 'General Support', true)
+                    .setTimestamp()
+                    .setColor(0xff0000)
+    
+                c.send(`<@${member.id}>`)
+                c.send(embed)
+            })
+        }
+        button.guild.channels.cache.forEach(c => {
+            if (c.parentID === "858354610367627284") {
+                if (c.topic === member.id) {
+                    limit++
                 }
             }
         })
+        
+        if (limit === 1) {
+            mess.delete();
+            return member.send(member.tag+' , You have reached the maximum amount of tickets opened');
+        } 
+        else {
+            createChannel();
+            mess.delete();
+        }
     }
-    if (command === 'compress'){ 
-        client.api.interactions(interaction.id, interaction.token).callback.post({
-            data: {
-                type: 4,
-                data: {
-                    content: "To compress size so you send on discord you can use: https://8mb.video/ \n **You must** enable the `Extra quality (slower)` option.\nYour video cannot be longer than 40 seconds to meet requirements.\nUse the trim options to accomplish this."
+    //Purchase
+    if(button.id === `Purchase`) {
+        let mess = await button.reply.send('Creating a purchase support ticket');
+    
+        function createChannel() {
+            button.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
+                await c.setTopic(member.id)
+                await c.setParent("858354610367627284")
+    
+                await c.updateOverwrite("629695220065239061", {
+                    VIEW_CHANNEL: false
+                })
+                await c.updateOverwrite(member.id, {
+                    VIEW_CHANNEL: true,
+                    SEND_MESSAGES: true
+                })
+                await c.updateOverwrite("696134129497931857", {
+                    VIEW_CHANNEL: true,
+                    SEND_MESSAGES: true
+                })
+                await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
+    
+                const embed = new Discord.MessageEmbed()
+                    .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
+                    .addField('Format', '```diff\n- Minecraft Username:\n- Transaction ID:\n- Issue:```', true)
+                    .addField('Topic', 'Purchase Support', true)
+                    .setTimestamp()
+                    .setColor(0xff0000)
+    
+                c.send(`<@${member.id}>`)
+                c.send(embed)
+            })
+        }
+        button.guild.channels.cache.forEach(c => {
+            if (c.parentID === "858354610367627284") {
+                if (c.topic === member.id) {
+                    limit++
                 }
             }
         })
+        
+        if (limit === 1) {
+            mess.delete();
+            return member.send(member.tag+' , You have reached the maximum amount of tickets opened');
+        } 
+        else {
+            createChannel();
+            mess.delete();
+        }
     }
-    if (command === 'requirements'){
-        const embed = new Discord.MessageEmbed()
-        .setTitle('Requirements')
-        .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-        .setColor(0xff0000)
-        .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 kbps (x264 medium)\n> Audio bitrate: At least 150 kbps (AAC-LC)\n> Must embed on discord\n> Must be under 2 minutes. No timestamps!\nDeliberately scaling or padding a video to fool me\ndoes **not** pass the requirements.')
+   //Ban
+   if(button.id === `BanAppeal`) {
+    let mess = await button.reply.send('Creating a Ban appeal ticket');
 
-        client.api.interactions(interaction.id, interaction.token).callback.post({
-            data: {
-                type: 4,
-                data: await createAPImessage(interaction, embed)
-            }
+    function createChannel() {
+        button.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
+            await c.setTopic(member.id)
+            await c.setParent("858354610367627284")
+
+            await c.updateOverwrite("629695220065239061", {
+                VIEW_CHANNEL: false
+            })
+            await c.updateOverwrite(member.id, {
+                VIEW_CHANNEL: true,
+                SEND_MESSAGES: true
+            })
+            await c.updateOverwrite("696134129497931857", {
+                VIEW_CHANNEL: true,
+                SEND_MESSAGES: true
+            })
+            await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
+
+            const embed = new Discord.MessageEmbed()
+                .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
+                .addField('Format', '```diff\n- Minecraft Username:\n- Punisher:\n- Ban Reason:\n- Appeal:```', true)
+                .addField('Topic', 'Ban Appeal', true)
+                .setTimestamp()
+                .setColor(0xff0000)
+
+            c.send(`<@${member.id}>`)
+            c.send(embed)
         })
     }
-
+    button.guild.channels.cache.forEach(c => {
+        if (c.parentID === "858354610367627284") {
+            if (c.topic === member.id) {
+                limit++
+            }
+        }
+    })
+    
+    if (limit === 1) {
+        mess.delete();
+        return member.send(member.tag+' , You have reached the maximum amount of tickets opened');
+    } 
+    else {
+        createChannel();
+        mess.delete();
+    }
+}
 });
 
 module.exports = {
@@ -245,3 +447,8 @@ async function createAPImessage(interaction,content){
 
     return  {...apimessage.data, files: apimessage.files};
 }
+
+
+
+// client.login(process.env.token);
+client.login(config.BotToken);

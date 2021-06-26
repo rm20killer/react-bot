@@ -6,7 +6,7 @@ const fetch = require("node-fetch");
 const config = require("../config");
 
 const accountage = require("./accountage");
-
+const close = require("./ticket/close");
 const index = require('../index');
 
 const youtubeKey = config.youtubeKey
@@ -36,6 +36,13 @@ module.exports ={
             return;
         }
         if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
+            if(message.channel.parent.id==="858354610367627284"){
+                if (cmd==="close"){
+                    const rest = message.content.slice(6);
+                    close.close(args,message,client,rest)
+                }
+            }
+            
             if(cmd === "say"){
                 const say = message.content.slice(4);
                 if(say) {

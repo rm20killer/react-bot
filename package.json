@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
+    "discord-buttons": "^3.2.1",
     "discord.js": "^12.5.3",
     "eslint": "^7.6.0",
     "node-fetch": "^2.6.1"
