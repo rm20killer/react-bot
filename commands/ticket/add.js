@@ -9,7 +9,7 @@ module.exports = {
             return message.channel.send(`❎ This command can only be ran in \`${config.categoryTickets}\``)
         }
 
-        let member = message.mentions.members.first() || message.guild.members.get(args[0]) || message.guild.members.find(m => m.user.username.toLowerCase().includes(args[0]))
+        let member = message.mentions.members.first() 
         if (!member) return message.channel.send(usageEmbed)
 
         let reason = rest
