@@ -61,7 +61,7 @@ module.exports = {
             if (attEx != "mkv" && attEx != "flv"){
                 convertTip = "Use FFmpeg or Handbrake to convert your " + attEx + " video\nto MP4, WebM, or MOV format. *Avoid online tools.*";
             }
-            if (attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"){
+            if (attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"||attEx=="vpj"){
                 convertTip = "The " + attEx + " file you tried to submit is an editor project file,\nnot an actual video. It only contains references to\nfiles on your computer. Render the video as an\nMP4, WebM, or MOV with H.264, VP8, or VP9.";
             }
             const embed = new Discord.MessageEmbed()
