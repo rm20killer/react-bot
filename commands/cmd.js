@@ -39,26 +39,7 @@ module.exports ={
             console.log(message.author+" roles issue "+message.content)
             return;
         }
-        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
-            if(message.channel.parent.id==="858354610367627284"){
-                if (cmd==="close"){
-                    const rest = message.content.slice(6);
-                    close.close(args,message,client,rest)
-                }
-                if(cmd==="stafflock"){ //9
-                    const rest = message.content.slice(10);
-                    stafflock.stafflock(args,message,client,rest)
-                }
-                if(cmd==="rename"){
-                    const rest = message.content.slice(7);
-                    rename.rename(args,message,client,rest)
-                }
-                if(cmd==="add"){
-                    const rest = message.content.slice(4);
-                    add.add(args,message,client,rest)
-                }
-            }
-            
+        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){            
             if(cmd === "say"){
                 const say = message.content.slice(4);
                 if(say) {
@@ -75,10 +56,12 @@ module.exports ={
             if(cmd==='rm') {
                 message.channel.send("RM is busy and does not check/rate clips");
                 message.delete();
+                return;
             }
             if (cmd ==="rm2") {
                 message.channel.send("https://media.giphy.com/media/eiNLAAmHNZuy5nsKKq/giphy.gif");
                 message.delete();
+                return;
             }
             if (cmd ==="dm"){
                 var str = message.content
@@ -92,11 +75,33 @@ module.exports ={
                     console.log(mention)
                     const user = client.users.cache.get(mention.id);
                     //console.log(mess);
-                    user.send(mess);    
+                    user.send(mess); 
+                    return;   
                 }
             }
             if (cmd ==="age"){
                 accountage.accountage(args,message,client)
+                return;
+            }
+            if(message.channel.parent.id===null){
+                if(message.channel.parent.id==="858354610367627284"){
+                    if (cmd==="close"){
+                        const rest = message.content.slice(6);
+                        close.close(args,message,client,rest)
+                    }
+                    if(cmd==="stafflock"){ //9
+                        const rest = message.content.slice(10);
+                        stafflock.stafflock(args,message,client,rest)
+                    }
+                    if(cmd==="rename"){
+                        const rest = message.content.slice(7);
+                        rename.rename(args,message,client,rest)
+                    }
+                    if(cmd==="add"){
+                        const rest = message.content.slice(4);
+                        add.add(args,message,client,rest)
+                    }
+                }
             }
         }
         //admin only commands
