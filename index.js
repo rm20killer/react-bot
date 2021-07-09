@@ -2,13 +2,12 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const disbut = require('discord-buttons')(client);
 const fetch = require("node-fetch");
 
 const config = require("./config");
 const prefixl = config.prefix
 
-//Discord.js v12+ is needed for this to work
+//Discord.js v13 is needed for this to work
 
 //required
 const slash = require('./commands/slash');

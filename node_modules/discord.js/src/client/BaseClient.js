@@ -1,9 +1,8 @@
 'use strict';
 
-require('setimmediate');
 const EventEmitter = require('events');
 const RESTManager = require('../rest/RESTManager');
-const { DefaultOptions } = require('../util/Constants');
+const Options = require('../util/Options');
 const Util = require('../util/Util');
 
 /**
@@ -39,7 +38,7 @@ class BaseClient extends EventEmitter {
      * The options the client was instantiated with
      * @type {ClientOptions}
      */
-    this.options = Util.mergeDefault(DefaultOptions, options);
+    this.options = Util.mergeDefault(Options.createDefault(), options);
 
     /**
      * The REST manager of the client
