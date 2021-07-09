@@ -49,6 +49,7 @@ module.exports ={
                 else(
                 message.reply("nothing to say")
                 )
+                return;
             }  
             if(cmd==="subupdate") {
                 getSubscribers(message,client);
@@ -56,12 +57,11 @@ module.exports ={
             if(cmd==='rm') {
                 message.channel.send("RM is busy and does not check/rate clips");
                 message.delete();
-                return;
             }
             if (cmd ==="rm2") {
                 message.channel.send("https://media.giphy.com/media/eiNLAAmHNZuy5nsKKq/giphy.gif");
                 message.delete();
-                return;
+                
             }
             if (cmd ==="dm"){
                 var str = message.content
@@ -83,7 +83,7 @@ module.exports ={
                 accountage.accountage(args,message,client)
                 return;
             }
-            if(message.channel.parent.id===null){
+            if(message.channel.parent===null){
                 if(message.channel.parent.id==="858354610367627284"){
                     if (cmd==="close"){
                         const rest = message.content.slice(6);
