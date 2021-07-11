@@ -64,6 +64,9 @@ module.exports = {
             if (attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"||attEx=="vpj"){
                 convertTip = "The " + attEx + " file you tried to submit is an editor project file,\nnot an actual video. It only contains references to\nfiles on your computer. Render the video as an\nMP4, WebM, or MOV with H.264, VP8, or VP9.";
             }
+            if(attEx == ""||attEx == null){
+                convertTip="The file you sent has no file format"
+            }
             const embed = new Discord.MessageEmbed()
                 .setTitle('Video format unsupported!')
                 .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
@@ -74,6 +77,20 @@ module.exports = {
             message.delete();
             console.log("bot checked",message.id);
         }
+    },
+    attachmentexe: function(attachment,message,client){
+        const nameArray = attachment.name.split('.'); // Split the name 
+        const attEx = nameArray[nameArray.length - 1].toLowerCase(); // Grab the last value of the array.
+        if (attEx == "exe") {
+            const embed = new Discord.MessageEmbed()
+            .setTitle('format banned!')
+            .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+            .setColor(0xff0000)
+            .setDescription("You cant send a .exe file on this discord")
+            .addField('auther: ', message.author.username)
+            message.channel.send(embed);
+            message.delete();
+            console.log("bot checked",message.id);
+        }
     }
 }
-

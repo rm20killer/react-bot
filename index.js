@@ -256,6 +256,13 @@ client.on('message', message => {
             attachmentD.attachmentchecker(attachment,message,client);
         }
     }
+    else{
+        const attachments = (message.attachments).array(); // Get list of attachments
+        const attachment = attachments[0]; // Take the first attachment
+        if (attachments.length !== 0) {
+            attachmentD.attachmentexe(attachment,message,client);
+        }
+    }
 });
 //youtube bash
 
