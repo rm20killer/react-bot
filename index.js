@@ -103,7 +103,7 @@ client.on('message', message => {
         }
     }
 
-
+/////////////////////////////////////////////////////////////////////////////////
     if (!message.content.startsWith(prefixl)) return;
     const args = message.content.trim().split(/ +/g);
     const cmd = args[0].slice(prefixl.length).toLowerCase();
@@ -151,7 +151,7 @@ client.on('message', message => {
     
             let btn3 = new MessageButton()
                 .setStyle('green')
-                .setLabel('Ban Appeal') 
+                .setLabel('Mute Appeal') 
                 .setID('BanAppeal');
     
             let btn4 = new MessageButton()
@@ -183,6 +183,7 @@ client.on('message', message => {
     cmds.commands(cmd,args,message,client);
 
 })
+/////////////////////////////////////////////////////////////////////////////////
 
 client.ws.on('INTERACTION_CREATE', async interaction => {
     if (!interaction.data.name) return;
@@ -387,9 +388,9 @@ client.on('clickButton', async (button) => {
             mess.delete();
         }
     }
-   //Ban
+   //mute appeal
    if(button.id === `BanAppeal`) {
-    let mess = await button.reply.send('Creating a Ban appeal ticket');
+    let mess = await button.reply.send('Creating a Mute appeal ticket');
 
     function createChannel() {
         button.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
@@ -411,8 +412,8 @@ client.on('clickButton', async (button) => {
 
             const embed = new Discord.MessageEmbed()
                 .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
-                .addField('Format', '```diff\n- Minecraft Username:\n- Punisher:\n- Ban Reason:\n- Appeal:```', true)
-                .addField('Topic', 'Ban Appeal', true)
+                .addField('Format', '```diff\n- Mute Reason:\n- Appeal:```', true)
+                .addField('Topic', 'Mute Appeal', true)
                 .setTimestamp()
                 .setColor(0xff0000)
 
