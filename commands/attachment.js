@@ -7,7 +7,7 @@ module.exports = {
         const nameArray = attachment.name.split('.'); // Split the name 
         if (nameArray.length!=1){
             const attEx = nameArray[nameArray.length - 1].toLowerCase(); // Grab the last value of the array.
-            console.log(attEx)
+            //console.log(attEx)
             if (attEx == "mp4" || attEx == "webm" || attEx == "mov") {
                 // Note this doesn't check the file it check the format of the file.
                 const Mwidth = attachment.width;

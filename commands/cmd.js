@@ -83,7 +83,7 @@ module.exports ={
                 accountage.accountage(args,message,client)
                 return;
             }
-            if(message.channel.parent===null){
+            if(message.channel.parent!=null){
                 if(message.channel.parent.id==="858354610367627284"){
                     if (cmd==="close"){
                         const rest = message.content.slice(6);
