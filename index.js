@@ -197,7 +197,7 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
             data: {
                 type: 4,
                 data: {
-                    content: "This was made by RM20 with the help from RootAtKali, sponser and source code can be found at https://github.com/rm20killer/react-bot"
+                    content: "This was made by RM20 with the help from RootAtKali, you sponsor this bot and source code can be found at https://github.com/rm20killer/react-bot"
                 }
             }
         })
