@@ -389,10 +389,6 @@ client.on('clickButton', async (button) => {
    //mute appeal
    if(button.id === `BanAppeal`) {
     let mess = await button.reply.send('Creating a Mute appeal ticket');
-    if(button.clicker.user.roles.cache.find(r=>r.id != 712512117999271966)){
-        mess.delete();
-        return member.send(member.tag+' , You not muted');
-    }
     function createChannel() {
         button.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
             await c.setTopic(member.id)
