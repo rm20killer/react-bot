@@ -156,7 +156,7 @@ client.on('message', message => {
     
             let btn4 = new MessageButton()
                 .setStyle('red')
-                .setLabel('Player Report') 
+                .setLabel('User Report') 
                 .setID('Player');
             let btn5 = new MessageButton()
                 .setStyle('red')
@@ -364,7 +364,7 @@ client.on('clickButton', async (button) => {
                 const embed = new Discord.MessageEmbed()
                     .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
                     .addField('Format', '```diff\n- Discord ID:\n- Issue:```', true)
-                    .addField('Topic', 'Player Report', true)
+                    .addField('Topic', 'User Report', true)
                     .setTimestamp()
                     .setColor(0xff0000)
     
