@@ -166,15 +166,15 @@ client.on('message', message => {
             let row = new MessageActionRow()
                 .addComponent(btn)
                // .addComponent(btn2)
-                .addComponent(btn3);
-                //.addComponent(btn4);
+                .addComponent(btn3)
+                .addComponent(btn4);
             let row2 = new MessageActionRow()
                 .addComponent(btn4)
                 .addComponent(btn5);
             const embed = new Discord.MessageEmbed()
                 .setTitle(`**Welcome to ${message.guild.name}!**`)
                 .setColor(0x2f3136)
-                .setDescription("Click on one of the buttons below to start your ticket")  
+                .setDescription("Click on one of the buttons below to start your ticket \nCreating a ticket without a reason will lead to a warning and a ticket ban")  
             message.channel.send({ embed: embed, component: row })
             //ticketmanger.ticketmess(message,client);
         }
@@ -197,7 +197,7 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
             data: {
                 type: 4,
                 data: {
-                    content: "This was made by RM20 with the help from RootAtKali, you sponsor this bot and source code can be found at https://github.com/rm20killer/react-bot"
+                    content: "This was made by RM20 with the help from RootAtKali, you can sponsor this bot and source code can be found at https://github.com/rm20killer/react-bot"
                 }
             }
         })
@@ -286,7 +286,10 @@ if (!shadRole && shasRole) {
 client.on('clickButton', async (button) => {
     let member = button.clicker.user
     let limit = 0
-
+    
+    if (button.clicker.member.roles.cache.has("865548571327070268")){
+        return;
+    }
     if(button.id === `General`) {
         let mess = await button.reply.send('Creating a general ticket');
     
@@ -306,7 +309,7 @@ client.on('clickButton', async (button) => {
                     VIEW_CHANNEL: true,
                     SEND_MESSAGES: true
                 })
-                //await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
+                await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
     
                 const embed = new Discord.MessageEmbed()
                     .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
@@ -337,8 +340,8 @@ client.on('clickButton', async (button) => {
         }
     }
     //Purchase
-    if(button.id === `Purchase`) {
-        let mess = await button.reply.send('Creating a purchase support ticket');
+    if(button.id === `Player`) {
+        let mess = await button.reply.send('Creating a player report ticket');
     
         function createChannel() {
             button.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
@@ -356,12 +359,12 @@ client.on('clickButton', async (button) => {
                     VIEW_CHANNEL: true,
                     SEND_MESSAGES: true
                 })
-                //await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
+                await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
     
                 const embed = new Discord.MessageEmbed()
                     .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
-                    .addField('Format', '```diff\n- Minecraft Username:\n- Transaction ID:\n- Issue:```', true)
-                    .addField('Topic', 'Purchase Support', true)
+                    .addField('Format', '```diff\n- Discord ID:\n- Issue:```', true)
+                    .addField('Topic', 'Player Report', true)
                     .setTimestamp()
                     .setColor(0xff0000)
     
@@ -405,7 +408,7 @@ client.on('clickButton', async (button) => {
                 VIEW_CHANNEL: true,
                 SEND_MESSAGES: true
             })
-            //await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
+            await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
 
             const embed = new Discord.MessageEmbed()
                 .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
