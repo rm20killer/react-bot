@@ -174,7 +174,7 @@ client.on('message', message => {
             const embed = new Discord.MessageEmbed()
                 .setTitle(`**Welcome to ${message.guild.name}!**`)
                 .setColor(0x2f3136)
-                .setDescription("Click on one of the buttons below to start your ticket \nCreating a ticket without a reason will lead to a warning and a ticket ban")  
+                .setDescription("Click on one of the buttons below to start your ticket \nCreating a ticket without a reason will lead to a warning and a ticket ban \n\n**DO NOT CREATE A TICKET TO SUBMIT CLIPS**")  
             message.channel.send({ embed: embed, component: row })
             //ticketmanger.ticketmess(message,client);
         }
@@ -286,7 +286,7 @@ if (!shadRole && shasRole) {
 client.on('clickButton', async (button) => {
     let member = button.clicker.user
     let limit = 0
-    
+
     if (button.clicker.member.roles.cache.has("865548571327070268")){
         return;
     }
