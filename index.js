@@ -82,7 +82,7 @@ client.on('message', message => {
             
         }
         
-        if (channelParent =='629695220065239063'||channelParent=='716754944472121516'||channelParent=='629695220065239065') {
+        if (channelParent =='629695220065239063'||channelParent=='716754944472121516'||channelParent=='629695220065239065'||channelParent=="858354610367627284") {
             const messa = message.content.toLowerCase();
             
             antiw.antiworm(messa,message,client);
