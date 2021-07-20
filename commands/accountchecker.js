@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 module.exports ={
     accountchecker: function(client,member){
-        const channel = client.channels.cache.find(channel => channel.id === "867115098085785620");
+        const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
         //console.log(member)
         if (Date.now() - member.user.createdAt < 1000*60*60*24*1) {
             const accage = member.user.createdAt

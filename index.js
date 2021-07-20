@@ -95,7 +95,7 @@ client.on('message', message => {
             //End anti-worm code.
         
             if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
-                const channel = client.channels.cache.find(channel => channel.id === "867115098085785620");
+                const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
                 const embed = new Discord.MessageEmbed()
                 .setTitle('someone pinged the big man')
                 .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')

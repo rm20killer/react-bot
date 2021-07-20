@@ -16,7 +16,7 @@ module.exports ={
 		    //message.author.kick();
 		    //Do not enable kicking until it's been tested and is working
             //will keep off unless many people are sending it
-            const channel = client.channels.cache.find(channel => channel.id === "867115098085785620");
+            const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             let time = message.createdTimestamp
             // Create a new JavaScript Date object based on the timestamp
             // multiplied by 1000 so that the argument is in milliseconds, not seconds.
@@ -44,11 +44,11 @@ module.exports ={
         }
     },
     antiunderage: function(messa,message,client){
-        const regex = /(i am|iam|i'm|im).+(12|11|10|9|8|7|6|5|4)/i;
+        const regex = /(i am|iam|i'm|im|am).+(12|11|10|9|8|7|6|5|4)/i;
 	    const str = messa;
         let m;
         if ((m = regex.exec(str)) !== null) {
-            const channel = client.channels.cache.find(channel => channel.id === "867115098085785620");
+            const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             const embed = new Discord.MessageEmbed()
             .setTitle('A user may underage')
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
