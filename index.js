@@ -16,6 +16,7 @@ const dmchecker = require('./commands/dmchecker');
 const antiw = require('./commands/malchecker');
 const submitclip = require('./commands/submitclip');
 const streamerrole = require('./commands/streamerrole');
+const accountchecker = require('./commands/accountchecker');
 //const kill = require('./commands/kill');
 const attachmentD = require('./commands/attachment');
 const rolechecker = require('./commands/rolechecker');
@@ -58,6 +59,10 @@ client.on("ready", () =>{
 });
 //all below are the same just removed the !(command)
 
+client.on("guildMemberAdd", member => {
+    accountchecker.accountchecker(client,member)
+  });
+
 client.on('message', message => {
     if(message.guild === null) {
         //dm checker
@@ -86,6 +91,7 @@ client.on('message', message => {
             const messa = message.content.toLowerCase();
             
             antiw.antiworm(messa,message,client);
+            antiw.antiunderage(messa,message,client);
             //End anti-worm code.
         
             if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824

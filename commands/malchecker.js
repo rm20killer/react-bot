@@ -42,5 +42,22 @@ module.exports ={
             channel.send(embed);
 		    message.delete();
         }
+    },
+    antiunderage: function(messa,message,client){
+        const regex = /(i am|iam|i'm|im).+(12|11|10|9|8|7|6|5|4)/i;
+	    const str = messa;
+        let m;
+        if ((m = regex.exec(str)) !== null) {
+            const channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
+            const embed = new Discord.MessageEmbed()
+            .setTitle('A user may underage')
+            .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+            .setColor(0xFF0000)
+            .setDescription(message.content)
+            .addField('person id', message.author.id)
+            .addField("person name ", message.author.tag)
+
+            channel.send(embed);
+        }
     }
 }
