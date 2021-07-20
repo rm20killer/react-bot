@@ -95,6 +95,15 @@ client.on('message', message => {
             //End anti-worm code.
         
             if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
+                const channel = client.channels.cache.find(channel => channel.id === "867115098085785620");
+                const embed = new Discord.MessageEmbed()
+                .setTitle('someone pinged the big man')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription(member.user.tag +' pinged riz')
+                .setFooter("user: " + member.user.tag +" | user id: "+ member.id)
+        
+                channel.send(embed);
                 message.reply('dont ping riz, If you need help feel free to ask <@&696134129497931857>');
                 message.channel.send("https://media.giphy.com/media/QTi0jJ17OTHwEqkEIA/giphy.gif");
                 console.log("pinged");
