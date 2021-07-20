@@ -9,7 +9,7 @@ module.exports ={
             return message.channel.send(`❎ This command can only be ran in \`${config.categoryTickets}\``)
         }
 
-        const channel = client.channels.cache.find(channel => channel.id === "867115098085785620");
+        const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
         if (!channel) return
 
         let reason = rest
