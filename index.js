@@ -91,7 +91,7 @@ client.on('message', message => {
             const messa = message.content.toLowerCase();
             
             antiw.antiworm(messa,message,client);
-            antiw.antiunderage(messa,message,client);
+            //antiw.antiunderage(messa,message,client);
             //End anti-worm code.
         
             if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
