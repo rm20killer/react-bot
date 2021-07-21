@@ -100,8 +100,8 @@ client.on('message', message => {
                 .setTitle('someone pinged the big man')
                 .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                 .setColor(0xff0000)
-                .setDescription(member.user.tag +' pinged riz')
-                .setFooter("user: " + member.user.tag +" | user id: "+ member.id)
+                .setDescription(message.author.tag +' pinged riz')
+                .setFooter("user: " + message.author.tag +" | user id: "+ message.author.id)
         
                 channel.send(embed);
                 message.reply('dont ping riz, If you need help feel free to ask <@&696134129497931857>');
