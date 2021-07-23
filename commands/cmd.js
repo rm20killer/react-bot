@@ -75,7 +75,8 @@ module.exports ={
                     console.log(mention)
                     const user = client.users.cache.get(mention.id);
                     //console.log(mess);
-                    user.send(mess); 
+                    user.send(mess)
+                    .catch(console.error);
                     return;   
                 }
             }

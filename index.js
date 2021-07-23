@@ -151,7 +151,7 @@ client.on('message', message => {
                 });
             })
         }
-        if(cmd==="ticket"){
+        if(cmd==="createticket"){
             const { MessageButton, MessageActionRow } = require("discord-buttons");
         
             let btn = new MessageButton()

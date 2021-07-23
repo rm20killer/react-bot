@@ -4,9 +4,9 @@ const client = new Discord.Client();
 
 module.exports ={
     close: function(args,message,client,rest){  
-
-        if (message.channel.id === "858354762855874560") {
-            return message.channel.send(`❎ This command can only be ran in \`${config.categoryTickets}\``)
+        const channelParent = message.channel.parent.id
+        if (channelParent != "858354610367627284") { 
+            return message.channel.send(`❎ This command can only be ran in support channels`)
         }
 
         const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
