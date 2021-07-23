@@ -9,7 +9,7 @@ module.exports={
         let mx;
         if ((mx = sregex.exec(sstr)) !== null) {
             // The result can be accessed through the `m`-variable.
-            message.reply("The streamer role is given to users featured in a Gamers React compilation.\nIf you have been featured, message a mod with a timestamp and link to the video.");
+            message.reply("The streamer role is given to users featured in a Gamers React compilation.\nIf you have been featured,open a General Support <#858354762855874560> and leave a message with a timestamp and link to the video.");
             return;
         }
     }
