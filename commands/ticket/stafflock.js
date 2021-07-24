@@ -10,20 +10,26 @@ module.exports = {
         
         const id = message.channel.topic
         const type = "member"
+        if(message.channel.permissionOverwrites.find(o => o.type === type && o.id === id)!=undefined){
+            message.channel.permissionOverwrites.find(o => o.type === type && o.id === id).delete()
+            let reason = rest
+            if (!reason) reason = 'No Reason Specified'
+    
+    
+    
+            const embed = new Discord.MessageEmbed()
+                .setDescription(`${message.channel} has been staff locked`)
+                .addField('Locked by:', message.author.tag, true)
+                .addField('Reason:', reason, true)
+                .setColor(0x4287f5)
+    
+            message.channel.send(embed)
+        }
+
+        else{
+            message.reply("error, don't ask why")
+        }
+
         
-        message.channel.permissionOverwrites.find(o => o.type === type && o.id === id).delete()
-        
-        let reason = rest
-        if (!reason) reason = 'No Reason Specified'
-
-
-
-        const embed = new Discord.MessageEmbed()
-            .setDescription(`${message.channel} has been staff locked`)
-            .addField('Locked by:', message.author.tag, true)
-            .addField('Reason:', reason, true)
-            .setColor(0x4287f5)
-
-        message.channel.send(embed)
     }
 }
