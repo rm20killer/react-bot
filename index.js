@@ -109,6 +109,9 @@ client.on('message', message => {
                 console.log("pinged");
                 //message.delete();
             }
+            if(messa.includes("dead chat")   || messa.includes("chat dead")   || messa.includes("dead-chat")|| messa.includes("chat-dead")|| messa.includes("ded chat")){
+                message.reply("your dead");
+            }
     
             //FAQbot but Submit clips
             submitclip.submitclip(messa,message,client);
