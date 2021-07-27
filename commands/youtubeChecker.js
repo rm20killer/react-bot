@@ -6,7 +6,7 @@ const config = require("../config");
 
 const youtubeKey = config.youtubeKey
 
-//const youtubeVideoID = "gueLFatQMFg"
+const youtubeVideoID = "gueLFatQMFg"
 
 const getVideoinfo = async () => {
     //return req.data;
@@ -20,7 +20,7 @@ const getVideoinfo = async () => {
 
     })
 }
-getVideoinfo()
+
 
 module.exports = {
     youtube: function(message,client){
