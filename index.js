@@ -78,9 +78,10 @@ client.on('message', message => {
         console.log("message not sent in catoragy");
     }
     if (message.guild.id === "629695220065239061") { 
-        if(message.channel.id==="710123089094246482"){ 
-        log.log(message,client)
-        }
+        //disabled
+        //if(message.channel.id==="710123089094246482"){  
+        //log.log(message,client)
+        //}
         if (message.channel.id==='629695352454250508') {
             const channel = client.channels.cache.find(channel => channel.id === "707304184524832879");
             channel.send("Reminder: Publish message in <#629695352454250508>");
@@ -110,7 +111,7 @@ client.on('message', message => {
                 //message.delete();
             }
             if(messa.includes("dead chat")   || messa.includes("chat dead")   || messa.includes("dead-chat")|| messa.includes("chat-dead")|| messa.includes("ded chat")){
-                message.reply("your dead");
+                message.reply("you're dead");
             }
     
             //FAQbot but Submit clips
