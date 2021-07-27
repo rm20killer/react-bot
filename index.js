@@ -22,7 +22,9 @@ const attachmentD = require('./commands/attachment');
 const rolechecker = require('./commands/rolechecker');
 const log = require('./commands/logs');
 const cmds = require('./commands/cmd');
+const youtubechecker = require('./commands/youtubeChecker');
 const slashcoms = require('./commands/slashcommands');
+const { youtube } = require('./commands/youtubeChecker');
 //const ticketmanger = require('./commands/ticket/ticketmanger')
 //youtube api
 
@@ -267,6 +269,9 @@ client.on('message', message => {
             message.delete();
             break;
             }
+        }
+        if(messa.includes("https://youtu.be/")||messa.includes("https://www.youtube.com/watch?v=")){
+            youtubechecker.youtube(message,client)
         }
 	
         //checks attachments
