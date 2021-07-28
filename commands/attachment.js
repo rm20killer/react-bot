@@ -58,7 +58,7 @@ module.exports = {
                 }
                 console.log("bot checked",message.id);
             }
-            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m" ||attEx == "flv" || attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt" ) {
+            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m" ||attEx == "flv" || attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"||attEx=="vpj"||attEx=="osp") {
                 var convertTip = "OBS Studio can convert MKV to MP4.\nGo to File -> Remux Recordings.";
                 if (attEx != "mkv" && attEx != "flv"){
                     convertTip = "Use FFmpeg or Handbrake to convert your " + attEx + " video\nto MP4, WebM, or MOV format. *Avoid online tools.*";

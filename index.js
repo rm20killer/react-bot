@@ -233,6 +233,16 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
             }
         })
     }
+    if (command === 'youtubetrimmer'){
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+                type: 4,
+                data: {
+                    content: 'If it on your channel you can download the video and trim it a editing software. \nIf the video is not from your channel you can use the clip button on youtube if that video does not have the clip button you can use youtube-dl: \n`$ youtube-dl --postprocessor-args "-ss h:m:ss -to h:m:ss" "[video_URL]"`'
+                }
+            }
+        })
+    }
     if (command === 'requirements'){
         const embed = new Discord.MessageEmbed()
         .setTitle('Requirements')
@@ -272,6 +282,16 @@ client.on('message', message => {
         }
         if(messa.includes("https://youtu.be/")||messa.includes("https://www.youtube.com/watch?v=")){
             youtubechecker.youtube(message,client)
+        }
+        if(messa.includes("https://youtube.com/shorts/")){
+            const embed = new Discord.MessageEmbed()
+                .setTitle('Video aspect ratio is bad!')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('Video is set as short.\nThe ratio of a short does not meet requirements\n Upload the video as a normal video and not a short.\nType /requirements for more info.')
+                .addField('Bad submission by', message.author.username)
+            message.channel.send(embed);
+            message.delete();
         }
 	
         //checks attachments
