@@ -21,8 +21,10 @@ module.exports = {
             .setDescription(`Removed ${member} from ${message.channel}`)
             .addField('Removed by:', message.author.tag, true)
             .addField('Reason:', reason, true)
-            .setColor(config.bot_color)
+            .setColor(0x4287f5)
 
         message.channel.send(embed)
+        .catch(err => {message.reply("err")});
+
     }
 }
