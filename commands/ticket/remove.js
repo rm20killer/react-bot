@@ -12,7 +12,7 @@ module.exports = {
         let reason = args.slice(1).join(' ')
         if (!reason) reason = 'No Reason Specified'
 
-        message.channel.overwritePermissions(member, {
+        message.channel.updateOverwrite(member, {
             VIEW_CHANNEL: false
         })
         .catch(err => {message.reply("err")});
