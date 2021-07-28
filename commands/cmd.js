@@ -10,6 +10,7 @@ const close = require("./ticket/close");
 const rename = require("./ticket/rename");
 const add = require("./ticket/add");
 const stafflock = require("./ticket/stafflock");
+const remove =require("./ticket/remove")
 
 const index = require('../index');
 
@@ -101,6 +102,10 @@ module.exports ={
                     if(cmd==="add"){
                         const rest = message.content.slice(4);
                         add.add(args,message,client,rest)
+                    }
+                    if(cmd==="remove"){
+                        const rest = message.content.slice(8);
+                        remove.remove(args,message,client,rest)
                     }
                 }
             }
