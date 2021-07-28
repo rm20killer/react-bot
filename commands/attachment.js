@@ -100,7 +100,7 @@ module.exports = {
     attachmentexe: function(attachment,message,client){
         const nameArray = attachment.name.split('.'); // Split the name 
         const attEx = nameArray[nameArray.length - 1].toLowerCase(); // Grab the last value of the array.
-        if (attEx == "exe" || attEx == "msi" || attEx == "dmg" || attEx = "deb" || attEx = "apk") {
+        if (attEx == "exe" || attEx == "msi" || attEx == "dmg" || attEx == "deb" || attEx =="apk") {
             const embed = new Discord.MessageEmbed()
             .setTitle('Suspicious file!')
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
