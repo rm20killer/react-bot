@@ -91,15 +91,21 @@ module.exports = {
     },
     
     //exe checker
+    // RootAtKali: add more formats
+    // exe: duh
+    // msi: windows application installer
+    // dmg: mac application installer
+    // deb: Debian/Ubuntu package
+    // apk: Android application
     attachmentexe: function(attachment,message,client){
         const nameArray = attachment.name.split('.'); // Split the name 
         const attEx = nameArray[nameArray.length - 1].toLowerCase(); // Grab the last value of the array.
-        if (attEx == "exe") {
+        if (attEx == "exe" || attEx == "msi" || attEx == "dmg" || attEx = "deb" || attEx = "apk") {
             const embed = new Discord.MessageEmbed()
-            .setTitle('format banned!')
+            .setTitle('Suspicious file!')
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
             .setColor(0xff0000)
-            .setDescription("You cant send a .exe file on this discord")
+            .setDescription("You cannot send executable files or\napplication installers as a file here.\n*.exe, .msi, .deb, .dmg, .apk*")
             .addField('author: ', message.author.username)
             message.channel.send(embed);
             message.delete();
