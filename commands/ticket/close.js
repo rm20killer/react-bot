@@ -29,6 +29,7 @@ module.exports ={
 
         setTimeout(() => {
             message.channel.delete()
+            .catch(err => console.log(err));
         }, 2000)
     }
 
