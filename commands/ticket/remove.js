@@ -1,3 +1,6 @@
+const Discord = require('discord.js');
+const client = new Discord.Client();
+
 module.exports = {
     remove: function(args,message,client,rest){ 
 
@@ -9,7 +12,7 @@ module.exports = {
         let reason = args.slice(1).join(' ')
         if (!reason) reason = 'No Reason Specified'
 
-        message.channel.overwritePermissions(member, {
+        message.channel.updateOverwrite(member, {
             VIEW_CHANNEL: false
         })
         .catch(err => {message.reply("err")});
@@ -18,8 +21,10 @@ module.exports = {
             .setDescription(`Removed ${member} from ${message.channel}`)
             .addField('Removed by:', message.author.tag, true)
             .addField('Reason:', reason, true)
-            .setColor(config.bot_color)
+            .setColor(0x4287f5)
 
         message.channel.send(embed)
+        .catch(err => {message.reply("err")});
+
     }
 }
