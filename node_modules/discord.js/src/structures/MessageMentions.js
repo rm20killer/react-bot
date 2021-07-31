@@ -1,6 +1,6 @@
 'use strict';
 
-const Collection = require('../util/Collection');
+const { Collection } = require('@discordjs/collection');
 const { ChannelTypes } = require('../util/Constants');
 const Util = require('../util/Util');
 
@@ -134,7 +134,7 @@ class MessageMentions {
   }
 
   /**
-   * Any members that were mentioned (only in {@link TextChannel}s)
+   * Any members that were mentioned (only in {@link Guild}s)
    * <info>Order as received from the API, not as they appear in the message content</info>
    * @type {?Collection<Snowflake, GuildMember>}
    * @readonly
