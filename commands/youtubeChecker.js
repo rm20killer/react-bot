@@ -76,6 +76,7 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
         }
         
     })
+    .catch(console.error);
     
 }
 

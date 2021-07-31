@@ -28,6 +28,7 @@ const getSubscribers = async () => {
         //return(sub)
       }
   })
+  .catch(console.error);
 }
 function callEveryHour() {
   setInterval(getSubscribers, 100 * 60 * 15  );
