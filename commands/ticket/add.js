@@ -10,7 +10,7 @@ module.exports = {
         }
 
         let member = message.mentions.members.first() 
-        if (!member) return message.channel.send(usageEmbed)
+        if (!member) return message.channel.send("no mention")
 
         let reason = rest
         if (!reason) reason = 'No Reason Specified'
@@ -18,6 +18,7 @@ module.exports = {
         message.channel.updateOverwrite(member, {
             VIEW_CHANNEL: true
         })
+        .catch(err => {console.log(err)});
 
         const embed = new Discord.MessageEmbed()
             .setDescription(`Added ${member} to ${message.channel}`)
@@ -26,5 +27,6 @@ module.exports = {
             .setColor(0x4287f5)
 
         message.channel.send(embed)
+        .catch(err => {console.log(err)});
     }
 }

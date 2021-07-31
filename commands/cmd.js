@@ -10,6 +10,7 @@ const close = require("./ticket/close");
 const rename = require("./ticket/rename");
 const add = require("./ticket/add");
 const stafflock = require("./ticket/stafflock");
+const remove =require("./ticket/remove")
 
 const index = require('../index');
 
@@ -39,26 +40,7 @@ module.exports ={
             console.log(message.author+" roles issue "+message.content)
             return;
         }
-        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
-            if(message.channel.parent.id==="858354610367627284"){
-                if (cmd==="close"){
-                    const rest = message.content.slice(6);
-                    close.close(args,message,client,rest)
-                }
-                if(cmd==="stafflock"){ //9
-                    const rest = message.content.slice(10);
-                    stafflock.stafflock(args,message,client,rest)
-                }
-                if(cmd==="rename"){
-                    const rest = message.content.slice(7);
-                    rename.rename(args,message,client,rest)
-                }
-                if(cmd==="add"){
-                    const rest = message.content.slice(4);
-                    add.add(args,message,client,rest)
-                }
-            }
-            
+        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){            
             if(cmd === "say"){
                 const say = message.content.slice(4);
                 if(say) {
@@ -68,6 +50,7 @@ module.exports ={
                 else(
                 message.reply("nothing to say")
                 )
+                return;
             }  
             if(cmd==="subupdate") {
                 getSubscribers(message,client);
@@ -79,6 +62,7 @@ module.exports ={
             if (cmd ==="rm2") {
                 message.channel.send("https://media.giphy.com/media/eiNLAAmHNZuy5nsKKq/giphy.gif");
                 message.delete();
+                
             }
             if (cmd ==="dm"){
                 var str = message.content
@@ -92,11 +76,38 @@ module.exports ={
                     console.log(mention)
                     const user = client.users.cache.get(mention.id);
                     //console.log(mess);
-                    user.send(mess);    
+                    user.send(mess)
+                    .catch(console.error);
+                    return;   
                 }
             }
             if (cmd ==="age"){
                 accountage.accountage(args,message,client)
+                return;
+            }
+            if(message.channel.parent!=null){
+                if(message.channel.parent.id==="858354610367627284"){
+                    if (cmd==="close"){
+                        const rest = message.content.slice(6);
+                        close.close(args,message,client,rest)
+                    }
+                    if(cmd==="stafflock"){ //9
+                        const rest = message.content.slice(10);
+                        stafflock.stafflock(args,message,client,rest)
+                    }
+                    if(cmd==="rename"){
+                        const rest = message.content.slice(7);
+                        rename.rename(args,message,client,rest)
+                    }
+                    if(cmd==="add"){
+                        const rest = message.content.slice(4);
+                        add.add(args,message,client,rest)
+                    }
+                    if(cmd==="remove"){
+                        const rest = message.content.slice(8);
+                        remove.remove(args,message,client,rest)
+                    }
+                }
             }
         }
         //admin only commands

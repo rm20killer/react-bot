@@ -2,12 +2,13 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const disbut = require('discord-buttons')(client);
 const fetch = require("node-fetch");
 
 const config = require("./config");
 const prefixl = config.prefix
 
-//Discord.js v13 is needed for this to work
+//Discord.js v12+ is needed for this to work
 
 //required
 const slash = require('./commands/slash');
@@ -15,12 +16,15 @@ const dmchecker = require('./commands/dmchecker');
 const antiw = require('./commands/malchecker');
 const submitclip = require('./commands/submitclip');
 const streamerrole = require('./commands/streamerrole');
+const accountchecker = require('./commands/accountchecker');
 //const kill = require('./commands/kill');
 const attachmentD = require('./commands/attachment');
 const rolechecker = require('./commands/rolechecker');
 const log = require('./commands/logs');
 const cmds = require('./commands/cmd');
+const youtubechecker = require('./commands/youtubeChecker');
 const slashcoms = require('./commands/slashcommands');
+const { youtube } = require('./commands/youtubeChecker');
 //const ticketmanger = require('./commands/ticket/ticketmanger')
 //youtube api
 
@@ -57,6 +61,10 @@ client.on("ready", () =>{
 });
 //all below are the same just removed the !(command)
 
+client.on("guildMemberAdd", member => {
+    accountchecker.accountchecker(client,member)
+  });
+
 client.on('message', message => {
     if(message.guild === null) {
         //dm checker
@@ -72,26 +80,40 @@ client.on('message', message => {
         console.log("message not sent in catoragy");
     }
     if (message.guild.id === "629695220065239061") { 
-        if(message.channel.id==="710123089094246482"){ 
-        log.log(message,client)
-        }
+        //disabled
+        //if(message.channel.id==="710123089094246482"){  
+        //log.log(message,client)
+        //}
         if (message.channel.id==='629695352454250508') {
             const channel = client.channels.cache.find(channel => channel.id === "707304184524832879");
             channel.send("Reminder: Publish message in <#629695352454250508>");
             
         }
         
-        if (channelParent =='629695220065239063'||channelParent=='716754944472121516'||channelParent=='629695220065239065') {
+        if (channelParent =='629695220065239063'||channelParent=='716754944472121516'||channelParent=='629695220065239065'||channelParent=="858354610367627284") {
             const messa = message.content.toLowerCase();
             
             antiw.antiworm(messa,message,client);
+            //antiw.antiunderage(messa,message,client);
             //End anti-worm code.
         
             if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
+                const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
+                const embed = new Discord.MessageEmbed()
+                .setTitle('someone pinged the big man')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription(message.author.tag +' pinged riz')
+                .setFooter("user: " + message.author.tag +" | user id: "+ message.author.id)
+        
+                channel.send(embed);
                 message.reply('dont ping riz, If you need help feel free to ask <@&696134129497931857>');
                 message.channel.send("https://media.giphy.com/media/QTi0jJ17OTHwEqkEIA/giphy.gif");
                 console.log("pinged");
                 //message.delete();
+            }
+            if(messa.includes("dead chat")   || messa.includes("chat dead")   || messa.includes("dead-chat")|| messa.includes("chat-dead")|| messa.includes("ded chat")){
+                message.reply("you're dead");
             }
     
             //FAQbot but Submit clips
@@ -102,7 +124,7 @@ client.on('message', message => {
         }
     }
 
-
+/////////////////////////////////////////////////////////////////////////////////
     if (!message.content.startsWith(prefixl)) return;
     const args = message.content.trim().split(/ +/g);
     const cmd = args[0].slice(prefixl.length).toLowerCase();
@@ -135,7 +157,7 @@ client.on('message', message => {
                 });
             })
         }
-        if(cmd==="ticket"){
+        if(cmd==="createticket"){
             const { MessageButton, MessageActionRow } = require("discord-buttons");
         
             let btn = new MessageButton()
@@ -150,12 +172,12 @@ client.on('message', message => {
     
             let btn3 = new MessageButton()
                 .setStyle('green')
-                .setLabel('Ban Appeal') 
+                .setLabel('Mute Appeal') 
                 .setID('BanAppeal');
     
             let btn4 = new MessageButton()
                 .setStyle('red')
-                .setLabel('Player Report') 
+                .setLabel('User Report') 
                 .setID('Player');
             let btn5 = new MessageButton()
                 .setStyle('red')
@@ -164,16 +186,16 @@ client.on('message', message => {
     
             let row = new MessageActionRow()
                 .addComponent(btn)
-                .addComponent(btn2)
-                .addComponent(btn3);
-                //.addComponent(btn4);
+               // .addComponent(btn2)
+                .addComponent(btn3)
+                .addComponent(btn4);
             let row2 = new MessageActionRow()
                 .addComponent(btn4)
                 .addComponent(btn5);
             const embed = new Discord.MessageEmbed()
                 .setTitle(`**Welcome to ${message.guild.name}!**`)
                 .setColor(0x2f3136)
-                .setDescription("Click on one of the buttons below to start your ticket")  
+                .setDescription("Click on one of the buttons below to start your ticket \nCreating a ticket without a reason will lead to a warning and a ticket ban \n\n**DO NOT CREATE A TICKET TO SUBMIT CLIPS**")  
             message.channel.send({ embed: embed, component: row })
             //ticketmanger.ticketmess(message,client);
         }
@@ -182,6 +204,7 @@ client.on('message', message => {
     cmds.commands(cmd,args,message,client);
 
 })
+/////////////////////////////////////////////////////////////////////////////////
 
 client.ws.on('INTERACTION_CREATE', async interaction => {
     if (!interaction.data.name) return;
@@ -195,7 +218,7 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
             data: {
                 type: 4,
                 data: {
-                    content: "This was made by RM20 with the help from RootAtKali, sponser and source code can be found at https://github.com/rm20killer/react-bot"
+                    content: "This was made by RM20 with the help from RootAtKali, you can sponsor this bot and source code can be found at https://github.com/rm20killer/react-bot"
                 }
             }
         })
@@ -206,6 +229,16 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
                 type: 4,
                 data: {
                     content: "To compress size so you send on discord you can use: https://8mb.video/ \n **You must** enable the `Extra quality (slower)` option.\nYour video cannot be longer than 40 seconds to meet requirements.\nUse the trim options to accomplish this."
+                }
+            }
+        })
+    }
+    if (command === 'youtubetrimmer'){
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+                type: 4,
+                data: {
+                    content: 'If it on your channel you can download the video and trim it a editing software. \nIf the video is not from your channel you can use the clip button on youtube if that video does not have the clip button you can use youtube-dl: \n`$ youtube-dl --postprocessor-args "-ss h:m:ss -to h:m:ss" "[video_URL]"`'
                 }
             }
         })
@@ -247,6 +280,19 @@ client.on('message', message => {
             break;
             }
         }
+        if(messa.includes("https://youtu.be/")||messa.includes("https://www.youtube.com/watch?v=")){
+            youtubechecker.youtube(message,client)
+        }
+        if(messa.includes("https://youtube.com/shorts/")){
+            const embed = new Discord.MessageEmbed()
+                .setTitle('Video aspect ratio is bad!')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('Video is set as short.\nThe ratio of a short does not meet requirements\n Upload the video as a normal video and not a short.\nType /requirements for more info.')
+                .addField('Bad submission by', message.author.username)
+            message.channel.send(embed);
+            message.delete();
+        }
 	
         //checks attachments
         const attachments = (message.attachments).array(); // Get list of attachments
@@ -254,6 +300,11 @@ client.on('message', message => {
         if (attachments.length !== 0) {
             attachmentD.attachmentchecker(attachment,message,client);
         }
+    }
+    const attachments = (message.attachments).array(); // Get list of attachments
+    const attachment = attachments[0]; // Take the first attachment
+    if (attachments.length !== 0) {
+        attachmentD.attachmentexe(attachment,message,client);
     }
 });
 //youtube bash
@@ -280,6 +331,9 @@ client.on('clickButton', async (button) => {
     let member = button.clicker.user
     let limit = 0
 
+    if (button.clicker.member.roles.cache.has("865548571327070268")){
+        return;
+    }
     if(button.id === `General`) {
         let mess = await button.reply.send('Creating a general ticket');
     
@@ -303,7 +357,7 @@ client.on('clickButton', async (button) => {
     
                 const embed = new Discord.MessageEmbed()
                     .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
-                    .addField('Format', '```diff\n- Minecraft Username:\n- Question:```', true)
+                    .addField('Format', '```diff\n- Question:```', true)
                     .addField('Topic', 'General Support', true)
                     .setTimestamp()
                     .setColor(0xff0000)
@@ -330,8 +384,8 @@ client.on('clickButton', async (button) => {
         }
     }
     //Purchase
-    if(button.id === `Purchase`) {
-        let mess = await button.reply.send('Creating a purchase support ticket');
+    if(button.id === `Player`) {
+        let mess = await button.reply.send('Creating a player report ticket');
     
         function createChannel() {
             button.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
@@ -353,8 +407,8 @@ client.on('clickButton', async (button) => {
     
                 const embed = new Discord.MessageEmbed()
                     .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
-                    .addField('Format', '```diff\n- Minecraft Username:\n- Transaction ID:\n- Issue:```', true)
-                    .addField('Topic', 'Purchase Support', true)
+                    .addField('Format', '```diff\n- Discord ID:\n- Issue:```', true)
+                    .addField('Topic', 'User Report', true)
                     .setTimestamp()
                     .setColor(0xff0000)
     
@@ -379,10 +433,9 @@ client.on('clickButton', async (button) => {
             mess.delete();
         }
     }
-   //Ban
+   //mute appeal
    if(button.id === `BanAppeal`) {
-    let mess = await button.reply.send('Creating a Ban appeal ticket');
-
+    let mess = await button.reply.send('Creating a Mute appeal ticket');
     function createChannel() {
         button.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
             await c.setTopic(member.id)
@@ -403,8 +456,8 @@ client.on('clickButton', async (button) => {
 
             const embed = new Discord.MessageEmbed()
                 .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
-                .addField('Format', '```diff\n- Minecraft Username:\n- Punisher:\n- Ban Reason:\n- Appeal:```', true)
-                .addField('Topic', 'Ban Appeal', true)
+                .addField('Format', '```diff\n- Mute Reason:\n- Appeal:```', true)
+                .addField('Topic', 'Mute Appeal', true)
                 .setTimestamp()
                 .setColor(0xff0000)
 

@@ -2,7 +2,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const config = require("./config");
+const config = require("../config");
 const prefixl = config.prefix
 
 //Discord.js v12+ is needed for this to work
@@ -68,17 +68,16 @@ client.on("ready", () =>{
 });
 
 client.on('message', message => { 
+  console.log(message);
   if (!message.content.startsWith(prefixl)) return;
   const args = message.content.trim().split(/ +/g);
   const cmd = args[0].slice(prefixl.length).toLowerCase();
-  if (cmd="leave") {
-    const aither=message.auther.id
-    if(aither==="227490301688676354"){
-      message.channel.send("BYE BYE, dont add me again ;)")
-      //message.guild.leave();
-    }
-  }
+
 });
+
+client.on('messageDelete', (messageDelete) => {
+  console.log(messageDelete);
+ });
 
 
 // client.login(process.env.token);
