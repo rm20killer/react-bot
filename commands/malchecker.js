@@ -45,6 +45,9 @@ module.exports ={
             channel.send(embed);
 		    message.delete()
             .catch(console.error);
+
+            //let role = message.guild.roles.find(r => r.id === "712512117999271966"); //mute role
+
         }
     },
     antiunderage: function(messa,message,client){

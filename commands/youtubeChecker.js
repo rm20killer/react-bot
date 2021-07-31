@@ -70,12 +70,13 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
                 .setDescription('Video is more than than 2 min, \nWhich does not meet requirements \nType /requirements for more info.\nFor help with trimming a youtube video type "/youtubetrimmer"')
                 .addField('Bad submission by', message.author.username)
                 message.channel.send(embed);
+                message.delete();
                 return 
             }
         }
         
     })
-    .catch(err => console.log(err))
+    
 }
 
 
