@@ -1,17 +1,10 @@
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js')
+const { Client, Intents } = require('discord.js');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const fetch = require("node-fetch");
 
 const config = require("../config");
-
-const accountage = require("./accountage");
-const close = require("./ticket/close");
-const rename = require("./ticket/rename");
-const add = require("./ticket/add");
-const stafflock = require("./ticket/stafflock");
-const remove =require("./ticket/remove")
-
 const index = require('../index');
 
 const youtubeKey = config.youtubeKey
