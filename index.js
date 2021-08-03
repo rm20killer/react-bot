@@ -34,36 +34,39 @@ client.on('messageCreate', async message => {
     const cmd = args[0].slice(prefixl.length).toLowerCase();
     if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
         if (cmd ==="buttontest"){
-            const button1 = new MessageButton()
-            .setCustomId('test')
-            .setLabel('TEST')
+            const button = new MessageButton()
             .setStyle('PRIMARY')
-            message.reply({
-                components: button1,
-                embeds: [{
-                  color: "0x2f3136",
-                  description: `somes stuff here`
-                }]
-            });
+            .setLabel('BUTTONS')
+            //.setEmoji('table_tennis') --> this is a separate issue.
+            .setCustomId('test')
+            let row1 = new MessageActionRow()
+            .addComponents([ button ])
+            message.channel.send({
+                content: 'BUTTONS',
+                components: [row1]
+            })
         }
     }
     cmds.commands(cmd,args,message,client);
 });
 
-client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
+client.on('interactionCreate', interaction => {
+	if (!interaction.isButton()) return;
+	console.log(interaction);
+    const filter = i => i.customId === 'test';
 
-	if (interaction.commandName === 'button') {
-		const row = new MessageActionRow()
-			.addComponents(
-				new MessageButton()
-					.setCustomId('primary')
-					.setLabel('Primary')
-					.setStyle('PRIMARY'),
-			);
+    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
-		await interaction.reply({ content: 'Pong!', components: [row] });
-	}
+    collector.on('collect', async i => {
+	    if (i.customId === 'test') {
+            interaction.message.channel.send("hi")
+            await i.deferUpdate();
+		    await i.update({ content: 'A button was clicked!', components: [] });
+	    }
+    });
+
+    collector.on('end', collected => console.log(`Collected ${collected.size} items`));
+
 });
 
 
