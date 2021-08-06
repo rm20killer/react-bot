@@ -50,10 +50,18 @@ const slashcoms = require('./commands/slashcommands');
 const { youtube } = require('./commands/youtubeChecker');
 
 //start 
-client.on("ready", () =>{
+client.on("ready", async () =>{
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity(`with discord.js v13`, { type: "PLAYING"});
     //client.user.setPresence({ activity: [{ name: 'Testing discord.js v13' }], status: 'Online', type: "WATCHING" })
+    
+    const data = {
+        name: 'ping',
+        description: 'Replies with Pong!',
+    };
+
+    const command = await client.application?.commands.create(data);
+    console.log(command);
 });
 
 ////////////////////////////////////////////////
@@ -141,19 +149,30 @@ client.on('messageCreate', async message => {
                 .setStyle('DANGER')
                 .setLabel('User Report') 
                 .setCustomId('Player');
-    
             let row = new MessageActionRow()
                 .addComponents([ btn ])
                 .addComponents([ btn3 ])
                 .addComponents([ btn5 ])
+
+            let row23 = new MessageActionRow()
+                .addComponents(new MessageButton()
+                    .setStyle('SUCCESS')
+                    .setLabel('General Support')
+                    .setCustomId('General'))
+                .addComponents(new MessageButton()
+                    .setStyle('SUCCESS')
+                    .setLabel('Mute Appeal')
+                    .setCustomId('BanAppeal'))
+                .addComponents(new MessageButton()
+                    .setStyle('DANGER')
+                    .setLabel('User Report') 
+                    .setCustomId('Player'));
+
             const embed = new Discord.MessageEmbed()
                 .setTitle(`**Welcome to ${message.guild.name}!**`)
                 .setColor(0x2f3136)
                 .setDescription("Click on one of the buttons below to start your ticket \nCreating a ticket without a reason will lead to a warning and a ticket ban \n\n**DO NOT CREATE A TICKET TO SUBMIT CLIPS**");  
-            message.channel.send({
-                embeds: embed,
-                components: [row]
-            })
+            message.channel.send({ embeds: [embed], components: [row23] })
                 //message.channel.send({ embed: embed, component: row })
             //ticketmanger.ticketmess(message,client);
         }
@@ -189,6 +208,8 @@ if (!shadRole && shasRole) {
 `
 });
 
+////////////////////////////////////////////////
+// buttons
 client.on('interactionCreate', interaction => {
 	if (!interaction.isButton()) return;
 	console.log(interaction);
@@ -206,6 +227,33 @@ client.on('interactionCreate', interaction => {
 
     collector.on('end', collected => console.log(`Collected ${collected.size} items`));
 
+});
+////////////////////////////////////////////////
+// slash commands
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isCommand()) return;
+
+    if (interaction.commandName === 'compress') {
+        await interaction.reply('To compress size so you send on discord you can use: https://8mb.video/ \n **You must** enable the `Extra quality (slower)` option.\nYour video cannot be longer than 40 seconds to meet requirements.\nUse the trim options to accomplish this.');
+    }
+    if (interaction.commandName === 'madeby') {
+        await interaction.reply('This was made by RM20 with the help from RootAtKali, you can sponsor this bot and source code can be found at https://github.com/rm20killer/react-bot');
+    }
+    if (interaction.commandName === 'youtubetrimmer') {
+        await interaction.reply('If it on your channel you can download the video and trim it a editing software. \nIf the video is not from your channel you can use the clip button on youtube if that video does not have the clip button you can use youtube-dl`');
+    }
+    if (interaction.commandName === 'ping') {
+        await interaction.reply('Pong!');
+    }
+    if (interaction.commandName === 'requirements') {
+        const embed = new Discord.MessageEmbed()
+        .setTitle('Requirements')
+        .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+        .setColor(0xff0000)
+        .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 kbps (x264 medium)\n> Audio bitrate: At least 150 kbps (AAC-LC)\n> Must embed on discord\n> Must be under 2 minutes. No timestamps!\nDeliberately scaling or padding a video to fool me\ndoes **not** pass the requirements.')
+
+        await interaction.reply({ embeds: [embed]});
+    }
 });
 
 
