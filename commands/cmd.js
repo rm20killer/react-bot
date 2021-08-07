@@ -8,11 +8,13 @@ const fetch = require("node-fetch");
 const config = require("../config");
 
 const accountage = require("./accountage");
+
 //const close = require("./ticket/close");
 //const rename = require("./ticket/rename");
 //const add = require("./ticket/add");
 //const stafflock = require("./ticket/stafflock");
 //const remove =require("./ticket/remove")
+
 
 const index = require('../index');
 
@@ -108,6 +110,7 @@ module.exports ={
                     if(cmd==="remove"){
                         const rest = message.content.slice(8);
                         //remove.remove(args,message,client,rest)
+
                     }
                 }
             }

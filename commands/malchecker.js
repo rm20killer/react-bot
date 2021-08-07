@@ -42,7 +42,6 @@ module.exports ={
             .addField('person id', message.author.id)
             .addField("person name ", message.author.tag)
             .setFooter("today at "+formattedTime)
-
             channel.send({ embeds: [embed] });
 		    message.delete()
             .catch(console.error);
@@ -64,7 +63,6 @@ module.exports ={
             .setDescription(message.content)
             .addField('person id', message.author.id)
             .addField("person name ", message.author.tag)
-
             channel.send({ embeds: [embed] });
         }
     }

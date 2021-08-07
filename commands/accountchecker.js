@@ -1,6 +1,8 @@
+
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+
 
 module.exports ={
     accountchecker: function(client,member){
@@ -17,6 +19,7 @@ module.exports ={
             .setFooter("user: " + member.user.tag +" | user id: "+ member.id)
     
             channel.send({ embeds: [embed] });
+
             return;
         }
         if (Date.now() - member.user.createdAt < 1000*60*60*24*10) {
@@ -28,8 +31,8 @@ module.exports ={
             .setDescription(member.user.tag +' created an account in the past 10 days and joined')
             .addField('creation date ', accage)
             .setFooter("user: " + member.user.tag +" | user id: "+ member.id)
-    
             channel.send({ embeds: [embed] });
+
             return;
         }
         

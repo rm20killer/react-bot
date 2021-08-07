@@ -3,6 +3,7 @@ const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
+
 const config = require("../config");
 
 const youtubeKey = config.youtubeKey
@@ -29,6 +30,7 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
             .setDescription('Video definition is not HD, \nYoutube API has shown this video definition is less than 720p\nwhich does not meet requirements \nType /requirements for more info.')
             .addField('Bad submission by', message.author.username)
             message.channel.send({ embeds: [embed] });
+
             message.delete();
             return 
         }
@@ -71,6 +73,7 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
                 .setDescription('Video is more than than 2 min, \nWhich does not meet requirements \nType /requirements for more info.\nFor help with trimming a youtube video type "/youtubetrimmer"')
                 .addField('Bad submission by', message.author.username)
                 message.channel.send({ embeds: [embed] });
+
                 message.delete();
                 return 
             }
