@@ -1,16 +1,20 @@
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js')
+const { Client, Intents } = require('discord.js');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const fetch = require("node-fetch");
+
 
 const config = require("../config");
 
 const accountage = require("./accountage");
-const close = require("./ticket/close");
-const rename = require("./ticket/rename");
-const add = require("./ticket/add");
-const stafflock = require("./ticket/stafflock");
-const remove =require("./ticket/remove")
+
+//const close = require("./ticket/close");
+//const rename = require("./ticket/rename");
+//const add = require("./ticket/add");
+//const stafflock = require("./ticket/stafflock");
+//const remove =require("./ticket/remove")
+
 
 const index = require('../index');
 
@@ -89,23 +93,24 @@ module.exports ={
                 if(message.channel.parent.id==="858354610367627284"){
                     if (cmd==="close"){
                         const rest = message.content.slice(6);
-                        close.close(args,message,client,rest)
+                        //close.close(args,message,client,rest)
                     }
                     if(cmd==="stafflock"){ //9
                         const rest = message.content.slice(10);
-                        stafflock.stafflock(args,message,client,rest)
+                        //stafflock.stafflock(args,message,client,rest)
                     }
                     if(cmd==="rename"){
                         const rest = message.content.slice(7);
-                        rename.rename(args,message,client,rest)
+                        //rename.rename(args,message,client,rest)
                     }
                     if(cmd==="add"){
                         const rest = message.content.slice(4);
-                        add.add(args,message,client,rest)
+                        //add.add(args,message,client,rest)
                     }
                     if(cmd==="remove"){
                         const rest = message.content.slice(8);
-                        remove.remove(args,message,client,rest)
+                        //remove.remove(args,message,client,rest)
+
                     }
                 }
             }

@@ -1,6 +1,7 @@
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js')
+const { Client, Intents } = require('discord.js');
+//const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 module.exports ={
     antiworm: function(messa,message,client){
@@ -41,8 +42,7 @@ module.exports ={
             .addField('person id', message.author.id)
             .addField("person name ", message.author.tag)
             .setFooter("today at "+formattedTime)
-
-            channel.send(embed);
+            channel.send({ embeds: [embed] });
 		    message.delete()
             .catch(console.error);
 
@@ -63,8 +63,7 @@ module.exports ={
             .setDescription(message.content)
             .addField('person id', message.author.id)
             .addField("person name ", message.author.tag)
-
-            channel.send(embed);
+            channel.send({ embeds: [embed] });
         }
     }
 }

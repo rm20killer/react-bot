@@ -1,6 +1,7 @@
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js')
+const { Client, Intents } = require('discord.js');
+//const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const fetch = require("node-fetch");
 
 const config = require("../config");
@@ -25,7 +26,7 @@ module.exports ={
             .addField('creation date ', accage)
             .addField('join date ', joindate)
             .setFooter("user: " + member.user.tag +" | user id: "+ member.user.id)
-            message.channel.send(embed);
+            message.channel.send({ embeds: [embed] });
         }
     }
 }

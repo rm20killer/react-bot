@@ -1,6 +1,7 @@
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js')
+const { Client, Intents } = require('discord.js');
+//const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 module.exports = {
     dmchecker: function(message,client){
@@ -16,7 +17,7 @@ module.exports = {
             .addField('person id', message.author.id)
             .setFooter("person name " + message.author.tag)
             const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
-            channel.send(embed);
+            channel.send({ embeds: [embed] });
 
 	        //auto respond
     	    const nameArray = attachment.name.split('.'); // Split the name 
@@ -43,7 +44,7 @@ module.exports = {
             .addField('person id', message.author.id)
             .setFooter("person name " + message.author.tag)    
             const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
-            channel.send(embed);
+            channel.send({ embeds: [embed] });
         }
         if(message.author.bot) return;
         
