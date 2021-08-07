@@ -26,7 +26,7 @@ module.exports ={
             .addField('creation date ', accage)
             .addField('join date ', joindate)
             .setFooter("user: " + member.user.tag +" | user id: "+ member.user.id)
-            message.channel.send(embed);
+            message.channel.send({ embeds: [embed] });
         }
     }
 }

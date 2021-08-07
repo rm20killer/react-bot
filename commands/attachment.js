@@ -19,7 +19,7 @@ module.exports = {
                         .setColor(0xff0000)
                         .setDescription('Discord, while it can play .' + attEx + ' files, cannot play this \ncodec. It may have been HEVC or AV1. Use FFmpeg or\nHandbrake to convert your video to H.264, VP8, or\nVP9 in an MP4, WebM, or MOV container.\n*Avoid online tools, they usually reduce quality.*')
                         .addField('Bad submission by', message.author.username)
-                    message.channel.send(embed);
+                    message.channel.send({ embeds: [embed] });
                     message.delete();
                 }
                 else if (Mwidth < 1280 || Mheight < 720) {
@@ -30,7 +30,7 @@ module.exports = {
                         .setColor(0xff0000)
                         .setDescription('Video resolution is less than 720p.\nSubmissions must be 1280x720 or greater.\nYour clip was ' + Mwidth + 'x' + Mheight + ', which is too low.' + '\nType /requirements for more info.')
                         .addField('Bad submission by', message.author.username)
-                    message.channel.send(embed);
+                    message.channel.send({ embeds: [embed] });
                     //lastBadSubmissionBy = message.author.username;
                     message.delete();
                 }  
@@ -45,7 +45,7 @@ module.exports = {
                         .setColor(0xff0000)
                         .setDescription('Video aspect ratio is invalid.\nOnly ratios from 16:10 to 2:1 are accepted.\nYour clip was ' + Mwidth + 'x' + Mheight + ', which is' + problem + '\nType /requirements for more info.\nPlease do not resubmit, scale, or letterbox this video.')
                         .addField('Bad submission by', message.author.username)
-                    message.channel.send(embed);
+                    message.channel.send({ embeds: [embed] });
                     //lastBadSubmissionBy = message.author.username;
                     message.delete();
                 }
@@ -72,7 +72,7 @@ module.exports = {
                     .setColor(0xff0000)
                     .setDescription('Video format unsupported.\nFile submissions must preview in Discord.\n' + convertTip)
                     .addField('Bad submission by', message.author.username)
-                message.channel.send(embed);
+                message.channel.send({ embeds: [embed] });
                 message.delete();
                 console.log("bot checked",message.id);
             }
@@ -84,8 +84,9 @@ module.exports = {
             .setColor(0xff0000)
             .setDescription('Video format unsupported.\nFile submissions must preview in Discord.\n' + "The file you sent has no file format")
             .addField('Bad submission by', message.author.username)
-            message.channel.send(embed);
-            message.delete();
+            message.channel.send({ embeds: [embed] });
+            message.delete()
+            .catch(console.error);
             console.log("bot checked",message.id);
         }
     },
@@ -107,8 +108,9 @@ module.exports = {
             .setColor(0xff0000)
             .setDescription("You cannot send executable files or\napplication installers as a file here.\n*.exe, .msi, .deb, .dmg, .apk*")
             .addField('author: ', message.author.username)
-            message.channel.send(embed);
-            message.delete();
+            message.channel.send({ embeds: [embed] });
+            message.delete()
+            .catch(console.error);
             console.log("bot checked",message.id);
         }
     }

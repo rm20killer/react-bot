@@ -28,7 +28,7 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
             .setColor(0xff0000)
             .setDescription('Video definition is not HD, \nYoutube API has shown this video definition is less than 720p\nwhich does not meet requirements \nType /requirements for more info.')
             .addField('Bad submission by', message.author.username)
-            message.channel.send(embed);
+            message.channel.send({ embeds: [embed] });
             message.delete();
             return 
         }
@@ -70,7 +70,7 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
                 .setColor(0xff0000)
                 .setDescription('Video is more than than 2 min, \nWhich does not meet requirements \nType /requirements for more info.\nFor help with trimming a youtube video type "/youtubetrimmer"')
                 .addField('Bad submission by', message.author.username)
-                message.channel.send(embed);
+                message.channel.send({ embeds: [embed] });
                 message.delete();
                 return 
             }

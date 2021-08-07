@@ -17,7 +17,7 @@ module.exports = {
             .addField('person id', message.author.id)
             .setFooter("person name " + message.author.tag)
             const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
-            channel.send(embed);
+            channel.send({ embeds: [embed] });
 
 	        //auto respond
     	    const nameArray = attachment.name.split('.'); // Split the name 
@@ -44,7 +44,7 @@ module.exports = {
             .addField('person id', message.author.id)
             .setFooter("person name " + message.author.tag)    
             const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
-            channel.send(embed);
+            channel.send({ embeds: [embed] });
         }
         if(message.author.bot) return;
         
