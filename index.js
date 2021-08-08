@@ -19,10 +19,9 @@ const client = new Client({
         Intents.FLAGS.DIRECT_MESSAGE_TYPING
     ],
 });
+
 const fetch = require("node-fetch");
-
 const { MessageActionRow, MessageButton } = require('discord.js');
-
 
 
 const config = require("./config");
@@ -60,8 +59,8 @@ client.on("ready", async () =>{
         description: 'Replies with Pong!',
     };
 
-    const command = await client.application?.commands.create(data);
-    console.log(command);
+    //const command = await client.application?.commands.create(data);
+    //console.log(command);
 });
 
 ////////////////////////////////////////////////
@@ -72,6 +71,7 @@ client.on("guildMemberAdd", async member => {
 });
 
 client.on('messageCreate', async message => {
+    //console.log(message)
     if(message.guild === null) {
         //dm checker
         dmchecker.dmchecker(message,client);
@@ -85,7 +85,6 @@ client.on('messageCreate', async message => {
     catch{
         console.log("message not sent in catoragy");
     }
-
     if (message.guild.id === "629695220065239061") { 
         if (message.channel.id==='629695352454250508') {
             const channel = client.channels.cache.find(channel => channel.id === "707304184524832879");
@@ -160,8 +159,7 @@ client.on('messageCreate', async message => {
         }
         const attachments = Array.from(message.attachments);
         const attachmentss = attachments[0]; 
-        if (!attachmentss) {return}
-        else{
+        if (attachmentss) {
             const attachment = attachmentss[1]
             //console.log(attachment[1])
             attachmentD.attachmentchecker(attachment,message,client);
@@ -169,8 +167,7 @@ client.on('messageCreate', async message => {
     }
     const attachments = Array.from(message.attachments);
     const attachmentss = attachments[0]; 
-    if (!attachmentss) {return}
-    else{
+    if (attachmentss) {
         const attachment = attachmentss[1]
         //console.log(attachment[1])
         attachmentD.attachmentexe(attachment,message,client);
