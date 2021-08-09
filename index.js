@@ -84,9 +84,24 @@ client.on('messageCreate', async message => {
     try
     {
         var channelParent = message.channel.parent.id
+        var role = message.member.roles.cache
     }
     catch{
         console.log("message not sent in catoragy");
+        var channelParent = null
+        var role = null
+    }
+    if(role != null){
+        if (message.member.roles.cache.find(r=>r.id === "712512117999271966")){
+            if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
+
+            }
+            else{
+                if (channelParent !='858354610367627284'){
+                    message.delete();
+                }
+            }
+        }
     }
     if (message.guild.id === "629695220065239061") { 
         if (message.channel.id==='629695352454250508') {
