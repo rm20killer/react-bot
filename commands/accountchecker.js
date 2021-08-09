@@ -31,7 +31,8 @@ module.exports ={
             .setDescription(member.user.tag +' created an account in the past 10 days and joined')
             .addField('creation date ', accage)
             .setFooter("user: " + member.user.tag +" | user id: "+ member.id)
-            channel.send({ embeds: [embed] });
+            channel.send({ embeds: [embed] })
+            .catch(err => {message.reply("err")}); 
 
             return;
         }
