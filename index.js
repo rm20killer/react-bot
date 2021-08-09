@@ -77,7 +77,7 @@ client.on('messageCreate', async message => {
     //console.log(message)
     if(message.guild === null) {
         //dm checker
-        dmchecker.dmchecker(message,client);
+        //dmchecker.dmchecker(message,client);
         return;
     }
     //everything else

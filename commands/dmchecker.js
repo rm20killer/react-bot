@@ -5,8 +5,8 @@ const { Client, Intents } = require('discord.js');
 
 module.exports = {
     dmchecker: function(message,client){
-        const attachments = (message.attachments).array(); // Get list of attachments
-        const attachment = attachments[0]; // Take the first attachment
+        const attachments = Array.from(message.attachments);
+        const attachmentss = attachments[0]; 
         if (attachment !== undefined){
             const embed = new Discord.MessageEmbed()
             .setTitle('Someone DMed me')
@@ -36,6 +36,7 @@ module.exports = {
 	        }
         }
         else{
+            const attachment = attachmentss[1]
             const embed = new Discord.MessageEmbed()
             .setTitle('Someone DMed me')
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')

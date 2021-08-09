@@ -23,13 +23,17 @@ const client = new Client({
 module.exports = {
     ticketmanger: async function(interaction,client){   
         let member = interaction.user
+        //console.log(member)
         let limit = 0
         const id = interaction.customId;
-        let mess = await interaction.reply(`Creating a ${id} ticket`);
+        let mess = await member.send(`Creating a ${id} ticket`);
         interaction.guild.channels.cache.forEach(c => {
-            if (c.parentID === "858354610367627284") {
+            //console.log("interaction got")
+            if (c.parentID === "858354610367627284") { 
+                console.log(c)
                 if (c.topic === member.id) {
                     limit++
+                    console.log(limit + c.topic);
                 }
             }
         })
@@ -48,39 +52,39 @@ module.exports = {
 
 async function createChannel(id,interaction,member) {
     if (id==="Player"){ //user report
-        const format='```diff\n- Discord ID:\n- Issue:```'
+        var format='```diff\n- Discord ID:\n- Issue:```'
     }
     if (id==="BanAppeal"){ //mute Appeal
-        const format='```diff\n- Mute Reason:\n- Appeal:```'
+        var format='```diff\n- Mute Reason:\n- Appeal:```'
     }
-    if (id==="clickButton"){ //clickButton
-        const format='```diff\n- Question:```'
+    if (id==="General"){ //General
+        var format='```diff\n- Question:```'
     }
     interaction.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
         await c.setTopic(member.id)
         await c.setParent("858354610367627284")
 
-        await c.updateOverwrite("629695220065239061", {
+        await c.permissionOverwrites.edit("629695220065239061", {
             VIEW_CHANNEL: false
         })
-        await c.updateOverwrite(member.id, {
+        await c.permissionOverwrites.edit(member.id, {
             VIEW_CHANNEL: true,
             SEND_MESSAGES: true
         })
-        await c.updateOverwrite("696134129497931857", {
+        await c.permissionOverwrites.edit("696134129497931857", {
             VIEW_CHANNEL: true,
             SEND_MESSAGES: true
         })
-        await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
+        //await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
 
         const embed = new Discord.MessageEmbed()
             .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
-            .addField('Format', format, true)
-            .addField('Topic', id, true)
+            .addField('Format', `${format}`, true)
+            .addField('Topic', `${id}`, true)
             .setTimestamp()
-            .setColor(0xff0000)
+            .setColor(0xff0000);
 
-        c.send(`<@${member.id}>`)
-        c.send(embed)
+        //c.send(`<@${member.id}>`);
+        c.send({ embeds: [embed] });
     })
 }
