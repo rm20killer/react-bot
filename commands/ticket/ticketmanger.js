@@ -1,50 +1,86 @@
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const disbut = require('discord-buttons')(client);
+const Discord = require('discord.js')
+const { Client, Intents } = require('discord.js');
+const client = new Client({ 
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MEMBERS,
+        Intents.FLAGS.GUILD_BANS,
+        Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+        Intents.FLAGS.GUILD_INVITES,
+        Intents.FLAGS.GUILD_VOICE_STATES,
+        Intents.FLAGS.GUILD_PRESENCES,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+        Intents.FLAGS.GUILD_MESSAGE_TYPING,
+        Intents.FLAGS.DIRECT_MESSAGES,
+        Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
+        Intents.FLAGS.DIRECT_MESSAGE_TYPING
+    ],
+});
 
 
 module.exports = {
-    ticketmess: function(message,client){
-        const { MessageButton, MessageActionRow } = require("discord-buttons");
-
-        let btn = new MessageButton()
-            .setStyle('green')
-            .setLabel('General Support') 
-            .setID('General');
-
-        let btn2 = new MessageButton()
-            .setStyle('green')
-            .setLabel('Purchase Support') 
-            .setID('Purchase');
-
-        let btn3 = new MessageButton()
-            .setStyle('green')
-            .setLabel('Ban Appeal') 
-            .setID('BanAppeal');
-
-        let btn4 = new MessageButton()
-            .setStyle('red')
-            .setLabel('Player Report') 
-            .setID('Player');
-        let btn5 = new MessageButton()
-            .setStyle('red')
-            .setLabel('Staff Report') 
-            .setID('Staff');
-
-        let row = new MessageActionRow()
-            .addComponent(btn)
-            .addComponent(btn2)
-            .addComponent(btn3);
-            //.addComponent(btn4);
-        let row2 = new MessageActionRow()
-            .addComponent(btn4)
-            .addComponent(btn5);
-        const embed = new Discord.MessageEmbed()
-            .setTitle(`**Welcome to ${message.guild.name}!**`)
-            .setColor(0x2f3136)
-            .setDescription("Click on one of the buttons below to start your ticket")  
-        message.channel.send({ embed: embed, component: row })
-        //message.channel.send("Click on one of the buttons below to start your ticket", { components: [row, row2] });
+    ticketmanger: async function(interaction,client){   
+        let member = interaction.user
+        let limit = 0
+        const id = interaction.customId;
+        let mess = await interaction.reply(`Creating a ${id} ticket`);
+        interaction.guild.channels.cache.forEach(c => {
+            if (c.parentID === "858354610367627284") {
+                if (c.topic === member.id) {
+                    limit++
+                }
+            }
+        })
+        
+        if (limit === 1) {
+            //mess.delete();
+            return member.send(member.tag+' , You have reached the maximum amount of tickets opened');
+        } 
+        else {
+            createChannel(id,interaction,member);
+            //mess.delete();
+        }
     }
+}
+
+
+async function createChannel(id,interaction,member) {
+    if (id==="Player"){ //user report
+        const format='```diff\n- Discord ID:\n- Issue:```'
+    }
+    if (id==="BanAppeal"){ //mute Appeal
+        const format='```diff\n- Mute Reason:\n- Appeal:```'
+    }
+    if (id==="clickButton"){ //clickButton
+        const format='```diff\n- Question:```'
+    }
+    interaction.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
+        await c.setTopic(member.id)
+        await c.setParent("858354610367627284")
+
+        await c.updateOverwrite("629695220065239061", {
+            VIEW_CHANNEL: false
+        })
+        await c.updateOverwrite(member.id, {
+            VIEW_CHANNEL: true,
+            SEND_MESSAGES: true
+        })
+        await c.updateOverwrite("696134129497931857", {
+            VIEW_CHANNEL: true,
+            SEND_MESSAGES: true
+        })
+        await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
+
+        const embed = new Discord.MessageEmbed()
+            .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
+            .addField('Format', format, true)
+            .addField('Topic', id, true)
+            .setTimestamp()
+            .setColor(0xff0000)
+
+        c.send(`<@${member.id}>`)
+        c.send(embed)
+    })
 }

@@ -48,6 +48,8 @@ const youtubechecker = require('./commands/youtubeChecker');
 const slashcoms = require('./commands/slashcommands');
 const { youtube } = require('./commands/youtubeChecker');
 
+const ticketmanger= require('./commands/ticket/ticketmanger');
+
 //start 
 client.on("ready", async () =>{
     console.log(`Logged in as ${client.user.tag}!`);
@@ -68,6 +70,7 @@ client.on("ready", async () =>{
 client.on("guildMemberAdd", async member => {
     //console.log("guildMemberAdd works")
     accountchecker.accountchecker(client,member)
+    .catch(err => {console.log("err3")}); 
 });
 
 client.on('messageCreate', async message => {
@@ -178,65 +181,6 @@ client.on('messageCreate', async message => {
     if (!message.content.startsWith(prefixl)) return;
     const args = message.content.trim().split(/ +/g);
     const cmd = args[0].slice(prefixl.length).toLowerCase();
-    if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
-        if(cmd==="createticket"){
-            //const { MessageButton, MessageActionRow } = require("discord-buttons");
-        
-            let btn = new MessageButton()
-                .setStyle('SECONDARY')
-                .setLabel('General Support')
-                .setCustomId('General');
-    
-            let btn3 = new MessageButton()
-                .setStyle('DANGER')
-                .setLabel('Mute Appeal')
-                .setCustomId('BanAppeal');
-    
-            let btn5 = new MessageButton()
-                .setStyle('DANGER')
-                .setLabel('User Report') 
-                .setCustomId('Player');
-            let row = new MessageActionRow()
-                .addComponents([ btn ])
-                .addComponents([ btn3 ])
-                .addComponents([ btn5 ])
-
-            let row23 = new MessageActionRow()
-                .addComponents(new MessageButton()
-                    .setStyle('SUCCESS')
-                    .setLabel('General Support')
-                    .setCustomId('General'))
-                .addComponents(new MessageButton()
-                    .setStyle('SUCCESS')
-                    .setLabel('Mute Appeal')
-                    .setCustomId('BanAppeal'))
-                .addComponents(new MessageButton()
-                    .setStyle('DANGER')
-                    .setLabel('User Report') 
-                    .setCustomId('Player'));
-
-            const embed = new Discord.MessageEmbed()
-                .setTitle(`**Welcome to ${message.guild.name}!**`)
-                .setColor(0x2f3136)
-                .setDescription("Click on one of the buttons below to start your ticket \nCreating a ticket without a reason will lead to a warning and a ticket ban \n\n**DO NOT CREATE A TICKET TO SUBMIT CLIPS**");  
-            message.channel.send({ embeds: [embed], components: [row23] })
-                //message.channel.send({ embed: embed, component: row })
-            //ticketmanger.ticketmess(message,client);
-        }
-        if (cmd ==="buttontest"){
-            const button = new MessageButton()
-            .setStyle('PRIMARY')
-            .setLabel('BUTTONS')
-            .setCustomId('test');
-
-            let row1 = new MessageActionRow()
-            .addComponents([ button ])
-            message.channel.send({
-                content: 'BUTTONS',
-                components: [row1]
-            })
-        }
-    }
     cmds.commands(cmd,args,message,client);
 });
 
@@ -257,24 +201,18 @@ if (!shadRole && shasRole) {
 
 ////////////////////////////////////////////////
 // buttons
-client.on('interactionCreate', interaction => {
+client.on('interactionCreate', async interaction => {
 	if (!interaction.isButton()) return;
+    return
 	console.log(interaction);
-    const filter = i => i.customId === 'test';
-
-    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
-
-    collector.on('collect', async i => {
-	    if (i.customId === 'test') {
-            interaction.message.channel.send("hi")
-            await i.deferUpdate();
-		    await i.update({ content: 'A button was clicked!', components: [] });
-	    }
-    });
-
-    collector.on('end', collected => console.log(`Collected ${collected.size} items`));
-
+    const id = interaction.customId;
+    //console.log(id);
+    if(id==="General"||id==="BanAppeal"||id==="Player"){
+        ticketmanger.ticketmanger(interaction,client)
+    }
 });
+
+
 ////////////////////////////////////////////////
 // slash commands
 client.on('interactionCreate', async interaction => {

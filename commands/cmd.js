@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const fetch = require("node-fetch");
-
+const { MessageActionRow, MessageButton } = require('discord.js');
 
 const config = require("../config");
 
@@ -88,6 +88,63 @@ module.exports ={
             if (cmd ==="age"){
                 accountage.accountage(args,message,client)
                 return;
+            }
+            if(cmd==="createticket"){
+                //const { MessageButton, MessageActionRow } = require("discord-buttons");
+            
+                let btn = new MessageButton()
+                    .setStyle('SECONDARY')
+                    .setLabel('General Support')
+                    .setCustomId('General');
+        
+                let btn3 = new MessageButton()
+                    .setStyle('DANGER')
+                    .setLabel('Mute Appeal')
+                    .setCustomId('BanAppeal');
+        
+                let btn5 = new MessageButton()
+                    .setStyle('DANGER')
+                    .setLabel('User Report') 
+                    .setCustomId('Player');
+                let row = new MessageActionRow()
+                    .addComponents([ btn ])
+                    .addComponents([ btn3 ])
+                    .addComponents([ btn5 ])
+    
+                let row23 = new MessageActionRow()
+                    .addComponents(new MessageButton()
+                        .setStyle('SUCCESS')
+                        .setLabel('General Support')
+                        .setCustomId('General'))
+                    .addComponents(new MessageButton()
+                        .setStyle('SUCCESS')
+                        .setLabel('Mute Appeal')
+                        .setCustomId('BanAppeal'))
+                    .addComponents(new MessageButton()
+                        .setStyle('DANGER')
+                        .setLabel('User Report') 
+                        .setCustomId('Player'));
+    
+                const embed = new Discord.MessageEmbed()
+                    .setTitle(`**Welcome to ${message.guild.name}!**`)
+                    .setColor(0x2f3136)
+                    .setDescription("Click on one of the buttons below to start your ticket \nCreating a ticket without a reason will lead to a warning and a ticket ban \n\n**DO NOT CREATE A TICKET TO SUBMIT CLIPS**");  
+                message.channel.send({ embeds: [embed], components: [row23] })
+                    //message.channel.send({ embed: embed, component: row })
+                //ticketmanger.ticketmess(message,client);
+            }
+            if (cmd ==="buttontest"){
+                const button = new MessageButton()
+                .setStyle('PRIMARY')
+                .setLabel('BUTTONS')
+                .setCustomId('test');
+    
+                let row1 = new MessageActionRow()
+                .addComponents([ button ])
+                message.channel.send({
+                    content: 'BUTTONS',
+                    components: [row1]
+                })
             }
             if(message.channel.parent!=null){
                 if(message.channel.parent.id==="858354610367627284"){

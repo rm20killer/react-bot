@@ -19,7 +19,7 @@ module.exports ={
             .setFooter("user: " + member.user.tag +" | user id: "+ member.id)
     
             channel.send({ embeds: [embed] })
-            .catch(err => {message.reply("err")}); 
+            .catch(err => {console.log("err")}); 
             return;
         }
         if (Date.now() - member.user.createdAt < 1000*60*60*24*10) {
@@ -32,7 +32,7 @@ module.exports ={
             .addField('creation date ', accage)
             .setFooter("user: " + member.user.tag +" | user id: "+ member.id)
             channel.send({ embeds: [embed] })
-            .catch(err => {message.reply("err")}); 
+            .catch(err => {console.log("err2")}); 
 
             return;
         }
