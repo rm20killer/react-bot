@@ -18,7 +18,7 @@ module.exports ={
             .addField('creation date ', accage)
             .setFooter("user: " + member.user.tag +" | user id: "+ member.id)
     
-            channel.send({ embeds: [embed] });
+            channel.send({ embeds: [embed] })
             .catch(err => {message.reply("err")}); 
             return;
         }
