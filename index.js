@@ -70,7 +70,7 @@ client.on("ready", async () =>{
 client.on("guildMemberAdd", async member => {
     //console.log("guildMemberAdd works")
     accountchecker.accountchecker(client,member)
-    .catch(err => {console.log("err3")}); 
+    //.catch(err => {console.log("err3")});
 });
 
 client.on('messageCreate', async message => {
