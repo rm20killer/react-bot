@@ -19,7 +19,7 @@ module.exports ={
             .setFooter("user: " + member.user.tag +" | user id: "+ member.id)
     
             channel.send({ embeds: [embed] });
-
+            .catch(err => {message.reply("err")}); 
             return;
         }
         if (Date.now() - member.user.createdAt < 1000*60*60*24*10) {
