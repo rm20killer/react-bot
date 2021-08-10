@@ -21,7 +21,8 @@ const client = new Client({
     partials:[
         `CHANNEL`,
         `MESSAGE`
-    ]
+    ],
+    autoReconnect: true,
 });
 
 const fetch = require("node-fetch");
