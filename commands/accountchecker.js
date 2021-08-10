@@ -15,7 +15,7 @@ module.exports ={
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
             .setColor(0xff0000)
             .setDescription(member.user.tag +' created an account in the past day and joined')
-            .addField('creation date ', accage)
+            .addField('creation date ', `${accage}`)
             .setFooter("user: " + member.user.tag +" | user id: "+ member.id)
     
             channel.send({ embeds: [embed] })
@@ -29,7 +29,7 @@ module.exports ={
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
             .setColor(0xff0000)
             .setDescription(member.user.tag +' created an account in the past 10 days and joined')
-            .addField('creation date ', accage)
+            .addField('creation date ', `${accage}`)
             .setFooter("user: " + member.user.tag +" | user id: "+ member.id)
             channel.send({ embeds: [embed] })
             .catch(err => {console.log("err2")}); 

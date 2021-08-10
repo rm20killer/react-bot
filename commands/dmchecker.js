@@ -1,13 +1,31 @@
-
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
-//const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ 
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MEMBERS,
+        Intents.FLAGS.GUILD_BANS,
+        Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+        Intents.FLAGS.GUILD_INVITES,
+        Intents.FLAGS.GUILD_VOICE_STATES,
+        Intents.FLAGS.GUILD_PRESENCES,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+        Intents.FLAGS.GUILD_MESSAGE_TYPING,
+        Intents.FLAGS.DIRECT_MESSAGES,
+        Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
+        Intents.FLAGS.DIRECT_MESSAGE_TYPING
+    ],
+});
 
 module.exports = {
     dmchecker: function(message,client){
+        //console.log("dm")
         const attachments = Array.from(message.attachments);
-        const attachmentss = attachments[0]; 
-        if (attachment !== undefined){
+        const attachmentss = attachments[0];
+        //console.log(attachmentss)
+        if (attachmentss !== undefined){
+            const attachment = attachmentss[1]
             const embed = new Discord.MessageEmbed()
             .setTitle('Someone DMed me')
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
@@ -36,7 +54,6 @@ module.exports = {
 	        }
         }
         else{
-            const attachment = attachmentss[1]
             const embed = new Discord.MessageEmbed()
             .setTitle('Someone DMed me')
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')

@@ -26,24 +26,41 @@ module.exports = {
         //console.log(member)
         let limit = 0
         const id = interaction.customId;
-        let mess = await member.send(`Creating a ${id} ticket`);
+        if (id==="Player"){ //user report
+            var ids = "User Report"
+        }
+        if (id==="BanAppeal"){ //mute Appeal
+            var ids = "Mute Appeal"
+        }
+        if (id==="General"){ //General
+            var ids = "General"
+        }
+        let mess = await interaction.reply(`Creating a ${ids} ticket`);
         interaction.guild.channels.cache.forEach(c => {
             //console.log("interaction got")
-            if (c.parentID === "858354610367627284") { 
-                console.log(c)
+            try
+            {
+                var channelParent = c.parent.id
+            }
+            catch{
+                var channelParent = 1
+            }
+
+            if (channelParent === "858354610367627284") { 
                 if (c.topic === member.id) {
                     limit++
-                    console.log(limit + c.topic);
                 }
             }
         })
         
         if (limit === 1) {
             //mess.delete();
+            interaction.deleteReply();
             return member.send(member.tag+' , You have reached the maximum amount of tickets opened');
         } 
         else {
             createChannel(id,interaction,member);
+            interaction.deleteReply();
             //mess.delete();
         }
     }
@@ -53,12 +70,15 @@ module.exports = {
 async function createChannel(id,interaction,member) {
     if (id==="Player"){ //user report
         var format='```diff\n- Discord ID:\n- Issue:```'
+        var ids = "User Report"
     }
     if (id==="BanAppeal"){ //mute Appeal
         var format='```diff\n- Mute Reason:\n- Appeal:```'
+        var ids = "Mute Appeal"
     }
     if (id==="General"){ //General
         var format='```diff\n- Question:```'
+        var ids = "General"
     }
     interaction.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
         await c.setTopic(member.id)
@@ -80,7 +100,7 @@ async function createChannel(id,interaction,member) {
         const embed = new Discord.MessageEmbed()
             .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
             .addField('Format', `${format}`, true)
-            .addField('Topic', `${id}`, true)
+            .addField('Topic', `${ids}`, true)
             .setTimestamp()
             .setColor(0xff0000);
 

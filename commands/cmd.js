@@ -1,7 +1,24 @@
 
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ 
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MEMBERS,
+        Intents.FLAGS.GUILD_BANS,
+        Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+        Intents.FLAGS.GUILD_INVITES,
+        Intents.FLAGS.GUILD_VOICE_STATES,
+        Intents.FLAGS.GUILD_PRESENCES,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+        Intents.FLAGS.GUILD_MESSAGE_TYPING,
+        Intents.FLAGS.DIRECT_MESSAGES,
+        Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
+        Intents.FLAGS.DIRECT_MESSAGE_TYPING
+    ],
+});
+
 const fetch = require("node-fetch");
 const { MessageActionRow, MessageButton } = require('discord.js');
 
@@ -9,11 +26,11 @@ const config = require("../config");
 
 const accountage = require("./accountage");
 
-//const close = require("./ticket/close");
-//const rename = require("./ticket/rename");
-//const add = require("./ticket/add");
-//const stafflock = require("./ticket/stafflock");
-//const remove =require("./ticket/remove")
+const close = require("./ticket/close");
+const rename = require("./ticket/rename");
+const add = require("./ticket/add");
+const stafflock = require("./ticket/stafflock");
+const remove =require("./ticket/remove")
 
 
 const index = require('../index');
@@ -129,7 +146,7 @@ module.exports ={
                     .setTitle(`**Welcome to ${message.guild.name}!**`)
                     .setColor(0x2f3136)
                     .setDescription("Click on one of the buttons below to start your ticket \nCreating a ticket without a reason will lead to a warning and a ticket ban \n\n**DO NOT CREATE A TICKET TO SUBMIT CLIPS**");  
-                message.channel.send({ embeds: [embed], components: [row23] })
+                message.channel.send({ embeds: [embed], components: [row23] }).catch(console.error);
                     //message.channel.send({ embed: embed, component: row })
                 //ticketmanger.ticketmess(message,client);
             }
@@ -150,7 +167,7 @@ module.exports ={
                 if(message.channel.parent.id==="858354610367627284"){
                     if (cmd==="close"){
                         const rest = message.content.slice(6);
-                        //close.close(args,message,client,rest)
+                        close.close(args,message,client,rest)
                     }
                     if(cmd==="stafflock"){ //9
                         const rest = message.content.slice(10);
@@ -158,15 +175,15 @@ module.exports ={
                     }
                     if(cmd==="rename"){
                         const rest = message.content.slice(7);
-                        //rename.rename(args,message,client,rest)
+                        rename.rename(args,message,client,rest)
                     }
                     if(cmd==="add"){
                         const rest = message.content.slice(4);
-                        //add.add(args,message,client,rest)
+                        add.add(args,message,client,rest)
                     }
                     if(cmd==="remove"){
                         const rest = message.content.slice(8);
-                        //remove.remove(args,message,client,rest)
+                        remove.remove(args,message,client,rest)
 
                     }
                 }

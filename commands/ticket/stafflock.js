@@ -1,5 +1,6 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js')
+const { Client, Intents } = require('discord.js');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 module.exports = {
     stafflock: function(args,message,client,rest){  
@@ -10,8 +11,8 @@ module.exports = {
         
         const id = message.channel.topic
         const type = "member"
-        if(message.channel.permissionOverwrites.find(o => o.type === type && o.id === id)!=undefined){
-            message.channel.permissionOverwrites.find(o => o.type === type && o.id === id).delete()
+        if(message.channel.permissionOverwrites.edit.find(o => o.type === type && o.id === id)!=undefined){
+            message.channel.permissionOverwrites.edit.find(o => o.type === type && o.id === id).delete()
             let reason = rest
             if (!reason) reason = 'No Reason Specified'
     
@@ -23,7 +24,8 @@ module.exports = {
                 .addField('Reason:', reason, true)
                 .setColor(0x4287f5)
     
-            message.channel.send(embed)
+                message.channel.send({ embeds: [embed] })
+                .catch(err => {console.log(err)});
         }
 
         else{

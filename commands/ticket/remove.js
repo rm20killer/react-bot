@@ -1,5 +1,6 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js')
+const { Client, Intents } = require('discord.js');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 module.exports = {
     remove: function(args,message,client,rest){ 
@@ -12,7 +13,7 @@ module.exports = {
         let reason = args.slice(1).join(' ')
         if (!reason) reason = 'No Reason Specified'
 
-        message.channel.updateOverwrite(member, {
+        message.channel.permissionOverwrites.edit(member, {
             VIEW_CHANNEL: false
         })
         .catch(err => {message.reply("err")});
@@ -23,7 +24,7 @@ module.exports = {
             .addField('Reason:', reason, true)
             .setColor(0x4287f5)
 
-        message.channel.send(embed)
+        message.channel.send({ embeds: [embed] })
         .catch(err => {message.reply("err")});
 
     }

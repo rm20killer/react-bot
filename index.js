@@ -18,6 +18,10 @@ const client = new Client({
         Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
         Intents.FLAGS.DIRECT_MESSAGE_TYPING
     ],
+    partials:[
+        `CHANNEL`,
+        `MESSAGE`
+    ]
 });
 
 const fetch = require("node-fetch");
@@ -76,8 +80,9 @@ client.on("guildMemberAdd", async member => {
 client.on('messageCreate', async message => {
     //console.log(message)
     if(message.guild === null) {
+    
         //dm checker
-        //dmchecker.dmchecker(message,client);
+        dmchecker.dmchecker(message,client);
         return;
     }
     //everything else
@@ -218,8 +223,8 @@ if (!shadRole && shasRole) {
 // buttons
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isButton()) return;
-    return
-	console.log(interaction);
+    //return
+	//console.log(interaction);
     const id = interaction.customId;
     //console.log(id);
     if(id==="General"||id==="BanAppeal"||id==="Player"){
