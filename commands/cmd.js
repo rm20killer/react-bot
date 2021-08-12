@@ -103,7 +103,7 @@ module.exports ={
                 }
             }
             if (cmd ==="age"){
-                accountage.accountage(args,message,client)
+                // accountage.accountage(args,message,client)
                 return;
             }
             if(cmd==="createticket"){

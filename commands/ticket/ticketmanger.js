@@ -95,7 +95,7 @@ async function createChannel(id,interaction,member) {
             VIEW_CHANNEL: true,
             SEND_MESSAGES: true
         })
-        //await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
+        await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
 
         const embed = new Discord.MessageEmbed()
             .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
@@ -104,7 +104,7 @@ async function createChannel(id,interaction,member) {
             .setTimestamp()
             .setColor(0xff0000);
 
-        //c.send(`<@${member.id}>`);
+        c.send(`<@${member.id}>`);
         c.send({ embeds: [embed] });
     })
 }
