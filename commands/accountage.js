@@ -19,12 +19,14 @@ module.exports ={
         else{
             const accage = member.user.createdAt
             const joindate = member.joinedAt
+            console.log(accage)
+            console.log(joindate)
             const embed = new Discord.MessageEmbed()
             .setTitle('account age of '+member.user.username)
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
             .setColor(0xff0000)
-            .addField('creation date ', accage)
-            .addField('join date ', joindate)
+            .addField('creation date ', `${accage}`)
+            .addField('join date ', `${joindate}`)
             .setFooter("user: " + member.user.tag +" | user id: "+ member.user.id)
             message.channel.send({ embeds: [embed] });
         }
