@@ -152,7 +152,7 @@ client.on('messageCreate', async message => {
 
     if (message.channel.id === config.ChannelID) {
         //checks for links
-        let links =["www.dropbox.com/","https://drive.google.com/","www.mediafire.com/file","www.awesomescreenshot.com/","mega.nz/file/","http://somup.com/","https://screencast-o-matic.com/","https://fb.watch/"]
+        let links =["www.dropbox.com/","https://drive.google.com/","www.mediafire.com/file","www.awesomescreenshot.com/","mega.nz/file/","http://somup.com/","https://screencast-o-matic.com/","https://fb.watch/","medal.tv"]
     
         const messa = message.content.toLowerCase();
         for (var i = 0; i < links.length; i++) {
