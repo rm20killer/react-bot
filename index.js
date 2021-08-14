@@ -197,6 +197,16 @@ client.on('messageCreate', async message => {
         attachmentD.attachmentexe(attachment,message,client);
     }
 
+
+    if(message.channel.id === "876177694944026674"){
+        const messa = message.content.toLowerCase();
+        if(messa.includes("uwu")){
+            
+        }
+        else{
+            message.delete();
+        }
+    }
     ////////////////////////////////////////////////
     //commands
     if (!message.content.startsWith(prefixl)) return;
