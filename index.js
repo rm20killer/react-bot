@@ -93,7 +93,7 @@ client.on('messageCreate', async message => {
         var role = message.member.roles.cache
     }
     catch{
-        console.log("message not sent in catoragy");
+        //console.log("message not sent in catoragy");
         var channelParent = null
         var role = null
     }
@@ -235,10 +235,16 @@ if (!shadRole && shasRole) {
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isButton()) return;
     //return
-	//console.log(interaction);
+	//console.log(interaction.member);
     const id = interaction.customId;
     //console.log(id);
     if(id==="General"||id==="BanAppeal"||id==="Player"){
+        if (interaction.member.roles.cache.find(r=>r.id === "865548571327070268")){
+            console.log("ticket banned " + interaction.user.id)
+            await interaction.reply(`you are ticket-banned`);
+            interaction.deleteReply();
+            return
+        }
         ticketmanger.ticketmanger(interaction,client)
     }
 });

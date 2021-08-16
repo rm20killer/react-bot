@@ -19,8 +19,6 @@ module.exports ={
         else{
             const accage = member.user.createdAt
             const joindate = member.joinedAt
-            console.log(accage)
-            console.log(joindate)
             const embed = new Discord.MessageEmbed()
             .setTitle('account age of '+member.user.username)
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
