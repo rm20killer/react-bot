@@ -235,6 +235,7 @@ const getSubscribers = async (message,client) => {
 const setactivity  = async (message,client,type,str) => {
     var actt = str.split(/ (.+)/)[2]
     type = type.slice(0, -1); 
+    console.log(type + actt);
     client.user.setActivity(actt, { type: type});
     message.reply("updated Activity to "+ type +" "+actt);
-  }
+}
