@@ -61,7 +61,19 @@ module.exports ={
             console.log(message.author+" roles issue "+message.content)
             return;
         }
-        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){            
+        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
+            if(cmd==="setactivity"){
+                var str = message.content
+                var type = str.split(/ (.+)/)[1];
+                var type = type.toUpperCase(); //PLAYING: WATCHING: LISTENING: STREAMING:
+
+                if(type.includes("PLAYING")|type.includes("WATCHING")|type.includes("LISTENING")|type.includes("STREAMING")){
+                    setactivity(message,client,type,str);
+                }
+                else{
+                    message.reply("must include type after command: \n`PLAYING` `WATCHING` `LISTENING` `STREAMING`")
+                }
+            }            
             if(cmd === "say"){
                 const say = message.content.slice(4);
                 if(say) {
@@ -218,4 +230,10 @@ const getSubscribers = async (message,client) => {
         channel.setName("Subscribers: "+subr+" Mil");
         //return(sub)
     })
+}
+
+const setactivity  = async (message,client,type,str) => {
+    var actt = str.split(/ (.+)/)[2]
+    client.user.setActivity(actt, { type: type});
+    message.reply("updated Activity to "+ type +" "+actt);
   }

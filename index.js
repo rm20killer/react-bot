@@ -58,7 +58,7 @@ const ticketmanger= require('./commands/ticket/ticketmanger');
 //start 
 client.on("ready", async () =>{
     console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setActivity(`with discord.js v13`, { type: "PLAYING"});
+    client.user.setActivity(`your clips`, { type: "WATCHING"});
     //client.user.setPresence({ activity: [{ name: 'Testing discord.js v13' }], status: 'Online', type: "WATCHING" })
     
     const data = {
