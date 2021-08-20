@@ -110,6 +110,7 @@ client.on('messageCreate', async message => {
         }
     }
     if (message.guild.id === "629695220065239061") { 
+        if(message.author.id === client.user.id) return;
         if (message.channel.id==='629695352454250508') {
             const channel = client.channels.cache.find(channel => channel.id === "707304184524832879");
             channel.send("Reminder: Publish message in <#629695352454250508>");
@@ -144,9 +145,18 @@ client.on('messageCreate', async message => {
     
             //FAQbot but Submit clips
             submitclip.submitclip(messa,message,client);
-    
             //FAQbot but Streamer role
             streamerrole.streamerrole(messa,message,client);
+            if(messa.includes("i am")){
+                const mess = messa.split(/i am(.+)/)[1]
+                if(mess===undefined){return};
+                message.reply("Hi,"+ mess +" I am React Bot")
+            }
+            else if(messa.includes("i'm")){
+                const mess = messa.split(/i'm(.+)/)[1]
+                if(mess===undefined){return};
+                message.reply("Hi,"+ mess +" I'm React Bot")
+            }
         }
     }
 
