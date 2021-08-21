@@ -76,7 +76,7 @@ module.exports = {
         const str = messa;
         let m;
         if ((m = regex.exec(str)) !== null) {
-            message.reply("Submit clips in <#696131644871933972>. Make sure clips meet `/requirements`. To get access to this channel read the <#700789384131379371>");
+            message.reply("Submit clips in <#878531760386871327>. Make sure clips meet `/requirements`. To get access to this channel read the <#700789384131379371>");
             return;
         }
 
