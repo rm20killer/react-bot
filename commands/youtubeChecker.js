@@ -112,6 +112,21 @@ module.exports = {
                     
                 }
             }
+            if(url[i].includes("https://m.youtube.com/watch?v=")){
+                const youtubeVideo = url[i].split("https://m.youtube.com/watch?v=")[1];
+                if(youtubeVideo.includes("channel=")){
+                    const youtubeVideoID = youtubeVideo.split("&")[0]
+                    //console.log(youtubeVideoID);
+                    getVideoinfo(youtubeVideoID,message,client);
+                    
+                }
+                else{
+                    const youtubeVideoID = youtubeVideo;
+                    //console.log(youtubeVideoID);
+                    getVideoinfo(youtubeVideoID,message,client);
+                    
+                }
+            }
         }
     }
 }

@@ -178,7 +178,7 @@ client.on('messageCreate', async message => {
             break;
             }
         }
-        if(messa.includes("https://youtu.be/")||messa.includes("https://www.youtube.com/watch?v=")){
+        if(messa.includes("https://youtu.be/")||messa.includes("https://www.youtube.com/watch?v=")||messa.includes("https://m.youtube.com/watch?v=")){ 
             youtubechecker.youtube(message,client)
         }
         if(messa.includes("https://youtube.com/shorts/")){
