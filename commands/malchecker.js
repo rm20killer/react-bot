@@ -11,7 +11,7 @@ module.exports ={
         let mal;
         if (strx.includes("steamcommunity.com")) return;
         if(messa.includes("https://")||messa.includes("http://")){
-            if ((mal = malregex.exec(strx)) !== null || strx.indexOf(".ru/t") !== -1 || strx.indexOf(".ru/g") !== -1|| strx.indexOf("steamco") !== -1|| strx.indexOf("steann") !== -1 || strx.indexOf("stean") !== -1 ){
+            if ((mal = malregex.exec(strx)) !== null || strx.indexOf(".ru/t") !== -1 || strx.indexOf(".ru/g") !== -1|| strx.indexOf("steamco") !== -1|| strx.indexOf("steann") !== -1 || strx.indexOf("stean") !== -1 || strx.indexOf(".ru/com") !== -1 ){
                 // The result can be accessed through the `mal`-variable.
                 // steancommunity.ru is a PHISHING SITE, note that it is stean, not steam, and yes the link is sent as http:// for some reason and not https://
                 //message.reply("Run a Windows Defender scan and change your password immediately.");
