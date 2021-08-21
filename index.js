@@ -150,12 +150,12 @@ client.on('messageCreate', async message => {
             if(messa.includes("i am")){
                 const mess = messa.split(/i am(.+)/)[1]
                 if(mess===undefined){return};
-                message.reply("Hi,"+ mess +" I am React Bot")
+                //message.reply("Hi,"+ mess +" I am React Bot")
             }
             else if(messa.includes("i'm")){
                 const mess = messa.split(/i'm(.+)/)[1]
                 if(mess===undefined){return};
-                message.reply("Hi,"+ mess +" I'm React Bot")
+                //message.reply("Hi,"+ mess +" I'm React Bot")
             }
         }
     }
