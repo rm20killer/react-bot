@@ -44,7 +44,7 @@ module.exports = {
     	    const editorprojs = ["wfp","prproj","kdenlive","mlt","vpj"];
 	        const unsupported = ["ofr","y4m"]; //obscure files that mods just straight up can't open
 	        if ( videos.indexOf(attEx) != -1 ) {
-                message.reply("You don't need to DM me the videos, Just send them in <#696131644871933972>, to get access to this channel read the <#700789384131379371>")
+                message.reply("You don't need to DM me the videos, Just send them in <#878531760386871327>, to get access to this channel read the <#700789384131379371>")
 	        }
     	    if ( editorprojs.indexOf(attEx) != -1 ) {
   	            message.reply("That's a video editor project, and I can't watch that. Render it to MP4, WebM, or MOV before submitting it in <#696131644871933972>.");
@@ -67,7 +67,7 @@ module.exports = {
         if(message.author.bot) return;
         
         if(message.content.includes("https://")){
-            message.reply("Submit clips in <#696131644871933972>. Make sure clips meet `/requirements`. To get access to this channel read the <#700789384131379371>");
+            message.reply("Submit clips in <#878531760386871327>. Make sure clips meet `/requirements`. To get access to this channel read the <#700789384131379371>");
             return;
         }
 
