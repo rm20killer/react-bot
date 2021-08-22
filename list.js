@@ -6,7 +6,7 @@ var arr =[
     "stean",
     ".ru/com",
     ".ru.com",
-    ".click/gift",
+    ".click/",
     "/gift",
     "discord-n",
     "nltro.com"
