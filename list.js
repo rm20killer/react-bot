@@ -9,7 +9,8 @@ var arr =[
     ".click/",
     "/gift",
     "discord-n",
-    "nltro.com"
+    "nltro.com",
+    ".xyz/nitro" 
 ]
 
 module.exports = { arr };
