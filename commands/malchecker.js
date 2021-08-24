@@ -4,35 +4,50 @@ const { Client, Intents } = require('discord.js');
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 const list = require("../list");
+const allowlist = require("../allowlist");
 
 module.exports ={
     antiworm: function(messa,message,client){
 
-        let domains = list.arr;
-        // Some sort of worm has been spread which uses messages like this to spread.
-        const malregex = /(creator|publisher).+(enter|participate).+(beta|closed beta).+(bonus|reward).+(download|install).+(link|file)/i
-        const malregex2 = /(steam|csgo).+(giveaway|giving away|leaving).+(nitro|closed beta|trades)/i
-        const strx = messa;
-        let mal;
-        if (strx.includes("steamcommunity.com")) return;
-        if(strx.includes("https://discord.gift/")) return;
+        //const messa = message.content.toLowerCase(); 
         if(messa.includes("https://")||messa.includes("http://")){
-            for (var i = 0; i < domains.length; i++) {
-                if (message.content.includes(domains[i])) {
-                    trigger(message,client);
-                    return;
+            let banned = list.arr;
+            let allow = allowlist.arr;
+    
+            // Some sort of worm has been spread which uses messages like this to spread.
+            const malregex = /(creator|publisher).+(enter|participate).+(beta|closed beta).+(bonus|reward).+(download|install).+(link|file)/i
+            const malregex2 = /(steam|csgo).+(giveaway|giving away|leaving).+(nitro|closed beta|trades)/i
+            const malregex3 = /(join).+(traders|trader).+(earn).+($|£|)/i
+            const strx = messa;
+            var url = messa.match(/\bhttps?:\/\/\S+/gi);
+            if(!url){}
+            else{
+                for (var i = 0; i < url.length; i++) { //checks all links
+                    for (var l = 0; l < allow.length; l++) { //real links
+                        if (url[i].includes(allow[l])) {
+                            return;
+                        }
+                        else{
+                            for (var x = 0; x < banned.length; x++) { //fake link
+                                if (url[i].includes(banned[x])) {
+                                    trigger(message,client);
+                                    return;
+                                }
+                            }
+                        }   
+                    }
                 }
             }
-            if ((mal = malregex.exec(strx)) !== null){
-                trigger(message,client);
+            let mal;
+            if((mal = malregex2.exec(strx)) !== null){ //if missed fake link
+                trigger(message,client,guildConf);
                 return;
             }
-            if((mal = malregex2.exec(strx)) !== null){
+            if((mal = malregex3.exec(strx)) !== null){ //if missed fake link
                 trigger(message,client);
                 return;
             }
         }
-
     },
 
 

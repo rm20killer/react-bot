@@ -10,7 +10,11 @@ var arr =[
     "/gift",
     "discord-n",
     "nltro.com",
-    ".xyz/nitro" 
+    ".xyz/nitro",
+    "t.me",
+    "discords",
+    "ibb.com",
+    "keydrop"
 ]
 
 module.exports = { arr };
