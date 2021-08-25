@@ -24,7 +24,7 @@ module.exports={
         let ml;
         if ((ml = sregex3.exec(sstr)) !== null) {
             // The result can be accessed through the `m`-variable.
-            message.reply("User don't have access to read channel history <#878531760386871327> but the clips are still there unless the bot responded with a message saying it was deleted.\nW will still punish for repated submissions.");
+            message.reply("User don't have access to read channel history <#878531760386871327> but the clips are still there unless the bot responded with a message saying it was deleted.\nWe will still punish for repated submissions.");
             return;
         }
     }
