@@ -21,8 +21,8 @@ module.exports={
             return;
         }
         const sregex3 = /(cant|can't|can not|clips).+(see|read|are).+(submit|clip|submit clip|deleting|<#878531760386871327>)/i;
-        let m;
-        if ((m = sregex3.exec(sstr)) !== null) {
+        let ml;
+        if ((ml = sregex3.exec(sstr)) !== null) {
             // The result can be accessed through the `m`-variable.
             message.reply("User don't have access to read channel history <#878531760386871327> but the clips are still there unless the bot responded with a message saying it was deleted.\nW will still punish for repated submissions.");
             return;
