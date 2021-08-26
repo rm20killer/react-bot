@@ -14,7 +14,8 @@ var arr =[
     "t.me",
     "discords",
     "ibb.com",
-    "keydrop"
+    "keydrop",
+	"micro-strategy"
 ]
 
 module.exports = { arr };
