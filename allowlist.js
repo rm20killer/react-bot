@@ -1,7 +1,7 @@
 var arr =[
     "steamcommunity.com",
     "https://discord.gift/", 
-    "twitch.tv/"
+    "www.twitch.tv/"
 ]
 
 module.exports = { arr };
