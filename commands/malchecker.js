@@ -26,15 +26,13 @@ module.exports ={
                     for (var l = 0; l < allow.length; l++) { //real links
                         if (url[i].includes(allow[l])) {
                             return;
+                        }  
+                    }
+                    for (var x = 0; x < banned.length; x++) { //fake link
+                        if (url[i].includes(banned[x])) {
+                            trigger(message,client);
+                            return;
                         }
-                        else{
-                            for (var x = 0; x < banned.length; x++) { //fake link
-                                if (url[i].includes(banned[x])) {
-                                    trigger(message,client);
-                                    return;
-                                }
-                            }
-                        }   
                     }
                 }
             }
@@ -67,7 +65,6 @@ const trigger  = async (message,client) => {
     var minutes = "0" + date.getMinutes();
     var seconds = "0" + date.getSeconds();
     var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    console.log(formattedTime);
 
     const embed = new Discord.MessageEmbed()
     .setTitle('A user may be compromised')

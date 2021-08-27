@@ -16,7 +16,8 @@ var arr =[
     "ibb.com",
     "keydrop",
     "micro-strategy", 
-    "gift/" 
+    "gift/",
+    "-nitro."
 ]
 
 module.exports = { arr };
