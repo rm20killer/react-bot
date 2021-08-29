@@ -21,7 +21,7 @@ module.exports = {
                         .addField('Bad submission by', message.author.username)
                     message.channel.send({ embeds: [embed] });
 
-                    message.delete();
+                    message.delete().catch(error => {console.log(error)});
                 }
                 else if (Mwidth < 1280 || Mheight < 720) {
                     //
@@ -35,7 +35,7 @@ module.exports = {
                     message.channel.send({ embeds: [embed] });
 
                     //lastBadSubmissionBy = message.author.username;
-                    message.delete();
+                    message.delete().catch(error => {console.log(error)});
                 }  
                 else if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2){
                     var problem = " too tall.";
@@ -51,7 +51,7 @@ module.exports = {
                     message.channel.send({ embeds: [embed] });
 
                     //lastBadSubmissionBy = message.author.username;
-                    message.delete();
+                    message.delete().catch(error => {console.log(error)});
                 }
                 else if (nameArray[0].length > 10 && nameArray[0].slice(-10) == "_Trim_Trim"){
                     message.channel.send("Imagine using an online video trimmer twice :Hhhhhheee:");
@@ -78,7 +78,7 @@ module.exports = {
                     .addField('Bad submission by', message.author.username)
                 message.channel.send({ embeds: [embed] });
 
-                message.delete();
+                message.delete().catch(error => {console.log(error)});
                 console.log("bot checked",message.id);
             }
         }
@@ -90,8 +90,7 @@ module.exports = {
             .setDescription('Video format unsupported.\nFile submissions must preview in Discord.\n' + "The file you sent has no file format")
             .addField('Bad submission by', message.author.username)
             message.channel.send({ embeds: [embed] });
-            message.delete()
-            .catch(console.error);
+            message.delete().catch(error => {console.log(error)});
 
             console.log("bot checked",message.id);
         }
@@ -116,8 +115,7 @@ module.exports = {
             .addField('author: ', message.author.username)
 
             message.channel.send({ embeds: [embed] });
-            message.delete()
-            .catch(console.error);
+            message.delete().catch(error => {console.log(error)});
 
             console.log("bot checked",message.id);
         }

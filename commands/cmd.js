@@ -84,7 +84,7 @@ module.exports ={
                 const say = message.content.slice(4);
                 if(say) {
                     message.channel.send(say);
-                    message.delete();
+                    message.delete().catch(error => {console.log(error)});
                 }
                 else(
                 message.reply("nothing to say")
@@ -96,11 +96,11 @@ module.exports ={
             }
             if(cmd==='rm') {
                 message.channel.send("RM is busy and does not check/rate clips");
-                message.delete();
+                message.delete().catch(error => {console.log(error)});
             }
             if (cmd ==="rm2") {
                 message.channel.send("https://media.giphy.com/media/eiNLAAmHNZuy5nsKKq/giphy.gif");
-                message.delete();
+                message.delete().catch(error => {console.log(error)});
                 
             }
             if (cmd ==="dm"){

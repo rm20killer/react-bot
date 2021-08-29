@@ -74,7 +74,7 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
                 .addField('Bad submission by', message.author.username)
                 message.channel.send({ embeds: [embed] });
 
-                message.delete();
+                message.delete().catch(error => {console.log(error)});
                 return 
             }
         }

@@ -75,5 +75,5 @@ const trigger  = async (message,client) => {
     .addField("person name ", message.author.tag)
     .setFooter("today at "+formattedTime)
     channel.send({ embeds: [embed] });
-    message.delete()
+    message.delete().catch(error => {console.log(error)});
 }

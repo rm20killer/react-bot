@@ -104,7 +104,7 @@ client.on('messageCreate', async message => {
             }
             else{
                 if (channelParent !='858354610367627284'){
-                    message.delete();
+                    message.delete().catch(error => {console.log(error)});
                 }
             }
         }
@@ -174,7 +174,7 @@ client.on('messageCreate', async message => {
                 .setDescription('Submissions must be viewable on discord.\nType /requirements for more info.\nuse /compress for easy compress or youtube to upload big file')
                 .addField('Bad submission by', message.author.username)
                 message.channel.send({ embeds: [embed] });
-            message.delete();
+            message.delete().catch(error => {console.log(error)});
             break;
             }
         }
@@ -189,7 +189,7 @@ client.on('messageCreate', async message => {
                 .setDescription('Video is set as short.\nThe ratio of a short does not meet requirements\n Upload the video as a normal video and not a short.\nType /requirements for more info.')
                 .addField('Bad submission by', message.author.username)
             message.channel.send({ embeds: [embed] });
-            message.delete();
+            message.delete().catch(error => {console.log(error)});
         }
         const attachments = Array.from(message.attachments);
         const attachmentss = attachments[0]; 
@@ -214,7 +214,7 @@ client.on('messageCreate', async message => {
             
         }
         else{
-            message.delete();
+            message.delete().catch(error => {console.log(error)});
         }
     }
     ////////////////////////////////////////////////
