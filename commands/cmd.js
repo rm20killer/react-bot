@@ -62,7 +62,7 @@ module.exports ={
             console.log(message.author+" roles issue "+message.content)
             return;
         }
-        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)||message.member.roles.cache.find(r=>r.id === 747863600994975744)){
+        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)||message.member.roles.cache.find(r=>r.id === "747863600994975744")){
             if(cmd==="game"){
                 games.games(args,message,client);
             }
