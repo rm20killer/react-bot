@@ -1,4 +1,4 @@
-
+const fetch = require("node-fetch");
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 const client = new Client({ 
@@ -19,8 +19,11 @@ const client = new Client({
     ],
 });
 
-const fetch = require("node-fetch");
 const { MessageActionRow, MessageButton } = require('discord.js');
+const { DiscordTogether } = require('discord-together');
+
+client.discordTogether = new DiscordTogether(client);
+
 
 const config = require("../config");
 
@@ -32,6 +35,7 @@ const add = require("./ticket/add");
 const stafflock = require("./ticket/stafflock");
 const remove =require("./ticket/remove")
 
+const games =require("./games/games")
 
 const index = require('../index');
 
@@ -60,6 +64,11 @@ module.exports ={
             message.reply("Roles issue detected")
             console.log(message.author+" roles issue "+message.content)
             return;
+        }
+        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)||message.member.roles.cache.find(r=>r.id === 747863600994975744)){
+            if(cmd==="game"){
+                games.games(args,message,client);
+            }
         }
         if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
             if(cmd==="setactivity"){
