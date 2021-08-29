@@ -20,9 +20,6 @@ const client = new Client({
 });
 
 const { MessageActionRow, MessageButton } = require('discord.js');
-const { DiscordTogether } = require('discord-together');
-
-client.discordTogether = new DiscordTogether(client);
 
 
 const config = require("../config");
