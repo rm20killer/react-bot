@@ -18,7 +18,9 @@ var arr =[
     "micro-strategy", 
     "gift/",
     "-nitro.",
-    "discord-app"
+    "discord-app",
+	"-key",
+	"/birthday"
 ]
 
 module.exports = { arr };
