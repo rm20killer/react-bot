@@ -17,7 +17,7 @@ var arr =[
     "keydrop",
     "micro-strategy", 
     "gift/",
-    "-nitro.",
+    "nitro.",
     "discord-app",
 	"-key",
 	"/birthday"
