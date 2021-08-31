@@ -19,8 +19,10 @@ var arr =[
     "gift/",
     "nitro.",
     "discord-app",
-	"-key",
-	"/birthday"
+    "-key",
+    "/birthday", 
+    "stearm", 
+    "stearn" 
 ]
 
 module.exports = { arr };
