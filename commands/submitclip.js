@@ -22,7 +22,7 @@ module.exports ={
         const regex2 = /(what).+(is|are).+(ticket|tickets)/i;
         let mx;
         if ((mx = regex2.exec(str)) !== null) {
-            message.reply("A ticket is a priavte chat with mods to ask questions, user reports, mute appeal, and requesting streamer role if you been in a video."); 
+            message.reply("A ticket is a private chat with mods to ask questions, user reports, mute appeal, and requesting streamer role if you been in a video."); 
         }
     }
 }
