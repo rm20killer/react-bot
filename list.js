@@ -22,7 +22,8 @@ var arr =[
     "-key",
     "/birthday", 
     "stearm", 
-    "stearn" 
+    "stearn",
+    "premium", 
 ]
 
 module.exports = { arr };
