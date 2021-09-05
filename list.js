@@ -24,6 +24,7 @@ var arr =[
     "stearm", 
     "stearn",
     "premium", 
+    "nltros" 
 ]
 
 module.exports = { arr };
