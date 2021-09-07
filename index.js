@@ -238,6 +238,9 @@ client.on('messageCreate', async message => {
 ////////////////////////////////////////////////
 // roles
 client.on('guildMemberUpdate', async function(oldMember, newMember){
+    if(newMember.guild.id==="880560625166741544"){
+        return;
+    }
     rolechecker.rolecheck(oldMember,newMember,client);
 `
 if (!shadRole && shasRole) {
