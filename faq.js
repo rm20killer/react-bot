@@ -40,7 +40,7 @@ module.exports = {
             message.reply("Server will be availablefor premium only.");
             return;
         }
-        const sregex4 = /(how|where|want).+(submit|post|share|send).+(clip|video)/i;
+        const sregex4 = /(how|where|want|add).+(submit|post|share|send).+(clip|video)/i;
         let mp;
         if ((mp = sregex4.exec(sstr)) !== null) {
             message.reply("you can post clips in discord.gg/gamersreact in the <#878531760386871327>");
