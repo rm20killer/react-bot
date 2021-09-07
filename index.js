@@ -40,6 +40,7 @@ const adminid = config.AdminID
 //required
 const cmds = require('./commands/cmd');
 
+const faq = require('./faq');
 const slash = require('./commands/slash');
 const dmchecker = require('./commands/dmchecker');
 const antiw = require('./commands/malchecker');
@@ -86,30 +87,39 @@ client.on('messageCreate', async message => {
         dmchecker.dmchecker(message,client);
         return;
     }
-    //everything else
+
     try
     {
         var channelParent = message.channel.parent.id
+    }
+    catch{
+        var channelParent = null
+        
+    }
+    try{
         var role = message.member.roles.cache
     }
     catch{
-        //console.log("message not sent in catoragy");
-        var channelParent = null
         var role = null
     }
-    if(role != null){
-        if (message.member.roles.cache.find(r=>r.id === "712512117999271966")){
-            if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
-
-            }
-            else{
-                if (channelParent !='858354610367627284'){
-                    message.delete().catch(error => {console.log(error)});
+    //grmc
+    if(message.guild==="880560625166741544"){
+        faq.faq(message,client);
+        return;
+    }
+    //everything else
+    if (message.guild.id === "629695220065239061") { 
+        if(role != null){
+            if (message.member.roles.cache.find(r=>r.id === "712512117999271966")){
+                if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
+                }
+                else{
+                    if (channelParent !='858354610367627284'){
+                        message.delete().catch(error => {console.log(error)});
+                    }
                 }
             }
         }
-    }
-    if (message.guild.id === "629695220065239061") { 
         if(message.author.id === client.user.id) return;
         if (message.channel.id==='629695352454250508') {
             const channel = client.channels.cache.find(channel => channel.id === "707304184524832879");
