@@ -21,8 +21,9 @@ const client = new Client({
 
 module.exports = {
     faq: function(message,client){
-        const sregex = /(what|tell).+(ip)./i;
-        const sstr = messa;
+        if(message.author.bot===true){return}
+        const sregex = /(what|tell|join).+(ip|server)/i;
+        const sstr = message.content.toLowerCase();
         let mx;
         if ((mx = sregex.exec(sstr)) !== null) {
             message.reply("`play.gamersreact.net` but you can not access it until <t:1631462400:f>");
@@ -37,7 +38,7 @@ module.exports = {
         const sregex3 = /(can|gonna|will|server|available).+(cracked|tlauncher|premium)/i;
         let ml;
         if ((ml = sregex3.exec(sstr)) !== null) {
-            message.reply("Server will be availablefor premium only.");
+            message.reply("Server is premium only.");
             return;
         }
         const sregex4 = /(how|where|want|add).+(submit|post|share|send).+(clip|video)/i;
