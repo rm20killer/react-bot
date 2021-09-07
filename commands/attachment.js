@@ -2,6 +2,10 @@ const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
+const config = require("../config");
+const modid = config.ModID
+const adminid = config.AdminID
+
 module.exports = {
     attachmentchecker: function(attachment,message,client){
         const nameArray = attachment.name.split('.'); // Split the name 
@@ -62,7 +66,7 @@ module.exports = {
                 }
                 console.log("bot checked",message.id);
             }
-            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m" ||attEx == "flv" || attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"||attEx=="vpj"||attEx=="osp") {
+            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m" ||attEx == "flv" || attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"||attEx=="vpj"||attEx=="osp"||attEx=="3gp") {
                 var convertTip = "OBS Studio can convert MKV to MP4.\nGo to File -> Remux Recordings.";
                 if (attEx != "mkv" && attEx != "flv"){
                     convertTip = "Use FFmpeg or Handbrake to convert your " + attEx + " video\nto MP4, WebM, or MOV format. *Avoid online tools.*";
@@ -111,7 +115,23 @@ module.exports = {
             .setTitle('Suspicious file!')
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
             .setColor(0xff0000)
-            .setDescription("You cannot send executable files or\napplication installers as a file here.\n*.exe, .msi, .deb, .dmg, .apk*")
+            .setDescription(`You cannot send executable files or \napplication installers as a file here.`)
+            .addField('author: ', message.author.username)
+
+            message.channel.send({ embeds: [embed] });
+            message.delete().catch(error => {console.log(error)});
+
+            console.log("bot checked",message.id);
+        }
+        if(message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)||message.member.roles.cache.find(r=>r.id === "747863600994975744")){
+            return;
+        }
+        if(attEx == "rar" || attEx == "zip" || attEx == "7z"){
+            const embed = new Discord.MessageEmbed()
+            .setTitle('Suspicious file!')
+            .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+            .setColor(0xff0000)
+            .setDescription(`You cannot send ${attEx} files here.`)
             .addField('author: ', message.author.username)
 
             message.channel.send({ embeds: [embed] });
