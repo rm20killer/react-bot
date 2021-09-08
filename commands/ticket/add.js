@@ -6,10 +6,6 @@ module.exports = {
     add: function(args,message,client,rest){ 
         // CODE GOES HERE 🡫 
 
-        if (message.channel.id === "858354762855874560") {
-            return message.channel.send(`❎ This command can only be ran in \`${config.categoryTickets}\``)
-        }
-
         let member = message.mentions.members.first() 
         if (!member) return message.channel.send("no mention")
 

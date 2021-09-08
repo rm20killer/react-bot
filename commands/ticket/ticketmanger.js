@@ -22,6 +22,10 @@ const client = new Client({
 
 module.exports = {
     ticketmanger: async function(interaction,client){   
+        let parent = "858354610367627284"
+        if(interaction.guild.id==="880560625166741544"){
+            parent = "885164787628142682"
+        }
         let member = interaction.user
         //console.log(member)
         let limit = 0
@@ -46,7 +50,7 @@ module.exports = {
                 var channelParent = 1
             }
 
-            if (channelParent === "858354610367627284") { 
+            if (channelParent === parent) { 
                 if (c.topic === member.id) {
                     limit++
                 }
@@ -59,7 +63,7 @@ module.exports = {
             return member.send(member.tag+' , You have reached the maximum amount of tickets opened');
         } 
         else {
-            createChannel(id,interaction,member);
+            createChannel(id,interaction,member,parent);
             interaction.deleteReply();
             //mess.delete();
         }
@@ -67,7 +71,7 @@ module.exports = {
 }
 
 
-async function createChannel(id,interaction,member) {
+async function createChannel(id,interaction,member,parent) {
     if (id==="Player"){ //user report
         var format='```diff\n- Discord ID:\n- Issue:```'
         var ids = "User Report"
@@ -80,22 +84,28 @@ async function createChannel(id,interaction,member) {
         var format='```diff\n- Question:```'
         var ids = "General"
     }
+    let memberrole = "629695220065239061"
+    let modrole = "696134129497931857"
+    if(interaction.guild.id==="880560625166741544"){
+        memberrole = "880560625204469795"
+        modrole = "880560625204469799"
+    }
     interaction.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
         await c.setTopic(member.id)
-        await c.setParent("858354610367627284")
+        await c.setParent(parent)
 
-        await c.permissionOverwrites.edit("629695220065239061", {
+        await c.permissionOverwrites.edit(memberrole, {
             VIEW_CHANNEL: false
         })
         await c.permissionOverwrites.edit(member.id, {
             VIEW_CHANNEL: true,
             SEND_MESSAGES: true
         })
-        await c.permissionOverwrites.edit("696134129497931857", {
+        await c.permissionOverwrites.edit(modrole, {
             VIEW_CHANNEL: true,
             SEND_MESSAGES: true
         })
-        await c.send(`<@&696134129497931857>`).then(msg => msg.delete())
+        await c.send(`<@&${modrole}>`).then(msg => msg.delete())
 
         const embed = new Discord.MessageEmbed()
             .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')

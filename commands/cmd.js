@@ -183,7 +183,11 @@ module.exports ={
                 })
             }
             if(message.channel.parent!=null){
-                if(message.channel.parent.id==="858354610367627284"){
+                let channelpar = "858354610367627284"
+                if(message.guild.id==="880560625166741544"){
+                    channelpar = "885164787628142682"
+                }
+                if(message.channel.parent.id===channelpar){
                     if (cmd==="close"){
                         const rest = message.content.slice(6);
                         close.close(args,message,client,rest)
