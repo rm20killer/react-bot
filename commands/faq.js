@@ -22,7 +22,7 @@ const client = new Client({
 module.exports = {
     faq: function(message,client){
         if(message.author.bot===true){return}
-        const sregex = /(what|tell|join).+(ip|server)/i;
+        const sregex = /(what|tell|join|give).+(ip)/i;
         const sstr = message.content.toLowerCase();
         let mx;
         if ((mx = sregex.exec(sstr)) !== null) {
