@@ -5,8 +5,13 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 module.exports ={
     close: function(args,message,client,rest){  
         const channelParent = message.channel.parent.id
-        
-        const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
+        let channel = "error"
+        if(message.guild.id==="880560625166741544"){
+            channel = client.channels.cache.find(channel => channel.id === "885144925509914654");
+        }
+        if(message.guild.id==="629695220065239061"){
+            channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
+        }
         if (!channel) return
 
         let reason = rest
