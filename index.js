@@ -105,7 +105,10 @@ client.on('messageCreate', async message => {
     //grmc
     if(message.guild.id === "880560625166741544"){
         faq.faq(message,client);
-        return;
+        if (channelParent =='880560625556815873'||channelParent=='880560625556815879'||channelParent=='880560626043330632') {
+            const messa = message.content.toLowerCase();
+            antiw.antiworm(messa,message,client);
+        }
     }
     //everything else
     if (message.guild.id === "629695220065239061") { 
@@ -200,23 +203,14 @@ client.on('messageCreate', async message => {
                 message.channel.send({ embeds: [embed] });
                 message.delete().catch(error => {console.log(error)});
             }
-            const attachments = Array.from(message.attachments);
-            const attachmentss = attachments[0]; 
+            let attachments = Array.from(message.attachments);
+            let attachmentss = attachments[0]; 
             if (attachmentss) {
                 const attachment = attachmentss[1]
                 //console.log(attachment[1])
                 attachmentD.attachmentchecker(attachment,message,client);
             }
-        }
-        const attachments = Array.from(message.attachments);
-        const attachmentss = attachments[0]; 
-        if (attachmentss) {
-            const attachment = attachmentss[1]
-            //console.log(attachment[1])
-            attachmentD.attachmentexe(attachment,message,client);
-        }
-    
-    
+        }    
         if(message.channel.id === "876177694944026674"){
             const messa = message.content.toLowerCase();
             if(messa.includes("uwu")){
@@ -226,13 +220,21 @@ client.on('messageCreate', async message => {
                 message.delete().catch(error => {console.log(error)});
             }
         }
-        ////////////////////////////////////////////////
-        //commands
-        if (!message.content.startsWith(prefixl)) return;
-        const args = message.content.trim().split(/ +/g);
-        const cmd = args[0].slice(prefixl.length).toLowerCase();
-        cmds.commands(cmd,args,message,client);
     }
+    let attachments = Array.from(message.attachments);
+    let attachmentss = attachments[0]; 
+    if (attachmentss) {
+        const attachment = attachmentss[1]
+        //console.log(attachment[1])
+        attachmentD.attachmentexe(attachment,message,client);
+    }
+
+    ////////////////////////////////////////////////
+    //commands
+    if (!message.content.startsWith(prefixl)) return;
+    const args = message.content.trim().split(/ +/g);
+    const cmd = args[0].slice(prefixl.length).toLowerCase();
+    cmds.commands(cmd,args,message,client);
 });
 
 ////////////////////////////////////////////////

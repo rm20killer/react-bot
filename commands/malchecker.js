@@ -55,10 +55,19 @@ module.exports ={
 
 
 const trigger  = async (message,client) => {
+    var invite = "`error discord invite not found`"
+    var channel = ""
+    if(message.guild.id === "880560625166741544"){
+        invite = "https://discord.gg/mvpPdqTmJh"
+        channel = client.channels.cache.find(channel => channel.id === "885144925509914654");
+    }
+    if(message.guild.id === "629695220065239061"){
+        invite = "https://discord.gg/gamersreact"
+        channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
+    }
     message.channel.send("<@"+message.author.id+">, account might be compromised.");
-    message.author.send("We noticed you've been compromised by self-spreading malware (a worm) which takes over your account to send download links to this worm to others.\nAs a precaution, the bot has kicked you from the Gamers React server.\nYou must run a Windows Defender full scan and change your password.\nTo join back, use this invite link: https://discord.gg/SnBhUmqSf8")
+    message.author.send(`We noticed you've been compromised by self-spreading malware (a worm) which takes over your account to send download links to this worm to others.\nAs a precaution, the bot has kicked you from the Gamers React server.\nYou must run a Windows Defender full scan and change your password.\nTo join back, use this invite link: ${invite}`)
     .catch(console.error);
-    const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
     let time = message.createdTimestamp
     var date = new Date(time * 1000);
     var hours = date.getHours();

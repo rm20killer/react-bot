@@ -62,12 +62,12 @@ module.exports ={
             console.log(message.author+" roles issue "+message.content)
             return;
         }
-        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)||message.member.roles.cache.find(r=>r.id === "747863600994975744")){
+        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)||message.member.roles.cache.find(r=>r.id === "747863600994975744")||message.member.roles.cache.find(r=>r.id === "880560625204469799")||message.member.roles.cache.find(r=>r.id === "884833863573065750")||message.member.roles.cache.find(r=>r.id === "880560625204469800")){
             if(cmd==="game"){
                 games.games(args,message,client);
             }
         }
-        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
+        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)||message.member.roles.cache.find(r=>r.id === "880560625204469799")){
             if(cmd==="setactivity"){
                 var str = message.content
                 var type = str.split(/ (.+)/)[1];
@@ -92,6 +92,7 @@ module.exports ={
                 return;
             }  
             if(cmd==="subupdate") {
+                if(message.guild.id === "880560625166741544"){return};
                 getSubscribers(message,client);
             }
             if(cmd==='rm') {

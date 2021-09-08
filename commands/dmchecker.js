@@ -21,6 +21,8 @@ const client = new Client({
 module.exports = {
     dmchecker: function(message,client){
         //console.log("dm")
+        const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
+        const channel2 = client.channels.cache.find(channel => channel.id === "885144925509914654");
         const attachments = Array.from(message.attachments);
         const attachmentss = attachments[0];
         //console.log(attachmentss)
@@ -34,8 +36,8 @@ module.exports = {
             .addField("attachment", attachment.url)
             .addField('person id', message.author.id)
             .setFooter("person name " + message.author.tag)
-            const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             channel.send({ embeds: [embed] });
+            channel2.send({ embeds: [embed] });
 
 	        //auto respond
     	    const nameArray = attachment.name.split('.'); // Split the name 
@@ -61,8 +63,8 @@ module.exports = {
             .setDescription(message.content)
             .addField('person id', message.author.id)
             .setFooter("person name " + message.author.tag)    
-            const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
             channel.send({ embeds: [embed] });
+            channel2.send({ embeds: [embed] });
         }
         if(message.author.bot) return;
         
