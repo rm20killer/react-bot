@@ -37,7 +37,7 @@ module.exports = {
             .addField('person id', message.author.id)
             .setFooter("person name " + message.author.tag)
             channel.send({ embeds: [embed] });
-            channel2.send({ embeds: [embed] });
+            //channel2.send({ embeds: [embed] });
 
 	        //auto respond
     	    const nameArray = attachment.name.split('.'); // Split the name 
@@ -64,7 +64,7 @@ module.exports = {
             .addField('person id', message.author.id)
             .setFooter("person name " + message.author.tag)    
             channel.send({ embeds: [embed] });
-            channel2.send({ embeds: [embed] });
+            //channel2.send({ embeds: [embed] });
         }
         if(message.author.bot) return;
         
