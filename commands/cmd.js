@@ -31,6 +31,7 @@ const rename = require("./ticket/rename");
 const add = require("./ticket/add");
 const stafflock = require("./ticket/stafflock");
 const remove =require("./ticket/remove")
+const rules =require("./rules/rules")
 
 const games =require("./games/games")
 
@@ -124,6 +125,9 @@ module.exports ={
             if (cmd ==="age"){
                 accountage.accountage(args,message,client)
                 return;
+            }
+            if(cmd==="createrulestest"){
+                rules.rules(message,client);
             }
             if(cmd==="createticket"){
                 //const { MessageButton, MessageActionRow } = require("discord-buttons");
