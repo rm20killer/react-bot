@@ -26,8 +26,9 @@ var arr =[
     "claim",
     "premium", 
     "nltros",
-	"gifts",
-	"dlscord"
+    "gifts",
+    "dlscord",
+    "give"
 ]
 
 module.exports = { arr };
