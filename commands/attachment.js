@@ -66,12 +66,12 @@ module.exports = {
                 }
                 console.log("bot checked",message.id);
             }
-            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m" ||attEx == "flv" || attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"||attEx=="vpj"||attEx=="osp"||attEx=="3gp") {
+            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m" ||attEx == "flv" || attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"||attEx=="vpj"||attEx=="osp"||attEx=="3gp"||attEx=="pds") {
                 var convertTip = "OBS Studio can convert MKV to MP4.\nGo to File -> Remux Recordings.";
                 if (attEx != "mkv" && attEx != "flv"){
                     convertTip = "Use FFmpeg or Handbrake to convert your " + attEx + " video\nto MP4, WebM, or MOV format. *Avoid online tools.*";
                 }
-                if (attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"||attEx=="vpj"||attEx=="osp"){
+                if (attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"||attEx=="vpj"||attEx=="osp"||attEx=="pds"){
                     convertTip = "The " + attEx + " file you tried to submit is an editor project file,\nnot an actual video. It only contains references to\nfiles on your computer. Render the video as an\nMP4, WebM, or MOV with H.264, VP8, or VP9.";
                 }
                 const embed = new Discord.MessageEmbed()
@@ -110,7 +110,7 @@ module.exports = {
     attachmentexe: function(attachment,message,client){
         const nameArray = attachment.name.split('.'); // Split the name 
         const attEx = nameArray[nameArray.length - 1].toLowerCase(); // Grab the last value of the array.
-        if (attEx == "exe" || attEx == "msi" || attEx == "dmg" || attEx == "deb" || attEx =="apk") {
+        if (attEx == "exe" || attEx == "msi" || attEx == "dmg" || attEx == "deb" || attEx =="apk"|| attEx == "bat") {
             const embed = new Discord.MessageEmbed()
             .setTitle('Suspicious file!')
             .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
