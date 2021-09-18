@@ -28,7 +28,8 @@ var arr =[
     "nltros",
     "gifts",
     "dlscord",
-    "give"
+    "give",
+	"steamd"
 ]
 
 module.exports = { arr };
