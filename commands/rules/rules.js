@@ -25,9 +25,14 @@ module.exports ={
         const row = new MessageActionRow()
         .addComponents(
             new MessageSelectMenu()
-                .setCustomId('select')
+                .setCustomId('Rules')
                 .setPlaceholder('Nothing selected')
                 .addOptions([
+                    {
+                        label: 'DM all rules',
+                        description: 'I will dm you all the rules',
+                        value: 'DM_rule',
+                    },
                     {
                         label: 'Rule 1',
                         description: 'Be Kind/Respectful to others.',
