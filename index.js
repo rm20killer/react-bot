@@ -317,8 +317,8 @@ client.on('interactionCreate', async interaction => {
             let dontlog = "3ADB63D1"
             res = dontlog +"\n\n" + rule1 +"\n"+ rule2 +"\n"+ rule3 +"\n"+ rule4
             let res2 = dontlog +"\n\n" + rule5 +"\n\n"+ rule6
-            interaction.user.send({ content: res, components: [] });
-            interaction.user.send({ content: res2, components: [] });
+            interaction.user.send({ content: res, components: [] }).catch(error => {console.log(error)});
+            interaction.user.send({ content: res2, components: [] }).catch(error => {console.log(error)});
             return
         }
         if(interaction.values[0]==="rule_1") {
