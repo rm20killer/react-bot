@@ -350,6 +350,11 @@ client.on('interactionCreate', async interaction => {
                 .setPlaceholder('Nothing selected')
                 .addOptions([
                     {
+                        label: 'DM all rules',
+                        description: 'I will dm you all the rules',
+                        value: 'DM_rule',
+                    },
+                    {
                         label: 'Rule 1',
                         description: 'Be Kind/Respectful to others.',
                         value: 'rule_1',
@@ -378,11 +383,6 @@ client.on('interactionCreate', async interaction => {
                         label: 'Rule 6',
                         description: 'A few basic rules to look out for',
                         value: 'rule_6',
-                    },
-                    {
-                        label: 'DM all rules',
-                        description: 'I will dm you all the rules',
-                        value: 'DM_rule',
                     },
                 ]),
         );
