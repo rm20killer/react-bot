@@ -60,7 +60,7 @@ module.exports = {
         if (limit === 1) {
             //mess.delete();
             interaction.deleteReply();
-            return member.send(member.tag+' , You have reached the maximum amount of tickets opened');
+            return member.send(member.tag+' , You have reached the maximum amount of tickets opened').catch(error => {console.log(error)});
         } 
         else {
             createChannel(id,interaction,member,parent);
