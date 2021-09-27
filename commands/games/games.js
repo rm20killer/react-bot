@@ -20,40 +20,53 @@ const client = new Client({
 });
 
 const defaultApplications = {
-    'youtube':     '755600276941176913', // Note : Thanks to Snowflake thanks to whom I got YouTube ID
-    'poker':       '755827207812677713',
-    'betrayal':    '773336526917861400',
-    'fishing':     '814288819477020702',
-    'chessdev':    '832012586023256104', // Note : First package to offer chessDev, any other package offering it will be clearly inspired by it
-    'chess':       '832012774040141894', // Note : First package to offer chess, any other package offering it will be clearly inspired by it
-    // 'zombsroyale': '519338998791929866'  // Note : First package to offer ZombsRoyake.Io, any other package offering it will be clearly inspired by it, thanks to https://github.com/LilDerp-IsBetter thanks to whom i got the ZombsRoyale.io ID
+    youtube: '880218394199220334', // Note : First package to include the new YouTube Together version, any other package offering it will be clearly inspired by it
+    youtubedev: '880218832743055411', // Note : First package to include the new YouTube Together development version, any other package offering it will be clearly inspired by it
+    //poker: '755827207812677713',
+    betrayal: '773336526917861400',
+    fishing: '814288819477020702',
+    chess: '832012774040141894', // Note : First package to offer chess, any other package offering it will be clearly inspired by it
+    chessdev: '832012586023256104', // Note : First package to offer chessDev, any other package offering it will be clearly inspired by it
+    lettertile: '879863686565621790',
+    wordsnack: '879863976006127627',
+    doodlecrew: '878067389634314250',
 };
 
 module.exports = {
     games: function(args,message,client){
         let setgame = args[1]
         let applicationID = ""
-        if(setgame==="youtube"||setgame==="poker"||setgame==="betrayal"||setgame==="fishing"||setgame==="chess"){
             if(setgame==="youtube"){
                 applicationID = "755600276941176913"
             }
-            if(setgame==="poker"){
+            else if(setgame==="youtubedev"){
+                applicationID = "youtubedev"
+            }
+            else if(setgame==="poker"){
                 return message.channel.send({ content: "poker is disabled" } );
                 applicationID = "755827207812677713"
             }
-            if(setgame==="betrayal"){
+            else if(setgame==="betrayal"){
                 applicationID = "773336526917861400"
             }
-            if(setgame==="fishing"){
+            else if(setgame==="fishing"){
                 applicationID = "814288819477020702"
             }
-            if(setgame==="chess"){
+            else if(setgame==="chess"){
                 applicationID = "832012774040141894"
             }
-        }
-        else{
-            return message.channel.send({ content: "no game selected, games include: `youtube`,`betrayal`,`fishing` and `chess`" } );
-        }
+            else if(setgame==="lettertile"){
+                applicationID = "879863686565621790"
+            }
+            else if(setgame==="wordsnack"){
+                applicationID = "879863976006127627"
+            }
+            else if(setgame==="doodlecrew"){
+                applicationID = "878067389634314250"
+            }
+            else{
+                return message.channel.send({ content: "no game selected, games include: `youtube`,`betrayal`,`fishing`,`lettertile`,`wordsnack`,`doodlecrew` and `chess`" } );
+            }
         let channel = message.member.voice.channel;
         if(!channel) return message.channel.send({ content: "You have to be connected in a voice call to use that!" } );
 
