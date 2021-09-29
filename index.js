@@ -394,7 +394,6 @@ client.on('interactionCreate', async interaction => {
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isContextMenu()) return;
-	console.log(interaction);
     if(interaction.commandName==="Report Message"){
         await interaction.reply(`reporting`);
         interaction.deleteReply();
