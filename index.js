@@ -61,11 +61,14 @@ client.on("ready", async () =>{
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity(`your clips`, { type: "WATCHING"});
     //client.user.setPresence({ activity: [{ name: 'Testing discord.js v13' }], status: 'Online', type: "WATCHING" })
-    
-    const data = {
-        name: 'ping',
-        description: 'Replies with Pong!',
-    };
+    //console.log(    client.api.applications(client.user.id).commands.get())
+    client.api.applications(client.user.id).guilds('629695220065239061').commands.post({data: {
+        name: "Report Message",
+        type: 3
+    }})
+    //client.api.applications(client.user.id).guilds('629695220065239061').commands('892820941560774667').delete()
+
+
 
     //const command = await client.application?.commands.create(data);
     //console.log(command);
@@ -387,6 +390,37 @@ client.on('interactionCreate', async interaction => {
         );
 		await interaction.editReply({ content: 'To find out more information about a rule select the rule in the menu below!', components: [row] });
 	}
+});
+
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isContextMenu()) return;
+	console.log(interaction);
+    if(interaction.commandName==="Report Message"){
+        await interaction.reply(`reporting`);
+        interaction.deleteReply();
+        let user = interaction.user
+        //console.log(interaction)
+        if(interaction.member.roles.cache.find(r=>r.id === "892831889264619530")){
+            return
+        }
+        let message = interaction.options.getMessage('message')
+        const channel = client.channels.cache.find(channel => channel.id === "892816609712930836");
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                .setLabel("Message Link")
+                .setStyle("LINK")
+                .setURL(message.url)
+            )
+        const embed = new Discord.MessageEmbed()
+        .setTitle('Message Report by, ' + user.tag)
+        .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+        .setColor(0xff0000)
+        .setDescription(message.author.tag)
+        .addField('Message', message.content)
+        .setURL(message.url)
+        channel.send({ embeds: [embed] ,components: [row] });
+    }
 });
 
 // client.login(process.env.token);
