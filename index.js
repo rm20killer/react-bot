@@ -402,7 +402,8 @@ client.on('interactionCreate', async interaction => {
         if(interaction.member.roles.cache.find(r=>r.id === "892831889264619530")){
             return
         }
-        let message = interaction.options.getMessage('message')
+        let message = interaction.options.getMessage('message');
+        if(!message.content){return}
         const channel = client.channels.cache.find(channel => channel.id === "892816609712930836");
         const row = new MessageActionRow()
             .addComponents(
