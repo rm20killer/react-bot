@@ -416,7 +416,7 @@ client.on('interactionCreate', async interaction => {
         .setTitle('Message Report by, ' + user.tag)
         .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
         .setColor(0xff0000)
-        .setDescription(message.author.tag)
+        .setDescription(message.author.tag + " | " +message.author.id )
         .addField('Message', message.content)
         .setURL(message.url)
         .setFooter("reporter id: "+user.id)
