@@ -419,6 +419,7 @@ client.on('interactionCreate', async interaction => {
         .setDescription(message.author.tag)
         .addField('Message', message.content)
         .setURL(message.url)
+        .setFooter("reporter id: "+user.id)
         channel.send({ embeds: [embed] ,components: [row] });
     }
 });
