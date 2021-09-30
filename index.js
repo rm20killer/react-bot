@@ -403,11 +403,11 @@ client.on('interactionCreate', async interaction => {
             return
         }
         let message = interaction.options.getMessage('message');
-
+        //console.log(message)
         if(message.author.bot){return}
-        if(message.author.roles.cache.find(r=>r.id === "696134129497931857")||message.author.roles.cache.find(r=>r.id === "795456110421213214")){return}
+        if(message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){return}
         if(!message.content){return}
-        
+
         const channel = client.channels.cache.find(channel => channel.id === "892816609712930836");
         const row = new MessageActionRow()
             .addComponents(
