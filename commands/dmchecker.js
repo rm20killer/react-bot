@@ -27,7 +27,7 @@ module.exports = {
         const attachments = Array.from(message.attachments);
         const attachmentss = attachments[0];
         if(message.author.bot && message.content.includes("3ADB63D1")){
-            console.log("test");
+            //console.log("test");
             return
         }
         //console.log(attachmentss)
