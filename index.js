@@ -402,10 +402,12 @@ client.on('interactionCreate', async interaction => {
         if(interaction.member.roles.cache.find(r=>r.id === "892831889264619530")){
             return
         }
+        let message = interaction.options.getMessage('message');
+
         if(message.author.bot){return}
         if(message.author.roles.cache.find(r=>r.id === "696134129497931857")||message.author.roles.cache.find(r=>r.id === "795456110421213214")){return}
-        let message = interaction.options.getMessage('message');
         if(!message.content){return}
+        
         const channel = client.channels.cache.find(channel => channel.id === "892816609712930836");
         const row = new MessageActionRow()
             .addComponents(
