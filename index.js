@@ -62,7 +62,7 @@ client.on("ready", async () =>{
     client.user.setActivity(`your clips`, { type: "WATCHING"});
     //client.user.setPresence({ activity: [{ name: 'Testing discord.js v13' }], status: 'Online', type: "WATCHING" })
     //console.log(    client.api.applications(client.user.id).commands.get())
-    client.api.applications(client.user.id).guilds('629695220065239061').commands.post({data: {
+    client.api.applications(client.user.id).commands.post({data: {
         name: "Report Message",
         type: 3
     }})
