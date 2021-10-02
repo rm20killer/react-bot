@@ -141,6 +141,7 @@ client.on('messageCreate', async message => {
             //End anti-worm code.
         
             if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
+                if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){return}
                 const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
                 const embed = new Discord.MessageEmbed()
                 .setTitle('someone pinged the big man')
@@ -155,8 +156,11 @@ client.on('messageCreate', async message => {
                 console.log("pinged");
                 //message.delete();
             }
-            if(messa.includes("dead chat")   || messa.includes("chat dead")   || messa.includes("dead-chat")|| messa.includes("chat-dead")|| messa.includes("ded chat")){
-                message.reply("you're dead");
+            if(messa==="dead chat" || messa === "chat dead" || messa==="dead-chat"|| messa==="chat-dead"|| messa==="ded chat"){
+                //message.reply("you're dead");
+                if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){return}
+            
+                message.delete().catch(error => {console.log(error)})
             }
     
             //FAQbot but Submit clips

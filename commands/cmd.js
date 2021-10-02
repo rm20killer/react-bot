@@ -68,7 +68,7 @@ module.exports ={
                 games.games(args,message,client);
             }
         }
-        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)||message.member.roles.cache.find(r=>r.id === "880560625204469799")){
+        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
             if(cmd==="setactivity"){
                 var str = message.content
                 var type = str.split(/ (.+)/)[1];
