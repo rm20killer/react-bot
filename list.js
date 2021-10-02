@@ -8,7 +8,6 @@ var arr =[
     ".ru.com",
     ".click/",
     "/gift",
-    "discord-n",
     "nltro.com",
     ".xyz/nitro",
     "t.me",
@@ -18,7 +17,6 @@ var arr =[
     "micro-strategy", 
     "gift/",
     "nitro.",
-    "discord-app",
     "-key",
     "/birthday", 
     "stearm", 
@@ -30,7 +28,8 @@ var arr =[
     "dlscord",
     "give",
 	"steamd",
-	"discorcl"
+	"discorcl",
+    "discord-"
 ]
 
 module.exports = { arr };
