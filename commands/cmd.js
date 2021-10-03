@@ -57,6 +57,25 @@ module.exports ={
                 message.reply("To listen to minecraftcowboy, he is the wise one")
             }
         }
+        if  (cmd==="grmc") {
+            let row23 = new MessageActionRow()
+                .addComponents(new MessageButton()
+                    .setStyle('LINK')
+                    .setLabel('GRMC Discord')
+                    .setURL("https://www.gamersreact.net"))
+                .addComponents(new MessageButton()
+                    .setStyle('LINK')
+                    .setLabel('GRMC Website')
+                    .setURL("https://www.gamersreact.net"))
+            const embed = new Discord.MessageEmbed()
+                .setTitle(`GRMC`)
+                .setColor(2374108)
+                .setDescription(`If you need help with the minecraft server ask on the Gamer Reacrt Minecraft discord or website`)
+                .addField("IP:" , "`play.gamersreact.net`")
+                .addField("Version:" , "Java only, 1.16.5 with support from 1.8 to 1.17")
+            //message.channel.send({ embeds: [embed] })
+            message.channel.send({ embeds: [embed], components: [row23] }).catch(console.error);
+            }
         //mod only commands
         if(message.member.roles=== null){
             message.reply("Roles issue detected")
@@ -87,9 +106,9 @@ module.exports ={
                     message.channel.send(say);
                     message.delete().catch(error => {console.log(error)});
                 }
-                else(
+                else{
                 message.reply("nothing to say")
-                )
+                }
                 return;
             }  
             if(cmd==="subupdate") {

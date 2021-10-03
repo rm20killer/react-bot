@@ -61,7 +61,7 @@ client.on("ready", async () =>{
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity(`your clips`, { type: "WATCHING"});
     //client.user.setPresence({ activity: [{ name: 'Testing discord.js v13' }], status: 'Online', type: "WATCHING" })
-    //console.log(    client.api.applications(client.user.id).commands.get())
+    //console.log(client.api.applications(client.user.id).guilds('629695220065239061').commands.get())
     client.api.applications(client.user.id).guilds('629695220065239061').commands.post({data: {
         name: "Report Message",
         type: 3
@@ -307,6 +307,24 @@ client.on('interactionCreate', async interaction => {
         .setDescription('All submissions must meet the following requirements:\n> Video resolution: At least 1280x720\n> Aspect ratio: Anything between 16:10 and 2:1\n> Framerate: At least 30 fps\n> Video bitrate: At least 1500 kbps (x264 medium)\n> Audio bitrate: At least 150 kbps (AAC-LC)\n> Must embed on discord\n> Must be under 2 minutes. No timestamps!\nDeliberately scaling or padding a video to fool me\ndoes **not** pass the requirements.')
 
         await interaction.reply({ embeds: [embed]});
+    }
+    if(interaction.commandName==="grmc"){
+        let row23 = new MessageActionRow()
+        .addComponents(new MessageButton()
+            .setStyle('LINK')
+            .setLabel('GRMC Discord')
+            .setURL("https://discord.gg/mvpPdqTmJh"))
+        .addComponents(new MessageButton()
+            .setStyle('LINK')
+            .setLabel('GRMC Website')
+            .setURL("https://www.gamersreact.net"))
+        const embed = new Discord.MessageEmbed()
+        .setTitle(`GRMC`)
+        .setColor(2374108)
+        .setDescription(`If you need help with the minecraft  server ask on the Gamer Reacrt Minecraft discord or website`)
+        .addField("IP:" , "`play.gamersreact.net`")
+        .addField("Version:" , "Java only, 1.16.5 with support from 1.8 to 1.17")
+        await interaction.reply({ embeds: [embed], components: [row23] }).catch(console.error);
     }
 });
 
