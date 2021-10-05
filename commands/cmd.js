@@ -70,7 +70,7 @@ module.exports ={
             const embed = new Discord.MessageEmbed()
                 .setTitle(`GRMC`)
                 .setColor(2374108)
-                .setDescription(`If you need help with the minecraft server ask on the Gamer Reacrt Minecraft discord or website`)
+                .setDescription(`If you need help with the minecraft server ask on the Gamer React Minecraft discord or website`)
                 .addField("IP:" , "`play.gamersreact.net`")
                 .addField("Version:" , "Java only, 1.16.5 with support from 1.8 to 1.17")
             //message.channel.send({ embeds: [embed] })
