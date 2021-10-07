@@ -47,6 +47,24 @@ module.exports ={
         if(cmd === 'ping') {
             ping(message,client)
         }
+        if(message.guild.id==="895674878508818472"){
+            if(cmd==="game"){
+                games.games(args,message,client);
+            }
+            if(message.author.id==="227490301688676354"){
+                if(cmd === "say"){
+                    const say = message.content.slice(4);
+                    if(say) {
+                        message.channel.send(say);
+                        message.delete().catch(error => {console.log(error)});
+                    }
+                    else{
+                    message.reply("nothing to say")
+                    }
+                    return;
+                }  
+            }
+        }
         if (cmd === "rm3"){
             message.channel.send("https://cdn.discordapp.com/attachments/629695220065239064/844968694550626334/5aatpw.gif");
             message.delete();
