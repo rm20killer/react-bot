@@ -218,13 +218,18 @@ client.on('messageCreate', async message => {
                 attachmentD.attachmentchecker(attachment,message,client);
             }
         }    
-        if(message.channel.id === "876177694944026674"){
+        if(message.channel.id === "886864421140447232"){
             const messa = message.content.toLowerCase();
-            if(messa.includes("uwu")){
+            if(messa.startsWith("thred")){
                 
             }
             else{
-                message.delete().catch(error => {console.log(error)});
+                if(message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
+
+                }
+                else{
+                    message.delete().catch(error => {console.log(error)});
+                }
             }
         }
     }
@@ -450,6 +455,26 @@ client.on('interactionCreate', async interaction => {
         channel.send({ embeds: [embed] ,components: [row] });
     }
 });
+
+client.on('messageUpdate', (oldMessage, newMessage) => { // Old message may be undefined
+    if (!oldMessage.author) return;
+    if(oldMessage.channel.id === "886864421140447232"){
+        const messa = newMessage.content.toLowerCase();
+        if(messa.startsWith("thred")){
+            
+        }
+        else{
+            newMessage.delete().catch(error => {console.log(error)});
+            if(newMessage.member.roles.cache.find(r=>r.id === modid)||newMessage.member.roles.cache.find(r=>r.id === adminid)){
+
+            }
+            else{
+                //newMessage.delete().catch(error => {console.log(error)});
+            }
+        }
+    }
+
+ })
 
 // client.login(process.env.token);
 client.login(config.BotToken);
