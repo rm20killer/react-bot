@@ -3,6 +3,7 @@ var arr =[
     "https://discord.gift/", 
     "www.twitch.tv/",
 	"https://tenor.com/",
+    "clip.twitch.tv",
     "https://c.tenor.com"
 ]
 
