@@ -255,7 +255,9 @@ client.on('guildMemberUpdate', async function(oldMember, newMember){
     if(newMember.guild.id==="880560625166741544"){
         return;
     }
-    rolechecker.rolecheck(oldMember,newMember,client);
+    if(newMember.guild.id==="629695220065239061"){
+        rolechecker.rolecheck(oldMember,newMember,client);
+    }
 `
 if (!shadRole && shasRole) {
     const boostedUsers = newMember.guild.members.cache.array().filter(member => member.roles.cache.find(role => role.name === 'Streamers'));
