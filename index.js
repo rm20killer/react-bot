@@ -464,12 +464,12 @@ client.on('messageUpdate', (oldMessage, newMessage) => { // Old message may be u
             
         }
         else{
-            newMessage.delete().catch(error => {console.log(error)});
+            //newMessage.delete().catch(error => {console.log(error)});
             if(newMessage.member.roles.cache.find(r=>r.id === modid)||newMessage.member.roles.cache.find(r=>r.id === adminid)){
 
             }
             else{
-                //newMessage.delete().catch(error => {console.log(error)});
+                newMessage.delete().catch(error => {console.log(error)});
             }
         }
     }
