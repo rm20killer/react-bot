@@ -29,7 +29,8 @@ var arr =[
     "give",
 	"steamd",
 	"discorcl",
-    "discord-"
+    "discord-",
+    "dlscocrd"
 ]
 
 module.exports = { arr };

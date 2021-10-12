@@ -10,11 +10,11 @@ module.exports ={
         if ((m = regex.exec(str)) !== null) {
                 // The result can be accessed through the `m`-variable.
 		    if (message.channel.id === "878531760386871327" ){
-			    message.reply("Simply post your link or file here. Make sure clips meet `/requirements`"); //If the question was in #submit-clips say this
+			    message.reply("Simply post your link or file here. Make sure clips meet `/requirements` \nMake sure to not repost ever"); //If the question was in #submit-clips say this
                 return;
 		    }
             else{
-                message.reply("Submit clips in <#878531760386871327>. Make sure clips meet `/requirements`"); //Otherwise say this
+                message.reply("Submit clips in <#878531760386871327>. Make sure clips meet `/requirements`  \nMake sure to not repost ever"); //Otherwise say this
                 return;
             }
         }
