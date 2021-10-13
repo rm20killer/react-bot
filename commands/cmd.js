@@ -32,6 +32,8 @@ const add = require("./ticket/add");
 const stafflock = require("./ticket/stafflock");
 const remove =require("./ticket/remove")
 const rules =require("./rules/rules")
+const rescount=require("./spreadsheet/rescount")
+const numberinfo=require("./spreadsheet/numberinfo")
 
 const games =require("./games/games")
 
@@ -106,6 +108,12 @@ module.exports ={
             }
         }
         if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
+            if(cmd==="mceventcount"){
+                rescount.rescount(message,client);
+            }
+            if(cmd==="mcuserinfo"){
+                numberinfo.ssuserinfo(message,client,args);
+            }
             if(cmd==="setactivity"){
                 var str = message.content
                 var type = str.split(/ (.+)/)[1];
