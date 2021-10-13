@@ -1,4 +1,5 @@
 config.js
 
 node_modules/
-.\commands\spreadsheet\googlekey.json
+
+commands/spreadsheet/googlekey.json
