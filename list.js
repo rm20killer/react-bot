@@ -30,7 +30,9 @@ var arr =[
 	"steamd",
 	"discorcl",
     "discord-",
-    "dlscocrd"
+    "dlscocrd",
+    "discordr",
+    
 ]
 
 module.exports = { arr };
