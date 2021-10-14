@@ -454,7 +454,7 @@ client.on('interactionCreate', async interaction => {
         .addField('Message', message.content)
         .setURL(message.url)
         .setFooter("reporter id: "+user.id)
-        channel.send({ embeds: [embed] ,components: [row] });
+        channel.send({ embeds: [embed] ,components: [row] }).catch(error => {console.log(error)});
     }
 });
 

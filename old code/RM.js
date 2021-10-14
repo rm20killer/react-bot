@@ -1,7 +1,28 @@
 /* eslint-disable no-inline-comments */
-const Discord = require('discord.js');
-const client = new Discord.Client();
-
+const Discord = require('discord.js')
+const { Client, Intents } = require('discord.js');
+const client = new Client({ 
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MEMBERS,
+        Intents.FLAGS.GUILD_BANS,
+        Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+        Intents.FLAGS.GUILD_INVITES,
+        Intents.FLAGS.GUILD_VOICE_STATES,
+        Intents.FLAGS.GUILD_PRESENCES,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+        Intents.FLAGS.GUILD_MESSAGE_TYPING,
+        Intents.FLAGS.DIRECT_MESSAGES,
+        Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
+        Intents.FLAGS.DIRECT_MESSAGE_TYPING
+    ],
+    partials:[
+        `CHANNEL`,
+        `MESSAGE`
+    ],
+    autoReconnect: true,
+});
 const config = require("../config");
 const prefixl = config.prefix
 
@@ -17,68 +38,14 @@ const prefixl = config.prefix
 //RM: This is not fully working and causing an error when trying to call the var. I think I know a work around which should be added when I add slash commands
 var lastBadSumbissionBy = "NONE YET";
 
-function getChannelIDs(fetch) 
-{
-  const guildss = client.guilds.cache.find(guild => guild .id === "826825694205444107");
-  //const guildss = client.guilds.
-  console.log(guildss)
-  var array = [];
-  let channels = client.guildss.channels;
-  for (const channel of channels.values()) 
-  {
-    array.push(channel.id);
-    console.log(channel.id);
-  }
-  return array;
-}
-
 client.on("ready", () =>{
     console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setActivity("your Clips", { type: "WATCHING"})
-    //client.user.setPresence({ game: { name: 'Videos' , type: 'WATCHING' }, status: 'idle' })
-    .then(console.log)
-    .catch(console.error);
-    const Guilds = client.guilds.cache.map(guild => guild.id);
-    console.log(Guilds);
 
-    const nGuilds = client.guilds.cache.map(guild => guild.name);
-    console.log(nGuilds);
-    const fullGuilds = client.guilds.cache.map(guild => guild);
-    console.log(fullGuilds);
-    const Invite = "InviteCode"; // Example: bM2Ae2
 
   client.guilds.cache.forEach(guild => { // Looping through all the guilds your bot is in.
-    console.log(guild)
-    if (guild.id==="826825694205444107") {
-      guild.channels.cache.forEach(channel => { 
-        const invite = channel.createInvite()
-        console.log(invite)
-        console.log(channel.id)
-      });
-      console.log(guild.me.permissions)
-      if(guild.me.hasPermission("MANAGE_GUILD"))
-        console.log("yes")
-      else
-        console.log("no")
-    }
+  console.log(guild)
+  });
 });
-    //-
-    //this is for slash commands to work
-    //-
-});
-
-client.on('message', message => { 
-  console.log(message);
-  if (!message.content.startsWith(prefixl)) return;
-  const args = message.content.trim().split(/ +/g);
-  const cmd = args[0].slice(prefixl.length).toLowerCase();
-
-});
-
-client.on('messageDelete', (messageDelete) => {
-  console.log(messageDelete);
- });
-
 
 // client.login(process.env.token);
 client.login(config.BotToken);
