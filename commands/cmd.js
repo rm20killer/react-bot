@@ -53,7 +53,7 @@ module.exports ={
             if(cmd==="game"){
                 games.games(args,message,client);
             }
-            if(message.author.id==="227490301688676354"){
+            if(message.author.name==="227490301688676354"){
                 if(cmd === "say"){
                     const say = message.content.slice(4);
                     if(say) {
@@ -102,12 +102,12 @@ module.exports ={
             console.log(message.author+" roles issue "+message.content)
             return;
         }
-        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)||message.member.roles.cache.find(r=>r.id === "747863600994975744")||message.member.roles.cache.find(r=>r.id === "838238288216588358")){
+        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === "747863600994975744")||message.member.roles.cache.find(r=>r.id === "838238288216588358")){
             if(cmd==="game"){
                 games.games(args,message,client);
             }
         }
-        if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
+        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){
             if(cmd==="mceventcount"){
                 rescount.rescount(message,client);
             }
@@ -260,8 +260,8 @@ module.exports ={
             }
             if(message.channel.parent!=null){
                 let channelpar = "858354610367627284"
-                if(message.guild.id==="880560625166741544"){
-                    channelpar = "885164787628142682"
+                if(message.guild.id==="898628981958537266"){
+                    channelpar = "898628983271337997"
                 }
                 if(message.channel.parent.id===channelpar){
                     if (cmd==="close"){

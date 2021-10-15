@@ -94,6 +94,7 @@ client.on('messageCreate', async message => {
     try
     {
         var channelParent = message.channel.parent.id
+        var channelparname = message.channel.parent.name
     }
     catch{
         var channelParent = null
@@ -106,7 +107,7 @@ client.on('messageCreate', async message => {
         var role = null
     }
     //grmc
-    if(message.guild.id === "880560625166741544"){
+    if(message.guild.id === "880560625166741544"||message.guild.id==="898628981958537266"){
         faq.faq(message,client);
         if (channelParent =='880560625556815873'||channelParent=='880560625556815879'||channelParent=='880560626043330632') {
             const messa = message.content.toLowerCase();
@@ -114,10 +115,10 @@ client.on('messageCreate', async message => {
         }
     }
     //everything else
-    if (message.guild.id === "629695220065239061") { 
+    if (message.guild.id === "629695220065239061"||message.guild.id==="898628981958537266") { 
         if(role != null){
             if (message.member.roles.cache.find(r=>r.id === "712512117999271966")){
-                if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
+                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){
                 }
                 else{
                     if (channelParent !='858354610367627284'){
@@ -133,7 +134,7 @@ client.on('messageCreate', async message => {
             
         }
         
-        if (channelParent =='629695220065239063'||channelParent=='716754944472121516'||channelParent=='629695220065239065'||channelParent=="858354610367627284") {
+        if (channelparname =='────💬 chatting 💬────'||channelparname=='────Bot commands────'||channelparname=='────🛠Support🛠────'||channelparname=="────🛠Support🛠────") {
             const messa = message.content.toLowerCase();
             
             antiw.antiworm(messa,message,client);
@@ -141,7 +142,7 @@ client.on('messageCreate', async message => {
             //End anti-worm code.
         
             if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
-                if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){return}
+                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){return}
                 const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
                 const embed = new Discord.MessageEmbed()
                 .setTitle('someone pinged the big man')
@@ -158,7 +159,7 @@ client.on('messageCreate', async message => {
             }
             if(messa==="dead chat" || messa === "chat dead" || messa==="dead-chat"|| messa==="chat-dead"|| messa==="ded chat"){
                 //message.reply("you're dead");
-                if (message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){return}
+                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){return}
             
                 message.delete().catch(error => {console.log(error)})
             }
@@ -179,7 +180,7 @@ client.on('messageCreate', async message => {
             }
         }
 
-        if (message.channel.id === config.ChannelID) {
+        if (message.channel.name === config.ChannelID) {
             //checks for links
             let links =["www.dropbox.com/","https://drive.google.com/","www.mediafire.com/file","www.awesomescreenshot.com/","mega.nz/file/","http://somup.com/","https://screencast-o-matic.com/","https://fb.watch/","medal.tv"]
         
@@ -224,7 +225,7 @@ client.on('messageCreate', async message => {
                 
             }
             else{
-                if(message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){
+                if(message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){
 
                 }
                 else{
@@ -252,7 +253,7 @@ client.on('messageCreate', async message => {
 ////////////////////////////////////////////////
 // roles
 client.on('guildMemberUpdate', async function(oldMember, newMember){
-    if(newMember.guild.id==="880560625166741544"){
+    if(newMember.guild.id!="629695220065239061"){
         return;
     }
     if(newMember.guild.id==="629695220065239061"){
@@ -435,10 +436,10 @@ client.on('interactionCreate', async interaction => {
         let message = interaction.options.getMessage('message');
         //console.log(message)
         if(message.author.bot){return}
-        if(message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)){return}
+        if(message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){return}
         if(!message.content){return}
 
-        const channel = client.channels.cache.find(channel => channel.id === "892816609712930836");
+        const channel = client.channels.cache.find(channel => channel.name === "user-reports");
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
@@ -467,7 +468,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => { // Old message may be u
         }
         else{
             //newMessage.delete().catch(error => {console.log(error)});
-            if(newMessage.member.roles.cache.find(r=>r.id === modid)||newMessage.member.roles.cache.find(r=>r.id === adminid)){
+            if(newMessage.member.roles.cache.find(r=>r.name === modid)||newMessage.member.roles.cache.find(r=>r.name === adminid)){
 
             }
             else{

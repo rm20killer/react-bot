@@ -23,8 +23,8 @@ const client = new Client({
 module.exports = {
     ticketmanger: async function(interaction,client){   
         let parent = "858354610367627284"
-        if(interaction.guild.id==="880560625166741544"){
-            parent = "885164787628142682"
+        if(interaction.guild.id==="898628981958537266"){
+            parent = "898628983271337997"
         }
         let member = interaction.user
         //console.log(member)
@@ -86,9 +86,9 @@ async function createChannel(id,interaction,member,parent) {
     }
     let memberrole = "629695220065239061"
     let modrole = "696134129497931857"
-    if(interaction.guild.id==="880560625166741544"){
-        memberrole = "880560625204469795"
-        modrole = "880560625204469799"
+    if(interaction.guild.id==="898628981958537266"){
+        memberrole = "898628981958537275"
+        modrole = "898628981971103847"
     }
     interaction.guild.channels.create(`ticket-${member.username}`, 'text').then(async c => {
         await c.setTopic(member.id)
