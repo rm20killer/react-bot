@@ -6,8 +6,8 @@ module.exports ={
     close: function(args,message,client,rest){  
         const channelParent = message.channel.parent.id
         let channel = "error"
-        if(message.guild.id==="880560625166741544"){
-            channel = client.channels.cache.find(channel => channel.id === "885144925509914654");
+        if(message.guild.id==="629695220065239061"){
+            channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
         }
         if(message.guild.id==="898628981958537266"){
             channel = client.channels.cache.find(channel => channel.id === "898628982638010369");
