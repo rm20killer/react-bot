@@ -134,7 +134,7 @@ client.on('messageCreate', async message => {
             
         }
         
-        if (channelparname =='────💬 chatting 💬────'||channelparname=='────Bot commands────'||channelparname=='────🛠Support🛠────'||channelparname=="────🛠Support🛠────") {
+        if (channelparname =='────💬 chatting 💬────'||channelparname=='────Bot commands────'||channelparname=='────🛠Support🛠────'||channelparname=="────Voice Channels────") {
             const messa = message.content.toLowerCase();
             
             antiw.antiworm(messa,message,client);
