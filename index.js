@@ -62,7 +62,7 @@ client.on("ready", async () =>{
     client.user.setActivity(`your clips`, { type: "WATCHING"});
     //client.user.setPresence({ activity: [{ name: 'Testing discord.js v13' }], status: 'Online', type: "WATCHING" })
     //console.log(    client.api.applications(client.user.id).commands.get())
-    client.api.applications(client.user.id).guilds('629695220065239061').commands.post({data: {
+    client.api.applications(client.user.id).commands.post({data: {
         name: "Report Message",
         type: 3
     }})
@@ -424,7 +424,6 @@ client.on('interactionCreate', async interaction => {
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isContextMenu()) return;
-    //console.log(interaction)
     if(interaction.commandName==="Report Message"){
         await interaction.reply(`reporting`);
         interaction.deleteReply();
@@ -438,8 +437,10 @@ client.on('interactionCreate', async interaction => {
         if(message.author.bot){return}
         if(message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){return}
         if(!message.content){return}
-
-        const channel = client.channels.cache.find(channel => channel.name === "user-reports");
+        let channel = client.channels.cache.find(channel => channel.id === "892816609712930836"); //892816609712930836
+        if(interaction.guildId != "629695220065239061"){ //gr
+            channel = client.channels.cache.find(channel => channel.name === "user-reports"); //test server
+        }
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
