@@ -30,6 +30,7 @@ const defaultApplications = {
     lettertile: '879863686565621790',
     wordsnack: '879863976006127627',
     doodlecrew: '878067389634314250',
+    SpellCast: '852509694341283871',
 };
 
 module.exports = {
@@ -64,8 +65,11 @@ module.exports = {
             else if(setgame==="doodlecrew"){
                 applicationID = "878067389634314250"
             }
+            else if (setgame==="spellcast"){
+                applicationID= "852509694341283871"
+            }
             else{
-                return message.channel.send({ content: "no game selected, games include: `youtube`,`betrayal`,`fishing`,`lettertile`,`wordsnack`,`doodlecrew` and `chess`" } );
+                return message.channel.send({ content: "no game selected, games include: `youtube`,`betrayal`,`fishing`,`lettertile`,`wordsnack`,`doodlecrew`, `Spellcast` and `chess`" } );
             }
         let channel = message.member.voice.channel;
         if(!channel) return message.channel.send({ content: "You have to be connected in a voice call to use that!" } );
