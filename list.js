@@ -32,7 +32,8 @@ var arr =[
     "discord-",
     "dlscocrd",
     "discordr",
-    "crypto"
+    "crypto", 
+    "discocrd" 
     
 ]
 
