@@ -43,6 +43,8 @@ const youtubeKey = config.youtubeKey
 const youtubeUser = config.youtubeUser
 const modid = config.ModID
 const adminid = config.AdminID
+const jrmod = config.jrmod
+const helper = config.helper
 
 module.exports ={
     commands: function(cmd,args,message,client){   
@@ -102,12 +104,12 @@ module.exports ={
             console.log(message.author+" roles issue "+message.content)
             return;
         }
-        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === "747863600994975744")||message.member.roles.cache.find(r=>r.id === "838238288216588358")){
+        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)||message.member.roles.cache.find(r=>r.id === "747863600994975744")||message.member.roles.cache.find(r=>r.id === "838238288216588358")){
             if(cmd==="game"){
                 games.games(args,message,client);
             }
         }
-        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){
+        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
             if(cmd==="mceventcount"){
                 rescount.rescount(message,client);
             }

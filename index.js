@@ -35,6 +35,8 @@ const youtubeKey = config.youtubeKey
 const youtubeUser = config.youtubeUser
 const modid = config.ModID
 const adminid = config.AdminID
+const jrmod = config.jrmod
+const helper = config.helper
 //Discord.js v13+ is needed for this to work
 
 //required
@@ -118,7 +120,7 @@ client.on('messageCreate', async message => {
     if (message.guild.id === "629695220065239061"||message.guild.id==="898628981958537266") { 
         if(role != null){
             if (message.member.roles.cache.find(r=>r.id === "712512117999271966")){
-                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){
+                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
                 }
                 else{
                     if (channelParent !='858354610367627284'){
@@ -142,7 +144,7 @@ client.on('messageCreate', async message => {
             //End anti-worm code.
         
             if(messa.includes("@!144567396835917824")) { //227490301688676354  riz=144567396835917824
-                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){return}
+                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){return}
                 const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
                 const embed = new Discord.MessageEmbed()
                 .setTitle('someone pinged the big man')
@@ -159,7 +161,7 @@ client.on('messageCreate', async message => {
             }
             if(messa==="dead chat" || messa === "chat dead" || messa==="dead-chat"|| messa==="chat-dead"|| messa==="ded chat"){
                 //message.reply("you're dead");
-                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){return}
+                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){return}
             
                 message.delete().catch(error => {console.log(error)})
             }
@@ -225,7 +227,7 @@ client.on('messageCreate', async message => {
                 
             }
             else{
-                if(message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)){
+                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
 
                 }
                 else{
