@@ -86,6 +86,8 @@ async function createChannel(id,interaction,member,parent) {
     }
     let memberrole = "629695220065239061"
     let modrole = "696134129497931857"
+    let helperrole = "884656687372464179"
+    let jrmodrole = "901136474068619275"
     if(interaction.guild.id==="898628981958537266"){
         memberrole = "898628981958537275"
         modrole = "898628981971103847"
@@ -105,7 +107,17 @@ async function createChannel(id,interaction,member,parent) {
             VIEW_CHANNEL: true,
             SEND_MESSAGES: true
         })
+        await c.permissionOverwrites.edit(helperrole, {
+            VIEW_CHANNEL: true,
+            SEND_MESSAGES: true
+        }}
+        await c.permissionOverwrites.edit(jrmodrole, {
+            VIEW_CHANNEL: true,
+            SEND_MESSAGES: true 
+                                          }}                                                                                                  
         await c.send(`<@&${modrole}>`).then(msg => msg.delete())
+        await c.send(`<@&${helperrole}>`).then(msg => msg.delete())
+        await c.send(`<@&${jrmodrole}>`).then(msg => msg.delete())
 
         const embed = new Discord.MessageEmbed()
             .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')
