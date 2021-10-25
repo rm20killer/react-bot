@@ -98,19 +98,19 @@ async function createChannel(id,interaction,member,parent) {
 
         await c.permissionOverwrites.edit(memberrole, {
             VIEW_CHANNEL: false
-        })
+        }).catch(err => console.log(err));
         await c.permissionOverwrites.edit(member.id, {
             VIEW_CHANNEL: true,
             SEND_MESSAGES: true
-        })
+        }).catch(err => console.log(err));
         await c.permissionOverwrites.edit(modrole, {
             VIEW_CHANNEL: true,
             SEND_MESSAGES: true
-        })
+        }).catch(err => console.log(err));
         await c.permissionOverwrites.edit(helperrole, {
             VIEW_CHANNEL: true,
             SEND_MESSAGES: true
-        })                                                                                                
+        }).catch(err => console.log(err));                                          
         await c.send(`<@&${modrole}>`).then(msg => msg.delete())
         await c.send(`<@&${helperrole}>`).then(msg => msg.delete())
 
