@@ -4,7 +4,10 @@ var arr =[
     "www.twitch.tv/",
 	"https://tenor.com/",
     "clip.twitch.tv",
-    "https://c.tenor.com"
+    "https://c.tenor.com",
+    "discord.com",
+    "discord.id",
+    "discord.gg"
 ]
 
 module.exports = { arr };
