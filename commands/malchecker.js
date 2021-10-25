@@ -53,13 +53,13 @@ module.exports ={
                     if(similarity('discord.com',psl.get(extractHostname(url2)))>0.85){
                         //console.log(url2)
                         channel = client.channels.cache.find(channel => channel.id === "716762885522456677");
-                        channel.send("<@227490301688676354>, New link `"+url2+"`");
+                        channel.send("New link `"+url2+"`");
                         trigger(message,client);
                     }
                     if(similarity('discord.gift',psl.get(extractHostname(url2)))>0.85){
                         //console.log(url2)
                         channel = client.channels.cache.find(channel => channel.id === "716762885522456677");
-                        channel.send("<@227490301688676354>, New link `"+url2+"`");
+                        channel.send("New link `"+url2+"`");
                         trigger(message,client);
                     }
                     //console.log(similarity('discord.com',psl.get(extractHostname(url))));
