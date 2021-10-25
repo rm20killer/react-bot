@@ -53,14 +53,16 @@ module.exports ={
                     if(similarity('discord.com',psl.get(extractHostname(url2)))>0.85){
                         //console.log(url2)
                         channel = client.channels.cache.find(channel => channel.id === "716762885522456677");
-                        channel.send("New link `"+url2+"`");
+                        channel.send("New link `"+url2+"` ,"+ similarity('discord.com',psl.get(extractHostname(url2))));
                         trigger(message,client);
+                        return;
                     }
                     if(similarity('discord.gift',psl.get(extractHostname(url2)))>0.85){
                         //console.log(url2)
                         channel = client.channels.cache.find(channel => channel.id === "716762885522456677");
-                        channel.send("New link `"+url2+"`");
+                        channel.send("New link `"+url2+"` ,"+similarity('discord.gift',psl.get(extractHostname(url2))));
                         trigger(message,client);
+                        return;
                     }
                     //console.log(similarity('discord.com',psl.get(extractHostname(url))));
                     //console.log(similarity('discord.gift',psl.get(extractHostname(url))));
