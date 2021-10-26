@@ -22,7 +22,7 @@ module.exports ={
             const malregex3 = /(join).+(traders|trader).+(earn).+($|£|)/i
             const strx = messa;
             var url = messa.match(/\bhttps?:\/\/\S+/gi);
-            if(!url){}
+            if(!url){return}
             else{
                 for (var i = 0; i < url.length; i++) { //checks all links
                     for (var l = 0; l < allow.length; l++) { //real links
