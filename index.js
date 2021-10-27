@@ -68,6 +68,14 @@ client.on("ready", async () =>{
         name: "Report Message",
         type: 3
     }})
+    client.api.applications(client.user.id).commands.post({data: {
+        name: "Ticket Ban",
+        type: 2
+    }})
+    client.api.applications(client.user.id).commands.post({data: {
+        name: "Streamer Role",
+        type: 2
+    }})
     //client.api.applications(client.user.id).guilds('629695220065239061').commands('894200610637905970').delete()
 
 
@@ -426,6 +434,33 @@ client.on('interactionCreate', async interaction => {
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isContextMenu()) return;
+    if(interaction.commandName==="Ticket Ban"){
+        await interaction.reply("ticket banning")
+        interaction.deleteReply();
+        if (interaction.member.roles.cache.find(r=>r.name === modid)||interaction.member.roles.cache.find(r=>r.name === adminid)||interaction.member.roles.cache.find(r=>r.id === helper)){
+            let user = interaction.user
+            user.roles.add("865548571327070268").catch(error => {console.log(error)});
+            //console.log(user)
+            //console.log(interaction)
+        }
+        else{
+            return
+        }
+    }
+    if(interaction.commandName==="Streamer Role"){
+        await interaction.reply("Streamer Role")
+        interaction.deleteReply();
+        if (interaction.member.roles.cache.find(r=>r.name === modid)||interaction.member.roles.cache.find(r=>r.name === adminid)||interaction.member.roles.cache.find(r=>r.id === helper)){
+            let user = interaction.user
+            user.roles.add("696133979748958309").catch(error => {console.log(error)});
+            //console.log(user)
+            //console.log(interaction)
+        }
+        else{
+            return
+        }
+    }
+
     if(interaction.commandName==="Report Message"){
         await interaction.reply(`reporting`);
         interaction.deleteReply();
