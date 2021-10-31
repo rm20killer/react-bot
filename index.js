@@ -76,12 +76,31 @@ client.on("ready", async () =>{
         name: "Streamer Role",
         type: 2
     }})
-    //client.api.applications(client.user.id).guilds('629695220065239061').commands('894200610637905970').delete()
+    const permissions = [
+        {
+            id: '696134129497931857',
+            type: 'ROLE',
+            permission: true,
+        },
+        {
+            id: '884656687372464179',
+            type: 'ROLE',
+            permission: true,
+        },
+    ];
+    //client.api.applications(client.user.id).commands.get()  //903237399193190460 903243965187391519
+    //client.application.commands.delete('903237399193190460')
+    //.then(console.log)
+    //.catch(console.error);
+    //client.application.commands.delete('903243965187391519')
+    //.then(console.log)
+    //.catch(console.error);
 
+    //client.application.commands.cache.find(c=>c.name==="Ticket Ban").delete();
+    //client.application.commands.cache.find(c=>c.name==="Streamer Role").delete();
 
 
     //const command = await client.application?.commands.create(data);
-    //console.log(command);
 });
 
 ////////////////////////////////////////////////
@@ -316,6 +335,8 @@ client.on('interactionCreate', async interaction => {
     }
     if (interaction.commandName === 'ping') {
         await interaction.reply('Pong!');
+        //const command = interaction.guild.commands.fetch();
+        //console.log(command)
     }
     if (interaction.commandName === 'requirements') {
         const embed = new Discord.MessageEmbed()
@@ -341,7 +362,7 @@ client.on('interactionCreate', async interaction => {
         .setColor(2374108)
         .setDescription(`If you need help with the minecraft  server ask on the Gamer React Minecraft discord or website`)
         .addField("IP:" , "`play.gamersreact.net`")
-        .addField("Version:" , "Java only, 1.16.5 with support from 1.8 to 1.17")
+        .addField("Version:" , "Premium Java only, 1.16.5 with support from 1.8 to 1.17")
         await interaction.reply({ embeds: [embed], components: [row23] }).catch(console.error);
     }
 });
@@ -438,10 +459,31 @@ client.on('interactionCreate', async interaction => {
         await interaction.reply("ticket banning")
         interaction.deleteReply();
         if (interaction.member.roles.cache.find(r=>r.name === modid)||interaction.member.roles.cache.find(r=>r.name === adminid)||interaction.member.roles.cache.find(r=>r.id === helper)){
-            let user = interaction.user
-            user.roles.add("865548571327070268").catch(error => {console.log(error)});
-            //console.log(user)
-            //console.log(interaction)
+            let member = interaction.member
+            const hasRole = member.roles.cache.find(role => role.id === '865548571327070268');
+            const channel = client.channels.cache.find(channel => channel.id === "844273354318938174")
+
+            if(hasRole){
+                member.roles.remove("865548571327070268").catch(error => {console.log(error)});
+                const embed = new Discord.MessageEmbed()
+                .setTitle('Ticket Ban role taken away by, ' + interaction.user.tag)
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('To: ' + member.tag)
+                .setFooter("id: "+member.id)
+                channel.send({ embeds: [embed]}).catch(error => {console.log(error)});
+            }
+            else{
+                member.roles.add("865548571327070268").catch(error => {console.log(error)});
+                //console.log(interaction)
+                const embed = new Discord.MessageEmbed()
+                .setTitle('Ticket Ban role given by, ' + interaction.user.tag)
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('To: ' + member.tag)
+                .setFooter("id: "+member.id)
+                channel.send({ embeds: [embed]}).catch(error => {console.log(error)});
+            }
         }
         else{
             return
@@ -451,10 +493,31 @@ client.on('interactionCreate', async interaction => {
         await interaction.reply("Streamer Role")
         interaction.deleteReply();
         if (interaction.member.roles.cache.find(r=>r.name === modid)||interaction.member.roles.cache.find(r=>r.name === adminid)||interaction.member.roles.cache.find(r=>r.id === helper)){
-            let user = interaction.user
-            user.roles.add("696133979748958309").catch(error => {console.log(error)});
-            //console.log(user)
-            //console.log(interaction)
+            let member = interaction.member
+            const hasRole = member.roles.cache.find(role => role.id === '696133979748958309');
+            const channel = client.channels.cache.find(channel => channel.id === "844273354318938174")
+            if(hasRole){
+                member.roles.remove("696133979748958309").catch(error => {console.log(error)});
+                const embed = new Discord.MessageEmbed()
+                .setTitle('streamer role taken away by, ' + interaction.user.tag)
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('To: ' + member.tag)
+                .setFooter("id: "+member.id)
+                channel.send({ embeds: [embed]}).catch(error => {console.log(error)});
+            }
+            else{
+                member.roles.add("696133979748958309").catch(error => {console.log(error)});
+                //console.log(interaction)
+                const channel = client.channels.cache.find(channel => channel.id === "844273354318938174")
+                const embed = new Discord.MessageEmbed()
+                .setTitle('streamer role given by, ' + interaction.user.tag)
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('To: ' + member.tag)
+                .setFooter("id: "+member.id)
+                channel.send({ embeds: [embed]}).catch(error => {console.log(error)});
+            }
         }
         else{
             return
