@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
-const { Client, Intents } = require('discord.js');
+const { Client, Intents, MessageAttachment } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const { generateTranscript } = require('reconlx')
+
 
 module.exports ={
     close: function(args,message,client,rest){  
@@ -16,19 +18,24 @@ module.exports ={
 
         let reason = rest
         if (!reason) reason = 'No Reason Specified'
-
-
-        const embed = new Discord.MessageEmbed()
-            .setTitle('**Ticket Closed**')
-            .addField('Ticket Owner', `<@${message.channel.topic}>`, true)
-            .addField('Ticket Name:', message.channel.name, true)
-            .addField('Closed by:', message.author.tag, true)
-            .addField('Close Reason', `\`\`\`${reason}\`\`\``)
-            .setFooter(message.guild.name)
-            .setColor(0x4287f5);
-
-        channel.send({ embeds: [embed] })
-        .catch(err => {console.log(err)});
+        message.channel.messages.fetch({ limit: 100}).then(msgs=> {
+            generateTranscript({guild: message.guild, channel: message.channel, messages: msgs})
+            .then(data => {
+                const file = new MessageAttachment(data, `${message.channel.name}-${message.channel.id}.html`);
+                
+                const embed = new Discord.MessageEmbed()
+                .setTitle('**Ticket Closed**')
+                .addField('Ticket Owner', `<@${message.channel.topic}>`, true)
+                .addField('Ticket Name:', message.channel.name, true)
+                .addField('Closed by:', message.author.tag, true)
+                .addField('Close Reason', `\`\`\`${reason}\`\`\``)
+                .setFooter(message.guild.name)
+                .setColor(0x4287f5);
+    
+                channel.send({content: `transcript for ticket ${message.channel.name}-${message.channel.id} `, embeds: [embed], files: [file] })
+                .catch(err => {console.log(err)});
+            });
+        })
 
         setTimeout(() => {
             message.channel.delete()
