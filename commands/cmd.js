@@ -110,6 +110,15 @@ module.exports ={
             }
         }
         if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+            if(cmd==="event"){
+                const creeperEmote = client.emojis.cache.get(`859806815332204555`);
+                const embed = new Discord.MessageEmbed()
+                .setTitle('Events Notifications')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xFF0000)
+                .setDescription(`Want to get a notifcation when we do an event,\n\n React with the ${creeperEmote} emote`)
+                message.channel.send({ embeds: [embed] });
+            }
             if(cmd==="mceventcount"){
                 rescount.rescount(message,client);
             }
