@@ -1,18 +1,20 @@
-
+const fetch = require("node-fetch");
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 
 let psl = require('psl');
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
+const config = require("../config");
 const list = require("../list");
 const allowlist = require("../allowlist");
-
+const youtubeKey = config.youtubeKey
 module.exports ={
     antiworm: function(messa,message,client){
 
         //const messa = message.content.toLowerCase(); 
-        if(messa.includes("https://")||messa.includes("http://")){
+        let messageContent=message.content
+        if(messageContent.includes("https://")||messageContent.includes("http://")){
             let banned = list.arr;
             let allow = allowlist.arr;
     
@@ -21,17 +23,59 @@ module.exports ={
             const malregex2 = /(steam|csgo).+(giveaway|giving away|leaving).+(nitro|closed beta|trades)/i
             const malregex3 = /(join).+(traders|trader).+(earn).+($|£|)/i
             const strx = messa;
-            var url = messa.match(/\bhttps?:\/\/\S+/gi);
+            var url = messageContent.match(/\bhttps?:\/\/\S+/gi);
             if(!url){return}
             else{
                 for (var i = 0; i < url.length; i++) { //checks all links
+                    //console.log(url[i])
+                    if(url[i].includes("https://youtu.be/")||url[i].includes("https://www.youtube.com/watch?v=")||url[i].includes("https://m.youtube.com/watch?v=")){ 
+                        if (url[i].includes("https://youtu.be/")){
+                            const youtubeVideoID = url[i].split("https://youtu.be/")[1];
+                            //console.log(youtubeVideoID);
+                            getVideoinfo(youtubeVideoID,message,client);
+                            
+                        }
+                        else{
+                            URLlower=url[i].toLowerCase();
+                        }
+                        if(URLlower.includes("https://www.youtube.com/watch?v=")){
+                            const youtubeVideo = url[i].split("https://www.youtube.com/watch?v=")[1];
+                            if(youtubeVideo.includes("channel=")){
+                                const youtubeVideoID = youtubeVideo.split("&")[0]
+                                //console.log(youtubeVideoID);
+                                getVideoinfo(youtubeVideoID,message,client);
+                                
+                            }
+                            else{
+                                const youtubeVideoID = youtubeVideo;
+                                //console.log(youtubeVideoID);
+                                getVideoinfo(youtubeVideoID,message,client);
+                                
+                            }
+                        }
+                        if(URLlower.includes("https://m.youtube.com/watch?v=")){
+                            const youtubeVideo = url[i].split("https://m.youtube.com/watch?v=")[1];
+                            if(youtubeVideo.includes("channel=")){
+                                const youtubeVideoID = youtubeVideo.split("&")[0]
+                                //console.log(youtubeVideoID);
+                                getVideoinfo(youtubeVideoID,message,client);
+                                
+                            }
+                            else{
+                                const youtubeVideoID = youtubeVideo;
+                                //console.log(youtubeVideoID);
+                                getVideoinfo(youtubeVideoID,message,client);
+                                
+                            }
+                        }
+                    }
                     for (var l = 0; l < allow.length; l++) { //real links
-                        if (url[i].includes(allow[l])) {
+                        if (URLlower.includes(allow[l])) {
                             return;
                         }  
                     }
                     for (var x = 0; x < banned.length; x++) { //fake link
-                        if (url[i].includes(banned[x])) {
+                        if (URLlower.includes(banned[x])) {
                             trigger(message,client);
                             return;
                         }
@@ -49,7 +93,7 @@ module.exports ={
             }
             else{
                 for (var i = 0; i < url.length; i++) {  
-                    var url2 = url[i]
+                    var url2 = URLlower
                     if(similarity('discord.com',psl.get(extractHostname(url2)))>0.85){
                         //console.log(url2)
                         channel = client.channels.cache.find(channel => channel.id === "716762885522456677");
@@ -185,4 +229,23 @@ function extractRootDomain(url) {
         }
     }
     return domain;
+}
+
+
+const getVideoinfo = async (youtubeVideoID,message,client) => {
+    fetch("https://www.googleapis.com/youtube/v3/videos?id="+youtubeVideoID+"&part=snippet&key="+youtubeKey)
+    .then(response => {
+        //console.log(response.json)
+        return response.json();
+    })
+    .then(data=>{
+        //console.log(data["items"][0]);
+        var title = data["items"][0].snippet.title;//title
+        let regex = /(free|nitro|discord).+(nitro|GENERATOR)/i
+        if((mal = regex.exec(title)) !== null){ //if missed fake link
+            trigger(message,client);
+            return;
+        }
+        //console.log(title)
+    })
 }
