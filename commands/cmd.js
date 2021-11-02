@@ -34,6 +34,7 @@ const remove =require("./ticket/remove")
 const rules =require("./rules/rules")
 const rescount=require("./spreadsheet/rescount")
 const numberinfo=require("./spreadsheet/numberinfo")
+const transcript=require("./transcript")
 
 const games =require("./games/games")
 
@@ -110,6 +111,9 @@ module.exports ={
             }
         }
         if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+            if(cmd==="transcript"){
+                transcript.transcript(message,client,args);
+            }
             if(cmd==="event"){
                 const creeperEmote = client.emojis.cache.get(`859806815332204555`);
                 const embed = new Discord.MessageEmbed()

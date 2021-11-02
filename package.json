@@ -14,7 +14,9 @@
     "discord.js": "^13.1.0",
     "eslint": "^7.30.0",
     "google-spreadsheet": "^3.1.15",
+    "mongoose": "^6.0.12",
     "node-fetch": "^2.6.1",
-    "psl": "^1.8.0"
+    "psl": "^1.8.0",
+    "reconlx": "^2.5.1"
   }
 }
