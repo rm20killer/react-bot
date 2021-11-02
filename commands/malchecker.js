@@ -8,7 +8,14 @@ let psl = require('psl');
 const config = require("../config");
 const list = require("../list");
 const allowlist = require("../allowlist");
+
 const youtubeKey = config.youtubeKey
+
+const modid = config.ModID
+const adminid = config.AdminID
+const jrmod = config.jrmod
+const helper = config.helper
+
 module.exports ={
     antiworm: function(messa,message,client){
 
@@ -27,6 +34,7 @@ module.exports ={
             if(!url){return}
             else{
                 for (var i = 0; i < url.length; i++) { //checks all links
+                    let URLlower=url[i].toLowerCase();
                     //console.log(url[i])
                     if(url[i].includes("https://youtu.be/")||url[i].includes("https://www.youtube.com/watch?v=")||url[i].includes("https://m.youtube.com/watch?v=")){ 
                         if (url[i].includes("https://youtu.be/")){
@@ -35,10 +43,7 @@ module.exports ={
                             getVideoinfo(youtubeVideoID,message,client);
                             
                         }
-                        else{
-                            URLlower=url[i].toLowerCase();
-                        }
-                        if(URLlower.includes("https://www.youtube.com/watch?v=")){
+                        if(url[i].includes("https://www.youtube.com/watch?v=")){
                             const youtubeVideo = url[i].split("https://www.youtube.com/watch?v=")[1];
                             if(youtubeVideo.includes("channel=")){
                                 const youtubeVideoID = youtubeVideo.split("&")[0]
@@ -53,7 +58,7 @@ module.exports ={
                                 
                             }
                         }
-                        if(URLlower.includes("https://m.youtube.com/watch?v=")){
+                        if(url[i].includes("https://m.youtube.com/watch?v=")){
                             const youtubeVideo = url[i].split("https://m.youtube.com/watch?v=")[1];
                             if(youtubeVideo.includes("channel=")){
                                 const youtubeVideoID = youtubeVideo.split("&")[0]
@@ -69,15 +74,17 @@ module.exports ={
                             }
                         }
                     }
-                    for (var l = 0; l < allow.length; l++) { //real links
-                        if (URLlower.includes(allow[l])) {
-                            return;
-                        }  
-                    }
-                    for (var x = 0; x < banned.length; x++) { //fake link
-                        if (URLlower.includes(banned[x])) {
-                            trigger(message,client);
-                            return;
+                    else{
+                        for (var l = 0; l < allow.length; l++) { //real links
+                            if (URLlower.includes(allow[l])) {
+                                return;
+                            }  
+                        }
+                        for (var x = 0; x < banned.length; x++) { //fake link
+                            if (URLlower.includes(banned[x])) {
+                                trigger(message,client);
+                                return;
+                            }
                         }
                     }
                 }
@@ -92,7 +99,8 @@ module.exports ={
                 return;
             }
             else{
-                for (var i = 0; i < url.length; i++) {  
+                for (var i = 0; i < url.length; i++) {
+                    let URLlower=url[i].toLowerCase();  
                     var url2 = URLlower
                     if(similarity('discord.com',psl.get(extractHostname(url2)))>0.85){
                         //console.log(url2)
@@ -245,6 +253,33 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
         if((mal = regex.exec(title)) !== null){ //if missed fake link
             trigger(message,client);
             return;
+        }
+        else if(message.author.bot) return;
+        else if(message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+            return;
+        }
+        else if(message.channel.id==="857939977865265192"||message.channel.id==="878531760386871327"||message.channel.id==="775811861492793444"||message.channel.id==="772893417315369000"||message.channel.id==="629695881553379328"||message.channel.id==="723555905056276600"){
+            return;
+        }
+        else if (channelParent =='858354610367627284'){
+            return;
+        }
+        else{
+            var channelId = data["items"][0].snippet.channelId;//title
+            if(channelId==="UCvInsdoSCTRGQNuXe7kMjhQ"){
+                return
+            }
+            else{
+                const embed = new Discord.MessageEmbed()
+                .setTitle('No self promo here')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xFF0000)
+                .setDescription("do not self promote is this channel")
+                .addField('person id', message.author.id)
+                .addField("person name ", message.author.tag)
+                message.channel.send({ embeds: [embed] }).catch(error => {console.log(error)});
+                message.delete().catch(error => {console.log(error)});
+            }
         }
         //console.log(title)
     })
