@@ -10,7 +10,7 @@ add tokens.
 
 `node index.js` to start. 
 
-#packages
+# packages
 
 * [discord.js](https://github.com/discordjs/discord.js)
 
