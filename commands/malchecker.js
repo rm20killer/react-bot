@@ -248,6 +248,12 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
     })
     .then(data=>{
         //console.log(data["items"][0]);
+        if(!data["items"]){
+            return;
+        }
+        if(!data["items"][0].snippet){
+            return
+        }
         var title = data["items"][0].snippet.title;//title
         let regex = /(free|nitro|discord).+(nitro|GENERATOR)/i
         if((mal = regex.exec(title)) !== null){ //if missed fake link
