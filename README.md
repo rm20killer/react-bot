@@ -9,3 +9,11 @@ change channel id to channel you want to check in config file.
 add tokens. 
 
 `node index.js` to start. 
+
+# packages
+
+* [discord.js](https://github.com/discordjs/discord.js)
+
+* [reconlx](https://github.com/reconlx/reconlx-api) (For transcript)
+
+* [google-spreadsheet](https://www.npmjs.com/package/google-spreadsheet)
