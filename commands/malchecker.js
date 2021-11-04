@@ -262,7 +262,7 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
             else if(message.channel.id==="857939977865265192"||message.channel.id==="878531760386871327"||message.channel.id==="775811861492793444"||message.channel.id==="772893417315369000"||message.channel.id==="629695881553379328"||message.channel.id==="723555905056276600"){
                 return;
             }
-            else if (channelParent =='858354610367627284'){
+            else if (message.channel.parent.name =='858354610367627284'){
                 return;
             }
             else{
