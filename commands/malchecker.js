@@ -248,43 +248,39 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
     })
     .then(data=>{
         //console.log(data["items"][0]);
-        if(!data["items"]){
-            return;
-        }
-        if(!data["items"][0].snippet){
-            return
-        }
-        var title = data["items"][0].snippet.title;//title
-        let regex = /(free|nitro|discord).+(nitro|GENERATOR)/i
-        if((mal = regex.exec(title)) !== null){ //if missed fake link
-            trigger(message,client);
-            return;
-        }
-        else if(message.author.bot) return;
-        else if(message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
-            return;
-        }
-        else if(message.channel.id==="857939977865265192"||message.channel.id==="878531760386871327"||message.channel.id==="775811861492793444"||message.channel.id==="772893417315369000"||message.channel.id==="629695881553379328"||message.channel.id==="723555905056276600"){
-            return;
-        }
-        else if (channelParent =='858354610367627284'){
-            return;
-        }
-        else{
-            var channelId = data["items"][0].snippet.channelId;//title
-            if(channelId==="UCvInsdoSCTRGQNuXe7kMjhQ"){
-                return
+        if(data["items"][0]){
+            var title = data["items"][0].snippet.title;//title
+            let regex = /(free|nitro|discord).+(nitro|GENERATOR)/i
+            if((mal = regex.exec(title)) !== null){ //if missed fake link
+                trigger(message,client);
+                return;
+            }
+            else if(message.author.bot) return;
+            else if(message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+                return;
+            }
+            else if(message.channel.id==="857939977865265192"||message.channel.id==="878531760386871327"||message.channel.id==="775811861492793444"||message.channel.id==="772893417315369000"||message.channel.id==="629695881553379328"||message.channel.id==="723555905056276600"){
+                return;
+            }
+            else if (channelParent =='858354610367627284'){
+                return;
             }
             else{
-                const embed = new Discord.MessageEmbed()
-                .setTitle('No self promo here')
-                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-                .setColor(0xFF0000)
-                .setDescription("do not self promote is this channel")
-                .addField('person id', message.author.id)
-                .addField("person name ", message.author.tag)
-                message.channel.send({ embeds: [embed] }).catch(error => {console.log(error)});
-                message.delete().catch(error => {console.log(error)});
+                var channelId = data["items"][0].snippet.channelId;//title
+                if(channelId==="UCvInsdoSCTRGQNuXe7kMjhQ"){
+                    return
+                }
+                else{
+                    const embed = new Discord.MessageEmbed()
+                    .setTitle('No self promo here')
+                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                    .setColor(0xFF0000)
+                    .setDescription("do not self promote is this channel")
+                    .addField('person id', message.author.id)
+                    .addField("person name ", message.author.tag)
+                    message.channel.send({ embeds: [embed] }).catch(error => {console.log(error)});
+                    message.delete().catch(error => {console.log(error)});
+                }
             }
         }
         //console.log(title)
