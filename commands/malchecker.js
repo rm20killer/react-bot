@@ -27,7 +27,7 @@ module.exports ={
     
             // Some sort of worm has been spread which uses messages like this to spread.
             const malregex = /(creator|publisher).+(enter|participate).+(beta|closed beta).+(bonus|reward).+(download|install).+(link|file)/i
-            const malregex2 = /(steam|csgo).+(giveaway|giving away|leaving).+(nitro|closed beta|trades)/i
+            const malregex2 = /(steam|csgo|giveaway|giving away|give away).+(giveaway|giving away|give away|discord).+(nitro|closed beta|trades)/i
             const malregex3 = /(join).+(traders|trader).+(earn).+($|£|)/i
             const strx = messa;
             var url = messageContent.match(/\bhttps?:\/\/\S+/gi);
@@ -91,7 +91,7 @@ module.exports ={
             }
             let mal;
             if((mal = malregex2.exec(strx)) !== null){ //if missed fake link
-                trigger(message,client,guildConf);
+                trigger(message,client);
                 return;
             }
             if((mal = malregex3.exec(strx)) !== null){ //if missed fake link
