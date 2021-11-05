@@ -85,7 +85,7 @@ module.exports ={
                 .addComponents(new MessageButton()
                     .setStyle('LINK')
                     .setLabel('GRMC Discord')
-                    .setURL("https://www.gamersreact.net"))
+                    .setURL("https://discord.gg/mvpPdqTmJh"))
                 .addComponents(new MessageButton()
                     .setStyle('LINK')
                     .setLabel('GRMC Website')
