@@ -114,7 +114,7 @@ client.on("guildMemberAdd", async member => {
 client.on('messageCreate', async message => {
     //console.log(message)
     if(message.guild === null) {
-        console.log(message)
+        //console.log(message)
         //dm checker
         dmchecker.dmchecker(message,client);
         return;
