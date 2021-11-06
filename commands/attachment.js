@@ -172,7 +172,7 @@ module.exports = {
     
                 console.log("bot checked",message.id);
             }
-            else if(Mheight/Mwidth!=960/540){
+            else if(Mwidth/Mheight!=960/540){
                 const embed = new Discord.MessageEmbed()
                 .setTitle('Invalid size')
                 .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
