@@ -139,5 +139,93 @@ module.exports = {
 
             console.log("bot checked",message.id);
         }
+    },
+    imagechecker: function(attachment,message,client){
+        const nameArray = attachment.name.split('.'); // Split the name 
+        const attEx = nameArray[nameArray.length - 1].toLowerCase(); // Grab the last value of the array.
+        const Mwidth = attachment.width;
+        const Mheight = attachment.height;
+        if(message.channel.id==="906533447118512139"){
+            if(Mwidth<960){
+                const embed = new Discord.MessageEmbed()
+                .setTitle('Invalid size')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('Submissions must be 960x540 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
+                .addField('author: ', message.author.username)
+    
+                message.channel.send({ embeds: [embed] });
+                message.delete().catch(error => {console.log(error)});
+    
+                console.log("bot checked",message.id);
+            }
+            else if(Mheight<540){
+                const embed = new Discord.MessageEmbed()
+                .setTitle('Invalid size')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('Submissions must be 960x540 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
+                .addField('author: ', message.author.username)
+    
+                message.channel.send({ embeds: [embed] });
+                message.delete().catch(error => {console.log(error)});
+    
+                console.log("bot checked",message.id);
+            }
+            else if(Mheight/Mwidth!=960/540){
+                const embed = new Discord.MessageEmbed()
+                .setTitle('Invalid size')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('Submissions must be 960x540 or greater but same ratio.\nYour image was ' + Mwidth + 'x' + Mheight + ', which is not the right ratio.')
+                .addField('author: ', message.author.username)
+    
+                message.channel.send({ embeds: [embed] });
+                message.delete().catch(error => {console.log(error)});
+    
+                console.log("bot checked",message.id);
+            }
+        }
+        if(message.channel.id==="906533488218480660"){
+            if(Mwidth<512){
+                const embed = new Discord.MessageEmbed()
+                .setTitle('Invalid size')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('Submissions must be 512x512 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
+                .addField('author: ', message.author.username)
+    
+                message.channel.send({ embeds: [embed] });
+                message.delete().catch(error => {console.log(error)});
+    
+                console.log("bot checked",message.id);
+            }
+            else if(Mheight<512){
+                const embed = new Discord.MessageEmbed()
+                .setTitle('Invalid size')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('Submissions must be 512x512 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
+                .addField('author: ', message.author.username)
+    
+                message.channel.send({ embeds: [embed] });
+                message.delete().catch(error => {console.log(error)});
+    
+                console.log("bot checked",message.id);
+            }
+            else if(Mheight/Mwidth!=512/512){
+                const embed = new Discord.MessageEmbed()
+                .setTitle('Invalid size')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('Submissions must be 512x512 or greater but same ratio.\nYour image was ' + Mwidth + 'x' + Mheight + ', which is not the right ratio.')
+                .addField('author: ', message.author.username)
+    
+                message.channel.send({ embeds: [embed] });
+                message.delete().catch(error => {console.log(error)});
+    
+                console.log("bot checked",message.id);
+            }
+        }
     }
 }

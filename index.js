@@ -269,6 +269,9 @@ client.on('messageCreate', async message => {
         const attachment = attachmentss[1]
         //console.log(attachment[1])
         attachmentD.attachmentexe(attachment,message,client);
+        if(channelParent==="906533207812476988"){
+            attachmentD.imagechecker(attachment,message,client);
+        }
     }
 
     ////////////////////////////////////////////////
