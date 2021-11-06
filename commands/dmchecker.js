@@ -57,7 +57,7 @@ module.exports = {
     	    const editorprojs = ["wfp","prproj","kdenlive","mlt","vpj"];
 	        const unsupported = ["ofr","y4m"]; //obscure files that mods just straight up can't open
 	        if ( videos.indexOf(attEx) != -1 ) {
-                message.reply({content: "**Submit clips our website:** \nClick button below to vist the site", components: [row23]}); //Otherwise say this
+                message.reply({content: "**Submit clips on our website:** \nClick button below to vist the site", components: [row23]}); //Otherwise say this
 	        }
     	    //if ( editorprojs.indexOf(attEx) != -1 ) {
   	        //    message.reply("That's a video editor project, and I can't watch that. Render it to MP4, WebM, or MOV before submitting it in <#696131644871933972>.");
@@ -80,7 +80,7 @@ module.exports = {
         if(message.author.bot) return;
         
         if(message.content.includes("https://")){
-            message.reply({content: "**Submit clips our website:** \nClick button below to vist the site", components: [row23]}); //Otherwise say this
+            message.reply({content: "**Submit clips on our website:** \nClick button below to vist the site", components: [row23]}); //Otherwise say this
             return;
         }
 
@@ -89,7 +89,7 @@ module.exports = {
         const str = messa;
         let m;
         if ((m = regex.exec(str)) !== null) {
-            message.reply({content: "**Submit clips our website:** \nClick button below to vist the site", components: [row23]}); //Otherwise say this
+            message.reply({content: "**Submit clips on our website:** \nClick button below to vist the site", components: [row23]}); //Otherwise say this
             return;
         }
 

@@ -20,7 +20,7 @@ module.exports ={
                 return;
 		    }
             else{
-                message.reply({content: "**Submit clips our website:** \nClick button below to vist the site", components: [row23]}); //Otherwise say this
+                message.reply({content: "**Submit clips on our website:** \nClick button below to vist the site", components: [row23]}); //Otherwise say this
                 return;
             }
         }
