@@ -36,6 +36,8 @@ const rescount=require("./spreadsheet/rescount")
 const numberinfo=require("./spreadsheet/numberinfo")
 const transcript=require("./transcript")
 
+//const namechecker=require("./nameChecker")
+
 const games =require("./games/games")
 
 const index = require('../index');
@@ -111,6 +113,10 @@ module.exports ={
             }
         }
         if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+            if(cmd==="masscheck"){
+                //namechecker.masscheck(message,client,args)
+            }
+            
             if(cmd==="transcript"){
                 transcript.transcript(message,client,args);
             }

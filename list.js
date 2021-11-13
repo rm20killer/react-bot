@@ -36,7 +36,7 @@ var arr =[
     "discocrd",
 	"dliscord",
 	"clck.ru",
-	"discorl"
+	"discorl",
     
 ]
 
