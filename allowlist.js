@@ -7,7 +7,8 @@ var arr =[
     "https://c.tenor.com",
     "discord.com",
     "discord.id",
-    "discord.gg"
+    "discord.gg",
+    "discordapp.com"
 ]
 
 module.exports = { arr };

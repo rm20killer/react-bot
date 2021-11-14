@@ -37,6 +37,7 @@ var arr =[
 	"dliscord",
 	"clck.ru",
 	"discorl",
+    "disccord-apps.com"
     
 ]
 
