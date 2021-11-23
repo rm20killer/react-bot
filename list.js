@@ -38,7 +38,8 @@ var arr =[
 	"clck.ru",
 	"discorl",
     "disccord-apps.com",
-	"discordappnittro.com"
+	"discordappnittro.com",
+	"dlsccord-apps.club"
     
 ]
 
