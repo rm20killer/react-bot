@@ -155,8 +155,6 @@ const trigger  = async (message,client) => {
         channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
     }
     message.channel.send("<@"+message.author.id+">, account might be compromised.");
-    message.author.send(`We noticed you've been compromised by self-spreading malware (a worm) which takes over your account to send download links to this worm to others.\nAs a precaution, the bot has kicked you from the Gamers React server.\nYou must run a Windows Defender full scan and change your password.\nTo join back, use this invite link: ${invite}`)
-    .catch(console.error);
     let time = message.createdTimestamp
     var date = new Date(time * 1000);
     var hours = date.getHours();
@@ -174,6 +172,9 @@ const trigger  = async (message,client) => {
     .setFooter("today at "+formattedTime)
     channel.send({ embeds: [embed] });
     message.delete().catch(error => {console.log(error)});
+
+    message.author.send(`We noticed you've been compromised by self-spreading malware (a worm) which takes over your account to send download links to this worm to others.\nAs a precaution, the bot has kicked you from the Gamers React server.\nYou must run a Windows Defender full scan and change your password.\nTo join back, use this invite link: ${invite}`)
+    .catch(console.error);
 }
 
 function similarity(s1, s2) {
