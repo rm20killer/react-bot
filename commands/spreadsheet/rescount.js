@@ -26,7 +26,8 @@ const { MessageActionRow, MessageButton } = require('discord.js');
 
 const config = require("../../config");
 const creds = require("./googlekey.json");
-const doc = new GoogleSpreadsheet(config.spreadsheet);
+//const doc = new GoogleSpreadsheet(config.spreadsheet);
+const doc = new GoogleSpreadsheet("1keR2ubqTVfkrkEuDTSAa5fbZm_U08gTNfE-75bUcVX4")
 
 module.exports.rescount = async function(message,client) {
     await rescount(message,client).catch(error=>console.log(error));

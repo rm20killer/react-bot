@@ -26,8 +26,8 @@ const { MessageActionRow, MessageButton } = require('discord.js');
 
 const config = require("../../config");
 const creds = require("./googlekey.json");
-const doc = new GoogleSpreadsheet(config.spreadsheet);
-
+//const doc = new GoogleSpreadsheet(config.spreadsheet);
+const doc = new GoogleSpreadsheet("1keR2ubqTVfkrkEuDTSAa5fbZm_U08gTNfE-75bUcVX4")
 module.exports.ssuserinfo = async function(message,client,args) {
     await ssuserinfo(message,client,args).catch(error=>console.log(error));
 }
@@ -52,7 +52,14 @@ var ssuserinfo = async function(message,client,args) {
     const discordname = sheet.getCell(testnum, 1).value;
     const discordID = sheet.getCell(testnum, 2).value;
     const Javaorbedrock = sheet.getCell(testnum, 3).value;
-    const mcingo = sheet.getCell(testnum, 4).value;
+    let mcingo = sheet.getCell(testnum, 4).value;
+    let mcBedrockingo = sheet.getCell(testnum, 5).value;
+    if(mcingo === null){
+        mcingo = "{blank}"
+    }
+    if(mcBedrockingo === null){
+        mcBedrockingo = "{blank}"
+    }
     const embed = await new Discord.MessageEmbed()
     .setTitle(`Event Signup info for` + number)
     .setAuthor('React Bot', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
@@ -61,6 +68,7 @@ var ssuserinfo = async function(message,client,args) {
     .addField("discord ID:",discordID)
     .addField("Java or bedrock:",Javaorbedrock)
     .addField("in game name:",mcingo)
+    .addField("in game name:",mcBedrockingo)
     message.channel.send({ embeds: [embed] });
     resMsg.delete();
 }
