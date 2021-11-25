@@ -67,8 +67,8 @@ var ssuserinfo = async function(message,client,args) {
     .addField("discord name:",discordname)
     .addField("discord ID:",discordID)
     .addField("Java or bedrock:",Javaorbedrock)
-    .addField("in game name:",mcingo)
-    .addField("in game name:",mcBedrockingo)
+    .addField("Java IGN:",mcingo)
+    .addField("bedrock IGN:",mcBedrockingo)
     message.channel.send({ embeds: [embed] });
     resMsg.delete();
 }
