@@ -42,7 +42,8 @@ var arr =[
 	"dlsccord-apps.club",
 	"discrod-gifte.com",
 	"discorde-gift.com",
-	"diiscord-gift.ru"
+	"diiscord-gift.ru",
+	"www.dicordglfts.ga"
     
 ]
 
