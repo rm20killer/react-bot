@@ -34,6 +34,7 @@ const remove =require("./ticket/remove")
 const rules =require("./rules/rules")
 const rescount=require("./spreadsheet/rescount")
 const numberinfo=require("./spreadsheet/numberinfo")
+const ssdmuser=require("./spreadsheet/DMuser")
 const transcript=require("./transcript")
 
 //const namechecker=require("./nameChecker")
@@ -144,6 +145,9 @@ module.exports ={
             }
             if(cmd==="mcuserinfo"){
                 numberinfo.ssuserinfo(message,client,args);
+            }
+            if(cmd==="mcdm"){
+                //ssdmuser.ssdmuser(message,client,args)
             }
             if(cmd==="setactivity"){
                 var str = message.content

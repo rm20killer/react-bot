@@ -43,7 +43,10 @@ var arr =[
 	"discrod-gifte.com",
 	"discorde-gift.com",
 	"diiscord-gift.ru",
-	"www.dicordglfts.ga"
+	"www.dicordglfts.ga",
+	"dicsordgift.one",
+	"discrod-gifte.",
+	"dlsccord-apps.club"
     
 ]
 
