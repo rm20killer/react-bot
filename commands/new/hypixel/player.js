@@ -12,7 +12,7 @@ module.exports = {
     async execute(message, args) {
         await message.channel.sendTyping()
 
-        if (args[0]) { // if someone didn't type in ign
+        if (!args[0]) { // if someone didn't type in ign
             const ign404 = new Discord.MessageEmbed(base)
                 .setAuthor('Error', 'https://i.imgur.com/OuoECfX.jpeg')
                 .setDescription('You need to type in a player\'s IGN! ')
@@ -70,8 +70,6 @@ module.exports = {
                     embed.addField('Plus Color', `\`${player.plusColor}\``)
                 }
             }
-
-                embed.addField('Social Media', `Run \`h!socials ${player.nickname}\``)
 
             message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } })
         }).catch(e => { // error messages
