@@ -2,6 +2,7 @@
 
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
+const fs = require('fs');
 const client = new Client({ 
     intents: [
         Intents.FLAGS.GUILDS,
@@ -37,9 +38,21 @@ const modid = config.ModID
 const adminid = config.AdminID
 const jrmod = config.jrmod
 const helper = config.helper
+const Hprefixl = config.Hprefixl
 //Discord.js v13+ is needed for this to work
 
 //required
+client.commands = new Discord.Collection();
+const commandFolders = fs.readdirSync('./commands/new')
+for (const folder of commandFolders) {
+	const commandFiles = fs.readdirSync(`./commands/new/${folder}`).filter(file => file.endsWith('.js'));
+	for (const file of commandFiles) {
+        const command = require(`./commands/new/${folder}/${file}`);
+        client.commands.set(command.name, command);
+    }
+}
+
+
 const cmds = require('./commands/cmd');
 
 const faq = require('./commands/faq');
@@ -276,6 +289,22 @@ client.on('messageCreate', async message => {
 
     ////////////////////////////////////////////////
     //commands
+    if(message.content.startsWith(Hprefixl)){
+
+        const args = message.content.slice(Hprefixl.length).trim().split(/ +/);
+        const commandName = args.shift().toLowerCase();
+    
+        const command = client.commands.get(commandName)
+            || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+    
+        if (!command) return;
+        try {
+            command.execute(message, args, client);
+        } catch (error) {
+            console.error(error);
+            message.reply("error")
+        }
+    }
     if (!message.content.startsWith(prefixl)) return;
     const args = message.content.trim().split(/ +/g);
     const cmd = args[0].slice(prefixl.length).toLowerCase();
