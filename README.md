@@ -17,3 +17,5 @@ add tokens.
 * [reconlx](https://github.com/reconlx/reconlx-api) (For transcript)
 
 * [google-spreadsheet](https://www.npmjs.com/package/google-spreadsheet)
+
+* [hyDiscord](https://github.com/HyDiscord/HyDiscord)
