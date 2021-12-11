@@ -5,6 +5,8 @@ const { Client, Intents } = require('discord.js');
 const config = require("../config");
 const modid = config.ModID
 const adminid = config.AdminID
+const jrmod = config.jrmod
+const helper = config.helper
 
 module.exports = {
     attachmentchecker: function(attachment,message,client){
