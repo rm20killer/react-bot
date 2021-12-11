@@ -108,6 +108,9 @@ module.exports = {
     // deb: Debian/Ubuntu package
     // apk: Android application
     attachmentexe: function(attachment,message,client){
+        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+            return
+        }
         const nameArray = attachment.name.split('.'); // Split the name 
         const attEx = nameArray[nameArray.length - 1].toLowerCase(); // Grab the last value of the array.
         if (attEx == "exe" || attEx == "msi" || attEx == "dmg" || attEx == "deb" || attEx =="apk"|| attEx == "bat") {
