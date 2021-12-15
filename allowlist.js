@@ -8,7 +8,8 @@ var arr =[
     "discord.com",
     "discord.id",
     "discord.gg",
-    "discordapp.com"
+    "discordapp.com",
+    "discordapp.net"
 ]
 
 module.exports = { arr };
