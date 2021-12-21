@@ -49,7 +49,9 @@ var arr =[
 	"dlsccord-apps.club",
 	"tinyurl.com",
     "dlisocrd.ru",
-    "dlsocrd-gift.com"
+    "dlsocrd-gift.com",
+	"discrode-gift.com",
+	"disordnltro.xyz"
     
 ]
 
