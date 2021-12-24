@@ -51,7 +51,8 @@ var arr =[
     "dlisocrd.ru",
     "dlsocrd-gift.com",
 	"discrode-gift.com",
-	"disordnltro.xyz"
+	"disordnltro.xyz",
+	"discrode-gift"
     
 ]
 
