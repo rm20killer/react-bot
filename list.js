@@ -58,7 +58,8 @@ var arr =[
 	"disccord-appss.ru",
 	"discsrd.",
 	"discoord-apps",
-	"discorde"
+	"discorde",
+	"steamldiscord"
     
 ]
 
