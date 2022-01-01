@@ -59,7 +59,9 @@ var arr =[
 	"discsrd.",
 	"discoord-apps",
 	"discorde",
-	"steamldiscord"
+	"steamldiscord",
+	"discoord-gift",
+	"gif-discord"
     
 ]
 
