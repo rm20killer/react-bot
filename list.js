@@ -65,7 +65,8 @@ var arr =[
 	"dilscocd.com",
     "disckord.",
     "discrods.",
-    "discorc."
+    "discorc.",
+    "dissqrdapp"
     
 ]
 
