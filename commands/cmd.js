@@ -35,6 +35,7 @@ const rules =require("./rules/rules")
 const rescount=require("./spreadsheet/rescount")
 const numberinfo=require("./spreadsheet/numberinfo")
 const ssdmuser=require("./spreadsheet/DMuser")
+const ssrolegive=require("./spreadsheet/giveRoles")
 const transcript=require("./transcript")
 
 //const namechecker=require("./nameChecker")
@@ -140,6 +141,15 @@ module.exports ={
                 .setDescription(`Want to get a notifcation when we do an event,\n\n React with the ${creeperEmote} emote`)
                 message.channel.send({ embeds: [embed] });
             }
+            if(cmd==="event2"){
+                const creeperEmote = client.emojis.cache.get(`859806815332204555`);
+                const embed = new Discord.MessageEmbed()
+                .setTitle('Giveaway Notifications')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xFF0000)
+                .setDescription(`Want to get a notifcation when we do an Giveaway,\n\n React with the 🎁 emote`)
+                message.channel.send({ embeds: [embed] });
+            }
             if(cmd==="mceventcount"){
                 rescount.rescount(message,client);
             }
@@ -149,6 +159,8 @@ module.exports ={
             if(cmd==="mcdm"){
                 //ssdmuser.ssdmuser(message,client,args)
             }
+            if(cmd==="ssrolegive")
+                //ssrolegive.ssrolegive(message,client,args)
             if(cmd==="setactivity"){
                 var str = message.content
                 var type = str.split(/ (.+)/)[1];

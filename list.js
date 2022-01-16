@@ -62,7 +62,10 @@ var arr =[
 	"steamldiscord",
 	"discoord-gift",
 	"gif-discord",
-	"dilscocd.com"
+	"dilscocd.com",
+    "disckord.",
+    "discrods.",
+    "discorc."
     
 ]
 
