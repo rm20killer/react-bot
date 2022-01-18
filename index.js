@@ -68,6 +68,7 @@ const log = require('./commands/logs');
 const youtubechecker = require('./commands/youtubeChecker');
 const slashcoms = require('./commands/slashcommands');
 const { youtube } = require('./commands/youtubeChecker');
+const table = require('./commands/others/tablechecker')
 
 const ticketmanger= require('./commands/ticket/ticketmanger');
 
@@ -289,6 +290,7 @@ client.on('messageCreate', async message => {
 
     ////////////////////////////////////////////////
     //commands
+    table.table(client,message);
     if(message.content.startsWith(Hprefixl)){
 
         const args = message.content.slice(Hprefixl.length).trim().split(/ +/);

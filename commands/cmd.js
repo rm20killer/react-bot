@@ -102,7 +102,12 @@ module.exports ={
                 .addField("Version:" , "Premium Java only, 1.16.5 with support from 1.8 to 1.17")
             //message.channel.send({ embeds: [embed] })
             message.channel.send({ embeds: [embed], components: [row23] }).catch(console.error);
-            }
+        }
+        if (cmd === "tablecount"){
+            channel = client.channels.cache.find(channel => channel.id === "892816609712930836");
+            ctopic=channel.topic
+            message.reply(ctopic + " tables have been fliped")
+        }
         //mod only commands
         if(message.member.roles=== null){
             message.reply("Roles issue detected")

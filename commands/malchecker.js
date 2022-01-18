@@ -170,14 +170,18 @@ const trigger  = async (message,client) => {
     .addField('person id', message.author.id)
     .addField("person name ", message.author.tag)
     .setFooter("today at "+formattedTime)
-    channel.send({ embeds: [embed] });
+    channel.send({
+        content: "<@"+message.author.id+">",
+        embeds: [embed] });
     message.delete().catch(error => {console.log(error)});
 
-    message.author.send(`We noticed you've been compromised by self-spreading malware (a worm) which takes over your account to send download links to this worm to others.\nAs a precaution, the bot has kicked you from the Gamers React server.\nYou must run a Windows Defender full scan and change your password.\nTo join back, use this invite link: ${invite}`)
+    message.author.send(`3ADB63D1 \n We noticed you've been compromised by self-spreading malware (a worm) which takes over your account to send download links to this worm to others.\nAs a precaution, the bot has kicked you from the Gamers React server.\nYou must run a Windows Defender full scan and change your password.\nTo join back, use this invite link: ${invite}`)
     .catch(console.error);
 }
 
 function similarity(s1, s2) {
+    if(!s1){return}
+    if(!s2){return}
     var longer = s1;
     var shorter = s2;
     if (s1.length < s2.length) {
