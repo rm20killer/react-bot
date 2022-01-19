@@ -22,8 +22,7 @@ const client = new Client({
 const { MessageActionRow, MessageButton } = require('discord.js');
 const fs = require('fs');
 
-const fileName = '../file.json';
-const file = require(fileName);
+const file = require("../file.json");
 
 const config = require("../config");
 
