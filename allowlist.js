@@ -9,7 +9,8 @@ var arr =[
     "discord.id",
     "discord.gg",
     "discordapp.com",
-    "discordapp.net"
+    "discordapp.net",
+	"https://r.3v.fi/discord-timestamps/"
 ]
 
 module.exports = { arr };
