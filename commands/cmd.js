@@ -20,7 +20,10 @@ const client = new Client({
 });
 
 const { MessageActionRow, MessageButton } = require('discord.js');
+const fs = require('fs');
 
+const fileName = '../file.json';
+const file = require(fileName);
 
 const config = require("../config");
 
@@ -104,9 +107,8 @@ module.exports ={
             message.channel.send({ embeds: [embed], components: [row23] }).catch(console.error);
         }
         if (cmd === "tablecount"){
-            channel = client.channels.cache.find(channel => channel.id === "892816609712930836");
-            ctopic=channel.topic
-            message.reply(ctopic + " tables have been fliped")
+            
+            message.reply(file.tableflip + " tables have been fliped")
         }
         //mod only commands
         if(message.member.roles=== null){
