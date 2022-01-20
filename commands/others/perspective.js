@@ -46,6 +46,8 @@ async function analyzeText(text,message,client) {
     if(message.author.bot){return}
 
     channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
+    channel2 = client.channels.cache.find(channel => channel.id === "892816609712930836");
+
     let time = message.createdTimestamp
     var date = new Date(time * 1000);
     var hours = date.getHours();
@@ -93,27 +95,59 @@ async function analyzeText(text,message,client) {
                 insult = response.data.attributeScores.INSULT.summaryScore.value
                 spam = response.data.attributeScores.SPAM.summaryScore.value
                 //console.log(toxicity + " " + insult)
-                if (toxicity>0.75){
+                if (toxicity>0.95){
                     message.channel.send("<@"+message.author.id+"> your message was delete for toxicity");
                     message.delete().catch(error => {console.log(error)});
                     embed.addField("toxicity:", toxicity.toString());
+                    channel.send({
+                        content: "<@"+message.author.id+">",
+                        embeds: [embed] });
                 }
-                else if (insult>0.75){
+                else if (toxicity>0.75){
+                    const embed2 = new Discord.MessageEmbed()
+                    .setTitle('Message detection')
+                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                    .setColor(0xff0000)
+                    .setDescription(message.author.tag + " | " +message.author.id )
+                    .addField('Message', message.content)
+                    .addField("toxicity:", toxicity.toString())
+                    .setURL(message.url)
+                    .setFooter("today at "+formattedTime)
+                    channel2.send({ embeds: [embed2]}).catch(error => {console.log(error)});
+                    message.react('🚩');
+                }
+                else if (insult>0.95){
                     message.channel.send("<@"+message.author.id+"> your message was delete for toxicity");
                     message.delete().catch(error => {console.log(error)});
                     embed.addField("insult:", insult.toString())
+                    channel.send({
+                        content: "<@"+message.author.id+">",
+                        embeds: [embed] });
+                }
+                else if (insult>0.75){
+                    const embed2 = new Discord.MessageEmbed()
+                    .setTitle('Message detection')
+                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                    .setColor(0xff0000)
+                    .setDescription(message.author.tag + " | " +message.author.id )
+                    .addField('Message', message.content)
+                    .addField("insult:", toxicity.toString())
+                    .setURL(message.url)
+                    .setFooter("today at "+formattedTime)
+                    channel2.send({ embeds: [embed2]}).catch(error => {console.log(error)});
+                    message.react('🚩');
                 }
                 else if(spam>4){
                     //message.channel.send("<@"+message.author.id+"> your message was delete for spam");
                     //message.delete().catch(error => {console.log(error)}); 
                     //embed.addField("spam:", spam.toString())
-                    
+                    channel.send({
+                        content: "<@"+message.author.id+">",
+                        embeds: [embed] 
+                    });
                 }
                 else {return}
-                channel.send({
-                    content: "<@"+message.author.id+">",
-                    embeds: [embed] });
-                });
+            });
         })
         .catch(err => {
           throw err;
