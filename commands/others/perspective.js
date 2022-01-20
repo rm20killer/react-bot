@@ -43,6 +43,8 @@ const attributeThresholds = {
  */
 async function analyzeText(text,message,client) {
     if(!text){return}
+    if(message.author.bot){return}
+
     channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
     let time = message.createdTimestamp
     var date = new Date(time * 1000);
@@ -101,10 +103,10 @@ async function analyzeText(text,message,client) {
                     message.delete().catch(error => {console.log(error)});
                     embed.addField("insult:", insult.toString())
                 }
-                else if(spam>0.75){
-                    message.channel.send("<@"+message.author.id+"> your message was delete for spam");
-                    message.delete().catch(error => {console.log(error)}); 
-                    embed.addField("spam:", spam.toString())
+                else if(spam>4){
+                    //message.channel.send("<@"+message.author.id+"> your message was delete for spam");
+                    //message.delete().catch(error => {console.log(error)}); 
+                    //embed.addField("spam:", spam.toString())
                     
                 }
                 else {return}
