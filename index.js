@@ -30,6 +30,8 @@ const fetch = require("node-fetch");
 const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
 const wait = require('util').promisify(setTimeout);
 
+const users = {};
+
 const config = require("./config");
 const prefixl = config.prefix
 const youtubeKey = config.youtubeKey
@@ -70,6 +72,8 @@ const slashcoms = require('./commands/slashcommands');
 const { youtube } = require('./commands/youtubeChecker');
 const table = require('./commands/others/tablechecker')
 
+//const detector = require('./commands/others/detector')
+const perspective = require('./commands/others/perspective.js');
 const ticketmanger= require('./commands/ticket/ticketmanger');
 
 //start 
@@ -287,7 +291,13 @@ client.on('messageCreate', async message => {
             attachmentD.imagechecker(attachment,message,client);
         }
     }
-
+    if(channelparname!='────🛠Support🛠────'){
+        if(channelparname!='──────🚨 mods 🚨──────'){
+            perspective.analyzeText(message.content,message,client).catch(error => {console.log(error)});
+        }
+    }
+    
+    //detector.detector(client,message,users)
     ////////////////////////////////////////////////
     //commands
     table.table(client,message);
