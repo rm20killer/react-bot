@@ -43,7 +43,7 @@ const transcript=require("./transcript")
 //const namechecker=require("./nameChecker")
 
 const games =require("./games/games")
-
+const CreateVoiceChat =require("./games/Createvs")
 const index = require('../index');
 
 const youtubeKey = config.youtubeKey
@@ -121,6 +121,16 @@ module.exports ={
             }
         }
         if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+            if(cmd==="partycreate"){
+                if(args[1]===null){
+                    return
+                }
+                CreateVoiceChat.CreateVoiceChat(message,client,args)
+                message.reply("Creating channels")
+            }
+            if(cmd==="delparty"){
+                CreateVoiceChat.deleteVoiceChat(message,client,args)
+            }
             if(cmd==="similarity"){
                 if(args[1]===null){
                     return
