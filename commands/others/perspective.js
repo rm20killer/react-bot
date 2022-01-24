@@ -114,7 +114,7 @@ async function analyzeText(text,message,client) {
                     .setURL(message.url)
                     .setFooter("today at "+formattedTime)
                     channel2.send({ embeds: [embed2]}).catch(error => {console.log(error)});
-                    message.react('🚩');
+                    message.react('🚩').catch(error => {console.log(error)});
                 }
                 else if (insult>0.95){
                     message.channel.send("<@"+message.author.id+"> your message was delete for toxicity");
@@ -135,7 +135,7 @@ async function analyzeText(text,message,client) {
                     .setURL(message.url)
                     .setFooter("today at "+formattedTime)
                     channel2.send({ embeds: [embed2]}).catch(error => {console.log(error)});
-                    message.react('🚩');
+                    message.react('🚩').catch(error => {console.log(error)});
                 }
                 else if(spam>4){
                     //message.channel.send("<@"+message.author.id+"> your message was delete for spam");
@@ -147,7 +147,7 @@ async function analyzeText(text,message,client) {
                     });
                 }
                 else {return}
-            });
+            }).catch(error => {console.log(error)});
         })
         .catch(err => {
           throw err;
