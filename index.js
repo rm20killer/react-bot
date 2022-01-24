@@ -293,7 +293,11 @@ client.on('messageCreate', async message => {
     }
     if(channelparname!='────🛠Support🛠────'){
         if(channelparname!='──────🚨 mods 🚨──────'){
+            var regexp = /[a-zA-Z]+\s+[a-zA-Z]+/g;
+            if (regexp.test(message.content)) {
+            // at least 2 words consisting of letters
             perspective.analyzeText(message.content,message,client).catch(error => {console.log(error)});
+            }
         }
     }
     
