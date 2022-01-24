@@ -147,7 +147,7 @@ async function analyzeText(text,message,client) {
                     });
                 }
                 else {return}
-            }).catch(error => {console.log(error)});
+            });
         })
         .catch(err => {
           throw err;
