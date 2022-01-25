@@ -67,7 +67,9 @@ var arr =[
     "discrods.",
     "discorc.",
     "dissqrdapp",
-	"dicsords."
+	"dicsords.",
+	"dlcorcl-.",
+	"me-discord."
     
 ]
 
