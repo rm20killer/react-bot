@@ -73,7 +73,8 @@ var arr =[
 	"nitros-st",
 	"dlcorcl",
     "nitrosteamt",
-    "discordjapp"
+    "discordjapp",
+	"register.legionnetwork"
     
 ]
 
