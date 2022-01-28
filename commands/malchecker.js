@@ -294,7 +294,7 @@ const getVideoinfo = async (youtubeVideoID,message,client) => {
                     .setTitle('No self promo here')
                     .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                     .setColor(0xFF0000)
-                    .setDescription("do not self promote is this channel")
+                    .setDescription("do not self promote in this channel")
                     .addField('person id', message.author.id)
                     .addField("person name ", message.author.tag)
                     message.channel.send({ embeds: [embed] }).catch(error => {console.log(error)});
