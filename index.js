@@ -74,7 +74,7 @@ const table = require('./commands/others/tablechecker')
 
 //const detector = require('./commands/others/detector')
 const perspective = require('./commands/others/perspective.js');
-const ticketmanger= require('./commands/ticket/ticketmanger');
+const ticketmanger= require('./interaction/ticketmanger');
 
 //start 
 client.on("ready", async () =>{

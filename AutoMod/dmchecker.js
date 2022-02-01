@@ -29,7 +29,7 @@ module.exports = {
         let dontlog = "3ADB63D1"
         //console.log("dm")
         const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
-        const channel2 = client.channels.cache.find(channel => channel.id === "885144925509914654");
+        //const channel2 = client.channels.cache.find(channel => channel.id === "885144925509914654");
         const attachments = Array.from(message.attachments);
         const attachmentss = attachments[0];
         if(message.author.bot && message.content.includes("3ADB63D1")){

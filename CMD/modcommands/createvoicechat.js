@@ -19,44 +19,39 @@ const client = new Client({
 });
 
 module.exports = {
-    CreateVoiceChat: function(message,client,args){ 
-        let num=parseInt(args[1])
-        if(args[2]){
-            let max=parseInt(args[2])
-            if(num){
-                for (var x = 1; x <= num; x++) {
-                    createChannel(x,message,max)
+    name: 'createvoicechat',
+    aliases: [ "createvc" ],
+    description: 'will create voice chats',
+    usage: '`*createvc <number> [max]`',
+    example: '`*createvc 5 2`',
+    async execute(message, args) {
+        if(args[1]===null){
+            return
+        }
+        message.reply("Creating channels")
+        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+            // CODE GOES HERE 🡫 
+            let num=parseInt(args[1])
+            if(args[2]){
+                let max=parseInt(args[2])
+                if(num){
+                    for (var x = 1; x <= num; x++) {
+                        createChannel(x,message,max)
+                    }
                 }
             }
+            else{
+                if(num){
+                    for (var x = 1; x <= num; x++) {
+                        createChannel(x,message)
+                    }
+                }
+            }
+            message.reply(num + "   channels created")
         }
         else{
-            if(num){
-                for (var x = 1; x <= num; x++) {
-                    createChannel(x,message)
-                }
-            }
+            message.reply("You lack perms for this command")
         }
-        message.reply(num + "   channels created")
-
-    },
-    deleteVoiceChat: function(message,client,args){ 
-        message.guild.channels.cache.forEach(c => {
-            //console.log("interaction got")
-            try
-            {
-                var channelParent = c.parent.id
-            }
-            catch{
-                var channelParent = 1
-            }
-
-            if (channelParent === "934125042348986368") { 
-                if (c.name.startsWith("7663 party-")) {
-                    c.delete();
-                }
-            }
-        })
-        message.reply("channels deleted")
     }
 }
 

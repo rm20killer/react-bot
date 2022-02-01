@@ -38,12 +38,12 @@ const rescount=require("./spreadsheet/rescount")
 const numberinfo=require("./spreadsheet/numberinfo")
 const ssdmuser=require("./spreadsheet/DMuser")
 const ssrolegive=require("./spreadsheet/giveRoles")
-const transcript=require("./transcript")
+const transcript=require("../CMD/Modonly/transcript")
 
 //const namechecker=require("./nameChecker")
 
-const games =require("./games/games")
-const CreateVoiceChat =require("./games/Createvs")
+const games =require("../CMD/Fun/games")
+const CreateVoiceChat =require("../CMD/Modonly/createvoicechat")
 const index = require('../index');
 
 const youtubeKey = config.youtubeKey
@@ -56,6 +56,7 @@ const helper = config.helper
 module.exports ={
     commands: function(cmd,args,message,client){   
         if(cmd === 'ping') {
+            //done
             ping(message,client)
         }
         if(message.guild.id==="895674878508818472"){
@@ -63,6 +64,7 @@ module.exports ={
                 games.games(args,message,client);
             }
             if(message.author.name==="227490301688676354"){
+                //done
                 if(cmd === "say"){
                     const say = message.content.slice(4);
                     if(say) {
@@ -106,7 +108,7 @@ module.exports ={
             message.channel.send({ embeds: [embed], components: [row23] }).catch(console.error);
         }
         if (cmd === "tablecount"){
-            
+            //done
             message.reply(file.tableflip + " tables have been fliped")
         }
         //mod only commands
@@ -117,11 +119,13 @@ module.exports ={
         }
         if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)||message.member.roles.cache.find(r=>r.id === "747863600994975744")||message.member.roles.cache.find(r=>r.id === "838238288216588358")){
             if(cmd==="game"){
+                //added
                 games.games(args,message,client);
             }
         }
         if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
             if(cmd==="partycreate"){
+                //done
                 if(args[1]===null){
                     return
                 }
@@ -129,6 +133,7 @@ module.exports ={
                 message.reply("Creating channels")
             }
             if(cmd==="delparty"){
+                //done
                 CreateVoiceChat.deleteVoiceChat(message,client,args)
             }
             if(cmd==="similarity"){
@@ -146,6 +151,7 @@ module.exports ={
             }
             
             if(cmd==="transcript"){
+                //done
                 transcript.transcript(message,client,args);
             }
             if(cmd==="event"){
@@ -190,6 +196,7 @@ module.exports ={
                 }
             }            
             if(cmd === "say"){
+                //done
                 const say = message.content.slice(4);
                 if(say) {
                     message.channel.send(say);
@@ -327,6 +334,7 @@ module.exports ={
                     channelpar = "898628983271337997"
                 }
                 if(message.channel.parent.id===channelpar){
+                    //done
                     if (cmd==="close"){
                         const rest = message.content.slice(6);
                         close.close(args,message,client,rest)
@@ -348,6 +356,7 @@ module.exports ={
                         remove.remove(args,message,client,rest)
 
                     }
+                    //^^
                 }
             }
         }

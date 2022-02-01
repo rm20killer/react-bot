@@ -5,19 +5,30 @@ const { generateTranscript } = require('reconlx')
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 module.exports = {
-    transcript: function(message,client,args){ 
-        if(args[1]){
-        }
-        else{
-            message.channel.messages.fetch({ limit: 100,before: message.id }).then(msgs=> {
-                generateTranscript({guild: message.guild, channel: message.channel, messages: msgs})
-                .then(data => {
-                    const file = new MessageAttachment(data, `${message.channel.name}.html`);
-                    message.channel.send({content: "file: ", files: [file]});
-                });
-            })
-        }
+  name: 'transcript',
+  aliases: [ "script" ],
+  description: 'will create an transcript',
+  usage: '`*transcript [number]`',
+  example: '`*transcript 50`',
+  async execute(message, args) {
+    if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+      // CODE GOES HERE 🡫 
+      if(args[1]){
+      }
+      else{
+          message.channel.messages.fetch({ limit: 100,before: message.id }).then(msgs=> {
+              generateTranscript({guild: message.guild, channel: message.channel, messages: msgs})
+              .then(data => {
+                  const file = new MessageAttachment(data, `${message.channel.name}.html`);
+                  message.channel.send({content: "file: ", files: [file]});
+              });
+          })
+      }
     }
+      else{
+          message.reply("You lack perms for this command")
+      }
+  }
 }
 
 async function fetchMore(channel, limit = 250) {
