@@ -19,6 +19,7 @@
     "hypixel-api-reborn": "^9.0.3",
     "mongoose": "^6.0.12",
     "node-fetch": "^2.6.1",
+    "node-forge": "^1.2.1",
     "psl": "^1.8.0",
     "reconlx": "^2.5.1"
   }
