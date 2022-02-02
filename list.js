@@ -190,6 +190,7 @@ var arr =[
     "247hacks.net",
     "orxhacks.com",
     "everyday.cf",
+    "nitro-"
 
 	
 ]
