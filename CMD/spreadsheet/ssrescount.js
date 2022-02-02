@@ -25,47 +25,60 @@ const { MessageActionRow, MessageButton } = require('discord.js');
 
 
 const config = require("../../config");
+const modid = config.ModID
+const adminid = config.AdminID
+const jrmod = config.jrmod
+const helper = config.helper
 const creds = require("./googlekey.json");
 //const doc = new GoogleSpreadsheet(config.spreadsheet);
 const doc = new GoogleSpreadsheet("1keR2ubqTVfkrkEuDTSAa5fbZm_U08gTNfE-75bUcVX4")
-module.exports.ssdmuser = async function(message,client,args) {
-    await ssdmuser(message,client,args).catch(error=>console.log(error));
+module.exports ={
+    name: 'ssrescount',
+    aliases: [ "sscount" ],
+    description: 'will give amount of response from spreadsheet',
+    usage: '`*ssrescount`',
+    example: '`*ssrescount`',
+    async execute(message, args) {
+        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+             // CODE GOES HERE 🡫 
+            await rescount(message).catch(error=>console.log(error));
+        }
+        else{
+            message.reply("You lack perms for this command")
+        }
+    }
 }
 
-var ssdmuser = async function(message,client,args) {
-    let failed = 0;
-    let SUCCESS = 0;
+
+var rescount = async function(message) {
     var resMsg = await message.channel.send('Getting info. It might take a minute');
     await doc.useServiceAccountAuth(creds);
     await doc.loadInfo();
     console.log(doc.title+" has been opened");
     const info = await doc.getInfo();
     const sheet = doc.sheetsByIndex[0];
-    n=48
+    //console.log(sheet)
+    n=sheet.rowCount
     console.log(n)
-    await sheet.loadCells('A1:D'+n).then(console.log("loaded cells"))
-    n=47
+    await sheet.loadCells('A1:A'+n).then(console.log("loaded cells"))
+    n=n-11
+    //i=sheet.rowCount
     while(n>1){
-        const discordID = sheet.getCell(n, 2).value;
+        const searcher = sheet.getCell(n, 0).value;
         //console.log(n);
         //console.log(searcher);
-        if(discordID!=null){
-            const User = client.users.cache.get(discordID); // Getting the user by ID.
-            if (User!=undefined) { // Checking if the user exists.
-                User.send("pls fill out this form https://forms.gle/1ANFCWsLUhNxHBfA9")
-                .catch(console.error);
-                SUCCESS=SUCCESS+1
-            } 
-            else {
-                failed=failed+1
-                console.log(n)
-            };
+        if(searcher!=null){
+            const embed = await new Discord.MessageEmbed()
+            .setTitle(`Event Signup`)
+            .setAuthor('React Bot', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+            .setColor(0x00FF00)
+            .setDescription('Number of people: ' + n)
+            message.channel.send({ embeds: [embed] });
+            resMsg.delete();
+            return;
         }
         else{
-            failed=failed+1
-            console.log(n)
+            n=n-1;
         }
-        n=n-1
     }
-    message.reply("success: "+ SUCCESS +"\nFailed: "+ failed)
 }

@@ -22,29 +22,29 @@ const client = new Client({
 const { MessageActionRow, MessageButton } = require('discord.js');
 const fs = require('fs');
 
-const file = require("../file.json");
+const file = require("../../file.json");
 
-const config = require("../config");
+const config = require("../../config");
 
-const accountage = require("./accountage");
+const accountage = require("../../CMD/modcommands/accountage");
 
 const close = require("./ticket/close");
 const rename = require("./ticket/rename");
 const add = require("./ticket/add");
 const stafflock = require("./ticket/stafflock");
 const remove =require("./ticket/remove")
-const rules =require("./rules/rules")
-const rescount=require("./spreadsheet/rescount")
-const numberinfo=require("./spreadsheet/numberinfo")
-const ssdmuser=require("./spreadsheet/DMuser")
-const ssrolegive=require("./spreadsheet/giveRoles")
-const transcript=require("../CMD/Modonly/transcript")
+const rules =require("../../CMD/modcommands/createrules")
+const rescount=require("../../CMD/spreadsheet/ssrescount")
+const numberinfo=require("../../CMD/spreadsheet/ssuserinfo")
+const ssdmuser=require("../DMuser")
+const ssrolegive=require("../../CMD/spreadsheet/ssgiverole")
+const transcript=require("../../CMD/modcommands/transcript")
 
 //const namechecker=require("./nameChecker")
 
-const games =require("../CMD/Fun/games")
-const CreateVoiceChat =require("../CMD/Modonly/createvoicechat")
-const index = require('../index');
+const games =require("../../CMD/fun/games")
+const CreateVoiceChat =require("../../CMD/modcommands/createvoicechat")
+const index = require('../../index');
 
 const youtubeKey = config.youtubeKey
 const youtubeUser = config.youtubeUser
@@ -61,6 +61,7 @@ module.exports ={
         }
         if(message.guild.id==="895674878508818472"){
             if(cmd==="game"){
+                //done
                 games.games(args,message,client);
             }
             if(message.author.name==="227490301688676354"){
@@ -79,6 +80,7 @@ module.exports ={
             }
         }
         if (cmd === "rm3"){
+            //done
             message.channel.send("https://cdn.discordapp.com/attachments/629695220065239064/844968694550626334/5aatpw.gif");
             message.delete();
         }
@@ -89,6 +91,7 @@ module.exports ={
             }
         }
         if  (cmd==="grmc") {
+            //done
             let row23 = new MessageActionRow()
                 .addComponents(new MessageButton()
                     .setStyle('LINK')
@@ -137,6 +140,7 @@ module.exports ={
                 CreateVoiceChat.deleteVoiceChat(message,client,args)
             }
             if(cmd==="similarity"){
+                //done
                 if(args[1]===null){
                     return
                 }
@@ -155,6 +159,7 @@ module.exports ={
                 transcript.transcript(message,client,args);
             }
             if(cmd==="event"){
+                //done
                 const creeperEmote = client.emojis.cache.get(`859806815332204555`);
                 const embed = new Discord.MessageEmbed()
                 .setTitle('Events Notifications')
@@ -164,6 +169,7 @@ module.exports ={
                 message.channel.send({ embeds: [embed] });
             }
             if(cmd==="event2"){
+                //done
                 const creeperEmote = client.emojis.cache.get(`859806815332204555`);
                 const embed = new Discord.MessageEmbed()
                 .setTitle('Giveaway Notifications')
@@ -173,9 +179,11 @@ module.exports ={
                 message.channel.send({ embeds: [embed] });
             }
             if(cmd==="mceventcount"){
+                //done
                 rescount.rescount(message,client);
             }
             if(cmd==="mcuserinfo"){
+                //done
                 numberinfo.ssuserinfo(message,client,args);
             }
             if(cmd==="mcdm"){
@@ -208,19 +216,23 @@ module.exports ={
                 return;
             }  
             if(cmd==="subupdate") {
+                //done
                 if(message.guild.id === "880560625166741544"){return};
                 getSubscribers(message,client);
             }
             if(cmd==='rm') {
+                //done
                 message.channel.send("RM is busy and does not check/rate clips");
                 message.delete().catch(error => {console.log(error)});
             }
             if (cmd ==="rm2") {
+                //done
                 message.channel.send("https://media.giphy.com/media/eiNLAAmHNZuy5nsKKq/giphy.gif");
                 message.delete().catch(error => {console.log(error)});
                 
             }
             if (cmd ==="dm"){
+                //done
                 var str = message.content
                 const mess = str.split(/>(.+)/)[1]
                 const mention = message.mentions.users.first();
@@ -238,6 +250,7 @@ module.exports ={
                 }
             }
             if(cmd === "dmrules"){
+                //done
                 let res = "an error happened."
                 let rule1="**1. Be Kind/Respectful to others.** \n> Don't be rude to other Users. You can make jokes but there is a fine line between banter and being mean. Don't be offensive towards someone's race, sexuality and gender…ect. treat them like people. Any homophobic/racist/sexist behavior will not be tolerated in this server." 
                 let rule2="**2. No Nonsense.** \n> Do not Spam, Swear, Flood channels with stuff such as long Copy pasted messages. Don't ping Riz if you require any sort of assistance feel free to open up a ticket in <#858354762855874560> or you may ping <@&696134129497931857> for any issue happening in the server!" 
@@ -265,13 +278,16 @@ module.exports ={
                 }
             }
             if (cmd ==="age"){
+                //done
                 accountage.accountage(args,message,client)
                 return;
             }
             if(cmd==="createrulestest"){
+                //done
                 rules.rules(message,client);
             }
             if(cmd==="createticket"){
+                //done
                 //const { MessageButton, MessageActionRow } = require("discord-buttons");
             
                 let btn = new MessageButton()
@@ -365,6 +381,7 @@ module.exports ={
 }
 
 const ping = async (message,client) => {
+    //done
     var resMsg = await message.channel.send('Ping is being appreciated...');
     const ping = (resMsg.createdTimestamp - message.createdTimestamp);
     //console.log(client.ws.ping);  
@@ -374,6 +391,7 @@ const ping = async (message,client) => {
 }
 
 const getSubscribers = async (message,client) => {
+    //done
     //return req.data;
     fetch("https://www.googleapis.com/youtube/v3/channels?part=statistics&id="+youtubeUser+"&key="+youtubeKey)
     .then(response => {

@@ -1,9 +1,8 @@
-
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 const fs = require('fs');
 const fileName = './file.json';
-const file = require("../../file.json");
+const file = require("../file.json");
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 

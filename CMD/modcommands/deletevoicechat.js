@@ -17,7 +17,11 @@ const client = new Client({
         Intents.FLAGS.DIRECT_MESSAGE_TYPING
     ],
 });
-
+const config = require("../../config");
+const modid = config.ModID
+const adminid = config.AdminID
+const jrmod = config.jrmod
+const helper = config.helper
 module.exports = {
     name: 'deletevoicechat',
     aliases: [ "deletevc" ],

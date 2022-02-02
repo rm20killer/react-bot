@@ -24,15 +24,15 @@ const client = new Client({
 const { MessageActionRow, MessageButton } = require('discord.js');
 
 
-const config = require("../../config");
-const creds = require("./googlekey.json");
+const config = require("../config");
+const creds = require("../CMD/spreadsheet/googlekey.json");
 //const doc = new GoogleSpreadsheet(config.spreadsheet);
 const doc = new GoogleSpreadsheet("1keR2ubqTVfkrkEuDTSAa5fbZm_U08gTNfE-75bUcVX4")
-module.exports.ssrolegive = async function(message,client,args) {
-    await ssrolegive(message,client,args).catch(error=>console.log(error));
+module.exports.ssdmuser = async function(message,client,args) {
+    await ssdmuser(message,client,args).catch(error=>console.log(error));
 }
 
-var ssrolegive = async function(message,client,args) {
+var ssdmuser = async function(message,client,args) {
     let failed = 0;
     let SUCCESS = 0;
     var resMsg = await message.channel.send('Getting info. It might take a minute');
@@ -40,43 +40,28 @@ var ssrolegive = async function(message,client,args) {
     await doc.loadInfo();
     console.log(doc.title+" has been opened");
     const info = await doc.getInfo();
-    const sheet = doc.sheetsByIndex[2];
+    const sheet = doc.sheetsByIndex[0];
     n=48
     console.log(n)
     await sheet.loadCells('A1:D'+n).then(console.log("loaded cells"))
-    n=9
-    while(n>0){ //39
+    n=47
+    while(n>1){
         const discordID = sheet.getCell(n, 2).value;
-        console.log(discordID)
         //console.log(n);
         //console.log(searcher);
         if(discordID!=null){
-            const User = message.guild.members.cache.get(discordID); // Getting the user by ID.
-            //const shadRole = User.roles.cache.find(role => role.name === 'Streamers');
+            const User = client.users.cache.get(discordID); // Getting the user by ID.
             if (User!=undefined) { // Checking if the user exists.
-                if(User.roles.cache.find(role => role.name === 'Streamers')){
-                    //message.reply("<@"+ discordID +"> is streamer skipping")
-                    //User.send("sorry, You cant take part in testing as your a streamer").catch(console.error);
-                    //failed=failed+1
-                    User.roles.add('895081132549369856') //895081132549369856 922126446066012231  
-                    .catch(console.error);
-                    SUCCESS=SUCCESS+1
-                }
-                else{
-                    //User.roles.add('895081132549369856') //895081132549369856 922126446066012231  
-                    //.catch(console.error);
-                    //SUCCESS=SUCCESS+1
-                    failed=failed+1
-                }
+                User.send("pls fill out this form https://forms.gle/1ANFCWsLUhNxHBfA9")
+                .catch(console.error);
+                SUCCESS=SUCCESS+1
             } 
             else {
-                message.reply("<@"+ discordID +"> failed to give role")
                 failed=failed+1
                 console.log(n)
             };
         }
         else{
-            message.reply(sheet.getCell(n, 2).value +" failed to give role")
             failed=failed+1
             console.log(n)
         }

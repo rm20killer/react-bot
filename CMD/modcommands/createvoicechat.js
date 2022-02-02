@@ -17,7 +17,11 @@ const client = new Client({
         Intents.FLAGS.DIRECT_MESSAGE_TYPING
     ],
 });
-
+const config = require("../../config");
+const modid = config.ModID
+const adminid = config.AdminID
+const jrmod = config.jrmod
+const helper = config.helper
 module.exports = {
     name: 'createvoicechat',
     aliases: [ "createvc" ],
@@ -25,15 +29,15 @@ module.exports = {
     usage: '`*createvc <number> [max]`',
     example: '`*createvc 5 2`',
     async execute(message, args) {
-        if(args[1]===null){
+        if(args[0]===null){
             return
         }
         message.reply("Creating channels")
         if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
             // CODE GOES HERE 🡫 
-            let num=parseInt(args[1])
-            if(args[2]){
-                let max=parseInt(args[2])
+            let num=parseInt(args[0])
+            if(args[1]){
+                let max=parseInt(args[1])
                 if(num){
                     for (var x = 1; x <= num; x++) {
                         createChannel(x,message,max)

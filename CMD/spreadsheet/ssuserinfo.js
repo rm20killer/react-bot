@@ -3,6 +3,9 @@ const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
+
+
+
 const client = new Client({ 
     intents: [
         Intents.FLAGS.GUILDS,
@@ -25,16 +28,34 @@ const { MessageActionRow, MessageButton } = require('discord.js');
 
 
 const config = require("../../config");
+const modid = config.ModID
+const adminid = config.AdminID
+const jrmod = config.jrmod
+const helper = config.helper
 const creds = require("./googlekey.json");
 //const doc = new GoogleSpreadsheet(config.spreadsheet);
 const doc = new GoogleSpreadsheet("1keR2ubqTVfkrkEuDTSAa5fbZm_U08gTNfE-75bUcVX4")
-module.exports.ssuserinfo = async function(message,client,args) {
-    await ssuserinfo(message,client,args).catch(error=>console.log(error));
+
+module.exports ={
+    name: 'ssuserinfo',
+    aliases: [ "ssuser" ],
+    description: 'will get info from spreadsheet',
+    usage: '`*ssuserinfo`',
+    example: '`*ssuserinfo`',
+    async execute(message, args) {
+        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+            // CODE GOES HERE 🡫 
+            await ssuserinfo(message,args).catch(error=>console.log(error));
+        }
+        else{
+            message.reply("You lack perms for this command")
+        }
+    }
 }
 
 var ssuserinfo = async function(message,client,args) {
     if(args===null){return(message.reply("no number to look up"))}
-    let number=args[1]
+    let number=args[0]
     if(number==="1"){
         return(message.reply("Can not use `1` as a input"));
     }

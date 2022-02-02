@@ -18,7 +18,11 @@ const client = new Client({
         Intents.FLAGS.DIRECT_MESSAGE_TYPING
     ],
 });
-
+const config = require("../../config");
+const modid = config.ModID
+const adminid = config.AdminID
+const jrmod = config.jrmod
+const helper = config.helper
 const defaultApplications = {
     youtube: '880218394199220334', // Note : First package to include the new YouTube Together version, any other package offering it will be clearly inspired by it
     youtubedev: '880218832743055411', // Note : First package to include the new YouTube Together development version, any other package offering it will be clearly inspired by it
@@ -35,14 +39,16 @@ const defaultApplications = {
 
 module.exports = {
     name: 'games',
-    aliases: [ "activty" ],
+    aliases: [ "activty", "game" ],
     description: 'will remove user to ticket',
     usage: '`*games <game>`',
     example: '`*games chess`',
     async execute(message, args) {
         if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)||message.member.roles.cache.find(r=>r.id === "747863600994975744")||message.member.roles.cache.find(r=>r.id === "838238288216588358")){
+            return message.reply("Games are currently broken")
+            
             // CODE GOES HERE 🡫 
-            let setgame = args[1]
+            let setgame = args[0]
             let applicationID = ""
                 if(setgame==="youtube"){
                     applicationID = "755600276941176913"
