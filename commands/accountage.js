@@ -10,12 +10,17 @@ const modid = config.ModID
 const adminid = config.AdminID
 
 module.exports ={
-    accountage: function(args,message,client){ 
-        const member = message.mentions.members.first();
-        if (!member){
-            message.reply("no mention")
-            return;
+    accountage: async function(args,message,client){ 
+        let member = message.mentions.members.first();
+        if (!member) {
+            let id = args[1]
+            try {
+                member = await message.guild.members.fetch(id);
+            } catch {
+                return message.reply(`I can't find that member`);
+            }
         }
+        if (!member) { return message.reply(`I can't find that member`) }
         else{
             let accage = member.user.createdTimestamp
             let joindate = member.joinedTimestamp
