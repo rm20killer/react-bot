@@ -2,5 +2,5 @@ config.js
 
 node_modules/
 
-commands/spreadsheet/googlekey.json
+until/googlekey.json
 file.json
