@@ -8,18 +8,18 @@ const jrmod = config.jrmod
 const helper = config.helper
 module.exports = {
     name: 'rm2',
-    aliases: [ "rm2" ],
+    aliases: ["rm2"],
     description: 'rm2',
     usage: '`*rm2`',
     example: '`*rm2`',
     async execute(message, args) {
-        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+        if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 
             message.channel.send("https://media.giphy.com/media/eiNLAAmHNZuy5nsKKq/giphy.gif");
-            message.delete().catch(error => {console.log(error)});
+            message.delete().catch(error => { console.log(error) });
         }
-       else{
-           message.reply("You lack perms for this command")
-       }
+        else {
+            message.reply("You lack perms for this command")
+        }
     }
 }

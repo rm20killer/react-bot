@@ -2,8 +2,8 @@ const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-module.exports={
-    streamerrole: function(messa,message,client){
+module.exports = {
+    streamerrole: function (messa, message, client) {
         const sregex = /(how|where|want).+(streamer|content creator|youtuber).+(role|rank)/i;
         const sstr = messa;
         let mx;

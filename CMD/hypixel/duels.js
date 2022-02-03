@@ -5,14 +5,14 @@ const commaNumber = require('comma-number');
 
 module.exports = {
     name: 'duels',
-    aliases: [ "d" ],
+    aliases: ["d"],
     description: 'will show you the Duels stats of a player',
     usage: '`h*duels [Classic/UHC/Skywars/Bridge/Sumo/OP/Combo] [IGN]`',
     example: '`h*duels classic RM20_`',
     async execute(message, args) {
         await message.channel.sendTyping()
 
-        if(!args[0]) { // if someone didn't type in gamemode
+        if (!args[0]) { // if someone didn't type in gamemode
             const embed = new Discord.MessageEmbed(base)
                 .setAuthor('Help', 'https://hypixel.net/styles/hypixel-v2/images/game-icons/Duels-64.png')
                 .addField('h*duels', '`h*duels` lets you see duels stats about a player.')
@@ -53,9 +53,9 @@ module.exports = {
                     message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
                 } else {
                     message.reply("Error")
-                }       
+                }
             });
-        } 
+        }
 
         if (args[0] == 'uhc') {
             if (!args[1]) { // if someone didn't type in ign
@@ -88,8 +88,8 @@ module.exports = {
                     message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
                 } else {
                     message.reply("Error")
-                }       
-        });
+                }
+            });
         }
 
         if (args[0] == 'skywars' || args[0] == 'sw') {
@@ -124,8 +124,8 @@ module.exports = {
                     message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
                 } else {
                     message.reply("Error")
-                }       
-        });
+                }
+            });
         }
 
         if (args[0] == 'bridge') {
@@ -160,8 +160,8 @@ module.exports = {
                     message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
                 } else {
                     message.reply("Error")
-                }       
-        });
+                }
+            });
         }
 
         if (args[0] == 'sumo') {
@@ -196,8 +196,8 @@ module.exports = {
                     message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
                 } else {
                     message.reply("Error")
-                }       
-        });
+                }
+            });
         }
 
         if (args[0] == 'op') {
@@ -232,8 +232,8 @@ module.exports = {
                     message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
                 } else {
                     message.reply("Error")
-                }       
-        });
+                }
+            });
         }
 
         if (args[0] == 'combo') {
@@ -266,8 +266,8 @@ module.exports = {
                     message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
                 } else {
                     message.reply("Error")
-                }       
-        });
+                }
+            });
         }
 
     }

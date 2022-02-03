@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
-const client = new Client({ 
+const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MEMBERS,
@@ -24,44 +24,44 @@ const jrmod = config.jrmod
 const helper = config.helper
 module.exports = {
     name: 'createvoicechat',
-    aliases: [ "createvc" ],
+    aliases: ["createvc"],
     description: 'will create voice chats',
     usage: '`*createvc <number> [max]`',
     example: '`*createvc 5 2`',
     async execute(message, args) {
-        if(args[0]===null){
+        if (args[0] === null) {
             return
         }
         message.reply("Creating channels")
-        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+        if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 
-            let num=parseInt(args[0])
-            if(args[1]){
-                let max=parseInt(args[1])
-                if(num){
+            let num = parseInt(args[0])
+            if (args[1]) {
+                let max = parseInt(args[1])
+                if (num) {
                     for (var x = 1; x <= num; x++) {
-                        createChannel(x,message,max)
+                        createChannel(x, message, max)
                     }
                 }
             }
-            else{
-                if(num){
+            else {
+                if (num) {
                     for (var x = 1; x <= num; x++) {
-                        createChannel(x,message)
+                        createChannel(x, message)
                     }
                 }
             }
             message.reply(num + "   channels created")
         }
-        else{
+        else {
             message.reply("You lack perms for this command")
         }
     }
 }
 
-async function createChannel (x,message){
-    message.guild.channels.create(`7663 party-${x}`,{
-        type:"GUILD_VOICE",
+async function createChannel(x, message) {
+    message.guild.channels.create(`7663 party-${x}`, {
+        type: "GUILD_VOICE",
         bitrate: 8000
     }).then(async c => {
         let parent = "934125042348986368"
@@ -70,9 +70,9 @@ async function createChannel (x,message){
     })
 }
 
-async function createChannel (x,message,max){
-    message.guild.channels.create(`7663 party-${x}`,{
-        type:"GUILD_VOICE",
+async function createChannel(x, message, max) {
+    message.guild.channels.create(`7663 party-${x}`, {
+        type: "GUILD_VOICE",
         bitrate: 8000,
         userLimit: max
     }).then(async c => {

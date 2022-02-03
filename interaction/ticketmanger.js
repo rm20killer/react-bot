@@ -1,7 +1,7 @@
 
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
-const client = new Client({ 
+const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MEMBERS,
@@ -21,49 +21,48 @@ const client = new Client({
 
 const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
 module.exports = {
-    ticketmanger: async function(interaction,client){   
+    ticketmanger: async function (interaction, client) {
         let parent = "858354610367627284"
-        if(interaction.guild.id==="898628981958537266"){
+        if (interaction.guild.id === "898628981958537266") {
             parent = "898628983271337997"
         }
         let member = interaction.user
         //console.log(member)
         let limit = 0
         const id = interaction.customId;
-        if (id==="Player"){ //user report
+        if (id === "Player") { //user report
             var ids = "User Report"
         }
-        if (id==="BanAppeal"){ //mute Appeal
+        if (id === "BanAppeal") { //mute Appeal
             var ids = "Mute Appeal"
         }
-        if (id==="General"){ //General
+        if (id === "General") { //General
             var ids = "General"
         }
         let mess = await interaction.reply(`Creating a ${ids} ticket`);
         interaction.guild.channels.cache.forEach(c => {
             //console.log("interaction got")
-            try
-            {
+            try {
                 var channelParent = c.parent.id
             }
-            catch{
+            catch {
                 var channelParent = 1
             }
 
-            if (channelParent === parent) { 
+            if (channelParent === parent) {
                 if (c.topic === member.id) {
                     limit++
                 }
             }
         })
-        
+
         if (limit === 1) {
             //mess.delete();
             interaction.deleteReply();
-            return member.send(member.tag+' , You have reached the maximum amount of tickets opened').catch(error => {console.log(error)});
-        } 
+            return member.send(member.tag + ' , You have reached the maximum amount of tickets opened').catch(error => { console.log(error) });
+        }
         else {
-            createChannel(id,interaction,member,parent);
+            createChannel(id, interaction, member, parent);
             interaction.deleteReply();
             //mess.delete();
         }
@@ -71,17 +70,17 @@ module.exports = {
 }
 
 
-async function createChannel(id,interaction,member,parent) {
-    if (id==="Player"){ //user report
-        var format='```diff\n- Discord ID:\n- Issue:```'
+async function createChannel(id, interaction, member, parent) {
+    if (id === "Player") { //user report
+        var format = '```diff\n- Discord ID:\n- Issue:```'
         var ids = "User Report"
     }
-    if (id==="BanAppeal"){ //mute Appeal
-        var format='```diff\n- Mute Reason:\n- Appeal:```'
+    if (id === "BanAppeal") { //mute Appeal
+        var format = '```diff\n- Mute Reason:\n- Appeal:```'
         var ids = "Mute Appeal"
     }
-    if (id==="General"){ //General
-        var format='```diff\n- Question:```'
+    if (id === "General") { //General
+        var format = '```diff\n- Question:```'
         var ids = "General"
     }
     let memberrole = "629695220065239061"
@@ -89,7 +88,7 @@ async function createChannel(id,interaction,member,parent) {
     let helperrole = "884656687372464179"
     let muteappeal = "914952404083036170"
     //let jrmodrole = "901136474068619275"
-    if(interaction.guild.id==="898628981958537266"){
+    if (interaction.guild.id === "898628981958537266") {
         memberrole = "898628981958537275"
         modrole = "898628981971103847"
     }
@@ -112,13 +111,13 @@ async function createChannel(id,interaction,member,parent) {
             VIEW_CHANNEL: true,
             SEND_MESSAGES: true
         }).catch(err => console.log(err));
-        if (id==="BanAppeal"){ //mute Appeal
+        if (id === "BanAppeal") { //mute Appeal
             await c.send(`<@&${muteappeal}>`).then(msg => msg.delete())
         }
-        else{
+        else {
             await c.send(`<@&${modrole}>`).then(msg => msg.delete())
             await c.send(`<@&${helperrole}>`).then(msg => msg.delete())
-        }                                         
+        }
 
         const embed = new Discord.MessageEmbed()
             .setDescription('Thank you for creating a ticket! Our support team will be with you shortly.')

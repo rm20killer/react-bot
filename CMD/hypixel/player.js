@@ -5,7 +5,7 @@ const commaNumber = require('comma-number');;
 
 module.exports = {
     name: 'player',
-    aliases: [ "p", "hypixel", "h" ],
+    aliases: ["p", "hypixel", "h"],
     description: 'will show you the Hypixel stats of a player',
     usage: '`h!player [IGN]`',
     example: '`h*player RM20_`',
@@ -20,7 +20,7 @@ module.exports = {
         }
 
         var player = args[0];
-        
+
 
         hypixel.getPlayer(player, { guild: true }).then(async (player) => {
             if (!player.isOnline) {
@@ -42,7 +42,7 @@ module.exports = {
             }
 
             const embed = new Discord.MessageEmbed(base)
-                .setAuthor('Player Stats', 'https://i.imgur.com/tRe29vU.jpeg')              
+                .setAuthor('Player Stats', 'https://i.imgur.com/tRe29vU.jpeg')
                 .setTitle(`[${player.rank}] ${player.nickname}`)
                 .setThumbnail(`https://crafatar.com/avatars/${player.uuid}?overlay&size=256`)
                 .addField('Rank', `\`${playerRank}\``, true)
@@ -57,11 +57,11 @@ module.exports = {
                 embed.setTitle(`[${player.rank}] ${player.nickname} [${player.guild.tag}]`)
                 embed.addField('Guild', `\`${player.guild.name} [${player.guild.tag}]\``)
             }
-            
-                embed.addField('Main MC Version', `\`${playerMinecraftVersion}\``, true)
-                embed.addField('First Login', `<t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R>`)
-                embed.addField('Last Login', `<t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>`)
-                embed.addField('Status', `\`${playerIsOnline}\``, true)
+
+            embed.addField('Main MC Version', `\`${playerMinecraftVersion}\``, true)
+            embed.addField('First Login', `<t:${Math.ceil(player.firstLoginTimestamp / 1000)}:R>`)
+            embed.addField('Last Login', `<t:${Math.ceil(player.lastLoginTimestamp / 1000)}:R>`)
+            embed.addField('Status', `\`${playerIsOnline}\``, true)
 
             if (player.rank.includes('MVP+')) {
                 if (player.plusColor == null) {
@@ -87,7 +87,7 @@ module.exports = {
                 if (args[0]) {
                     message.reply("Error")
                 }
-            }       
+            }
         });
     }
 }

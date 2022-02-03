@@ -6,7 +6,7 @@ const commaNumber = require('comma-number');
 
 module.exports = {
     name: 'murdermystery',
-    aliases: [ "mm", "murder", "mystery" ],
+    aliases: ["mm", "murder", "mystery"],
     description: 'will show you the Murder Mystery stats of a player',
     usage: '`h*murdermystery [IGN]`',
     example: '`h*murdermystery RM20_`',
@@ -38,19 +38,19 @@ module.exports = {
             message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
 
         }).catch(e => { // error messages
-                if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
-                    const player404 = new Discord.MessageEmbed(base)
-                        .setAuthor('Error', 'https://i.imgur.com/OuoECfX.jpeg')
-                        .setDescription('I could not find that player in the API. Check spelling and name history.')
-                    message.reply({ embeds: [player404], allowedMentions: { repliedUser: false } })
-                } else if (e.message === errors.PLAYER_HAS_NEVER_LOGGED) {
-                    const neverLogged = new Discord.MessageEmbed(base)
-                        .setAuthor('Error', 'https://i.imgur.com/OuoECfX.jpeg')
-                        .setDescription('That player has never logged into Hypixel.')
-                    message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
-                } else {
-                    message.reply("Error")
-                }       
+            if (e.message === errors.PLAYER_DOES_NOT_EXIST) {
+                const player404 = new Discord.MessageEmbed(base)
+                    .setAuthor('Error', 'https://i.imgur.com/OuoECfX.jpeg')
+                    .setDescription('I could not find that player in the API. Check spelling and name history.')
+                message.reply({ embeds: [player404], allowedMentions: { repliedUser: false } })
+            } else if (e.message === errors.PLAYER_HAS_NEVER_LOGGED) {
+                const neverLogged = new Discord.MessageEmbed(base)
+                    .setAuthor('Error', 'https://i.imgur.com/OuoECfX.jpeg')
+                    .setDescription('That player has never logged into Hypixel.')
+                message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
+            } else {
+                message.reply("Error")
+            }
         });
     }
 }

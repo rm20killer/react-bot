@@ -3,7 +3,7 @@
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 const fs = require('fs');
-const client = new Client({ 
+const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MEMBERS,
@@ -19,7 +19,7 @@ const client = new Client({
         Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
         Intents.FLAGS.DIRECT_MESSAGE_TYPING
     ],
-    partials:[
+    partials: [
         `CHANNEL`,
         `MESSAGE`
     ],
@@ -47,8 +47,8 @@ const Hprefixl = config.Hprefixl
 client.commands = new Discord.Collection();
 const commandFolders = fs.readdirSync('./CMD')
 for (const folder of commandFolders) {
-	const commandFiles = fs.readdirSync(`./CMD/${folder}`).filter(file => file.endsWith('.js'));
-	for (const file of commandFiles) {
+    const commandFiles = fs.readdirSync(`./CMD/${folder}`).filter(file => file.endsWith('.js'));
+    for (const file of commandFiles) {
         const command = require(`./CMD/${folder}/${file}`);
         client.commands.set(command.name, command);
     }
@@ -73,7 +73,7 @@ const table = require('./AutoMod/tablechecker')
 
 //const detector = require('./commands/others/detector')
 const perspective = require('./AutoMod/perspective.js');
-const ticketmanger= require('./interaction/ticketmanger');
+const ticketmanger = require('./interaction/ticketmanger');
 const pingriz = require('./AutoMod/pingriz');
 const slashcommand = require('./interaction/slashcommand');
 const selectmenu = require('./interaction/selectmenu');
@@ -81,23 +81,29 @@ const contextmenu = require('./interaction/contextmenu');
 const button = require('./interaction/button')
 
 //start 
-client.on("ready", async () =>{
+client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setActivity(`your clips`, { type: "WATCHING"});
+    client.user.setActivity(`your clips`, { type: "WATCHING" });
     //client.user.setPresence({ activity: [{ name: 'Testing discord.js v13' }], status: 'Online', type: "WATCHING" })
     //console.log(    client.api.applications(client.user.id).commands.get())
-    client.api.applications(client.user.id).commands.post({data: {
-        name: "Report Message",
-        type: 3
-    }})
-    client.api.applications(client.user.id).commands.post({data: {
-        name: "Ticket Ban",
-        type: 2
-    }})
-    client.api.applications(client.user.id).commands.post({data: {
-        name: "Streamer Role",
-        type: 2
-    }})
+    client.api.applications(client.user.id).commands.post({
+        data: {
+            name: "Report Message",
+            type: 3
+        }
+    })
+    client.api.applications(client.user.id).commands.post({
+        data: {
+            name: "Ticket Ban",
+            type: 2
+        }
+    })
+    client.api.applications(client.user.id).commands.post({
+        data: {
+            name: "Streamer Role",
+            type: 2
+        }
+    })
     const permissions = [
         {
             id: '696134129497931857',
@@ -135,116 +141,115 @@ client.on("guildMemberAdd", async member => {
 
 client.on('messageCreate', async message => {
     //console.log(message)
-    if(message.guild === null) {
+    if (message.guild === null) {
         //console.log(message)
         //dm checker
-        dmchecker.dmchecker(message,client);
+        dmchecker.dmchecker(message, client);
         return;
     }
 
-    try
-    {
+    try {
         var channelParent = message.channel.parent.id
         var channelparname = message.channel.parent.name
     }
-    catch{
+    catch {
         var channelParent = null
-        
+
     }
-    try{
+    try {
         var role = message.member.roles.cache
     }
-    catch{
+    catch {
         var role = null
     }
-    if (message.guild.id === "629695220065239061"||message.guild.id==="898628981958537266") { 
-        if(role != null){
-            if (message.member.roles.cache.find(r=>r.id === "712512117999271966")){
-                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+    if (message.guild.id === "629695220065239061" || message.guild.id === "898628981958537266") {
+        if (role != null) {
+            if (message.member.roles.cache.find(r => r.id === "712512117999271966")) {
+                if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
                 }
-                else{
-                    if (channelParent !='858354610367627284'){
-                        message.delete().catch(error => {console.log(error)});
+                else {
+                    if (channelParent != '858354610367627284') {
+                        message.delete().catch(error => { console.log(error) });
                     }
                 }
             }
         }
-        if(message.author.id === client.user.id) return;
-        if (message.channel.id==='629695352454250508') {
+        if (message.author.id === client.user.id) return;
+        if (message.channel.id === '629695352454250508') {
             const channel = client.channels.cache.find(channel => channel.id === "707304184524832879");
             channel.send("Reminder: Publish message in <#629695352454250508>");
-            
+
         }
-        
-        if (channelparname =='────💬 chatting 💬────'||channelparname=='────Bot commands────'||channelparname=='────🛠Support🛠────'||channelparname=="────Voice Channels────") {
+
+        if (channelparname == '────💬 chatting 💬────' || channelparname == '────Bot commands────' || channelparname == '────🛠Support🛠────' || channelparname == "────Voice Channels────") {
             const messa = message.content.toLowerCase();
             //anti maleware
-            antiw.antiworm(messa,message,client);
+            antiw.antiworm(messa, message, client);
             //ping checker
-            pingriz.pingriz(messa,message,client);
-    
+            pingriz.pingriz(messa, message, client);
+
             //FAQbot but Submit clips
-            submitclip.submitclip(messa,message,client);
+            submitclip.submitclip(messa, message, client);
             //FAQbot but Streamer role
-            streamerrole.streamerrole(messa,message,client);
-            if(messa.includes("i am")){
+            streamerrole.streamerrole(messa, message, client);
+            if (messa.includes("i am")) {
                 const mess = messa.split(/i am(.+)/)[1]
-                if(mess===undefined){return};
+                if (mess === undefined) { return };
                 //message.reply("Hi,"+ mess +" I am React Bot")
             }
-            else if(messa.includes("i'm")){
+            else if (messa.includes("i'm")) {
                 const mess = messa.split(/i'm(.+)/)[1]
-                if(mess===undefined){return};
+                if (mess === undefined) { return };
                 //message.reply("Hi,"+ mess +" I'm React Bot")
             }
-        }    
-        if(message.channel.id === "886864421140447232"){
+        }
+        if (message.channel.id === "886864421140447232") {
             const messa = message.content.toLowerCase();
-            if(messa.startsWith("thred")){
-                
+            if (messa.startsWith("thred")) {
+
             }
-            else{
-                if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+            else {
+                if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
 
                 }
-                else{
-                    message.delete().catch(error => {console.log(error)});
+                else {
+                    message.delete().catch(error => { console.log(error) });
                 }
             }
         }
     }
     let attachments = Array.from(message.attachments);
-    let attachmentss = attachments[0]; 
+    let attachmentss = attachments[0];
     if (attachmentss) {
         const attachment = attachmentss[1]
         //console.log(attachment[1])
-        attachmentD.attachmentexe(attachment,message,client);
-        if(channelParent==="906533207812476988"){
-            attachmentD.imagechecker(attachment,message,client);
+        attachmentD.attachmentexe(attachment, message, client);
+        if (channelParent === "906533207812476988") {
+            attachmentD.imagechecker(attachment, message, client);
         }
     }
-    if(channelparname!='────🛠Support🛠────'){
-        if(channelparname!='──────🚨 mods 🚨──────'){
+    if (channelparname != '────🛠Support🛠────') {
+        if (channelparname != '──────🚨 mods 🚨──────') {
             var regexp = /[a-zA-Z]+\s+[a-zA-Z]+/g;
             if (regexp.test(message.content)) {
-            // at least 2 words consisting of letters
-            perspective.analyzeText(message.content,message,client).catch(error => {console.log(error)});
+                // at least 2 words consisting of letters
+                perspective.analyzeText(message.content, message, client).catch(error => { console.log(error) });
             }
         }
     }
-    
+
     //detector.detector(client,message,users)
     ////////////////////////////////////////////////
     //commands
-    table.table(client,message);
-    if(message.content.startsWith(prefixl)){
+    table.table(client, message);
+    if (message.content.startsWith(prefixl)) {
 
         const args = message.content.slice(prefixl.length).trim().split(/ +/);
         const commandName = args.shift().toLowerCase();
-    
+
         const command = client.commands.get(commandName)
             || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
-    
+
         if (!command) return;
         try {
             command.execute(message, args, client);
@@ -261,14 +266,14 @@ client.on('messageCreate', async message => {
 
 ////////////////////////////////////////////////
 // roles
-client.on('guildMemberUpdate', async function(oldMember, newMember){
-    if(newMember.guild.id!="629695220065239061"){
+client.on('guildMemberUpdate', async function (oldMember, newMember) {
+    if (newMember.guild.id != "629695220065239061") {
         return;
     }
-    if(newMember.guild.id==="629695220065239061"){
-        rolechecker.rolecheck(oldMember,newMember,client);
+    if (newMember.guild.id === "629695220065239061") {
+        rolechecker.rolecheck(oldMember, newMember, client);
     }
-`
+    `
 if (!shadRole && shasRole) {
     const boostedUsers = newMember.guild.members.cache.array().filter(member => member.roles.cache.find(role => role.name === 'Streamers'));
     console.log(boostedUsers.length); // how many members are boosted
@@ -282,8 +287,8 @@ if (!shadRole && shasRole) {
 ////////////////////////////////////////////////
 // buttons
 client.on('interactionCreate', async interaction => {
-    if(!interaction.isButton()) return;
-    button.button(interaction,client).catch(error => {console.log(error)});
+    if (!interaction.isButton()) return;
+    button.button(interaction, client).catch(error => { console.log(error) });
 });
 
 
@@ -291,38 +296,38 @@ client.on('interactionCreate', async interaction => {
 // slash commands
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
-    slashcommand.slashcommand(interaction,client).catch(error => {console.log(error)});
+    slashcommand.slashcommand(interaction, client).catch(error => { console.log(error) });
 });
 //select menu
 client.on('interactionCreate', async interaction => {
     if (!interaction.isSelectMenu()) return;
-    selectmenu.selectmenu(interaction,client).catch(error => {console.log(error)});
+    selectmenu.selectmenu(interaction, client).catch(error => { console.log(error) });
 });
 //context menu
 client.on('interactionCreate', async interaction => {
-	if (!interaction.isContextMenu()) return;
-    contextmenu.contextmenu(interaction,client).catch(error => {console.log(error)});
+    if (!interaction.isContextMenu()) return;
+    contextmenu.contextmenu(interaction, client).catch(error => { console.log(error) });
 });
 
 client.on('messageUpdate', (oldMessage, newMessage) => { // Old message may be undefined
     if (!oldMessage.author) return;
-    if(oldMessage.channel.id === "886864421140447232"){
+    if (oldMessage.channel.id === "886864421140447232") {
         const messa = newMessage.content.toLowerCase();
-        if(messa.startsWith("thred")){
-            
+        if (messa.startsWith("thred")) {
+
         }
-        else{
+        else {
             //newMessage.delete().catch(error => {console.log(error)});
-            if(newMessage.member.roles.cache.find(r=>r.name === modid)||newMessage.member.roles.cache.find(r=>r.name === adminid)){
+            if (newMessage.member.roles.cache.find(r => r.name === modid) || newMessage.member.roles.cache.find(r => r.name === adminid)) {
 
             }
-            else{
-                newMessage.delete().catch(error => {console.log(error)});
+            else {
+                newMessage.delete().catch(error => { console.log(error) });
             }
         }
     }
 
- })
+})
 
 // client.login(process.env.token);
 client.login(config.BotToken);

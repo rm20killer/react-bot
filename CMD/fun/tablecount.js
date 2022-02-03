@@ -5,7 +5,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const file = require("../../file.json");
 module.exports = {
     name: 'tablecount',
-    aliases: [ "tc" ],
+    aliases: ["tc"],
     description: 'will show how many tables been flipped',
     usage: '`*tablecount`',
     example: '`*tablecount`',

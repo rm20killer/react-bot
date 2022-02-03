@@ -5,7 +5,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const file = require("../../file.json");
 module.exports = {
     name: 'ping',
-    aliases: [ "pong" ],
+    aliases: ["pong"],
     description: 'will show how many tables been flipped',
     usage: '`*ping`',
     example: '`*ping`',
@@ -13,7 +13,7 @@ module.exports = {
         var resMsg = await message.channel.send('Ping is being appreciated...');
         const ping = (resMsg.createdTimestamp - message.createdTimestamp);
         //console.log(client.ws.ping);  
-        resMsg.edit("Ping: " + ping +" ms");
+        resMsg.edit("Ping: " + ping + " ms");
         //message.reply('pong, ' + `${Date.now() - message.createdTimestamp}` + ' ms');
         return;
     }
@@ -23,7 +23,7 @@ const ping = async (message) => {
     var resMsg = await message.channel.send('Ping is being appreciated...');
     const ping = (resMsg.createdTimestamp - message.createdTimestamp);
     //console.log(client.ws.ping);  
-    resMsg.edit("Ping: " + ping +" ms");
+    resMsg.edit("Ping: " + ping + " ms");
     //message.reply('pong, ' + `${Date.now() - message.createdTimestamp}` + ' ms');
     return;
 }

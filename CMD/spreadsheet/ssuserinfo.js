@@ -6,7 +6,7 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
 
 
 
-const client = new Client({ 
+const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MEMBERS,
@@ -36,60 +36,60 @@ const creds = require("./googlekey.json");
 //const doc = new GoogleSpreadsheet(config.spreadsheet);
 const doc = new GoogleSpreadsheet("1keR2ubqTVfkrkEuDTSAa5fbZm_U08gTNfE-75bUcVX4")
 
-module.exports ={
+module.exports = {
     name: 'ssuserinfo',
-    aliases: [ "ssuser" ],
+    aliases: ["ssuser"],
     description: 'will get info from spreadsheet',
     usage: '`*ssuserinfo`',
     example: '`*ssuserinfo`',
     async execute(message, args) {
-        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+        if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 
-            await ssuserinfo(message,args).catch(error=>console.log(error));
+            await ssuserinfo(message, args).catch(error => console.log(error));
         }
-        else{
+        else {
             message.reply("You lack perms for this command")
         }
     }
 }
 
-var ssuserinfo = async function(message,client,args) {
-    if(args===null){return(message.reply("no number to look up"))}
-    let number=args[0]
-    if(number==="1"){
-        return(message.reply("Can not use `1` as a input"));
+var ssuserinfo = async function (message, client, args) {
+    if (args === null) { return (message.reply("no number to look up")) }
+    let number = args[0]
+    if (number === "1") {
+        return (message.reply("Can not use `1` as a input"));
     }
-    testnum=number-1
+    testnum = number - 1
     var resMsg = await message.channel.send('Getting info. It might take a minute');
     await doc.useServiceAccountAuth(creds);
     await doc.loadInfo();
-    console.log(doc.title+" has been opened");
+    console.log(doc.title + " has been opened");
     const info = await doc.getInfo();
     const sheet = doc.sheetsByIndex[0];
     //console.log(sheet)
     console.log(number)
-    await sheet.loadCells('A'+number+':F'+number).then(console.log("loaded cells")).catch(error=>console.log(error))
+    await sheet.loadCells('A' + number + ':F' + number).then(console.log("loaded cells")).catch(error => console.log(error))
     //i=sheet.rowCount
     const discordname = sheet.getCell(testnum, 1).value;
     const discordID = sheet.getCell(testnum, 2).value;
     const Javaorbedrock = sheet.getCell(testnum, 3).value;
     let mcingo = sheet.getCell(testnum, 4).value;
     let mcBedrockingo = sheet.getCell(testnum, 5).value;
-    if(mcingo === null){
+    if (mcingo === null) {
         mcingo = "{blank}"
     }
-    if(mcBedrockingo === null){
+    if (mcBedrockingo === null) {
         mcBedrockingo = "{blank}"
     }
     const embed = await new Discord.MessageEmbed()
-    .setTitle(`Event Signup info for` + number)
-    .setAuthor('React Bot', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-    .setColor(0x00FF00)
-    .addField("discord name:",discordname)
-    .addField("discord ID:",discordID)
-    .addField("Java or bedrock:",Javaorbedrock)
-    .addField("Java IGN:",mcingo)
-    .addField("bedrock IGN:",mcBedrockingo)
+        .setTitle(`Event Signup info for` + number)
+        .setAuthor('React Bot', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+        .setColor(0x00FF00)
+        .addField("discord name:", discordname)
+        .addField("discord ID:", discordID)
+        .addField("Java or bedrock:", Javaorbedrock)
+        .addField("Java IGN:", mcingo)
+        .addField("bedrock IGN:", mcBedrockingo)
     message.channel.send({ embeds: [embed] });
     resMsg.delete();
 }

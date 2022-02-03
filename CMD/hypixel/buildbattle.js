@@ -5,7 +5,7 @@ const commaNumber = require('comma-number');
 
 module.exports = {
     name: 'buildbattle',
-    aliases: [ "bb", "build" ],
+    aliases: ["bb", "build"],
     description: 'will show you the Build Battle stats of a player',
     usage: '`h*buildbattle [IGN]`',
     example: '`h*buildbattle RM20_`',
@@ -51,7 +51,7 @@ module.exports = {
                 message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
             } else {
                 message.reply("Error")
-            }       
+            }
         });
     }
 }

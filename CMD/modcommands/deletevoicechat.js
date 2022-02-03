@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
-const client = new Client({ 
+const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MEMBERS,
@@ -24,24 +24,23 @@ const jrmod = config.jrmod
 const helper = config.helper
 module.exports = {
     name: 'deletevoicechat',
-    aliases: [ "deletevc" ],
+    aliases: ["deletevc"],
     description: 'will create voice chats',
     usage: '`*deletevoicechat`',
     example: '`*deletevoicechat`',
     async execute(message, args) {
-        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+        if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 
             message.guild.channels.cache.forEach(c => {
                 //console.log("interaction got")
-                try
-                {
+                try {
                     var channelParent = c.parent.id
                 }
-                catch{
+                catch {
                     var channelParent = 1
                 }
-    
-                if (channelParent === "934125042348986368") { 
+
+                if (channelParent === "934125042348986368") {
                     if (c.name.startsWith("7663 party-")) {
                         c.delete();
                     }
@@ -49,7 +48,7 @@ module.exports = {
             })
             message.reply("channels deleted")
         }
-        else{
+        else {
             message.reply("You lack perms for this command")
         }
     }

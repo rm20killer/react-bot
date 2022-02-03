@@ -9,17 +9,17 @@ const jrmod = config.jrmod
 const helper = config.helper
 module.exports = {
     name: 'createticket',
-    aliases: [ "tcreate" ],
+    aliases: ["tcreate"],
     description: 'create ticket menu',
     usage: '`*createticket`',
     example: '`*createticket`',
     async execute(message, args) {
-        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+        if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 
             let btn = new MessageButton()
-            .setStyle('SECONDARY')
-            .setLabel('General Support')
-            .setCustomId('General');
+                .setStyle('SECONDARY')
+                .setLabel('General Support')
+                .setCustomId('General');
             let btn3 = new MessageButton()
                 .setStyle('DANGER')
                 .setLabel('Mute Appeal')
@@ -27,12 +27,12 @@ module.exports = {
 
             let btn5 = new MessageButton()
                 .setStyle('DANGER')
-                .setLabel('User Report') 
+                .setLabel('User Report')
                 .setCustomId('Player');
             let row = new MessageActionRow()
-                .addComponents([ btn ])
-                .addComponents([ btn3 ])
-                .addComponents([ btn5 ])
+                .addComponents([btn])
+                .addComponents([btn3])
+                .addComponents([btn5])
 
             let row23 = new MessageActionRow()
                 .addComponents(new MessageButton()
@@ -45,19 +45,19 @@ module.exports = {
                     .setCustomId('BanAppeal'))
                 .addComponents(new MessageButton()
                     .setStyle('DANGER')
-                    .setLabel('User Report') 
+                    .setLabel('User Report')
                     .setCustomId('Player'));
 
             const embed = new Discord.MessageEmbed()
                 .setTitle(`**Welcome to ${message.guild.name}!**`)
                 .setColor(0x2f3136)
-                .setDescription("Click on one of the buttons below to start your ticket: \nA ticket is a private chat with mods to ask questions, user reports, mute appeal, and requesting streamer role if you been in a video. \nCreating a ticket without a reason will lead to a warning and a ticket ban \n\n**DO NOT CREATE A TICKET TO SUBMIT CLIPS**");  
+                .setDescription("Click on one of the buttons below to start your ticket: \nA ticket is a private chat with mods to ask questions, user reports, mute appeal, and requesting streamer role if you been in a video. \nCreating a ticket without a reason will lead to a warning and a ticket ban \n\n**DO NOT CREATE A TICKET TO SUBMIT CLIPS**");
             message.channel.send({ embeds: [embed], components: [row23] }).catch(console.error);
             //message.channel.send({ embed: embed, component: row })
             //ticketmanger.ticketmess(message,client);
         }
-       else{
-           message.reply("You lack perms for this command")
-       }
+        else {
+            message.reply("You lack perms for this command")
+        }
     }
 }

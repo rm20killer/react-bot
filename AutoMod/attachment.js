@@ -9,9 +9,9 @@ const jrmod = config.jrmod
 const helper = config.helper
 
 module.exports = {
-    attachmentchecker: function(attachment,message,client){
+    attachmentchecker: function (attachment, message, client) {
         const nameArray = attachment.name.split('.'); // Split the name 
-        if (nameArray.length!=1){
+        if (nameArray.length != 1) {
             const attEx = nameArray[nameArray.length - 1].toLowerCase(); // Grab the last value of the array.
             //console.log(attEx)
             if (attEx == "mp4" || attEx == "webm" || attEx == "mov") {
@@ -27,7 +27,7 @@ module.exports = {
                         .addField('Bad submission by', message.author.username)
                     message.channel.send({ embeds: [embed] });
 
-                    message.delete().catch(error => {console.log(error)});
+                    message.delete().catch(error => { console.log(error) });
                 }
                 else if (Mwidth < 1280 || Mheight < 720) {
                     //
@@ -41,9 +41,9 @@ module.exports = {
                     message.channel.send({ embeds: [embed] });
 
                     //lastBadSubmissionBy = message.author.username;
-                    message.delete().catch(error => {console.log(error)});
-                }  
-                else if ((Mwidth / Mheight) < 1.6 || (Mwidth/Mheight) > 2){
+                    message.delete().catch(error => { console.log(error) });
+                }
+                else if ((Mwidth / Mheight) < 1.6 || (Mwidth / Mheight) > 2) {
                     var problem = " too tall.";
                     if ((Mwidth / Mheight) > 2) {
                         problem = " too wide.";
@@ -57,23 +57,23 @@ module.exports = {
                     message.channel.send({ embeds: [embed] });
 
                     //lastBadSubmissionBy = message.author.username;
-                    message.delete().catch(error => {console.log(error)});
+                    message.delete().catch(error => { console.log(error) });
                 }
-                else if (nameArray[0].length > 10 && nameArray[0].slice(-10) == "_Trim_Trim"){
+                else if (nameArray[0].length > 10 && nameArray[0].slice(-10) == "_Trim_Trim") {
                     message.channel.send("Imagine using an online video trimmer twice :Hhhhhheee:");
                     // You can omit this if you want.
                     // I just find it rather funny when someone uses that instead of a video editor.
                     // FFmpeg is also a better choice, and probably what the online trimmer uses, but internet is slower than an SSD.
                     // ffmpeg -ss 00:13:37 -i too_long_video.mp4 -t 15 -c copy trimmed_video_15seconds.mp4
                 }
-                console.log("bot checked",message.id);
+                console.log("bot checked", message.id);
             }
-            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m" ||attEx == "flv" || attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"||attEx=="vpj"||attEx=="osp"||attEx=="3gp"||attEx=="pds"||attEx=="mpeg") {
+            else if (attEx == "mkv" || attEx == "avi" || attEx == "mpg" || attEx == "m4v" || attEx == "wmv" || attEx == "mxf" || attEx == "y4m" || attEx == "flv" || attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt" || attEx == "vpj" || attEx == "osp" || attEx == "3gp" || attEx == "pds" || attEx == "mpeg") {
                 var convertTip = "OBS Studio can convert MKV to MP4.\nGo to File -> Remux Recordings.";
-                if (attEx != "mkv" && attEx != "flv"){
+                if (attEx != "mkv" && attEx != "flv") {
                     convertTip = "Use FFmpeg or Handbrake to convert your " + attEx + " video\nto MP4, WebM, or MOV format. *Avoid online tools.*";
                 }
-                if (attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt"||attEx=="vpj"||attEx=="osp"||attEx=="pds"){
+                if (attEx == "wfp" || attEx == "kdenlive" || attEx == "prproj" || attEx == "mlt" || attEx == "vpj" || attEx == "osp" || attEx == "pds") {
                     convertTip = "The " + attEx + " file you tried to submit is an editor project file,\nnot an actual video. It only contains references to\nfiles on your computer. Render the video as an\nMP4, WebM, or MOV with H.264, VP8, or VP9.";
                 }
                 const embed = new Discord.MessageEmbed()
@@ -84,24 +84,24 @@ module.exports = {
                     .addField('Bad submission by', message.author.username)
                 message.channel.send({ embeds: [embed] });
 
-                message.delete().catch(error => {console.log(error)});
-                console.log("bot checked",message.id);
+                message.delete().catch(error => { console.log(error) });
+                console.log("bot checked", message.id);
             }
         }
-        else{
+        else {
             const embed = new Discord.MessageEmbed()
-            .setTitle('Video format unsupported!')
-            .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-            .setColor(0xff0000)
-            .setDescription('Video format unsupported.\nFile submissions must preview in Discord.\n' + "The file you sent has no file format")
-            .addField('Bad submission by', message.author.username)
+                .setTitle('Video format unsupported!')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription('Video format unsupported.\nFile submissions must preview in Discord.\n' + "The file you sent has no file format")
+                .addField('Bad submission by', message.author.username)
             message.channel.send({ embeds: [embed] });
-            message.delete().catch(error => {console.log(error)});
+            message.delete().catch(error => { console.log(error) });
 
-            console.log("bot checked",message.id);
+            console.log("bot checked", message.id);
         }
     },
-    
+
     //exe checker
     // RootAtKali: add more formats
     // exe: duh
@@ -109,127 +109,127 @@ module.exports = {
     // dmg: mac application installer
     // deb: Debian/Ubuntu package
     // apk: Android application
-    attachmentexe: function(attachment,message,client){
-        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
+    attachmentexe: function (attachment, message, client) {
+        if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             return
         }
         const nameArray = attachment.name.split('.'); // Split the name 
         const attEx = nameArray[nameArray.length - 1].toLowerCase(); // Grab the last value of the array.
-        if (attEx == "exe" || attEx == "msi" || attEx == "dmg" || attEx == "deb" || attEx =="apk"|| attEx == "bat") {
+        if (attEx == "exe" || attEx == "msi" || attEx == "dmg" || attEx == "deb" || attEx == "apk" || attEx == "bat") {
             const embed = new Discord.MessageEmbed()
-            .setTitle('Suspicious file!')
-            .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-            .setColor(0xff0000)
-            .setDescription(`You cannot send executable files or \napplication installers as a file here.`)
-            .addField('author: ', message.author.username)
+                .setTitle('Suspicious file!')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription(`You cannot send executable files or \napplication installers as a file here.`)
+                .addField('author: ', message.author.username)
 
             message.channel.send({ embeds: [embed] });
-            message.delete().catch(error => {console.log(error)});
+            message.delete().catch(error => { console.log(error) });
 
-            console.log("bot checked",message.id);
+            console.log("bot checked", message.id);
         }
-        if(message.member.roles.cache.find(r=>r.id === modid)||message.member.roles.cache.find(r=>r.id === adminid)||message.member.roles.cache.find(r=>r.id === "747863600994975744")){
+        if (message.member.roles.cache.find(r => r.id === modid) || message.member.roles.cache.find(r => r.id === adminid) || message.member.roles.cache.find(r => r.id === "747863600994975744")) {
             return;
         }
-        if(attEx == "rar" || attEx == "zip" || attEx == "7z"){
+        if (attEx == "rar" || attEx == "zip" || attEx == "7z") {
             const embed = new Discord.MessageEmbed()
-            .setTitle('Suspicious file!')
-            .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-            .setColor(0xff0000)
-            .setDescription(`You cannot send ${attEx} files here.`)
-            .addField('author: ', message.author.username)
+                .setTitle('Suspicious file!')
+                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                .setColor(0xff0000)
+                .setDescription(`You cannot send ${attEx} files here.`)
+                .addField('author: ', message.author.username)
 
             message.channel.send({ embeds: [embed] });
-            message.delete().catch(error => {console.log(error)});
+            message.delete().catch(error => { console.log(error) });
 
-            console.log("bot checked",message.id);
+            console.log("bot checked", message.id);
         }
     },
-    imagechecker: function(attachment,message,client){
+    imagechecker: function (attachment, message, client) {
         const nameArray = attachment.name.split('.'); // Split the name 
         const attEx = nameArray[nameArray.length - 1].toLowerCase(); // Grab the last value of the array.
         const Mwidth = attachment.width;
         const Mheight = attachment.height;
-        if(message.channel.id==="906533447118512139"){
-            if(Mwidth<960){
+        if (message.channel.id === "906533447118512139") {
+            if (Mwidth < 960) {
                 const embed = new Discord.MessageEmbed()
-                .setTitle('Invalid size')
-                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-                .setColor(0xff0000)
-                .setDescription('Submissions must be 960x540 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
-                .addField('author: ', message.author.username)
-    
+                    .setTitle('Invalid size')
+                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                    .setColor(0xff0000)
+                    .setDescription('Submissions must be 960x540 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
+                    .addField('author: ', message.author.username)
+
                 message.channel.send({ embeds: [embed] });
-                message.delete().catch(error => {console.log(error)});
-    
-                console.log("bot checked",message.id);
+                message.delete().catch(error => { console.log(error) });
+
+                console.log("bot checked", message.id);
             }
-            else if(Mheight<540){
+            else if (Mheight < 540) {
                 const embed = new Discord.MessageEmbed()
-                .setTitle('Invalid size')
-                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-                .setColor(0xff0000)
-                .setDescription('Submissions must be 960x540 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
-                .addField('author: ', message.author.username)
-    
+                    .setTitle('Invalid size')
+                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                    .setColor(0xff0000)
+                    .setDescription('Submissions must be 960x540 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
+                    .addField('author: ', message.author.username)
+
                 message.channel.send({ embeds: [embed] });
-                message.delete().catch(error => {console.log(error)});
-    
-                console.log("bot checked",message.id);
+                message.delete().catch(error => { console.log(error) });
+
+                console.log("bot checked", message.id);
             }
-            else if(Mwidth/Mheight!=960/540){
+            else if (Mwidth / Mheight != 960 / 540) {
                 const embed = new Discord.MessageEmbed()
-                .setTitle('Invalid size')
-                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-                .setColor(0xff0000)
-                .setDescription('Submissions must be 960x540 or greater but same ratio.\nYour image was ' + Mwidth + 'x' + Mheight + ', which is not the right ratio.')
-                .addField('author: ', message.author.username)
-    
+                    .setTitle('Invalid size')
+                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                    .setColor(0xff0000)
+                    .setDescription('Submissions must be 960x540 or greater but same ratio.\nYour image was ' + Mwidth + 'x' + Mheight + ', which is not the right ratio.')
+                    .addField('author: ', message.author.username)
+
                 message.channel.send({ embeds: [embed] });
-                message.delete().catch(error => {console.log(error)});
-    
-                console.log("bot checked",message.id);
+                message.delete().catch(error => { console.log(error) });
+
+                console.log("bot checked", message.id);
             }
         }
-        if(message.channel.id==="906533488218480660"){
-            if(Mwidth<512){
+        if (message.channel.id === "906533488218480660") {
+            if (Mwidth < 512) {
                 const embed = new Discord.MessageEmbed()
-                .setTitle('Invalid size')
-                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-                .setColor(0xff0000)
-                .setDescription('Submissions must be 512x512 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
-                .addField('author: ', message.author.username)
-    
+                    .setTitle('Invalid size')
+                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                    .setColor(0xff0000)
+                    .setDescription('Submissions must be 512x512 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
+                    .addField('author: ', message.author.username)
+
                 message.channel.send({ embeds: [embed] });
-                message.delete().catch(error => {console.log(error)});
-    
-                console.log("bot checked",message.id);
+                message.delete().catch(error => { console.log(error) });
+
+                console.log("bot checked", message.id);
             }
-            else if(Mheight<512){
+            else if (Mheight < 512) {
                 const embed = new Discord.MessageEmbed()
-                .setTitle('Invalid size')
-                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-                .setColor(0xff0000)
-                .setDescription('Submissions must be 512x512 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
-                .addField('author: ', message.author.username)
-    
+                    .setTitle('Invalid size')
+                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                    .setColor(0xff0000)
+                    .setDescription('Submissions must be 512x512 or greater.\nYour image was ' + Mwidth + ' x ' + Mheight + ', which is too low.')
+                    .addField('author: ', message.author.username)
+
                 message.channel.send({ embeds: [embed] });
-                message.delete().catch(error => {console.log(error)});
-    
-                console.log("bot checked",message.id);
+                message.delete().catch(error => { console.log(error) });
+
+                console.log("bot checked", message.id);
             }
-            else if(Mheight/Mwidth!=512/512){
+            else if (Mheight / Mwidth != 512 / 512) {
                 const embed = new Discord.MessageEmbed()
-                .setTitle('Invalid size')
-                .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-                .setColor(0xff0000)
-                .setDescription('Submissions must be 512x512 or greater but same ratio.\nYour image was ' + Mwidth + 'x' + Mheight + ', which is not the right ratio.')
-                .addField('author: ', message.author.username)
-    
+                    .setTitle('Invalid size')
+                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                    .setColor(0xff0000)
+                    .setDescription('Submissions must be 512x512 or greater but same ratio.\nYour image was ' + Mwidth + 'x' + Mheight + ', which is not the right ratio.')
+                    .addField('author: ', message.author.username)
+
                 message.channel.send({ embeds: [embed] });
-                message.delete().catch(error => {console.log(error)});
-    
-                console.log("bot checked",message.id);
+                message.delete().catch(error => { console.log(error) });
+
+                console.log("bot checked", message.id);
             }
         }
     }

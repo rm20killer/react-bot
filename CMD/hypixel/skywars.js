@@ -4,7 +4,7 @@ const { hypixel, errors } = require('../../utils/hypixel');
 const commaNumber = require('comma-number');
 module.exports = {
     name: 'skywars',
-    aliases: [ "sw", "s" ],
+    aliases: ["sw", "s"],
     description: 'will show you the SkyWars stats of a player',
     usage: '`h*skywars [IGN]`',
     example: '`h*skywars RM20_`',
@@ -59,7 +59,7 @@ module.exports = {
                 message.reply({ embeds: [neverLogged], allowedMentions: { repliedUser: false } })
             } else {
                 message.reply("Error")
-            }       
+            }
         });
     }
 }

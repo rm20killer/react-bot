@@ -4,7 +4,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 module.exports = {
     name: 'rm3',
-    aliases: [ "rm3" ],
+    aliases: ["rm3"],
     description: 'rm3',
     usage: '`*rm3`',
     example: '`*rm3`',

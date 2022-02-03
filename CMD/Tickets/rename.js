@@ -8,13 +8,13 @@ const jrmod = config.jrmod
 const helper = config.helper
 module.exports = {
     name: 'rename',
-    aliases: [ "trn" ],
+    aliases: ["trn"],
     description: 'will rename a ticket',
     usage: '`*rename <new name>`',
     example: '`*remove cool ticket`',
     async execute(message, args) {
-        if (message.member.roles.cache.find(r=>r.name === modid)||message.member.roles.cache.find(r=>r.name === adminid)||message.member.roles.cache.find(r=>r.id === helper)){
-            if(message.channel.parent.id==="858354610367627284"){
+        if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
+            if (message.channel.parent.id === "858354610367627284") {
                 // CODE GOES HERE 🡫 
                 let name = message.content.slice(7);
                 if (!name) return message.channel.send("messing name")
@@ -26,10 +26,10 @@ module.exports = {
 
                 message.channel.setName(name)
                 message.channel.send({ embeds: [embed] })
-                .catch(err => {console.log(err)});
+                    .catch(err => { console.log(err) });
             }
         }
-        else{
+        else {
             message.reply("You lack perms for this command")
         }
     }

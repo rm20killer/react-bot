@@ -4,11 +4,11 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 module.exports = {
     name: 'help',
-    aliases: [ "h" ],
+    aliases: ["h"],
     description: 'get command usage',
     usage: '`*help <command>`',
     example: '`*help ping`',
-    async execute(message, args,cleint) {
+    async execute(message, args, cleint) {
         if (!args.length) {
             message.reply("enter command")
         }
@@ -16,7 +16,7 @@ module.exports = {
         const command = cleint.commands.get(args[0].toLowerCase()) || cleint.commands.find(c => c.aliases && c.aliases.includes(args[0].toLowerCase()));
 
         if (!command) {
-	        const command404 = new Discord.MessageEmbed()
+            const command404 = new Discord.MessageEmbed()
                 .setAuthor('Error')
                 .setDescription('That isn\'t a valid command!')
                 .setColor('0x738ADB')
@@ -30,9 +30,9 @@ module.exports = {
             .addField('Description', `\`*${command.name}\` ${command.description}`)
             .setColor('0x738ADB')
             .setFooter('Command help')
-            if (command.aliases) help.addField('Aliases', `\`*${command.aliases.join('`, `*')}\``)
-            help.addField('Usage', command.usage)
-            help.addField('Example', command.example)
+        if (command.aliases) help.addField('Aliases', `\`*${command.aliases.join('`, `*')}\``)
+        help.addField('Usage', command.usage)
+        help.addField('Example', command.example)
         message.reply({ embeds: [help], allowedMentions: { repliedUser: false } })
     }
 }

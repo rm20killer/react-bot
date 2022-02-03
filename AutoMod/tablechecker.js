@@ -6,9 +6,9 @@ const file = require("../file.json");
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 
-module.exports ={
-    table: async function(client,message){
-        if(message.content==="(╯°□°）╯︵ ┻━┻"){
+module.exports = {
+    table: async function (client, message) {
+        if (message.content === "(╯°□°）╯︵ ┻━┻") {
             //let n = parseFloat(ctopic, 10)
             let n = parseFloat(file.tableflip) + 1
             //console.log(file.tableflip) 
@@ -20,7 +20,7 @@ module.exports ={
                 //console.log('writing to ' + fileName);
             });
         }
-        else if (message.content==="┬─┬ ノ( ゜-゜ノ)"){
+        else if (message.content === "┬─┬ ノ( ゜-゜ノ)") {
             //let n = parseFloat(ctopic, 10)
             let n = parseFloat(file.tableflip) - 1
             file.tableflip = n;
@@ -31,6 +31,6 @@ module.exports ={
                 //console.log('writing to ' + fileName);
             });
         }
-        else{return}
+        else { return }
     }
 }
