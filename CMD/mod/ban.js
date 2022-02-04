@@ -6,7 +6,6 @@ const { Client, Intents } = require('discord.js');
 
 const config = require("../../config");
 
-const youtubeKey = config.youtubeKey
 
 const modid = config.ModID
 const adminid = config.AdminID
@@ -17,7 +16,7 @@ module.exports = {
     name: 'ban',
     aliases: ["ban"],
     description: 'will ban a user',
-    usage: '`*ban <@user>`',
+    usage: '`*ban <@user> [reason]`',
     example: '`*ban @rm20#2000`',
     async execute(message, args, client) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
@@ -46,6 +45,17 @@ module.exports = {
                 }
 
                 if (target.bannable) {
+                    let lastElement1 = args.slice(-1);
+                    //console.log(lastElement1)
+                    try {
+                        if (lastElement1[0] === "-nodm") {
+                        }
+                        else {
+                            target.send(`you been banned for ${reason}`).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                        }
+                    } catch {
+                        console.log(`could not dm ${target.user.tag}`)
+                    }
                     var channelParent = message.channel.parent.id
                     channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
                     let time = message.createdTimestamp
@@ -55,15 +65,17 @@ module.exports = {
                     var seconds = "0" + date.getSeconds();
                     var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
                     const embed = new Discord.MessageEmbed()
-                        .setTitle(`${target.user.tag} banned by ${message.author.tag}`)
-                        .setAuthor(`${target.user.tag}`)
+                        .setTitle(`[BANNED] ${target.user.tag}`)
                         .setColor(0xFF0000)
                         .setDescription(`🔒Banned for \`${reason}\``)
+                        .addField("banned by", `<@${message.author.id}>`)
                         .setFooter("id: " + target.id + " | today at " + formattedTime)
                     try {
                         target.ban({ reason: `${reason}` });
                         channel.send({ embeds: [embed] });
-                        message.channel.send(`<@${target.user.id}> has been banned`)
+                        const embed2 = new Discord.MessageEmbed()
+                            .setDescription(`<@${target.user.id}> has been banned`)
+                        message.channel.send({ embeds: [embed2] });
                     }
                     catch {
                         message.reply("an error has happened while banning")
