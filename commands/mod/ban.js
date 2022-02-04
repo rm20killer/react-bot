@@ -14,9 +14,9 @@ const helper = config.helper
 
 module.exports = {
     name: 'ban',
-    aliases: ["ban"],
+    aliases: [""],
     description: 'will ban a user',
-    usage: '`*ban <@user> [reason]`',
+    usage: '`*ban <@user> [reason] [Function]`',
     example: '`*ban @rm20#2000`',
     async execute(message, args, client) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
@@ -45,10 +45,10 @@ module.exports = {
                 }
 
                 if (target.bannable) {
-                    let lastElement1 = args.slice(-1);
+                    let lastElement1 = args.slice(-1)[0];
                     //console.log(lastElement1)
                     try {
-                        if (lastElement1[0] === "-nodm") {
+                        if (lastElement1[0] === "-a") {
                         }
                         else {
                             target.send(`you been banned for ${reason}`).catch(error => { message.reply(`could not dm ${target.user.tag}`) });

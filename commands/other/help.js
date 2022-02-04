@@ -32,7 +32,6 @@ module.exports = {
             .setFooter('Command help')
         if (command.aliases) help.addField('Aliases', `\`*${command.aliases.join('`, `*')}\``)
         help.addField('Usage', command.usage)
-        help.addField('Example', command.example)
         message.reply({ embeds: [help], allowedMentions: { repliedUser: false } })
     }
 }

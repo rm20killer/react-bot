@@ -25,7 +25,7 @@ const { MessageActionRow, MessageButton } = require('discord.js');
 
 
 const config = require("../config");
-const creds = require("../CMD/spreadsheet/googlekey.json");
+const creds = require("../commands/spreadsheet/googlekey.json");
 //const doc = new GoogleSpreadsheet(config.spreadsheet);
 const doc = new GoogleSpreadsheet("1keR2ubqTVfkrkEuDTSAa5fbZm_U08gTNfE-75bUcVX4")
 module.exports.ssdmuser = async function(message,client,args) {
