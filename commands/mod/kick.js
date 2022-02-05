@@ -44,6 +44,17 @@ module.exports = {
                     reason = "No Reason Provided"
                 }
                 if (target.kickable) {
+                    let lastElement1 = args.slice(-1)[0];
+                    //console.log(lastElement1)
+                    try {
+                        if (lastElement1[0] === "-a") {
+                        }
+                        else {
+                            target.send(`you been kick for ${reason}`).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                        }
+                    } catch {
+                        console.log(`could not dm ${target.user.tag}`)
+                    }
                     var channelParent = message.channel.parent.id
                     channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
 
