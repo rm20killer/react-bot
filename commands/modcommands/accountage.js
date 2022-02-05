@@ -10,19 +10,38 @@ const adminid = config.AdminID
 const jrmod = config.jrmod
 const helper = config.helper
 
+const DISCORD_EPOCH = 1420070400000
+
 module.exports = {
-    name: 'remove',
-    aliases: ["tr"],
-    description: 'will remove user to ticket',
-    usage: '`*remove <@user>`',
-    example: '`*remove @rm20#2000`',
+    name: 'age',
+    aliases: ["age"],
+    description: 'will get age of user/message',
+    usage: '`*age <@user>`',
+    example: '`*age @rm20#2000`',
     async execute(message, args) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 
-            const member = message.mentions.members.first();
+            let member = message.mentions.members.first();
             if (!member) {
-                message.reply("no mention")
-                return;
+                let id = args[0]
+                try {
+                    member = await message.guild.members.fetch(id);
+                } catch {
+                }
+            }
+            if (!member) { 
+                try {
+                    timestamp=validateSnowflake(args[0],DISCORD_EPOCH)
+                    const embed = new Discord.MessageEmbed()
+                    .setTitle('account age of ' + args[0])
+                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                    .setColor(0xff0000)
+                    .addField('creation date ', `<t:${timestamp}:f>`)
+                message.channel.send({ embeds: [embed] });
+
+                }catch{
+                    console.log("error with snowfalse")
+                }
             }
             else {
                 let accage = member.user.createdTimestamp
@@ -34,7 +53,7 @@ module.exports = {
                     .setTitle('account age of ' + member.user.username)
                     .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                     .setColor(0xff0000)
-                    .addField('creation date ', `<t:${accage}:f>`)
+                    .addField('creation date ', '`${accage}`')
                     .addField('join date ', `<t:${joindate}:f>`)
                     .setFooter("user: " + member.user.tag + " | user id: " + member.user.id)
                 message.channel.send({ embeds: [embed] });
@@ -44,4 +63,33 @@ module.exports = {
             message.reply("You lack perms for this command")
         }
     }
+}
+
+const convertSnowflakeToDate = function (snowflake, epoch = DISCORD_EPOCH) {
+    const milliseconds = BigInt(snowflake) >> 22n
+    return new Date(Number(milliseconds) + epoch)
+}
+
+const validateSnowflake = function (snowflake, epoch) {
+	if (!Number.isInteger(+snowflake)) {
+		throw new Error(
+			"That doesn't look like a snowflake. Snowflakes contain only numbers."
+		)
+	}
+
+	if (snowflake < 4194304) {
+		throw new Error(
+			"That doesn't look like a snowflake. Snowflakes are much larger numbers."
+		)
+	}
+
+	const timestamp = convertSnowflakeToDate(snowflake, epoch)
+
+	if (Number.isNaN(timestamp.getTime())) {
+		throw new Error(
+			"That doesn't look like a snowflake. Snowflakes have fewer digits."
+		)
+	}
+
+	return timestamp
 }

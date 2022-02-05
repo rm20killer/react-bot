@@ -16,9 +16,15 @@ module.exports = {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             if (message.channel.parent.id === "858354610367627284") {
                 // CODE GOES HERE 🡫 
-
-                let member = message.mentions.members.first()
-                if (!member) return message.channel.send("no mention")
+                let member = message.mentions.members.first();
+                if (!member) {
+                    let id = args[0]
+                    try {
+                        member = await message.guild.members.fetch(id);
+                    } catch {
+                        return message.reply(`I can't find that member`);
+                    }
+                }
 
                 let reason = args.slice(1).join(' ')
                 if (!reason) reason = 'No Reason Specified'
