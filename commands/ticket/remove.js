@@ -15,8 +15,6 @@ module.exports = {
             }
         }
         if (!member) { return message.reply(`I can't find that member`) }
-        let member = message.mentions.members.first()
-        if (!member) return message.channel.send("no mention")
 
         let reason = args.slice(1).join(' ')
         if (!reason) reason = 'No Reason Specified'
