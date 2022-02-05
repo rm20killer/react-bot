@@ -10,8 +10,8 @@
 
 const fetch = require("node-fetch");
 const Discord = require('discord.js')
-const { Client, Intents } = require('discord.js');
-
+const { Client, Intents, MessageAttachment } = require('discord.js');
+const { generateTranscript } = require('reconlx')
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 const config = require("../../config");
@@ -56,15 +56,34 @@ module.exports = {
 
                 if (target.bannable) {
                     let lastElement1 = args.slice(-1)[0];
-                    //console.log(lastElement1)
-                    try {
-                        if (lastElement1[0] === "-a") {
+                    const Lastarray = lastElement1.split("");
+                    if (Lastarray[0] === "-") {
+                        if (Lastarray.length > 3) {
+
                         }
                         else {
-                            target.send(`you been banned for ${reason}`).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                            //var dmed=0
+                            try {
+                                if (Lastarray[1] === "a"||Lastarray[2] === "a") {
+                                    dmed++
+                                }
+                                else {
+                                    target.send(`you been banned for ${reason}`).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                                }
+                            } catch {
+                                console.log(`could not dm ${target.user.tag}`)
+                            }
+                            try {
+                                if (Lastarray[1] === "c"||Lastarray[2] === "c") {
+                                    fbulkdeleteUser(client, message, 100, target)
+                                }
+                                else {
+
+                                }
+                            } catch {
+                                console.log("could not delete messages")
+                            }
                         }
-                    } catch {
-                        console.log(`could not dm ${target.user.tag}`)
                     }
                     var channelParent = message.channel.parent.id
                     channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
@@ -107,4 +126,22 @@ module.exports = {
             message.reply("You lack perms for this command")
         }
     }
+}
+
+const fbulkdeleteUser = async function (client, message, amount, target) {
+    const channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
+    const id = target.id
+    message.channel.messages.fetch({
+        limit: amount, // Change `100` to however many messages you want to fetch
+        before: message.id
+    }).then((messages) => {
+        generateTranscript({ guild: message.guild, channel: message.channel, messages: messages })
+            .then(data => {
+                const file = new MessageAttachment(data, `${message.channel.name}.html`);
+                channel.send({ content: `Bulk delete from ban. \n(deleted messages sent by <@${target.id}>)`, files: [file] });
+            });
+        const botMessages = [];
+        messages.filter(m => m.author.id === id).forEach(msg => botMessages.push(msg))
+        message.channel.bulkDelete(botMessages).catch(error => { console.log(error) });
+    }).catch(error => { console.log(error) });
 }

@@ -69,7 +69,7 @@ module.exports = {
 
 
 const fbulkdeleteUser = async function (client,message, amount, target, formattedTime) {
-  const channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
+  const channel = client.channels.cache.find(channel => channel.id === "843954692107272243");
   const id = target.id
   message.channel.messages.fetch({
     limit: amount, // Change `100` to however many messages you want to fetch
@@ -91,7 +91,7 @@ const fbulkdeleteUser = async function (client,message, amount, target, formatte
 }
 
 const fbulkdelete = async function (client,message, amount, formattedTime) {
-  const channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
+  const channel = client.channels.cache.find(channel => channel.id === "843954692107272243");
   try {
     message.channel.messages.fetch({ limit: amount, before: message.id }).then(msgs => {
       generateTranscript({ guild: message.guild, channel: message.channel, messages: msgs })
