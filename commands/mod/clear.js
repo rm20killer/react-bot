@@ -10,7 +10,9 @@
 */
 const fetch = require(`node-fetch`);
 const Discord = require('discord.js')
-const { Client, Intents } = require('discord.js');
+const { Client, Intents, MessageAttachment } = require('discord.js');
+const { generateTranscript } = require('reconlx')
+
 const config = require(`../../config`);
 
 const modid = config.ModID
@@ -28,19 +30,24 @@ module.exports = {
     if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
       var amount = args[0]
       let DeleteAmount = amount;
-      if(amount>101){
+      if (amount > 101) {
         message.reply("max allowed is 100 messages")
-        DeleteAmount=100
-        amount=100
+        DeleteAmount = 100
+        amount = 100
         return;
       }
-      else if(amount=100){
+      else if (amount = 100) {
 
       }
-      else{
-        DeleteAmount = amount+1;
+      else {
+        DeleteAmount = amount + 1;
       }
-
+      let time = message.createdTimestamp
+      var date = new Date(time * 1000);
+      var hours = date.getHours();
+      var minutes = "0" + date.getMinutes();
+      var seconds = "0" + date.getSeconds();
+      var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
       if (args[1]) {
         let target = message.mentions.members.first();
         if (!target) {
@@ -52,10 +59,10 @@ module.exports = {
           }
         }
         if (!target) { return message.reply(`I can't find that member`) }
-        fbulkdeleteUser(message, DeleteAmount, target)
+        fbulkdeleteUser(client,message, DeleteAmount, target, formattedTime)
       }
       else {
-        fbulkdelete(message, DeleteAmount)
+        fbulkdelete(client,message, DeleteAmount, formattedTime)
       }
     }
     else {
@@ -66,11 +73,18 @@ module.exports = {
 }
 
 
-const fbulkdeleteUser = async function (message, amount, target) {
+const fbulkdeleteUser = async function (client,message, amount, target, formattedTime) {
+  const channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
   const id = target.id
   message.channel.messages.fetch({
-    limit: amount // Change `100` to however many messages you want to fetch
+    limit: amount, // Change `100` to however many messages you want to fetch
+    before: message.id
   }).then((messages) => {
+    generateTranscript({ guild: message.guild, channel: message.channel, messages: messages })
+    .then(data => {
+      const file = new MessageAttachment(data, `${message.channel.name}.html`);
+      channel.send({ content: `Bulk delete file today at ${formattedTime} \n(deleted messages sent by <@${target.id}>)`, files: [file] });
+    });
     const botMessages = [];
     messages.filter(m => m.author.id === id).forEach(msg => botMessages.push(msg))
     message.channel.bulkDelete(botMessages).then(() => {
@@ -81,8 +95,16 @@ const fbulkdeleteUser = async function (message, amount, target) {
   }).catch(error => { console.log(error) });
 }
 
-const fbulkdelete = async function (message, amount) {
+const fbulkdelete = async function (client,message, amount, formattedTime) {
+  const channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
   try {
+    message.channel.messages.fetch({ limit: amount, before: message.id }).then(msgs => {
+      generateTranscript({ guild: message.guild, channel: message.channel, messages: msgs })
+        .then(data => {
+          const file = new MessageAttachment(data, `${message.channel.name}.html`);
+          channel.send({ content: `Bulk delete file today at ${formattedTime}`, files: [file] });
+        });
+    })
     message.channel.bulkDelete(amount).then(messages => {
       message.channel.send(`Bulk deleted ${messages.size} messages`).then(msg => msg.delete({
         timeout: 30000
