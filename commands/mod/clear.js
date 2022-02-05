@@ -43,11 +43,6 @@ module.exports = {
         DeleteAmount = amount + 1;
       }
       let time = message.createdTimestamp
-      var date = new Date(time * 1000);
-      var hours = date.getHours();
-      var minutes = "0" + date.getMinutes();
-      var seconds = "0" + date.getSeconds();
-      var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
       if (args[1]) {
         let target = message.mentions.members.first();
         if (!target) {
@@ -59,10 +54,10 @@ module.exports = {
           }
         }
         if (!target) { return message.reply(`I can't find that member`) }
-        fbulkdeleteUser(client,message, DeleteAmount, target, formattedTime)
+        fbulkdeleteUser(client,message, DeleteAmount, target, time)
       }
       else {
-        fbulkdelete(client,message, DeleteAmount, formattedTime)
+        fbulkdelete(client,message, DeleteAmount, time)
       }
     }
     else {
@@ -83,7 +78,7 @@ const fbulkdeleteUser = async function (client,message, amount, target, formatte
     generateTranscript({ guild: message.guild, channel: message.channel, messages: messages })
     .then(data => {
       const file = new MessageAttachment(data, `${message.channel.name}.html`);
-      channel.send({ content: `Bulk delete file today at ${formattedTime} \n(deleted messages sent by <@${target.id}>)`, files: [file] });
+      channel.send({ content: `Bulk delete file today at <t:${formattedTime}:f> \n(deleted messages sent by <@${target.id}>)`, files: [file] });
     });
     const botMessages = [];
     messages.filter(m => m.author.id === id).forEach(msg => botMessages.push(msg))
@@ -102,7 +97,7 @@ const fbulkdelete = async function (client,message, amount, formattedTime) {
       generateTranscript({ guild: message.guild, channel: message.channel, messages: msgs })
         .then(data => {
           const file = new MessageAttachment(data, `${message.channel.name}.html`);
-          channel.send({ content: `Bulk delete file today at ${formattedTime}`, files: [file] });
+          channel.send({ content: `Bulk delete file today at <t:${formattedTime}:f>`, files: [file] });
         });
     })
     message.channel.bulkDelete(amount).then(messages => {
