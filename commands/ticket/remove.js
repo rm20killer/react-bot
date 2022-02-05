@@ -7,7 +7,7 @@ module.exports = {
         // CODE GOES HERE 🡫 
         let member = message.mentions.members.first();
         if (!member) {
-            let id = args[0]
+            let id = args[1]
             try {
                 member = await message.guild.members.fetch(id);
             } catch {
