@@ -1,3 +1,12 @@
+/*
+  __  __           _         
+ |  \/  |         | |    _   
+ | \  / | ___   __| |  _| |_ 
+ | |\/| |/ _ \ / _` | |_   _|
+ | |  | | (_) | (_| |   |_|  
+ |_|  |_|\___/ \__,_|                          
+*/
+
 const fetch = require("node-fetch");
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');

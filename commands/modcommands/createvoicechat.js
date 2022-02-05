@@ -1,3 +1,11 @@
+/*
+  __  __           _         
+ |  \/  |         | |    _   
+ | \  / | ___   __| |  _| |_ 
+ | |\/| |/ _ \ / _` | |_   _|
+ | |  | | (_) | (_| |   |_|  
+ |_|  |_|\___/ \__,_|                          
+*/
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 const client = new Client({

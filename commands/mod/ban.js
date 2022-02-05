@@ -1,3 +1,13 @@
+/*
+  __  __           _         
+ |  \/  |         | |    _   
+ | \  / | ___   __| |  _| |_ 
+ | |\/| |/ _ \ / _` | |_   _|
+ | |  | | (_) | (_| |   |_|  
+ |_|  |_|\___/ \__,_|                          
+*/
+
+
 const fetch = require("node-fetch");
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
@@ -19,7 +29,7 @@ module.exports = {
     usage: '`*ban <@user> [reason] [Function]`',
     example: '`*ban @rm20#2000`',
     async execute(message, args, client) {
-        if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
+        if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid)) {
             // CODE GOES HERE 🡫 
             let target = message.mentions.members.first();
             if (!target) {
