@@ -4,3 +4,4 @@ node_modules/
 
 commands/spreadsheet/googlekey.json
 file.json
+utils/googlekey.json

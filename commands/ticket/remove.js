@@ -4,9 +4,17 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 module.exports = {
     remove: function(args,message,client,rest){ 
-
         // CODE GOES HERE 🡫 
-
+        let member = message.mentions.members.first();
+        if (!member) {
+            let id = args[0]
+            try {
+                member = await message.guild.members.fetch(id);
+            } catch {
+                return message.reply(`I can't find that member`);
+            }
+        }
+        if (!member) { return message.reply(`I can't find that member`) }
         let member = message.mentions.members.first()
         if (!member) return message.channel.send("no mention")
 
