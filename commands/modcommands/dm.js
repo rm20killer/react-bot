@@ -29,9 +29,9 @@ module.exports = {
             }
 
             if (!target) { return message.reply(`I can't find that member`) }
-            try{
+            try {
                 target.send(mess).catch(console.error);
-            } catch{
+            } catch {
                 console.error
             }
 

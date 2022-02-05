@@ -7,7 +7,7 @@
           /_/    \_\__,_|_| |_| |_|_|_| |_|  \___/|_| |_|_|\__, |
                                                             __/ |
                                                            |___/  
-*/ 
+*/
 const fetch = require("node-fetch");
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');

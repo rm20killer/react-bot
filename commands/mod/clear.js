@@ -54,10 +54,10 @@ module.exports = {
           }
         }
         if (!target) { return message.reply(`I can't find that member`) }
-        fbulkdeleteUser(client,message, DeleteAmount, target, time)
+        fbulkdeleteUser(client, message, DeleteAmount, target, time)
       }
       else {
-        fbulkdelete(client,message, DeleteAmount, time)
+        fbulkdelete(client, message, DeleteAmount, time)
       }
     }
     else {
@@ -68,7 +68,7 @@ module.exports = {
 }
 
 
-const fbulkdeleteUser = async function (client,message, amount, target, formattedTime) {
+const fbulkdeleteUser = async function (client, message, amount, target, formattedTime) {
   const channel = client.channels.cache.find(channel => channel.id === "843954692107272243");
   const id = target.id
   message.channel.messages.fetch({
@@ -76,10 +76,10 @@ const fbulkdeleteUser = async function (client,message, amount, target, formatte
     before: message.id
   }).then((messages) => {
     generateTranscript({ guild: message.guild, channel: message.channel, messages: messages })
-    .then(data => {
-      const file = new MessageAttachment(data, `${message.channel.name}.html`);
-      channel.send({ content: `Bulk delete file today at <t:${formattedTime}:f> \n(deleted messages sent by <@${target.id}>)`, files: [file] });
-    });
+      .then(data => {
+        const file = new MessageAttachment(data, `${message.channel.name}.html`);
+        channel.send({ content: `Bulk delete file today at <t:${formattedTime}:f> \n(deleted messages sent by <@${target.id}>)`, files: [file] });
+      });
     const botMessages = [];
     messages.filter(m => m.author.id === id).forEach(msg => botMessages.push(msg))
     message.channel.bulkDelete(botMessages).then(() => {
@@ -90,7 +90,7 @@ const fbulkdeleteUser = async function (client,message, amount, target, formatte
   }).catch(error => { console.log(error) });
 }
 
-const fbulkdelete = async function (client,message, amount, formattedTime) {
+const fbulkdelete = async function (client, message, amount, formattedTime) {
   const channel = client.channels.cache.find(channel => channel.id === "843954692107272243");
   try {
     message.channel.messages.fetch({ limit: amount, before: message.id }).then(msgs => {

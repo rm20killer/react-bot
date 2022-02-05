@@ -29,17 +29,17 @@ module.exports = {
                 } catch {
                 }
             }
-            if (!member) { 
+            if (!member) {
                 try {
-                    timestamp=validateSnowflake(args[0],DISCORD_EPOCH)
+                    timestamp = validateSnowflake(args[0], DISCORD_EPOCH)
                     const embed = new Discord.MessageEmbed()
-                    .setTitle('account age of ' + args[0])
-                    .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
-                    .setColor(0xff0000)
-                    .addField('creation date ', `<t:${timestamp}:f>`)
-                message.channel.send({ embeds: [embed] });
+                        .setTitle('account age of ' + args[0])
+                        .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
+                        .setColor(0xff0000)
+                        .addField('creation date ', `<t:${timestamp}:f>`)
+                    message.channel.send({ embeds: [embed] });
 
-                }catch{
+                } catch {
                     console.log("error with snowfalse")
                 }
             }
@@ -71,25 +71,25 @@ const convertSnowflakeToDate = function (snowflake, epoch = DISCORD_EPOCH) {
 }
 
 const validateSnowflake = function (snowflake, epoch) {
-	if (!Number.isInteger(+snowflake)) {
-		throw new Error(
-			"That doesn't look like a snowflake. Snowflakes contain only numbers."
-		)
-	}
+    if (!Number.isInteger(+snowflake)) {
+        throw new Error(
+            "That doesn't look like a snowflake. Snowflakes contain only numbers."
+        )
+    }
 
-	if (snowflake < 4194304) {
-		throw new Error(
-			"That doesn't look like a snowflake. Snowflakes are much larger numbers."
-		)
-	}
+    if (snowflake < 4194304) {
+        throw new Error(
+            "That doesn't look like a snowflake. Snowflakes are much larger numbers."
+        )
+    }
 
-	const timestamp = convertSnowflakeToDate(snowflake, epoch)
+    const timestamp = convertSnowflakeToDate(snowflake, epoch)
 
-	if (Number.isNaN(timestamp.getTime())) {
-		throw new Error(
-			"That doesn't look like a snowflake. Snowflakes have fewer digits."
-		)
-	}
+    if (Number.isNaN(timestamp.getTime())) {
+        throw new Error(
+            "That doesn't look like a snowflake. Snowflakes have fewer digits."
+        )
+    }
 
-	return timestamp
+    return timestamp
 }

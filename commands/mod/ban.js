@@ -64,7 +64,7 @@ module.exports = {
                         else {
                             //var dmed=0
                             try {
-                                if (Lastarray[1] === "a"||Lastarray[2] === "a") {
+                                if (Lastarray[1] === "a" || Lastarray[2] === "a") {
                                     dmed++
                                 }
                                 else {
@@ -74,7 +74,7 @@ module.exports = {
                                 console.log(`could not dm ${target.user.tag}`)
                             }
                             try {
-                                if (Lastarray[1] === "c"||Lastarray[2] === "c") {
+                                if (Lastarray[1] === "c" || Lastarray[2] === "c") {
                                     fbulkdeleteUser(client, message, 100, target)
                                 }
                                 else {
