@@ -59,7 +59,8 @@
                 "} catch {",
 				"return message.reply(`I can't find that member`);",
                 "}",
-            "}",
+            "}\n",
+			"if (!target) { return message.reply(`I can't find that member`) }"
 		]
 	},
 	"GetTimeofMessage":{
