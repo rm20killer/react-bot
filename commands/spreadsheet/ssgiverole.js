@@ -1,3 +1,13 @@
+/*
+                       _           _                     _       
+              /\      | |         (_)                   | |      
+             /  \   __| |_ __ ___  _ _ __     ___  _ __ | |_   _ 
+            / /\ \ / _` | '_ ` _ \| | '_ \   / _ \| '_ \| | | | |
+           / ____ \ (_| | | | | | | | | | | | (_) | | | | | |_| |
+          /_/    \_\__,_|_| |_| |_|_|_| |_|  \___/|_| |_|_|\__, |
+                                                            __/ |
+                                                           |___/  
+*/ 
 const fetch = require("node-fetch");
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
@@ -40,7 +50,7 @@ module.exports = {
     usage: '`*ssgiverole`',
     example: '`*ssgiverole`',
     async execute(message, args) {
-        if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
+        if (message.member.roles.cache.find(r => r.name === modid)) {
             // CODE GOES HERE 🡫 
             await ssrolegive(message, args).catch(error => console.log(error));
         }

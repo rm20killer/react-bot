@@ -1,3 +1,13 @@
+/*
+                       _           _                     _       
+              /\      | |         (_)                   | |      
+             /  \   __| |_ __ ___  _ _ __     ___  _ __ | |_   _ 
+            / /\ \ / _` | '_ ` _ \| | '_ \   / _ \| '_ \| | | | |
+           / ____ \ (_| | | | | | | | | | | | (_) | | | | | |_| |
+          /_/    \_\__,_|_| |_| |_|_|_| |_|  \___/|_| |_|_|\__, |
+                                                            __/ |
+                                                           |___/  
+*/ 
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
@@ -14,7 +24,8 @@ module.exports = {
     usage: '`*createticket`',
     example: '`*createticket`',
     async execute(message, args) {
-        if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
+        //admin only
+        if (message.member.roles.cache.find(r => r.name === adminid)) {
             // CODE GOES HERE 🡫 
             let btn = new MessageButton()
                 .setStyle('SECONDARY')

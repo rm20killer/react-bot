@@ -23,11 +23,17 @@ module.exports = {
             let rule5 = "**5. Submit clips to get a chance to be in the next Gamers React video!** \n>>> You may submit any clips you have in our website: https://gamersreact.com/ \n-All of the Clip submissions are gone through, so don't think you were left out or your clip got lost in other messages.*"
             let rule6 = "**6. A few basic rules to look out for** \n> Speak ONLY in English, use the correct channels for the correct chats, remember that me or the Staff have the final say you may justify yourself by opening a ticket through <#858354762855874560> if you think you were punishment wasn't fair."
 
-            const mention = message.mentions.users.first();
-            if (!mention) {
-                message.reply("no mention")
-                return;
+            let target = message.mentions.members.first();
+            if (!target) {
+                let id = args[0]
+                try {
+                    target = await message.guild.members.fetch(id);
+                } catch {
+                    return message.reply(`I can't find that member`);
+                }
             }
+
+            if (!target) { return message.reply(`I can't find that member`) }
             else {
                 //console.log(mention)
                 const user = client.users.cache.get(mention.id);
@@ -35,8 +41,8 @@ module.exports = {
                 let dontlog = "3ADB63D1"
                 res = dontlog + "\n\n" + rule1 + "\n" + rule2 + "\n" + rule3 + "\n" + rule4
                 let res2 = dontlog + "\n\n" + rule5 + "\n\n" + rule6
-                user.send({ content: res, components: [] }).catch(error => { console.log(error) });
-                user.send({ content: res2, components: [] }).catch(error => { console.log(error) });
+                target.send({ content: res, components: [] }).catch(error => { console.log(error) });
+                target.send({ content: res2, components: [] }).catch(error => { console.log(error) });
                 message.reply("rules sent")
                 return
             }
