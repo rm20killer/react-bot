@@ -7,11 +7,11 @@ const adminid = config.AdminID
 const jrmod = config.jrmod
 const helper = config.helper
 module.exports = {
-    name: 'similarity',
-    aliases: ["similarity"],
-    description: 'similarity',
-    usage: '`*similarity <link1> <link2>`',
-    example: '`*dm @rm20#2000 Hi`',
+    name: 'event',
+    aliases: [""],
+    description: 'event',
+    usage: '`*event`',
+    example: '`*event`',
     async execute(message, args) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 

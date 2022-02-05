@@ -9,7 +9,7 @@ const helper = config.helper
 module.exports = {
     name: 'dm',
     aliases: ["dm"],
-    description: 'dm',
+    description: 'dm a user',
     usage: '`*dm <@user> <message>`',
     example: '`*dm @rm20#2000 Hi`',
     async execute(message, args, client) {
@@ -17,17 +17,24 @@ module.exports = {
             // CODE GOES HERE 🡫 
             var str = message.content
             const mess = str.split(/>(.+)/)[1]
-            const mention = message.mentions.users.first();
-            if (!mention) {
-                message.reply("no mention")
-                return;
+
+            let target = message.mentions.members.first();
+            if (!target) {
+                let id = args[0]
+                try {
+                    target = await message.guild.members.fetch(id);
+                } catch {
+                    return message.reply(`I can't find that member`);
+                }
             }
-            else {
-                //console.log(mention)
-                client.users.fetch(mention.id, false).then((user) => {
-                    user.send(mess);
-                }).catch(console.error);
+
+            if (!target) { return message.reply(`I can't find that member`) }
+            try{
+                target.send(mess).catch(console.error);
+            } catch{
+                console.error
             }
+
         }
         else {
             message.reply("You lack perms for this command")
