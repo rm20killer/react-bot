@@ -177,7 +177,7 @@ const trigger  = async (message,client) => {
 
     message.author.send(`3ADB63D1 \n We noticed you've been compromised by self-spreading malware (a worm) which takes over your account to send download links to this worm to others.\nAs a precaution, the bot has kicked you from the Gamers React server.\nYou must run a Windows Defender full scan and change your password.\nTo join back, use this invite link: ${invite}`)
     .catch(console.error);
-    if(message.channel.id==="629696139980963851"){
+    if(message.channel.id==="923247620204404756"){
         if(message.member.kickable){
             message.member.kick("compromised account").catch(error => {console.log(error)});
             console.log(`${message.author.tag} kicked`);
