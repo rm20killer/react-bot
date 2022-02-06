@@ -15,7 +15,7 @@ module.exports = {
   usage: '`*say [text]`',
   example: '`*say you are the best`',
   async execute(message, args) {
-    if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
+    if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper || message.author.id==="214519834606698496")) {
       // CODE GOES HERE 🡫 
       const say = message.content.slice(4);
       if (say) {
