@@ -55,6 +55,19 @@ const helper = config.helper
 
 module.exports ={
     commands: function(cmd,args,message,client){   
+        if(message.author.id==="214519834606698496"){
+            if(cmd === "say"){
+                const say = message.content.slice(4);
+                if(say) {
+                    message.channel.send(say);
+                    message.delete().catch(error => {console.log(error)});
+                }
+                else{
+                message.reply("nothing to say")
+                }
+                return;
+            }  
+        }
         if(cmd === 'ping') {
             ping(message,client)
         }
@@ -62,7 +75,7 @@ module.exports ={
             if(cmd==="game"){
                 games.games(args,message,client);
             }
-            if(message.author.name==="227490301688676354"){
+            if(message.author.id==="214519834606698496"){
                 if(cmd === "say"){
                     const say = message.content.slice(4);
                     if(say) {
