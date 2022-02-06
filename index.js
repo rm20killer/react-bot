@@ -27,6 +27,7 @@ const client = new Client({
 });
 
 const fetch = require("node-fetch");
+const mongose= require("mongoose");
 const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
 const wait = require('util').promisify(setTimeout);
 
@@ -80,7 +81,18 @@ const selectmenu = require('./interaction/selectmenu');
 const contextmenu = require('./interaction/contextmenu');
 const button = require('./interaction/button')
 
-//start 
+//database 
+
+/*
+mongose.connect(config.Mongoose_SRV,{
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+}).then(()=>{
+    console.log("connected to the database")
+}).catch((error)=>{console.log(error)});
+*/
+
+//bot
 client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity(`your clips`, { type: "WATCHING" });
