@@ -30,32 +30,32 @@ module.exports = {
     async execute(message, args, client) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 
-            if(!args[0]){return message.reply(`enter a user`) }
+            if(!args[0]){return message.reply(`Enter a user.`) }
             let target = message.mentions.members.first();
             if (!target) {
                 let id = args[0]
                 try {
                     target = await message.guild.members.fetch(id);
                 } catch {
-                    return message.reply(`I can't find that member`);
+                    return message.reply(`I can't find that member.`);
                 }
             }
             if (!target) { return message.reply(`I can't find that member`) }
 
-            if (target.id === message.author.id) { return message.reply(`you cant warn yourself`) }
+            if (target.id === message.author.id) { return message.reply(`You can't warn yourself`) }
             if(message.member.roles.cache.find(r => r.name === adminid)){}
             else{
                 if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
-                    return message.reply("can not warn a mod");
+                    return message.reply("Can not warn a mod");
                 }
             }
-            if (target.user.bot) { return message.reply("you cant warn bots") }
+            if (target.user.bot) { return message.reply("You can't warn bots.") }
 
             const guildId = message.guildId
             const userId = target.id;
             let reason = args.slice(1).join(" ")
             if (!reason) {
-                reason = "No Reason Provided"
+                reason = "No Reason Provided."
             }
             const warning = {
                 author: message.member.user.id,
@@ -72,11 +72,11 @@ module.exports = {
                     else {
                         try {
                             const embed3 = new Discord.MessageEmbed()
-                            .setDescription(`you have been warned for ${reason}`)
+                            .setDescription(`You were warned in Gamers React for: ${reason}`)
 
-                            target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                            target.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
                         } catch {
-                            console.log(`could not dm ${target.user.tag}`)
+                            console.log(`Could not dm ${target.user.tag}`)
                         }
                     }
                 }
@@ -84,9 +84,9 @@ module.exports = {
             else{
                 try {
                     const embed3 = new Discord.MessageEmbed()
-                    .setDescription(`You have been warned for ${reason}`)
+                    .setDescription(`You were warned in Gamers React for: ${reason}`)
 
-                    target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                    target.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
                 } catch {
                     console.log(`could not dm ${target.user.tag}`)
                 }
@@ -128,7 +128,7 @@ module.exports = {
                         message.channel.send({ embeds: [embed2] });
                     }
                     catch {
-                        message.reply("an error has happened while warning")
+                        message.reply("An error has happened while warning")
                         return
                     }
 
