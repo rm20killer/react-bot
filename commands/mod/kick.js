@@ -25,6 +25,7 @@ module.exports = {
     usage: '`*kick <@user>`',
     async execute(message, args, client) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
+            if(!args[0]){return message.reply(`enter a user`) }
             let target = message.mentions.members.first();
             if (!target) {
                 let id = args[0]
@@ -46,14 +47,29 @@ module.exports = {
                 if (target.kickable) {
                     let lastElement1 = args.slice(-1)[0];
                     //console.log(lastElement1)
-                    try {
-                        if (lastElement1[0] === "-a") {
+                    //onsole.log(lastElement1)
+                    const Lastarray = lastElement1.split("");
+                    if (Lastarray[0] === "-") {
+                        if (Lastarray.length > 2) {
+                            if (Lastarray[1] === "a") {}
+                            else {
+                                try {
+                                    target.send(`You been kicked for ${reason}`).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                                } catch {
+                                    console.log(`could not dm ${target.user.tag}`)
+                                }
+                            }
                         }
-                        else {
-                            target.send(`you been kick for ${reason}`).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                    }
+                    else{
+                        try {
+                            const embed3 = new Discord.MessageEmbed()
+                            .setDescription(`you have been warned for ${reason}`)
+
+                            target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                        } catch {
+                            console.log(`could not dm ${target.user.tag}`)
                         }
-                    } catch {
-                        console.log(`could not dm ${target.user.tag}`)
                     }
                     var channelParent = message.channel.parent.id
                     channel = client.channels.cache.find(channel => channel.id === "710123089094246482");

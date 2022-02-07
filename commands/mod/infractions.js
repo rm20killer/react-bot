@@ -31,6 +31,7 @@ module.exports = {
   async execute(message, args, client) {
     if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
       // CODE GOES HERE 🡫 
+      if(!args[0]){return message.reply(`enter a user`) }
       let target = message.mentions.members.first();
       if (!target) {
         let id = args[0]
@@ -53,35 +54,51 @@ module.exports = {
             userId
           })
           let warnings = results.warnings
+          //console.log(warnings)
           warningNumber = warnings.length;
-          let arrayResult = [] 
+          let arrayResult = []
+          var past24hours = 0
+          var past7day = 0
           var result = ""
           //console.log(warningNumber)
+          var timeStamp = Math.round(new Date().getTime() / 1000);
+          var timeStampYesterday = timeStamp - (24 * 3600);
+          var timeStamp7Days = timeStamp - (24 * 3600 * 7);
+
           for (const warning of warnings) {
             const { author, timestamp, reason } = warning
-            arrayResult.push(reason)  
+            var is24 = timestamp >= new Date(timeStampYesterday * 1000).getTime();
+            var is7 = timestamp >= new Date(timeStamp7Days * 1000).getTime();
+            if (is24) {
+              past24hours++
+            }
+            if (is7) {
+              past7day++
+            }
+            //console.log(`${past24hours} ${past7day}`)
+            arrayResult.push(reason)
             //console.log(warning)
             //result=result+`${n}) \`${reason}\` \n`
-          
+
           }
-          for (let n = 0; n < 10; n++) {
-            {
+          for (let n = warningNumber; n >= 0; n=n-1) {
               reason = arrayResult[n]
-              if(reason){
-                result=result+`${n+1}) \`${reason}\` \n`
+              if (reason) {
+                result = result + `ID: \`${n}\`) \`${reason}\`\n`
               }
-            }
           }
         } finally {
           mongoose.connection.close()
-          avatarURL=target.avatarURL({ format: 'png'})
+          avatarURL = target.user.avatarURL({ format: 'png' })
           const embed = new Discord.MessageEmbed()
-            .setAuthor(`${target.user.tag} infractions`,avatarURL)
+            .setAuthor(`${target.user.tag} infractions`, avatarURL)
             .setColor(0x0774f8)
-            .addField("Total warns", `${warningNumber}`)
-            .addField("last 10 warnings",result)
+            .addField("Total warns", `${warningNumber}`, true)
+            .addField("Past 24 hours", `${past24hours}`, true)
+            .addField("Past 7 days", `${past7day}`, true)
+            .addField("last 10 warnings", result)
             .setFooter("id: " + target.id)
-          message.reply({embeds: [embed]})
+          message.reply({ embeds: [embed] })
         }
       })
     }

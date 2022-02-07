@@ -30,6 +30,7 @@ module.exports = {
     async execute(message, args, client) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 
+            if(!args[0]){return message.reply(`enter a user`) }
             let target = message.mentions.members.first();
             if (!target) {
                 let id = args[0]
@@ -42,9 +43,11 @@ module.exports = {
             if (!target) { return message.reply(`I can't find that member`) }
 
             if (target.id === message.author.id) { return message.reply(`you cant warn yourself`) }
-
-            if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
-                return message.reply("can not warn a mod");
+            if(message.member.roles.cache.find(r => r.name === adminid)){}
+            else{
+                if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
+                    return message.reply("can not warn a mod");
+                }
             }
             if (target.user.bot) { return message.reply("you cant warn bots") }
 
@@ -58,6 +61,35 @@ module.exports = {
                 author: message.member.user.id,
                 timestamp: new Date().getTime(),
                 reason
+            }
+            let lastElement1 = args.slice(-1)[0];
+            //console.log(lastElement1)
+            //onsole.log(lastElement1)
+            const Lastarray = lastElement1.split("");
+            if (Lastarray[0] === "-") {
+                if (Lastarray.length > 2) {
+                    if (Lastarray[1] === "a") {}
+                    else {
+                        try {
+                            const embed3 = new Discord.MessageEmbed()
+                            .setDescription(`you have been warned for ${reason}`)
+
+                            target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                        } catch {
+                            console.log(`could not dm ${target.user.tag}`)
+                        }
+                    }
+                }
+            }
+            else{
+                try {
+                    const embed3 = new Discord.MessageEmbed()
+                    .setDescription(`You have been warned for ${reason}`)
+
+                    target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                } catch {
+                    console.log(`could not dm ${target.user.tag}`)
+                }
             }
             await mongo().then(async mongoose => {
                 try {

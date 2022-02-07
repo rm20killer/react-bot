@@ -31,6 +31,7 @@ module.exports = {
     async execute(message, args, client) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid)) {
             // CODE GOES HERE 🡫 
+            if(!args[0]){return message.reply(`enter a user`) }
             let target = message.mentions.members.first();
             if (!target) {
                 let id = args[0]
@@ -42,7 +43,7 @@ module.exports = {
             }
             if (!target) { return message.reply(`I can't find that member`) }
             //console.log(target)
-            if (target.id === message.author.id) { return message.reply(`you cant ban yourself`) }
+            if (target.id === message.author.id) { return message.reply(`You cant ban yourself`) }
 
             if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
                 return message.reply("can not ban a mod");
@@ -83,6 +84,16 @@ module.exports = {
                             } catch {
                                 console.log("could not delete messages")
                             }
+                        }
+                    }
+                    else{
+                        try {
+                            const embed3 = new Discord.MessageEmbed()
+                            .setDescription(`you have been warned for ${reason}`)
+
+                            target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                        } catch {
+                            console.log(`could not dm ${target.user.tag}`)
                         }
                     }
                     var channelParent = message.channel.parent.id
