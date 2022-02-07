@@ -14,7 +14,7 @@ const DISCORD_EPOCH = 1420070400000
 
 module.exports = {
     name: 'age',
-    aliases: ["age"],
+    aliases: ["accountage"],
     description: 'will get age of user/message',
     usage: '`*age <@user>`',
     example: '`*age @rm20#2000`',
