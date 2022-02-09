@@ -57,10 +57,25 @@ module.exports = {
             if (!reason) {
                 reason = "No Reason Provided."
             }
+            var Last10Messages = []
+            message.channel.messages.fetch({
+                limit: 100, // Change `100` to however many messages you want to fetch
+                before: message.id
+            }).then((message) =>{
+                const botMessages = []
+                message.filter(m => m.author.id === target.id).forEach(msg => botMessages.push(msg))
+                for (let i = 0; i < botMessages.length || i < 10; i++) {
+                    //Last10Messages=Last10Messages+botMessages[i].content+"\n"
+                    Last10Messages.push(botMessages[i].content)
+                }
+                
+            });
+            //console.log(Last10Messages)
             const warning = {
                 author: message.member.user.id,
                 timestamp: new Date().getTime(),
-                reason
+                reason,
+                Last10Messages
             }
             let lastElement1 = args.slice(-1)[0];
             //console.log(lastElement1)
@@ -101,7 +116,7 @@ module.exports = {
                         userId,
                         $push: {
                             warnings: warning
-                        }
+                        }   
                     }, {
                         upsert: true
                     })
@@ -117,7 +132,7 @@ module.exports = {
                     var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
                     const embed = new Discord.MessageEmbed()
                         .setTitle(`[WARN] ${target.user.tag}`)
-                        .setColor(0xFF0000)
+                        .setColor(0xFFFF00)
                         .setDescription(`warn for \`${reason}\``)
                         .addField("warn by", `<@${message.author.id}>`)
                         .setFooter("id: " + target.id + " | today at " + formattedTime)

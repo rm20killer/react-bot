@@ -135,7 +135,7 @@ const getInfractionsDetial = async (message,target,warnId) => {
       let warnings1 = results.warnings
       let warningDetail =warnings1[warnId]
       if(!warningDetail){return message.reply(`No Warning found for ${target.user.tag} with ID ${warnId}`)}
-      const { author, timestamp, reason } = warningDetail
+      const { author, timestamp, reason,Last10Messages } = warningDetail
       avatarURL = target.user.avatarURL({ format: 'png' })
       const embed = new Discord.MessageEmbed()
       .setAuthor(`${target.user.tag} infractions detail for ID: ${warnId}`, avatarURL)
@@ -144,6 +144,10 @@ const getInfractionsDetial = async (message,target,warnId) => {
       .addField("original mod",`<@${author}>`)
       .addField("At time",`<t:${timestamp}:f>`)
       .setFooter("id: " + target.id)
+      for (let i = 0; i < Last10Messages.length; i++) {
+        const element = Last10Messages[i];
+        embed.addField(`Message before warning ${i}`, `${element}`);
+      }
       message.reply({ embeds: [embed] })
     } finally {
       mongoose.connection.close()

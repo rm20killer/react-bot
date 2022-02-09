@@ -10,7 +10,7 @@ const kicksSchema = mongoose.Schema({
         required: true
     },
     kicks: {
-        type: Int16Array,
+        type: [Object],
         require: true
     }
 })

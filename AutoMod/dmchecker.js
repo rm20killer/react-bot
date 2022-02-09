@@ -36,6 +36,7 @@ module.exports = {
             //console.log("test");
             return
         }
+        if(!message.content){return}
         //console.log(attachmentss)
         if (attachmentss !== undefined) {
             const attachment = attachmentss[1]

@@ -87,6 +87,7 @@ const removeall = async (message, target, args) => {
       }, function (err, docs) {
         if (err) {
           console.log(err)
+          message.reply("An error has happned contact, RM.")
         }
         else {
           avatarURL = target.user.avatarURL({ format: 'png' })
@@ -127,7 +128,7 @@ const removeOne = async (message, target, args, warnId) => {
       const warnings = results.warnings
       if (!warnings1[warnId]) { return message.reply("No warning found") }
       let warningdeleting = warnings1[warnId]
-      const { author, timestamp, reason } = warningdeleting
+      const { author, timestamp, reason, Last10Messages } = warningdeleting
       try {
         await WarnSchema.findOneAndUpdate({
           guildId,
