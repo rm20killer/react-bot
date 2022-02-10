@@ -36,7 +36,7 @@ module.exports = {
             if (!target) { return message.reply(`I can't find that member`) }
             else {
                 //console.log(mention)
-                const user = client.users.cache.get(mention.id);
+                const user = client.users.cache.get(target.id);
                 //console.log(mess);
                 let dontlog = "3ADB63D1"
                 res = dontlog + "\n\n" + rule1 + "\n" + rule2 + "\n" + rule3 + "\n" + rule4

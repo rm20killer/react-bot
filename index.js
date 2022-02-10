@@ -79,7 +79,8 @@ const pingriz = require('./AutoMod/pingriz');
 const slashcommand = require('./interaction/slashcommand');
 const selectmenu = require('./interaction/selectmenu');
 const contextmenu = require('./interaction/contextmenu');
-const button = require('./interaction/button')
+const button = require('./interaction/button');
+const userjoined  = require('./AutoMod/UserJoined');
 
 //database 
 
@@ -148,6 +149,7 @@ client.on("ready", async () => {
 client.on("guildMemberAdd", async member => {
     //console.log("guildMemberAdd works")
     //accountchecker.accountchecker(client,member);
+    userjoined.userjoined(member,client)
     return;
 });
 
