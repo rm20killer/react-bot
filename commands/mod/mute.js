@@ -83,8 +83,8 @@ module.exports = {
       //let durationstext = durationstext.join();
       let durationsarray = durationstext.split("")
       let suffix = durationsarray.slice(-1)[0];
-      console.log(durationsarray)
-      console.log(suffix)
+      //console.log(durationsarray)
+      //console.log(suffix)
       if (suffix === "s" || suffix === "m" || suffix === "h" || suffix === "d") {
         let time = durationstext.slice(0, -1);
         if (suffix === "s") {
@@ -103,12 +103,12 @@ module.exports = {
           time = null;
         }
         if (time) {
-          console.log(time)
+          //console.log(time)
           const expires = new Date()
           expires.setSeconds(expires.getSeconds() + time)
-          console.log(expires)
+          //console.log(expires)
           reason = removeFirstWord(reason);
-          console.log(reason)
+          //console.log(reason)
           tempmute(message, client, targetmember, time, reason, expires);
         }
         else {
@@ -116,7 +116,9 @@ module.exports = {
         }
       }
       else {
-        mute();
+        const expires = new Date()
+        expires.setUTCFullYear(3000)
+        mute(message, client, targetmember, reason, expires);
       }
     }
     else {
@@ -141,7 +143,7 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
     }
 
   });
-  console.log("tempmuteing")
+  //console.log("tempmuteing")
   let messagetime = message.createdTimestamp
   const mute = {
     author: message.member.user.id,
@@ -200,8 +202,80 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
     message.channel.send({ embeds: [embed2] });
 }
 
-const mute = async function () {
-  console.log("perma mute")
+const mute = async function (message, client, targetmember, reason, expires) {
+  //console.log("perma mute")
+  var Last10Messages = []
+  message.channel.messages.fetch({
+    limit: 100, // Change `100` to however many messages you want to fetch
+    before: message.id
+  }).then((message) => {
+    const botMessages = []
+    message.filter(m => m.author.id === targetmember.id).forEach(msg => botMessages.push(msg))
+    for (let i = 0; i < botMessages.length || i < 10; i++) {
+      //Last10Messages=Last10Messages+botMessages[i].content+"\n"
+      if (botMessages[i]) {
+        Last10Messages.push(botMessages[i].content)
+      }
+    }
+
+  });
+  //console.log("tempmuteing")
+  let messagetime = message.createdTimestamp
+  const mute = {
+    author: message.member.user.id,
+    timestamp: messagetime,
+    duration: "perma",
+    reason,
+    Last10Messages
+  }
+  const guildId = message.guildId
+  const userId = targetmember.id;
+  await mongo().then(async mongoose => {
+    try {
+      await muteSChema.findOneAndUpdate({
+        guildId,
+        userId
+      }, {
+        guildId,
+        userId,
+        expires,
+        current: true,
+        $push: {
+          mutes: mute
+        }
+      }, {
+        upsert: true
+      })
+    } finally {
+      mongoose.connection.close()
+    }
+  })
+  try{
+    var role = targetmember.guild.roles.cache.find(role => role.id === muterole);
+    targetmember.roles.add(role);
+  }
+  catch{
+    message.reply("an error has happened while muting")
+    return
+  }
+  var date = new Date(messagetime * 1000);
+  var hours = date.getHours();
+  var minutes = "0" + date.getMinutes();
+  var seconds = "0" + date.getSeconds();
+  var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+  //var timeString = toHHMMSS(time)
+  const embed = new Discord.MessageEmbed()
+    .setTitle(`[MUTED] ${targetmember.user.tag}`)
+    .setColor(0xFF0000)
+    .setDescription(`muted for \`${reason}\``)
+    .addField("muted by", `<@${message.author.id}>`)
+    .setFooter("id: " + targetmember.id + " | today at " + formattedTime)
+    channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
+    channel.send({ embeds: [embed] });
+    const embed2 = new Discord.MessageEmbed()
+        .setDescription(`<@${targetmember.user.id}> has been muted`)
+    message.channel.send({ embeds: [embed2] });
 }
 
 function removeFirstWord(str) {

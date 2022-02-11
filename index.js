@@ -56,32 +56,27 @@ for (const folder of commandFolders) {
 }
 
 
-//const cmds = require('./commands/cmd');
-
-//const faq = require('./old code/faq');
-//const slash = require('./old code/slash');
 const dmchecker = require('./AutoMod/dmchecker');
 const antiw = require('./AutoMod/malchecker');
 const submitclip = require('./AutoMod/submitclip');
 const streamerrole = require('./AutoMod/streamerrole');
 const accountchecker = require('./AutoMod/accountchecker');
 const attachmentD = require('./AutoMod/attachment');
-const rolechecker = require('./interaction/rolechecker');
-//const log = require('./commands/logs');
 const youtubechecker = require('./AutoMod/youtubeChecker');
 const { youtube } = require('./AutoMod/youtubeChecker');
 const table = require('./AutoMod/tablechecker')
+const userjoined  = require('./AutoMod/UserJoined');
+const mutechecker = require("./AutoMod/mutecheck")
+const pingriz = require('./AutoMod/pingriz');
+const perspective = require('./AutoMod/perspective.js');
 
 //const detector = require('./commands/others/detector')
-const perspective = require('./AutoMod/perspective.js');
 const ticketmanger = require('./interaction/ticketmanger');
-const pingriz = require('./AutoMod/pingriz');
 const slashcommand = require('./interaction/slashcommand');
 const selectmenu = require('./interaction/selectmenu');
 const contextmenu = require('./interaction/contextmenu');
 const button = require('./interaction/button');
-const userjoined  = require('./AutoMod/UserJoined');
-
+const rolechecker = require('./interaction/rolechecker');
 //database 
 
 /*
@@ -129,6 +124,7 @@ client.on("ready", async () => {
             permission: true,
         },
     ];
+    mutechecker.mutechecker(client)
     //client.api.applications(client.user.id).commands.get()  //903237399193190460 903243965187391519
     //client.application.commands.delete('903237399193190460')
     //.then(console.log)
