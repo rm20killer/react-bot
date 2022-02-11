@@ -1,5 +1,5 @@
 # react-bot V13 
-A discord bot which is able to check the height and width of a video posted
+A general purpose discord bot for gamers react discord with some features not in other bots like video quality check.
 
 Discord: https://discord.gg/vSSZ5VqjvJ
 # self-host
