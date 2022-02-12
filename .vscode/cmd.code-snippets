@@ -1,0 +1,78 @@
+{
+	// Place your react-bot workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"command":{
+		"scope": "javascript",
+		"prefix": "command",
+		"body": [
+			"const fetch = require(`node-fetch`);",
+			"const Discord = require('discord.js')",
+			"const { Client, Intents } = require('discord.js');",
+			"const config = require(`../../config`);",
+			"",
+			"const modid = config.ModID",
+			"const adminid = config.AdminID",
+			"const jrmod = config.jrmod",
+			"const helper = config.helper",
+			"",
+			"module.exports = {",
+			"  name: '',",
+			"  aliases: [``],",
+			"  description: '',",
+			"  usage: '``',",
+			"  example: '``',",
+			"  async execute(message, args, client) {",
+			"    // CODE GOES HERE 🡫 ",
+			"  }",
+			"}",
+
+		],
+	},
+	"mod":{
+		"scope": "javascript",
+		"prefix": "mod+helper",
+		"body": "if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {\n\n}\nelse \n{\nmessage.reply(`You lack perms for this command`)\n}",
+	},
+	"getUser":{
+		"scope": "javascript",
+		"prefix": "getUser",
+		"body": [
+			"let target = message.mentions.members.first();",
+            "if (!target) {",
+                "let id = args[0]",
+                "try {",
+                "    target = await message.guild.members.fetch(id);",
+                "} catch {",
+				"return message.reply(`I can't find that member`);",
+                "}",
+            "}\n",
+			"if (!target) { return message.reply(`I can't find that member`) }"
+		]
+	},
+	"GetTimeofMessage":{
+		"scope": "javascript",
+		"prefix": "timeOfMessage",
+		"body": [
+			"let time = message.createdTimestamp",
+			"var date = new Date(time * 1000);",
+			"var hours = date.getHours();",
+			"var minutes = '0' + date.getMinutes();",
+			"var seconds = '0' + date.getSeconds();",
+			"var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);",
+		]
+	}
+}
