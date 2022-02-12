@@ -100,7 +100,7 @@ const removeall = async (message, target, args) => {
         }
       })
     } finally {
-      mongoose.connection.close()
+      //mongoose.connection.close()
     }
   })
 }
@@ -141,7 +141,7 @@ const removeOne = async (message, target, args, warnId) => {
           upsert: true
         })
       } finally {
-        mongoose.connection.close()
+        //mongoose.connection.close()
       }
       avatarURL = target.user.avatarURL({ format: 'png' })
       const embed = new Discord.MessageEmbed()
@@ -153,7 +153,7 @@ const removeOne = async (message, target, args, warnId) => {
         .setFooter("id: " + target.id)
       message.reply({ embeds: [embed] })
     } finally {
-      mongoose.connection.close()
+      //mongoose.connection.close()
     }
   })
 }

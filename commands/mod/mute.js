@@ -25,7 +25,7 @@ const muteSChema = require("../../Models/mute-schema");
 
 module.exports = {
   name: 'mute',
-  aliases: [``],
+  aliases: [`tempmute`],
   description: 'mutes a user',
   usage: '`@mute <@user>`',
   example: '`@mute RM20#2000`',
@@ -44,10 +44,13 @@ module.exports = {
 
       if (!target) { return message.reply(`I can't find that member`) }
       if (target.id === message.author.id) { return message.reply(`you cant mute yourself`) }
-      //if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
-      //    return message.reply("can not mute a mod");
-      //}
-      if (target.user.bot) { return message.reply("you cant mute bots") }
+      if(message.member.roles.cache.find(r => r.name === adminid)){}
+      else{
+          if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
+              return message.reply("Can not mute a mod");
+          }
+      }
+      if (target.user.bot) { return message.reply("You can't mute bots.") }
       const targetmember = (await message.guild.members.fetch()).get(target.id)
       const guildId = message.guildId
       const userId = target.id;
@@ -120,6 +123,11 @@ module.exports = {
         expires.setUTCFullYear(3000)
         mute(message, client, targetmember, reason, expires);
       }
+      if (message.channel.parent.id === "709806849725038634") {
+      }
+      else {
+        message.delete().catch(error => { console.log(error) });
+      }
     }
     else {
       message.reply(`You lack perms for this command`)
@@ -174,11 +182,11 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
       mongoose.connection.close()
     }
   })
-  try{
+  try {
     var role = targetmember.guild.roles.cache.find(role => role.id === muterole);
     targetmember.roles.add(role);
   }
-  catch{
+  catch {
     message.reply("an error has happened while muting")
     return
   }
@@ -195,11 +203,14 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
     .setDescription(`muted for \`${reason}\` for ${timeString}`)
     .addField("muted by", `<@${message.author.id}>`)
     .setFooter("id: " + targetmember.id + " | today at " + formattedTime)
-    channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
-    channel.send({ embeds: [embed] });
-    const embed2 = new Discord.MessageEmbed()
-        .setDescription(`<@${targetmember.user.id}> has been muted for ${timeString}`)
-    message.channel.send({ embeds: [embed2] });
+  channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
+  channel.send({ embeds: [embed] });
+  const embed2 = new Discord.MessageEmbed()
+    .setDescription(`<@${targetmember.user.id}> has been muted for ${timeString}`);
+  message.channel.send({ embeds: [embed2] });
+  const embed3 = new Discord.MessageEmbed()
+    .setDescription(`You were tempmuted in Gamers React for ${timeString} because ${reason}`);
+  targetmember.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
 }
 
 const mute = async function (message, client, targetmember, reason, expires) {
@@ -247,14 +258,14 @@ const mute = async function (message, client, targetmember, reason, expires) {
         upsert: true
       })
     } finally {
-      mongoose.connection.close()
+      //mongoose.connection.close()
     }
   })
-  try{
+  try {
     var role = targetmember.guild.roles.cache.find(role => role.id === muterole);
     targetmember.roles.add(role);
   }
-  catch{
+  catch {
     message.reply("an error has happened while muting")
     return
   }
@@ -271,11 +282,14 @@ const mute = async function (message, client, targetmember, reason, expires) {
     .setDescription(`muted for \`${reason}\``)
     .addField("muted by", `<@${message.author.id}>`)
     .setFooter("id: " + targetmember.id + " | today at " + formattedTime)
-    channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
-    channel.send({ embeds: [embed] });
-    const embed2 = new Discord.MessageEmbed()
-        .setDescription(`<@${targetmember.user.id}> has been muted`)
-    message.channel.send({ embeds: [embed2] });
+  channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
+  channel.send({ embeds: [embed] });
+  const embed2 = new Discord.MessageEmbed()
+    .setDescription(`<@${targetmember.user.id}> has been muted`)
+  message.channel.send({ embeds: [embed2] });
+  const embed3 = new Discord.MessageEmbed()
+  .setDescription(`You were muted in Gamers React for ${reason}`);
+  targetmember.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
 }
 
 function removeFirstWord(str) {
@@ -291,12 +305,12 @@ function removeFirstWord(str) {
 
 function toHHMMSS(time) {
   var sec_num = parseInt(time, 10); // don't forget the second param
-  var hours   = Math.floor(sec_num / 3600);
+  var hours = Math.floor(sec_num / 3600);
   var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
   var seconds = sec_num - (hours * 3600) - (minutes * 60);
 
-  if (hours   < 10) {hours   = "0"+hours;}
-  if (minutes < 10) {minutes = "0"+minutes;}
-  if (seconds < 10) {seconds = "0"+seconds;}
+  if (hours < 10) { hours = "0" + hours; }
+  if (minutes < 10) { minutes = "0" + minutes; }
+  if (seconds < 10) { seconds = "0" + seconds; }
   return hours + ':' + minutes + ':' + seconds;
 }

@@ -119,7 +119,7 @@ module.exports = {
                             upsert: true
                         })
                     } finally {
-                        mongoose.connection.close()
+                        //mongoose.connection.close()
                     }
                 })
                 var date = new Date(time * 1000);
@@ -145,10 +145,16 @@ module.exports = {
                     message.reply("an error has happened while kicking")
                     return
                 }
+                if (message.channel.parent.id === "709806849725038634") {
+                }
+                else {
+                    message.delete().catch(error => { console.log(error) });
+                }
             }
             else {
                 message.reply("I can't kick that user")
             }
+            
         }
         else {
             message.reply(`You lack perms for this command`)

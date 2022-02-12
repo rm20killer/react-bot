@@ -122,7 +122,7 @@ module.exports = {
                         upsert: true
                     })
                 } finally {
-                    mongoose.connection.close()
+                    //mongoose.connection.close()
                     var channelParent = message.channel.parent.id
                     channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
                     let time = message.createdTimestamp
@@ -148,7 +148,7 @@ module.exports = {
                         return
                     }
 
-                    if (channelParent === "709806849725038634") {
+                    if (message.channel.parent.id === "709806849725038634") {
                     }
                     else {
                         message.delete().catch(error => { console.log(error) });

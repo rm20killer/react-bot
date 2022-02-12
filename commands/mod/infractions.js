@@ -107,7 +107,7 @@ const getInfractions = async (message,target) => {
           }
       }
     } finally {
-      mongoose.connection.close()
+      //mongoose.connection.close()
       avatarURL = target.user.avatarURL({ format: 'png' })
       const embed = new Discord.MessageEmbed()
         .setAuthor(`${target.user.tag} infractions`, avatarURL)
@@ -150,7 +150,7 @@ const getInfractionsDetial = async (message,target,warnId) => {
       }
       message.reply({ embeds: [embed] })
     } finally {
-      mongoose.connection.close()
+      //mongoose.connection.close()
     }
   })
 }
