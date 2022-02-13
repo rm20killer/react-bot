@@ -10,7 +10,7 @@ const muterole = "712512117999271966"
 module.exports = {
     async userjoined(member, client) {
         channel2 = client.channels.cache.find(channel => channel.id === "700790402890072205");
-        channel2.send(`hey <@${member.id}> welcome to **Gamers React!** To get access to chat head over to <#700789384131379371>`);
+        channel2.send(`Hey <@${member.id}> welcome to **Gamers React!** To get access to chat head over to <#700789384131379371>`);
         //console.log(member)
         const guildId = member.guild.id;
         const userId = member.user.id;
