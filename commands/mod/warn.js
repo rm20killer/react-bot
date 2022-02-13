@@ -64,10 +64,12 @@ module.exports = {
             }).then((message) =>{
                 const botMessages = []
                 message.filter(m => m.author.id === target.id).forEach(msg => botMessages.push(msg))
-                for (let i = 0; i < botMessages.length || i < 10; i++) {
-                    if(botMessages[i]){
-                        if(botMessages[i].content){
-                            Last10Messages.push(botMessages[i].content)
+                for (let i = 0; i < botMessages.length; i++) {
+                    if(i<10){
+                        if(botMessages[i]){
+                            if(botMessages[i].content){
+                                Last10Messages.push(botMessages[i].content)
+                            }
                         }
                     }
                 }
