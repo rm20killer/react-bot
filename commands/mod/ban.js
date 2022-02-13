@@ -31,7 +31,7 @@ module.exports = {
     async execute(message, args, client) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid)) {
             // CODE GOES HERE 🡫 
-            if(!args[0]){return message.reply(`enter a user`) }
+            if (!args[0]) { return message.reply(`enter a user`) }
             let target = message.mentions.members.first();
             if (!target) {
                 let id = args[0]
@@ -66,13 +66,12 @@ module.exports = {
                             //var dmed=0
                             try {
                                 if (Lastarray[1] === "a" || Lastarray[2] === "a") {
-                                    dmed++
+                                    //dmed++
                                 }
                                 else {
-                            const embed3 = new Discord.MessageEmbed()
-                            .setDescription(`you have been banned for ${reason}`)
-
-                            target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                                    const embed3 = new Discord.MessageEmbed()
+                                        .setDescription(`you have been banned for ${reason}`)
+                                    target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
                                 }
                             } catch {
                                 console.log(`could not dm ${target.user.tag}`)
@@ -89,10 +88,10 @@ module.exports = {
                             }
                         }
                     }
-                    else{
+                    else {
                         try {
                             const embed3 = new Discord.MessageEmbed()
-                            .setDescription(`you have been banned for ${reason}`)
+                                .setDescription(`you have been banned for ${reason}`)
 
                             target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
                         } catch {
