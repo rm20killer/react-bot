@@ -43,7 +43,7 @@ module.exports = {
       }
 
       if (!target) { return message.reply(`I can't find that member`) }
-      if (target.id === message.author.id) { return message.reply(`you cant mute yourself`) }
+      if (target.id === message.author.id) { return message.reply(`You can't mute yourself.`) }
       if(message.member.roles.cache.find(r => r.name === adminid)){}
       else{
           if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
@@ -67,13 +67,13 @@ module.exports = {
           })
           if (previousMutes) {
             if (previousMutes.current === true) {
-              message.reply("That user is already muted")
+              message.reply("That user is already muted.")
               currentmuted = true
               return;
             }
           }
           else if (targetmember.roles.cache.find(r => r.id === muterole)) {
-            message.reply("This user has the mute role but not in my database. Remove role before trying to mute")
+            message.reply("This user has the mute role but not in my database. Remove role before trying to mute.")
             currentmuted = true
             return;
           }
@@ -187,7 +187,7 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
     targetmember.roles.add(role);
   }
   catch {
-    message.reply("an error has happened while muting")
+    message.reply("An error has happened while muting.")
     return
   }
   var date = new Date(messagetime * 1000);
@@ -209,7 +209,7 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
     .setDescription(`<@${targetmember.user.id}> has been muted for ${timeString}`);
   message.channel.send({ embeds: [embed2] });
   const embed3 = new Discord.MessageEmbed()
-    .setDescription(`You were tempmuted in Gamers React for ${timeString} because ${reason}`);
+    .setDescription(`You were tempmuted in Gamers React | ${reason} ${timeString}`);
   targetmember.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
 }
 
