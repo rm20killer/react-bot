@@ -70,7 +70,7 @@ module.exports = {
                                 }
                                 else {
                                     const embed3 = new Discord.MessageEmbed()
-                                        .setDescription(`you have been banned for ${reason}`)
+                                        .setDescription(`You have been banned from Gamers React | ${reason}`)
                                     target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
                                 }
                             } catch {
@@ -91,7 +91,7 @@ module.exports = {
                     else {
                         try {
                             const embed3 = new Discord.MessageEmbed()
-                                .setDescription(`you have been banned for ${reason}`)
+                                .setDescription(`You have been banned from Gamers React | ${reason}`)
 
                             target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
                         } catch {
@@ -116,7 +116,7 @@ module.exports = {
                         target.ban({ reason: `${reason}` });
                         channel.send({ embeds: [embed] });
                         const embed2 = new Discord.MessageEmbed()
-                            .setDescription(`<@${target.user.id}> has been banned`)
+                            .setDescription(`<@${target.user.id}> has been banned.`)
                         message.channel.send({ embeds: [embed2] });
                     }
                     catch {
