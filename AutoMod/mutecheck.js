@@ -35,7 +35,7 @@ module.exports = {
                         channel.send({ embeds: [embed2] });
                         const embed3 = new Discord.MessageEmbed()
                         .setDescription(`You were unmuted in Gamers React`)
-                        member.send({ embeds: [embed3] }).catch(error => { console.log(`Could not dm ${target.user.tag}`) });
+                        member.send({ embeds: [embed3] }).catch(error => { console.log(`Could not dm ${member.user.tag}`) });
 
                     }
                     await muteSChema.updateMany(conditional, {

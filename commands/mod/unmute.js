@@ -44,9 +44,13 @@ module.exports = {
                 }
             }
             if (!target) { return message.reply(`I can't find that member`) }
-            if (!target.roles.cache.find(r => r.id === muterole)) {
+            try{
+                if (!target.roles.cache.find(r => r.id === muterole)) {
+                    message.reply("User is not muted")
+                    return;
+                }
+            }catch{
                 message.reply("User is not muted")
-                return;
             }
             const guildId = message.guildId
             const userId = target.id;

@@ -44,11 +44,15 @@ module.exports = {
 
       if (!target) { return message.reply(`I can't find that member`) }
       if (target.id === message.author.id) { return message.reply(`You can't mute yourself.`) }
-      if (message.member.roles.cache.find(r => r.name === adminid)) { }
-      else {
-        if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
-          return message.reply("Can not mute a mod");
+      try{
+        if (message.member.roles.cache.find(r => r.name === adminid)) { }
+        else {
+          if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
+            return message.reply("Can not mute a mod");
+          }
         }
+      }catch{
+        console.log(target.id+" has no roles")
       }
       if (target.user.bot) { return message.reply("You can't mute bots.") }
       const targetmember = (await message.guild.members.fetch()).get(target.id)
@@ -142,7 +146,7 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
     before: message.id
   }).then((message) => {
     const botMessages = []
-    message.filter(m => m.author.id === target.id).forEach(msg => botMessages.push(msg.content))
+    message.filter(m => m.author.id === targetmember.id).forEach(msg => botMessages.push(msg.content))
     //console.log(botMessages);
     if (botMessages.length === 0) {
     }
@@ -185,7 +189,7 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
         upsert: true
       })
     } finally {
-      mongoose.connection.close()
+      //mongoose.connection.close()
     }
   })
   try {
@@ -216,7 +220,7 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
   message.channel.send({ embeds: [embed2] });
   const embed3 = new Discord.MessageEmbed()
     .setDescription(`You were tempmuted in Gamers React | ${reason} ${timeString}`);
-  targetmember.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
+  targetmember.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${targetmember.user.tag}`) });
 }
 
 const mute = async function (message, client, targetmember, reason, expires) {

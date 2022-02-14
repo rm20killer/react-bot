@@ -41,8 +41,12 @@ module.exports = {
             if (!target) { return message.reply(`I can't find that member`) }
             if (target.id === message.author.id) { return message.reply(`you cant kick yourself`) }
 
-            if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
-                return message.reply("can not kick a mod");
+            try {
+                if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
+                    return message.reply("Can not mute a mod");
+                }
+            } catch {
+                console.log(target.id + " has no roles")
             }
             if (target.user.bot) { return message.reply("you cant kick bots") }
             let reason = args.slice(1).join(" ")

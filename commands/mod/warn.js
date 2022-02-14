@@ -44,11 +44,16 @@ module.exports = {
 
             if (target.id === message.author.id) { return message.reply(`You can't warn yourself`) }
             if (message.member.roles.cache.find(r => r.name === adminid)) { }
-            else {
-                if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
-                    return message.reply("Can not warn a mod");
+            try{
+                if (message.member.roles.cache.find(r => r.name === adminid)) { }
+                else {
+                  if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
+                    return message.reply("Can not mute a mod");
+                  }
                 }
-            }
+              }catch{
+                console.log(target.id+" has no roles")
+              }
             if (target.user.bot) { return message.reply("You can't warn bots.") }
 
             const guildId = message.guildId
