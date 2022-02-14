@@ -30,9 +30,12 @@ module.exports = {
 
             if (!target) { return message.reply(`I can't find that member`) }
             try {
-                target.send(mess).catch(console.error);
+                target.send(mess).catch(console.log(`${target.user.tag} has dm off`));
             } catch {
-                console.error
+                message.reply(`user have there DM off`);
+                return
+            } finally{
+                message.reply(`DMed user`);
             }
 
         }
