@@ -29,11 +29,8 @@ module.exports = {
             }
 
             if (!target) { return message.reply(`I can't find that member`) }
-            try {
-                target.send(mess).catch(error => { return message.reply(`Could not dm ${targetmember.user.tag}`) });
-            } finally{
-                message.reply(`DMed user`)
-            }
+            await target.send(mess).catch(error => { return message.reply(`Could not dm ${target.user.tag}`) });
+            //message.reply(`DMed user`)
 
         }
         else {
