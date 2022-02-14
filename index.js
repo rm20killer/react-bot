@@ -77,6 +77,7 @@ const selectmenu = require('./interaction/selectmenu');
 const contextmenu = require('./interaction/contextmenu');
 const button = require('./interaction/button');
 const rolechecker = require('./interaction/rolechecker');
+const bancheck = require('./AutoMod/bancheck');
 //database 
 
 /*
@@ -125,6 +126,7 @@ client.on("ready", async () => {
         },
     ];
     mutechecker.mutechecker(client)
+    bancheck.backcheck(client)
     //client.api.applications(client.user.id).commands.get()  //903237399193190460 903243965187391519
     //client.application.commands.delete('903237399193190460')
     //.then(console.log)

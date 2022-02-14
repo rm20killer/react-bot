@@ -219,7 +219,7 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
     .setDescription(`<@${targetmember.user.id}> has been muted for ${timeString}`);
   message.channel.send({ embeds: [embed2] });
   const embed3 = new Discord.MessageEmbed()
-    .setDescription(`You were tempmuted in Gamers React | ${reason} ${timeString}`);
+    .setDescription(`You were tempmuted in Gamers React for ${timeString} | ${reason}`);
   targetmember.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${targetmember.user.tag}`) });
 }
 
