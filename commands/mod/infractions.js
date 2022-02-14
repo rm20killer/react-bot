@@ -100,11 +100,15 @@ const getInfractions = async (message,target) => {
         //result=result+`${n}) \`${reason}\` \n`
 
       }
+      let i = 0
       for (let n = warningNumber; n >= 0; n=n-1) {
+        if(i<11){
           reason = arrayResult[n]
           if (reason) {
             result = result + `ID: \`${n}\`) \`${reason}\`\n`
           }
+        }
+        i=i+1
       }
     } finally {
       //mongoose.connection.close()

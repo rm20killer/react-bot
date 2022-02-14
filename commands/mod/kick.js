@@ -58,18 +58,18 @@ module.exports = {
                     if (Lastarray.length > 2) {
                         if (Lastarray[1] === "a") { }
                         else {
-                    try {
-                        const embed3 = new Discord.MessageEmbed()
-                            .setDescription(`you have been kicked for ${reason}`)
+                            try {
+                                const embed3 = new Discord.MessageEmbed()
+                                    .setDescription(`you have been kicked for ${reason}`)
 
-                        target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
-                    } catch {
-                        console.log(`could not dm ${target.user.tag}`)
-                    }
+                                target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                            } catch {
+                                console.log(`could not dm ${target.user.tag}`)
+                            }
                         }
                     }
                 }
-                
+
                 else {
                     try {
                         const embed3 = new Discord.MessageEmbed()
@@ -82,18 +82,25 @@ module.exports = {
                 }
                 var channelParent = message.channel.parent.id
                 var Last10Messages = []
-                message.channel.messages.fetch({
+                await message.channel.messages.fetch({
                     limit: 100, // Change `100` to however many messages you want to fetch
                     before: message.id
                 }).then((message) => {
                     const botMessages = []
-                    message.filter(m => m.author.id === target.id).forEach(msg => botMessages.push(msg))
-                    for (let i = 0; i < botMessages.length || i < 10; i++) {
-                        if(botMessages[i].content){
-                            Last10Messages.push(botMessages[i].content)
+                    message.filter(m => m.author.id === target.id).forEach(msg => botMessages.push(msg.content))
+                    //console.log(botMessages);
+                    if (botMessages.length === 0) {
+                    }
+                    else {
+                        for (let i = 0; i < botMessages.length; i++) {
+                            if (i < 10) {
+                                if (botMessages[i]) {
+                                    //console.log(botMessages[i])
+                                    Last10Messages.push(botMessages[i])
+                                }
+                            }
                         }
                     }
-
                 });
                 let time = message.createdTimestamp
                 const kick = {
@@ -154,7 +161,7 @@ module.exports = {
             else {
                 message.reply("I can't kick that user")
             }
-            
+
         }
         else {
             message.reply(`You lack perms for this command`)

@@ -44,11 +44,11 @@ module.exports = {
 
       if (!target) { return message.reply(`I can't find that member`) }
       if (target.id === message.author.id) { return message.reply(`You can't mute yourself.`) }
-      if(message.member.roles.cache.find(r => r.name === adminid)){}
-      else{
-          if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
-              return message.reply("Can not mute a mod");
-          }
+      if (message.member.roles.cache.find(r => r.name === adminid)) { }
+      else {
+        if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
+          return message.reply("Can not mute a mod");
+        }
       }
       if (target.user.bot) { return message.reply("You can't mute bots.") }
       const targetmember = (await message.guild.members.fetch()).get(target.id)
@@ -137,19 +137,25 @@ module.exports = {
 }
 const tempmute = async function (message, client, targetmember, time, reason, expires) {
   var Last10Messages = []
-  message.channel.messages.fetch({
+  await message.channel.messages.fetch({
     limit: 100, // Change `100` to however many messages you want to fetch
     before: message.id
   }).then((message) => {
     const botMessages = []
-    message.filter(m => m.author.id === targetmember.id).forEach(msg => botMessages.push(msg))
-    for (let i = 0; i < botMessages.length || i < 10; i++) {
-      //Last10Messages=Last10Messages+botMessages[i].content+"\n"
-      if (botMessages[i]) {
-        Last10Messages.push(botMessages[i].content)
+    message.filter(m => m.author.id === target.id).forEach(msg => botMessages.push(msg.content))
+    //console.log(botMessages);
+    if (botMessages.length === 0) {
+    }
+    else {
+      for (let i = 0; i < botMessages.length; i++) {
+        if (i < 10) {
+          if (botMessages[i]) {
+            //console.log(botMessages[i])
+            Last10Messages.push(botMessages[i])
+          }
+        }
       }
     }
-
   });
   //console.log("tempmuteing")
   let messagetime = message.createdTimestamp
@@ -288,7 +294,7 @@ const mute = async function (message, client, targetmember, reason, expires) {
     .setDescription(`<@${targetmember.user.id}> has been muted`)
   message.channel.send({ embeds: [embed2] });
   const embed3 = new Discord.MessageEmbed()
-  .setDescription(`You were muted in Gamers React for ${reason}`);
+    .setDescription(`You were muted in Gamers React for ${reason}`);
   targetmember.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
 }
 

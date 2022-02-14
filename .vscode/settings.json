@@ -1,3 +1,9 @@
 {
-    "discord-chat.setUpIfDiscordChaStartWhenVSCodeOpened": false
+    "discord-chat.setUpIfDiscordChaStartWhenVSCodeOpened": false,
+    "cSpell.enableFiletypes": [
+        "!javascript"
+    ],
+ 
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs":"active"
 }

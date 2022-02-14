@@ -30,7 +30,7 @@ module.exports = {
     async execute(message, args, client) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 
-            if(!args[0]){return message.reply(`Enter a user.`) }
+            if (!args[0]) { return message.reply(`Enter a user.`) }
             let target = message.mentions.members.first();
             if (!target) {
                 let id = args[0]
@@ -43,8 +43,8 @@ module.exports = {
             if (!target) { return message.reply(`I can't find that member`) }
 
             if (target.id === message.author.id) { return message.reply(`You can't warn yourself`) }
-            if(message.member.roles.cache.find(r => r.name === adminid)){}
-            else{
+            if (message.member.roles.cache.find(r => r.name === adminid)) { }
+            else {
                 if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
                     return message.reply("Can not warn a mod");
                 }
@@ -58,22 +58,25 @@ module.exports = {
                 reason = "No Reason Provided."
             }
             var Last10Messages = []
-            message.channel.messages.fetch({
+            await message.channel.messages.fetch({
                 limit: 100, // Change `100` to however many messages you want to fetch
                 before: message.id
-            }).then((message) =>{
+            }).then((message) => {
                 const botMessages = []
-                message.filter(m => m.author.id === target.id).forEach(msg => botMessages.push(msg))
-                for (let i = 0; i < botMessages.length; i++) {
-                    if(i<10){
-                        if(botMessages[i]){
-                            if(botMessages[i].content){
-                                Last10Messages.push(botMessages[i].content)
+                message.filter(m => m.author.id === target.id).forEach(msg => botMessages.push(msg.content))
+                //console.log(botMessages);
+                if (botMessages.length === 0) {
+                }
+                else{
+                    for (let i = 0; i < botMessages.length; i++) {
+                        if (i < 10) {
+                            if (botMessages[i]) {
+                                //console.log(botMessages[i])
+                                Last10Messages.push(botMessages[i])
                             }
                         }
                     }
                 }
-                
             });
             //console.log(Last10Messages)
             const warning = {
@@ -88,11 +91,11 @@ module.exports = {
             const Lastarray = lastElement1.split("");
             if (Lastarray[0] === "-") {
                 if (Lastarray.length > 2) {
-                    if (Lastarray[1] === "a") {}
+                    if (Lastarray[1] === "a") { }
                     else {
                         try {
                             const embed3 = new Discord.MessageEmbed()
-                            .setDescription(`You were warned in Gamers React for: ${reason}`)
+                                .setDescription(`You were warned in Gamers React for: ${reason}`)
 
                             target.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
                         } catch {
@@ -101,10 +104,10 @@ module.exports = {
                     }
                 }
             }
-            else{
+            else {
                 try {
                     const embed3 = new Discord.MessageEmbed()
-                    .setDescription(`You were warned in Gamers React for: ${reason}`)
+                        .setDescription(`You were warned in Gamers React for: ${reason}`)
 
                     target.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
                 } catch {
@@ -121,7 +124,7 @@ module.exports = {
                         userId,
                         $push: {
                             warnings: warning
-                        }   
+                        }
                     }, {
                         upsert: true
                     })
