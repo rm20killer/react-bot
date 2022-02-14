@@ -1,5 +1,5 @@
 # react-bot V13 
-A general purpose discord bot for gamers react discord with some features not in other bots like video quality check.
+A general purpose discord bot for [gamers react discord](https://discord.gg/vSSZ5VqjvJ) with some features not in other bots like video quality check.
 
 Discord: https://discord.gg/vSSZ5VqjvJ
 # self-host
@@ -19,3 +19,5 @@ add tokens.
 * [google-spreadsheet](https://www.npmjs.com/package/google-spreadsheet)
 
 * [hyDiscord](https://github.com/HyDiscord/HyDiscord)
+
+* [perspectiveapi](https://www.perspectiveapi.com/)
