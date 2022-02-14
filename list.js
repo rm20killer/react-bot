@@ -192,7 +192,9 @@ var arr =[
     "everyday.cf",
     "nitro-",
     "ldiscordapp.",
-    "disocrds."
+    "disocrds.",
+    "dlscorb",
+    "discerd"
 
 	
 ]
