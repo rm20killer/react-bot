@@ -31,7 +31,7 @@ module.exports = {
   async execute(message, args, client) {
     if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
       // CODE GOES HERE 🡫 
-      if(!args[0]){return message.reply(`enter a user`) }
+      if (!args[0]) { return message.reply(`enter a user`) }
       let target = message.mentions.members.first();
       if (!target) {
         let id = args[0]
@@ -47,13 +47,13 @@ module.exports = {
       const guildId = message.guildId
       const userId = target.id
       let warningNumber
-      if(args[1]){
+      if (args[1]) {
         let warnId = parseInt(args[1])
-        if (warnId!=0) {if (!warnId) { return message.reply("No warn id found") }}
-        getInfractionsDetial(message,target,warnId)
+        if (warnId != 0) { if (!warnId) { return message.reply("No warn id found") } }
+        getInfractionsDetial(message, target, warnId)
       }
-      else{
-        getInfractions(message,target)
+      else {
+        getInfractions(message, target)
       }
     }
     else {
@@ -62,7 +62,7 @@ module.exports = {
   }
 }
 
-const getInfractions = async (message,target) => {
+const getInfractions = async (message, target) => {
   const guildId = message.guildId
   const userId = target.id
   await mongo().then(async mongoose => {
@@ -101,14 +101,14 @@ const getInfractions = async (message,target) => {
 
       }
       let i = 0
-      for (let n = warningNumber; n >= 0; n=n-1) {
-        if(i<11){
+      for (let n = warningNumber; n >= 0; n = n - 1) {
+        if (i < 11) {
           reason = arrayResult[n]
           if (reason) {
             result = result + `ID: \`${n}\`) \`${reason}\`\n`
           }
         }
-        i=i+1
+        i = i + 1
       }
     } finally {
       //mongoose.connection.close()
@@ -127,7 +127,7 @@ const getInfractions = async (message,target) => {
   return;
 }
 
-const getInfractionsDetial = async (message,target,warnId) => {
+const getInfractionsDetial = async (message, target, warnId) => {
   const guildId = message.guildId
   const userId = target.id
   await mongo().then(async mongoose => {
@@ -137,17 +137,18 @@ const getInfractionsDetial = async (message,target,warnId) => {
         userId
       })
       let warnings1 = results.warnings
-      let warningDetail =warnings1[warnId]
-      if(!warningDetail){return message.reply(`No Warning found for ${target.user.tag} with ID ${warnId}`)}
-      const { author, timestamp, reason,Last10Messages } = warningDetail
+      let warningDetail = warnings1[warnId]
+      if (!warningDetail) { return message.reply(`No Warning found for ${target.user.tag} with ID ${warnId}`) }
+      const { author, timestamp, reason, Last10Messages } = warningDetail
+      let UNIXTimestamp = Math.round(timestamp / 1000);
       avatarURL = target.user.avatarURL({ format: 'png' })
       const embed = new Discord.MessageEmbed()
-      .setAuthor(`${target.user.tag} infractions detail for ID: ${warnId}`, avatarURL)
-      .setColor(0x0774f8)
-      .addField("reason", `${reason}` )
-      .addField("original mod",`<@${author}>`)
-      .addField("At time",`<t:${timestamp}:f>`)
-      .setFooter("id: " + target.id)
+        .setAuthor(`${target.user.tag} infractions detail for ID: ${warnId}`, avatarURL)
+        .setColor(0x0774f8)
+        .addField("reason", `${reason}`)
+        .addField("original mod", `<@${author}>`)
+        .addField("At time", `<t:${UNIXTimestamp}:f>`)
+        .setFooter("id: " + target.id)
       for (let i = 0; i < Last10Messages.length; i++) {
         const element = Last10Messages[i];
         embed.addField(`Message before warning ${i}`, `${element}`);
