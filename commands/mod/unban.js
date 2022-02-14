@@ -63,11 +63,14 @@ module.exports = {
                 .addField("unbanned by", `<@${message.author.id}>`)
                 .setFooter("id: " + id + " | today at " + formattedTime)
             try {
-                await message.guild.members.unban(id).catch(error => { return message.reply(`Error: Cant unban`) });
-                channel.send({ embeds: [embed] });
-                const embed2 = new Discord.MessageEmbed()
-                    .setDescription(`<@${id}> has been unbanned`)
-                message.channel.send({ embeds: [embed2] });
+                try{
+                    await message.guild.members.unban(id).catch(error => { return message.reply(`Error: Cant unban`) });
+                } finally{
+                    channel.send({ embeds: [embed] });
+                    const embed2 = new Discord.MessageEmbed()
+                        .setDescription(`<@${id}> has been unbanned`)
+                    message.channel.send({ embeds: [embed2] });
+                }
             }
             catch {
                 message.reply("an error has happened while sending embed")
