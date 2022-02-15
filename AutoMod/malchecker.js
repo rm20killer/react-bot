@@ -182,7 +182,7 @@ const trigger = async (message, client) => {
         if (message.member.kickable) {
             message.member.kick("compromised account").catch(error => { console.log(error) });
             const embed2 = new Discord.MessageEmbed()
-                .setDescription(`<@${target.user.id}> has been kicked`)
+                .setDescription(`<@${message.author.id}> has been kicked`)
             message.channel.send({ embeds: [embed2] });
             console.log(`${message.author.tag} kicked`);
         }
