@@ -299,7 +299,7 @@ const mute = async function (message, client, targetmember, reason, expires) {
   message.channel.send({ embeds: [embed2] });
   const embed3 = new Discord.MessageEmbed()
     .setDescription(`You were muted in Gamers React for ${reason}`);
-  targetmember.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
+  targetmember.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${targetmember.user.tag}`) });
 }
 
 function removeFirstWord(str) {

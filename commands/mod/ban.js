@@ -211,7 +211,7 @@ const tempban = async function (client, message, args, target, reason, expires, 
         before: message.id
     }).then((message) => {
         const botMessages = []
-        message.filter(m => m.author.id === targetmember.id).forEach(msg => botMessages.push(msg.content))
+        message.filter(m => m.author.id === target.id).forEach(msg => botMessages.push(msg.content))
         //console.log(botMessages);
         if (botMessages.length === 0) {
         }
