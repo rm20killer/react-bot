@@ -93,7 +93,7 @@ module.exports = {
                             message.channel.send({ embeds: [embed2] });
                             const embed3 = new Discord.MessageEmbed()
                             .setDescription(`You were unmuted in Gamers React`)
-                            target.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
+                            target.send({ embeds: [embed3] }).catch(error => { message.channel.send(`Could not dm ${target.user.tag}`) });
                         }
 
                     }

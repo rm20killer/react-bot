@@ -144,7 +144,7 @@ const banUser = async function (client, message, args, target, reason) {
                 else {
                     const embed3 = new Discord.MessageEmbed()
                         .setDescription(`You have been banned from Gamers React | ${reason}`)
-                    target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                    target.send({ embeds: [embed3] }).catch(error => { message.channel.send(`could not dm ${target.user.tag}`) });
                 }
             } catch {
                 console.log(`could not dm ${target.user.tag}`)
@@ -166,7 +166,7 @@ const banUser = async function (client, message, args, target, reason) {
             const embed3 = new Discord.MessageEmbed()
                 .setDescription(`You have been banned from Gamers React | ${reason}`)
 
-            target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+            target.send({ embeds: [embed3] }).catch(error => { message.channel.send(`could not dm ${target.user.tag}`) });
         } catch {
             console.log(`could not dm ${target.user.tag}`)
         }
@@ -274,7 +274,7 @@ const tempban = async function (client, message, args, target, reason, expires, 
                 else {
                     const embed3 = new Discord.MessageEmbed()
                         .setDescription(`You have been banned from Gamers React for ${timeString} | ${reason}`)
-                    target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                    target.send({ embeds: [embed3] }).catch(error => { message.channel.send(`could not dm ${target.user.tag}`) });
                 }
             } catch {
                 console.log(`could not dm ${target.user.tag}`)
@@ -295,7 +295,7 @@ const tempban = async function (client, message, args, target, reason, expires, 
         try {
             const embed3 = new Discord.MessageEmbed()
                 .setDescription(`You have been banned from Gamers React for ${timeString} | ${reason}`)
-            target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+            target.send({ embeds: [embed3] }).catch(error => { message.channel.send(`could not dm ${target.user.tag}`) });
         } catch {
             console.log(`could not dm ${target.user.tag}`)
         }

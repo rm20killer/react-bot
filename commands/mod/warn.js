@@ -102,7 +102,7 @@ module.exports = {
                             const embed3 = new Discord.MessageEmbed()
                                 .setDescription(`You were warned in Gamers React for: ${reason}`)
 
-                            target.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
+                            target.send({ embeds: [embed3] }).catch(error => { message.channel.send(`Could not dm ${target.user.tag}`) });
                         } catch {
                             console.log(`Could not dm ${target.user.tag}`)
                         }
@@ -114,7 +114,7 @@ module.exports = {
                     const embed3 = new Discord.MessageEmbed()
                         .setDescription(`You were warned in Gamers React for: ${reason}`)
 
-                    target.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${target.user.tag}`) });
+                    target.send({ embeds: [embed3] }).catch(error => { message.channel.send(`Could not dm ${target.user.tag}`) });
                 } catch {
                     console.log(`could not dm ${target.user.tag}`)
                 }

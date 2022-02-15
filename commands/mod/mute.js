@@ -220,7 +220,7 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
   message.channel.send({ embeds: [embed2] });
   const embed3 = new Discord.MessageEmbed()
     .setDescription(`You were tempmuted in Gamers React for ${timeString} | ${reason}`);
-  targetmember.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${targetmember.user.tag}`) });
+  targetmember.send({ embeds: [embed3] }).catch(error => { message.channel.send(`Could not dm ${targetmember.user.tag}`) });
 }
 
 const mute = async function (message, client, targetmember, reason, expires) {
@@ -299,7 +299,7 @@ const mute = async function (message, client, targetmember, reason, expires) {
   message.channel.send({ embeds: [embed2] });
   const embed3 = new Discord.MessageEmbed()
     .setDescription(`You were muted in Gamers React for ${reason}`);
-  targetmember.send({ embeds: [embed3] }).catch(error => { message.reply(`Could not dm ${targetmember.user.tag}`) });
+  targetmember.send({ embeds: [embed3] }).catch(error => { message.channel.send(`Could not dm ${targetmember.user.tag}`) });
 }
 
 function removeFirstWord(str) {

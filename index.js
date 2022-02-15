@@ -249,6 +249,9 @@ client.on('messageCreate', async message => {
             }
         }
     }
+    //if(message.author.id==="646180114756796442"){
+    //    message.reply("The Person Above Smells")
+    //}
 
     //detector.detector(client,message,users)
     ////////////////////////////////////////////////

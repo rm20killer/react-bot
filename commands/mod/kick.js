@@ -66,7 +66,7 @@ module.exports = {
                                 const embed3 = new Discord.MessageEmbed()
                                     .setDescription(`you have been kicked for ${reason}`)
 
-                                target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                                target.send({ embeds: [embed3] }).catch(error => { message.channel.send(`could not dm ${target.user.tag}`) });
                             } catch {
                                 console.log(`could not dm ${target.user.tag}`)
                             }
@@ -79,7 +79,7 @@ module.exports = {
                         const embed3 = new Discord.MessageEmbed()
                             .setDescription(`you have been kicked for ${reason}`)
 
-                        target.send({ embeds: [embed3] }).catch(error => { message.reply(`could not dm ${target.user.tag}`) });
+                        target.send({ embeds: [embed3] }).catch(error => { message.channel.send(`could not dm ${target.user.tag}`) });
                     } catch {
                         console.log(`could not dm ${target.user.tag}`)
                     }
