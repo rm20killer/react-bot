@@ -194,7 +194,8 @@ var arr =[
     "ldiscordapp.",
     "disocrds.",
     "dlscorb",
-    "discerd"
+    "discerd",
+    "dlscors"
 
 	
 ]

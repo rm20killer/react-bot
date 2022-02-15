@@ -3,7 +3,7 @@ var arr =[
     "https://discord.gift/", 
     "www.twitch.tv/",
 	"https://tenor.com/",
-    "clip.twitch.tv",
+    "clip.twitch.tv/",
     "https://c.tenor.com",
     "discord.com",
     "discord.id",
@@ -11,7 +11,8 @@ var arr =[
     "discordapp.com",
     "discordapp.net",
 	"https://r.3v.fi/discord-timestamps/",
-    "https://discordstatus.com/"
+    "https://discordstatus.com/",
+    "https://github.com/"
 ]
 
 module.exports = { arr };
