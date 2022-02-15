@@ -115,6 +115,7 @@ module.exports = {
                 }
                 const guildId = message.guildId
                 const userId = target.id;
+                const userTag = target.user.tag
                 await mongo().then(async mongoose => {
                     try {
                         await kicksSchema.findOneAndUpdate({
@@ -139,17 +140,17 @@ module.exports = {
                 var seconds = "0" + date.getSeconds();
                 var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
                 const embed = new Discord.MessageEmbed()
-                    .setTitle(`[KICKED] ${target.user.tag}`)
+                    .setTitle(`[KICKED] ${userTag}`)
                     .setColor(0xFF0000)
                     .setDescription(`kicked for \`${reason}\``)
                     .addField("kicked by", `<@${message.author.id}>`)
-                    .setFooter("id: " + target.id + " | today at " + formattedTime)
+                    .setFooter("id: " + userId + " | today at " + formattedTime)
                 try {
                     target.kick(`${reason}`);
                     channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
                     channel.send({ embeds: [embed] });
                     const embed2 = new Discord.MessageEmbed()
-                        .setDescription(`<@${target.user.id}> has been kicked`)
+                        .setDescription(`<@${userId}> has been kicked`)
                     message.channel.send({ embeds: [embed2] });
                 }
                 catch {

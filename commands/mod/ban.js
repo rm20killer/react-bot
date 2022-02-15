@@ -237,6 +237,7 @@ const tempban = async function (client, message, args, target, reason, expires, 
     }
     const guildId = message.guildId
     const userId = target.id;
+    const userTag = target.user.tag
     await mongo().then(async mongoose => {
         try {
             await tempbanSchema.findOneAndUpdate({
@@ -317,7 +318,7 @@ const tempban = async function (client, message, args, target, reason, expires, 
         target.ban({ reason: `${reason}` });
         channel.send({ embeds: [embed] });
         const embed2 = new Discord.MessageEmbed()
-            .setDescription(`<@${target.user.id}> has been banned | ${timeString}`)
+            .setDescription(`<@${userID}> has been banned | ${timeString}`)
         message.channel.send({ embeds: [embed2] });
     }
     catch {

@@ -267,7 +267,7 @@ client.on('messageCreate', async message => {
             command.execute(message, args, client);
         } catch (error) {
             console.error(error);
-            message.reply("error")
+            message.reply(error)
         }
     }
     //if (!message.content.startsWith(prefixl)) return;
