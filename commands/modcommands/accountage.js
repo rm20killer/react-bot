@@ -83,13 +83,13 @@ const validateSnowflake = function (snowflake, epoch) {
         )
     }
 
-    const timestamp = convertSnowflakeToDate(snowflake, epoch)
-
+    let timestamp = convertSnowflakeToDate(snowflake, epoch)
     if (Number.isNaN(timestamp.getTime())) {
         throw new Error(
             "That doesn't look like a snowflake. Snowflakes have fewer digits."
         )
     }
-
+    timestamp=parseInt(parseInt((timestamp).getTime()/1000))
+    console.log(timestamp)
     return timestamp
 }
