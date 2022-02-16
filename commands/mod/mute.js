@@ -82,7 +82,7 @@ module.exports = {
             return;
           }
         } finally {
-          mongoose.connection.close()
+          //mongoose.connection.close()
         }
       })
       if (currentmuted) { return }
