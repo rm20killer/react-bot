@@ -195,7 +195,8 @@ var arr =[
     "disocrds.",
     "dlscorb",
     "discerd",
-    "dlscors"
+    "dlscors",
+	"simplenitro"
 
 	
 ]
