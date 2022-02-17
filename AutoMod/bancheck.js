@@ -23,7 +23,7 @@ module.exports = {
                     for (const result of results) {
                         const { guildId, userId } = result
                         const guild = await client.guilds.fetch(guildId)
-                        guild.bans.remove(userId)
+                        guild.bans.remove(userId).catch(error => { console.log(error) });
                         channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
                         const embed2 = new Discord.MessageEmbed()
                             .setDescription(`<@${userId}> has been unbanned`)
