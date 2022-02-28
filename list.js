@@ -199,7 +199,8 @@ var arr =[
 	"simplenitro",
 	"discrd",
     "is.gd",
-    "dilscords"
+    "dilscords",
+    "egift-"
 
 	
 ]
