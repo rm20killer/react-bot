@@ -200,7 +200,8 @@ var arr =[
 	"discrd",
     "is.gd",
     "dilscords",
-    "egift-"
+    "egift-",
+	"pathofexile.site"
 
 	
 ]
