@@ -60,7 +60,7 @@ module.exports = {
                 .setColor(2374108)
                 .setDescription(`If you need help with the minecraft  server ask on the Gamer React Minecraft discord or website`)
                 .addField("IP:", "`play.gamersreact.net`")
-                .addField("Version:", "Premium Java only, 1.16.5 with support from 1.8 to 1.17")
+                .addField("Version:", "Premium Java only, 1.16.5 with support from 1.8 to 1.18")
             await interaction.reply({ embeds: [embed], components: [row23] }).catch(console.error);
         }
     }
