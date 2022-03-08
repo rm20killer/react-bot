@@ -106,6 +106,9 @@ module.exports = {
         else if (suffix === "d") {
           time = time * 60 * 60 * 24
         }
+        else if (suffix === "w") {
+          time = time * 60 * 60 * 24 * 7
+        }
         else {
           time = null;
         }

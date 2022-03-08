@@ -67,7 +67,7 @@ module.exports = {
                     let suffix = durationsarray.slice(-1)[0];
                     //console.log(durationsarray)
                     //console.log(suffix)
-                    if (suffix === "s" || suffix === "m" || suffix === "h" || suffix === "d") {
+                    if (suffix === "s" || suffix === "m" || suffix === "h" || suffix === "d" || suffix === "W") {
                         let time = durationstext.slice(0, -1);
                         if (suffix === "s") {
                             time = time * 1
@@ -80,6 +80,9 @@ module.exports = {
                         }
                         else if (suffix === "d") {
                             time = time * 60 * 60 * 24
+                        }
+                        else if (suffix === "w") {
+                            time = time * 60 * 60 * 24 * 7
                         }
                         else {
                             time = null;
