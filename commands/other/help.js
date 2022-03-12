@@ -10,7 +10,7 @@ module.exports = {
     example: '`*help ping`',
     async execute(message, args, cleint) {
         if (!args.length) {
-            message.reply("enter command")
+            return message.reply("enter command")
         }
 
         const command = cleint.commands.get(args[0].toLowerCase()) || cleint.commands.find(c => c.aliases && c.aliases.includes(args[0].toLowerCase()));
