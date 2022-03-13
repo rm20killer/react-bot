@@ -37,7 +37,7 @@ module.exports = {
             return
         }
         if(!message.content){return}
-        if(!message.author.id==="911407574379802624"){return}
+        if(message.author.id==="911407574379802624"){return}
         //console.log(attachmentss)
         if (attachmentss !== undefined) {
             const attachment = attachmentss[1]
