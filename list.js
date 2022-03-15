@@ -201,7 +201,8 @@ var arr =[
     "is.gd",
     "dilscords",
     "egift-",
-	"pathofexile.site"
+	"pathofexile.site",
+"bgmifreeskins981.blogspot"
 
 	
 ]
