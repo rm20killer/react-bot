@@ -42,7 +42,7 @@ module.exports = {
                     }
                 }
             } finally {
-                mongoose.connection.close()
+                //mongoose.connection.close()
             }
         })
 
