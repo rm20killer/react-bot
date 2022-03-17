@@ -203,7 +203,8 @@ var arr =[
     "egift-",
 	"pathofexile.site",
     "bgmifreeskins981.blogspot",
-    "game.tv/"
+    "game.tv/",
+    "streamcommunetiy"
 
 	
 ]
