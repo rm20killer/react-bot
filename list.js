@@ -202,7 +202,8 @@ var arr =[
     "dilscords",
     "egift-",
 	"pathofexile.site",
-"bgmifreeskins981.blogspot"
+    "bgmifreeskins981.blogspot",
+    "game.tv/"
 
 	
 ]
