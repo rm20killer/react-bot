@@ -123,8 +123,10 @@ const removeOne = async (message, target, args, warnId) => {
       //}
       //if(!isNaN(warnId)){ return message.reply("invalid id")}
       //console.log(warningdeleting)
+
+      //let RemovalID = warnId +1
       results.warnings.splice(warnId, 1);
-      //console.log(results.warnings)
+      console.log(results.warnings)
       const warnings = results.warnings
       if (!warnings1[warnId]) { return message.reply("No warning found") }
       let warningdeleting = warnings1[warnId]
