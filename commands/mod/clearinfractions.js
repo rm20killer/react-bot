@@ -131,7 +131,7 @@ const removeOne = async (message, target, args, warnId) => {
       let warningdeleting = warnings1[warnId]
       const { author, timestamp, reason, Last10Messages } = warningdeleting
       results.warnings.splice(warnId, 1);
-      console.log(results.warnings)
+      //console.log(results.warnings)
       const warnings = results.warnings
       try {
         await WarnSchema.findOneAndUpdate({
@@ -145,7 +145,7 @@ const removeOne = async (message, target, args, warnId) => {
           upsert: true
         })
       } finally {
-        console.log("Updated")
+        console.log("Updated database")
         //mongoose.connection.close()
       }
       avatarURL = target.user.avatarURL({ format: 'png' })
