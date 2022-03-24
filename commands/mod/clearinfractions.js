@@ -16,6 +16,7 @@ const modid = config.ModID
 const adminid = config.AdminID
 const jrmod = config.jrmod
 const helper = config.helper
+const srmods = config.srmods
 
 
 const mongo = require('../../utils/mongo')
@@ -28,7 +29,7 @@ module.exports = {
   usage: '`*clearinfractions <@user> <infraction number>`',
   example: '``',
   async execute(message, args, client) {
-    if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid)) {
+    if (message.member.roles.cache.find(r => r.id === srmods) || message.member.roles.cache.find(r => r.name === adminid)) {
       // CODE GOES HERE 🡫
       if (!args[0]) { return message.reply(`enter a user`) }
       let target = message.mentions.members.first();
@@ -110,6 +111,7 @@ const removeOne = async (message, target, args, warnId) => {
   await mongo().then(async mongoose => {
     try {
       const results = await warnSchema.findOne({
+
         guildId,
         userId
       })
@@ -117,7 +119,7 @@ const removeOne = async (message, target, args, warnId) => {
       //console.log(warnId)
       let warnings1 = results.warnings
       //console.log(warnings)
-      warningNumber = warnings1.length;
+      //warningNumber = warnings1.length;
       //if(warningNumber>=warnId){
       //  return message.reply("No warn id found")
       //}
@@ -125,12 +127,12 @@ const removeOne = async (message, target, args, warnId) => {
       //console.log(warningdeleting)
 
       //let RemovalID = warnId +1
-      results.warnings.splice(warnId, 1);
-      console.log(results.warnings)
-      const warnings = results.warnings
       if (!warnings1[warnId]) { return message.reply("No warning found") }
       let warningdeleting = warnings1[warnId]
       const { author, timestamp, reason, Last10Messages } = warningdeleting
+      results.warnings.splice(warnId, 1);
+      console.log(results.warnings)
+      const warnings = results.warnings
       try {
         await WarnSchema.findOneAndUpdate({
           guildId,
@@ -143,6 +145,7 @@ const removeOne = async (message, target, args, warnId) => {
           upsert: true
         })
       } finally {
+        console.log("Updated")
         //mongoose.connection.close()
       }
       avatarURL = target.user.avatarURL({ format: 'png' })
