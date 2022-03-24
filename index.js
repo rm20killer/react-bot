@@ -166,7 +166,6 @@ client.on('messageCreate', async message => {
     }
     catch {
         var channelParent = null
-
     }
     try {
         var role = message.member.roles.cache
@@ -267,6 +266,7 @@ client.on('messageCreate', async message => {
 
         if (!command) return;
         try {
+            console.log(`${message.content} sent by ${message.author.tag}`)
             command.execute(message, args, client);
         } catch (error) {
             console.error(error);
