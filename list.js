@@ -204,7 +204,8 @@ var arr =[
 	"pathofexile.site",
     "bgmifreeskins981.blogspot",
     "game.tv/",
-    "streamcommunetiy"
+    "streamcommunetiy",
+    "preimumgift-ds."
 
 	
 ]
