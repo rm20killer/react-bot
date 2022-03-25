@@ -41,6 +41,7 @@ module.exports = {
                             const youtubeVideoID = url[i].split("https://youtu.be/")[1];
                             //console.log(youtubeVideoID);
                             getVideoinfo(youtubeVideoID, message, client);
+                            
 
                         }
                         if (url[i].includes("https://www.youtube.com/watch?v=")) {
