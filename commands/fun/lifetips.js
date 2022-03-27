@@ -33,7 +33,7 @@ module.exports = {
         //embed
         const embed = new Discord.MessageEmbed()
           .setTitle("life tips")
-          .setAuthor(`tip from ${tip.provided}`)
+          .setAuthor(`Tip from ${tip.provided}`)
           .setColor(0xff0000)
           .setDescription(tip.tip)
           .setFooter(`Tip #${tip.tipID} provided by ${tip.provided}`)
@@ -51,7 +51,7 @@ module.exports = {
       //embed
       const embed = new Discord.MessageEmbed()
         .setTitle("life tips")
-        .setAuthor(`tip from ${tip.provided}`)
+        .setAuthor(`Tip from ${tip.provided}`)
         .setColor(0xff0000)
         .setDescription(tip.tip)
         .setFooter(`Tip #${tip.tipID} provided by ${tip.provided}`)
