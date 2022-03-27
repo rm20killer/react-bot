@@ -38,7 +38,7 @@
         {
             "tipID" : "7",
             "tip" : "Don't be afraid to ask for help, you're not alone",
-            "provided" : "Github copilot"
+            "provided" : "Github Copilot"
         },
         {
             "tipID" : "8",
@@ -53,7 +53,7 @@
         {
             "tipID" : "10",
             "tip":"Family isn't always blood its the people in your life who want you in there's and who accept you for who you are",
-            "provided" : "superpeanut"
+            "provided" : "Superpeanut"
         },
         {
             "tipID" : "11",
@@ -63,9 +63,64 @@
         {
             "tipID" : "12",
             "tip":"you don't have to do things  just because other people are just do what you want to do",
-            "provided" : "superpeanut"
+            "provided" : "Superpeanut"
+        },
+        {
+            "tipID" : "13",
+            "tip":"when you're feeling down, just remember that you're not alone",
+            "provided" : "Github Copilot"
+        },
+        {
+            "tipID" : "14",
+            "tip":"being a good person isnt just about being nice to others, it's also about being nice to yourself",
+            "provided" : "Github Copilot"
+        },
+        {
+            "tipID" : "15",
+            "tip":"It's free to be kind",
+            "provided" : "Iconicbluejay"
+        },
+        {
+            "tipID" : "16",
+            "tip":"friends are like a mirror, they reflect your life and your life reflects them",
+            "provided" : "Github Copilot"
+        },
+        {
+            "tipID" : "17",
+            "tip":"life is like a box of chocolates, you never know what you're gonna get",
+            "provided" : "Github Copilot"
+        },
+        {
+            "tipID" : "18",
+            "tip":"you can't be a hero if you're not willing to be a hero",
+            "provided" : "Github Copilot"
+        },
+        {
+            "tipID" : "19",
+            "tip":"nice people are always around, even if they're not in the same room as you",
+            "provided" : "Github Copilot"
+        },
+        {
+            "tipID" : "20",
+            "tip":"saddest thing in life is when you're not being nice to someone you love",
+            "provided" : "Github Copilot"
+        },
+        {
+            "tipID" : "21",
+            "tip":"stop being a bad person",
+            "provided" : "Github Copilot"
+        },
+        {
+            "tipID":"22",
+            "tip":"everyone has a story, but you don't know what it is",
+            "provided" : "Github Copilot"
+        },
+        {
+            "tipID":"23",
+            "tip":"make sure you're not being too hard on yourself",
+            "provided" : "Github Copilot"
+
         }
-        
         
     ]
 
