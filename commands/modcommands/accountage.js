@@ -53,7 +53,7 @@ module.exports = {
                     .setTitle('account age of ' + member.user.username)
                     .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
                     .setColor(0xff0000)
-                    .addField('creation date ', '`${accage}`')
+                    .addField('creation date ', `<t:${accage}:f>`)
                     .addField('join date ', `<t:${joindate}:f>`)
                     .setFooter("user: " + member.user.tag + " | user id: " + member.user.id)
                 message.channel.send({ embeds: [embed] });
