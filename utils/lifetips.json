@@ -119,7 +119,11 @@
             "tipID":"23",
             "tip":"make sure you're not being too hard on yourself",
             "provided" : "Github Copilot"
-
+        },
+        {
+            "tipID":"24",
+            "tip":"Turn off the ping when you reply to messages esspecially Iconicbluejay's",
+            "provided" : "Gapple"
         }
         
     ]
