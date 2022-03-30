@@ -205,7 +205,8 @@ var arr =[
     "bgmifreeskins981.blogspot",
     "game.tv/",
     "streamcommunetiy",
-    "preimumgift-ds."
+    "preimumgift-ds.",
+    "discorm.gift/X0kD211HPMjf1"
 
 	
 ]

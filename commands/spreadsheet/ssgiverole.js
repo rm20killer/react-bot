@@ -60,6 +60,14 @@ module.exports = {
     }
 }
 
+/* The code below does the following:
+1. Opens the Google Spreadsheet.
+2. Gets the info.
+3. Checks if the user exists.
+4. Checks if the user has the role.
+5. Gives the role to the user.
+6. Sends a message to the user.
+7. Sends a message to the console. */
 var ssrolegive = async function (message, args) {
     let failed = 0;
     let SUCCESS = 0;

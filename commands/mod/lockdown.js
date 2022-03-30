@@ -21,6 +21,12 @@ const adminid = config.AdminID
 const jrmod = config.jrmod
 const helper = config.helper
 
+/* The code above does the following:
+1. Checks if the user has a role named modid or adminid
+2. If so, it checks if there is a reason
+3. If so, it checks if the reason is 'confirm'
+4. If so, it locks the server down
+5. If not, it tells the user to confirm with `*lockdown confirm` */
 module.exports = {
   name: 'lockdown',
   aliases: [``],
@@ -50,6 +56,14 @@ module.exports = {
   }
 }
 
+/* The code above does the following:
+1. It fetches all channels in a server
+2. It loops through all channels
+3. It checks if the channel's parentId is equal to the id of the "Categories" category
+4. It checks if the channel's id is equal to the id of the "logs" category
+5. If both conditions are met, it sends the embed to the channel
+6. It adds one to the counter
+7. It sends the counter to the channel */
 async function lockdown(message, args, client) {
   let counter = 0;
   //create embed

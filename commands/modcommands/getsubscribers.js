@@ -10,7 +10,13 @@ const helper = config.helper
 
 const youtubeKey = config.youtubeKey
 const youtubeUser = config.youtubeUser
-
+/* The code below does the following:
+1. Fetch the data from the Youtube API
+2. Parse the data from the Youtube API to get the subscriber count
+3. Send the subscriber count to the channel
+4. Change the name of the channel to include the subscriber count
+5. Send a message to the chat to let the user know the command has run
+6. Log any errors that occur */
 module.exports = {
     name: 'getsubscribers',
     aliases: ["subupdate"],

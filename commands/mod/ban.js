@@ -23,6 +23,11 @@ const adminid = config.AdminID
 const jrmod = config.jrmod
 const helper = config.helper
 
+/* The code below does the following:
+1. Checks that the user calling the command has the required role.
+2. If a user is mentioned then the user will be banned.
+3. If a user is not mentioned then the ID of the user will be used.
+4. If a user is not found then the bot will reply to the user with a message. */
 module.exports = {
     name: 'ban',
     aliases: ["tempban"],
