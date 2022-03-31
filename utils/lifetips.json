@@ -147,8 +147,8 @@
         },
         {
             "tipID":"29",
-            "tip":"well thats a sad way to live life but ok",
-            "provided":"Zetti"
+            "tip":"go sleep",
+            "provided":"Darnia"
         },
         {
             "tipID":"30",
@@ -195,11 +195,6 @@
             "tip":"Don’t do anything illegal, it’s against the law",
             "provided":"Zetti"
         },
-        {
-            "tipID":"39",
-            "tip":"go sleep",
-            "provided":"Darnia"
-        }
         
     ]
 
