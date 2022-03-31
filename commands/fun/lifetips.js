@@ -11,7 +11,7 @@ const helper = config.helper
 
 module.exports = {
   name: 'lifetips',
-  aliases: [`lifetip`],
+  aliases: [`lifetip`,`tip`],
   description: '',
   usage: '``',
   example: '``',
