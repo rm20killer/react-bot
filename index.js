@@ -21,7 +21,8 @@ const client = new Client({
     ],
     partials: [
         `CHANNEL`,
-        `MESSAGE`
+        `MESSAGE`,
+        `REACTION`
     ],
     autoReconnect: true,
 });
@@ -69,6 +70,7 @@ const userjoined  = require('./AutoMod/UserJoined');
 const mutechecker = require("./AutoMod/mutecheck")
 const pingriz = require('./AutoMod/pingriz');
 const perspective = require('./AutoMod/perspective.js');
+const ReactionChecker = require('./AutoMod/ReactionChecker');
 
 //const detector = require('./commands/others/detector')
 const ticketmanger = require('./interaction/ticketmanger');
@@ -297,6 +299,22 @@ if (!shadRole && shasRole) {
     }
   }
 `
+});
+
+//client on reaction
+client.on('messageReactionAdd', async function (reaction, user) {
+	// When a reaction is received, check if the structure is partial
+	if (reaction.partial) {
+		// If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
+		try {
+			await reaction.fetch();
+		} catch (error) {
+			console.error('Something went wrong when fetching the message:', error);
+			// Return as `reaction.message.author` may be undefined/null
+			return;
+		}
+	}
+    ReactionChecker.ReactionChecker(reaction, user, client);
 });
 
 ////////////////////////////////////////////////
