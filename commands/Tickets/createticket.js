@@ -62,7 +62,7 @@ module.exports = {
             const embed = new Discord.MessageEmbed()
                 .setTitle(`**Welcome to ${message.guild.name}!**`)
                 .setColor(0x2f3136)
-                .setDescription("Click on one of the buttons below to start your ticket: \nA ticket is a private chat with mods to ask questions, user reports, mute appeal, and requesting streamer role if you been in a video. \nCreating a ticket without a reason will lead to a warning and a ticket ban \n\n**DO NOT CREATE A TICKET TO SUBMIT CLIPS**");
+                .setDescription("Click on one of the buttons below to start your ticket: \nA ticket is a private chat with mods to ask questions, user reports, mute appeal, and requesting streamer role if you been in a video. \nCreating a ticket without a reason will lead to a warning and a ticket ban.\n\nIf the issue is realted to the Gamers React minecraft server use `/grmc` in <#716755030757081108> to get help with grmc\n\n**DO NOT CREATE A TICKET TO SUBMIT CLIPS**");
             message.channel.send({ embeds: [embed], components: [row23] }).catch(console.error);
             //message.channel.send({ embed: embed, component: row })
             //ticketmanger.ticketmess(message,client);
