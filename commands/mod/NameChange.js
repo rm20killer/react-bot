@@ -35,7 +35,7 @@ module.exports = {
                 let name1 = args.slice(1).join(" ")
                 target.setNickname(name1)
                 const embed = new Discord.MessageEmbed()
-                    .setDescription(`${target.user.username} changed your nickname to ${name1}`)
+                    .setDescription(`changed your nickname to ${name1}`)
                 target.send({ embeds: [embed] });
                 message.channel.send(`changed <@${target.user.id}> nickanme to ${name1}`)
     
@@ -47,7 +47,7 @@ module.exports = {
                 if(name1!=name2){
                     target.setNickname(name2)
                     const embed = new Discord.MessageEmbed()
-                        .setDescription(`${target.user.username} changed your nickname to ${name2}`)
+                        .setDescription(`changed your nickname to ${name2}`)
                     target.send({ embeds: [embed] });
                     //channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
                     message.channel.send(`changed <@${target.user.id}> nickanme to ${name2}`)
