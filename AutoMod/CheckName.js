@@ -18,10 +18,10 @@ module.exports = {
             if(name!=name2){
                 member.setNickname(name2)
                 const embed = new Discord.MessageEmbed()
-                    .setDescription(`${member.user.username} changed their name to ${name2}`)
+                    .setDescription(`${member.user.username} changed your nickname to ${name2}`)
                 member.send({ embeds: [embed] });
                 channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
-                channel.send(`<@${member.user.id}> has changed their nickanme to ${name2}`)
+                channel.send(`changed <@${target.user.id}> nickanme to ${name2}`)
             }
         }
         catch
