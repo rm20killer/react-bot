@@ -41,7 +41,7 @@ module.exports = {
                     const embed = new Discord.MessageEmbed()
                         .setDescription(`Your nickname has been changed to ${name1} in Gamers React.`)
                     try {
-                        target.send({ embeds: [embed] });
+                        target.send({ embeds: [embed] }).catch(error => { message.channel.send(`could not dm ${target.user.tag}`) });;
                     }
                     catch
                     {
@@ -72,7 +72,7 @@ module.exports = {
                         const embed = new Discord.MessageEmbed()
                             .setDescription(`Your nickname has been changed to ${name2} in Gamers React.`)
                         try {
-                            target.send({ embeds: [embed] });
+                            target.send({ embeds: [embed] }).catch(error => { message.channel.send(`could not dm ${target.user.tag}`) });;
                         }
                         catch
                         {

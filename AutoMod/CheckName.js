@@ -34,7 +34,7 @@ module.exports = {
                 const embed = new Discord.MessageEmbed()
                     .setDescription(`Your nickname has been changed to ${name2} in Gamers React.`)
                 try {
-                    member.send({ embeds: [embed] });
+                    member.send({ embeds: [embed] }).catch(error => {console.log(`could not dm user ${name}`)});;
                 }
                 catch
                 {
