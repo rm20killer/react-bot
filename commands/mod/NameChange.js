@@ -31,7 +31,12 @@ module.exports = {
             if (!target) { return message.reply(`I can't find that member`) }
             try {
                 if (args[1]) {
+
                     let name1 = args.slice(1).join(" ")
+                    //if name1 is more then 32 characters long, it will be cut off
+                    if (name1.length > 32) {
+                        name1 = name1.slice(0, 32)
+                    }
                     target.setNickname(name1)
                     const embed = new Discord.MessageEmbed()
                         .setDescription(`Your nickname has been changed to ${name1} in Gamers React.`)
@@ -59,6 +64,10 @@ module.exports = {
                         }
                     }
                     if (name1 != name2) {
+                        //if name2 is more then 32 characters long, it will be cut off
+                        if (name2.length > 32) {
+                            name2 = name2.slice(0, 32)
+                        }
                         target.setNickname(name2)
                         const embed = new Discord.MessageEmbed()
                             .setDescription(`Your nickname has been changed to ${name2} in Gamers React.`)

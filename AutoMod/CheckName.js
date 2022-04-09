@@ -26,6 +26,10 @@ module.exports = {
                 }
             }
             if (name != name2) {
+                //if name2 is more then 32 characters long, it will be cut off
+                if (name2.length > 32) {
+                    name2 = name2.slice(0, 32)
+                }
                 member.setNickname(name2)
                 const embed = new Discord.MessageEmbed()
                     .setDescription(`Your nickname has been changed to ${name2} in Gamers React.`)
