@@ -51,7 +51,8 @@ module.exports = {
                         message.channel.send(`changed <@${target.user.id}> nickanme to ${name2}`)
                     }
                     else {
-                        message.channel.send(`${target.user.username}'s nickname is already is normal format`)
+                        target.setNickname("")
+                        message.channel.send(`Reset <@${target.user.id}> nickanme`)
                     }
                 }
             }
