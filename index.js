@@ -71,6 +71,7 @@ const mutechecker = require("./AutoMod/mutecheck")
 const pingriz = require('./AutoMod/pingriz');
 const perspective = require('./AutoMod/perspective.js');
 const ReactionChecker = require('./AutoMod/ReactionChecker');
+const CheckName = require('./AutoMod/CheckName');
 
 //const detector = require('./commands/others/detector')
 const ticketmanger = require('./interaction/ticketmanger');
@@ -150,6 +151,7 @@ client.on("guildMemberAdd", async member => {
     //console.log("guildMemberAdd works")
     //accountchecker.accountchecker(client,member);
     userjoined.userjoined(member,client)
+    CheckName.CheckName(member,client)
     return;
 });
 
