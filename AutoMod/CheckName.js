@@ -15,11 +15,27 @@ module.exports = {
             //console.log(member.user.username)
             var name = member.user.username
             var name2 = unidecode(name)
+            if (name2 == "") {
+                try {
+                    var combining = /[\u0300-\u036F]/g;
+                    name2 = name1.normalize('NFKD').replace(combining, '');
+                }
+                catch
+                {
+                    name2 = "Change your name"
+                }
+            }
             if (name != name2) {
                 member.setNickname(name2)
                 const embed = new Discord.MessageEmbed()
                     .setDescription(`Your nickname has been changed to ${name2} in Gamers React.`)
-                member.send({ embeds: [embed] });
+                try {
+                    member.send({ embeds: [embed] });
+                }
+                catch
+                {
+
+                }
                 channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
                 channel.send(`changed <@${target.user.id}> nickanme to ${name2}`)
             }

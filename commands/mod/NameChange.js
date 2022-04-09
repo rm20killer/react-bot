@@ -35,18 +35,40 @@ module.exports = {
                     target.setNickname(name1)
                     const embed = new Discord.MessageEmbed()
                         .setDescription(`Your nickname has been changed to ${name1} in Gamers React.`)
-                    target.send({ embeds: [embed] });
+                    try {
+                        target.send({ embeds: [embed] });
+                    }
+                    catch
+                    {
+                        message.channel.send(`could not dm <@${target.user.id}>`)
+                    }
                     message.channel.send(`changed <@${target.user.id}> nickanme to ${name1}`)
 
                 }
                 else {
                     let name1 = target.user.username
                     let name2 = unidecode(name1)
+                    if (name2 == "") {
+                        try {
+                            var combining = /[\u0300-\u036F]/g;
+                            name2 = name1.normalize('NFKD').replace(combining, '');
+                        }
+                        catch
+                        {
+                            name2 = "Change your name"
+                        }
+                    }
                     if (name1 != name2) {
                         target.setNickname(name2)
                         const embed = new Discord.MessageEmbed()
                             .setDescription(`Your nickname has been changed to ${name2} in Gamers React.`)
-                        target.send({ embeds: [embed] });
+                        try {
+                            target.send({ embeds: [embed] });
+                        }
+                        catch
+                        {
+                            message.channel.send(`could not dm <@${target.user.id}>`)
+                        }
                         //channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
                         message.channel.send(`changed <@${target.user.id}> nickanme to ${name2}`)
                     }
