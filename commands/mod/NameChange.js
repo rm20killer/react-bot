@@ -63,6 +63,10 @@ module.exports = {
                         }
                     }
                     var name2 = unidecode(name2)
+                    if(name2=="")
+                    {
+                        name2 = "Change your name"
+                    }
                     if (name != name2) {
                         //if name2 is more then 32 characters long, it will be cut off
                         if (name2.length > 32) {
