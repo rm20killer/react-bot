@@ -14,8 +14,7 @@ module.exports = {
         try {
             //console.log(member.user.username)
             var name = member.user.username
-            var name2 = unidecode(name)
-            if (name2 == "") {
+            if (name) {
                 try {
                     var combining = /[\u0300-\u036F]/g;
                     name2 = name1.normalize('NFKD').replace(combining, '');
@@ -25,6 +24,7 @@ module.exports = {
                     name2 = "Change your name"
                 }
             }
+            var name2 = unidecode(name2)
             if (name != name2) {
                 //if name2 is more then 32 characters long, it will be cut off
                 if (name2.length > 32) {
