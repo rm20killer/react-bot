@@ -35,13 +35,14 @@ module.exports = {
                     .setDescription(`Your nickname has been changed to ${name2} in Gamers React.`)
                 try {
                     member.send({ embeds: [embed] }).catch(error => {console.log(`could not dm user ${name}`)});;
+                    channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
+                    channel.send(`changed <@${target.user.id}> nickanme to ${name2}`)
                 }
                 catch
                 {
 
                 }
-                channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
-                channel.send(`changed <@${target.user.id}> nickanme to ${name2}`)
+
             }
         }
         catch
