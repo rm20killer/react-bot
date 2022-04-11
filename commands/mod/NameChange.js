@@ -51,7 +51,7 @@ module.exports = {
 
                 }
                 else {
-                    var name = member.user.username
+                    var name = target.user.username
                     if (name) {
                         try {
                             var combining = /[\u0300-\u036F]/g;
@@ -68,11 +68,11 @@ module.exports = {
                         if (name2.length > 32) {
                             name2 = name2.slice(0, 32)
                         }
-                        member.setNickname(name2)
+                        target.setNickname(name2)
                         const embed = new Discord.MessageEmbed()
                             .setDescription(`Your nickname has been changed to ${name2} in Gamers React.`)
                         try {
-                            member.send({ embeds: [embed] }).catch(error => { console.log(`could not dm user ${name}`) });;
+                            target.send({ embeds: [embed] }).catch(error => { console.log(`could not dm user ${name}`) });;
                         }
                         catch
                         {
