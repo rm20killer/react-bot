@@ -25,6 +25,9 @@ module.exports = {
                 }
             }
             var name2 = unidecode(name2)
+            if (name2 == "") {
+                name2 = "Change your name"
+            }
             if (name != name2) {
                 //if name2 is more then 32 characters long, it will be cut off
                 if (name2.length > 32) {
@@ -34,7 +37,7 @@ module.exports = {
                 const embed = new Discord.MessageEmbed()
                     .setDescription(`Your nickname has been changed to ${name2} in Gamers React.`)
                 try {
-                    member.send({ embeds: [embed] }).catch(error => {console.log(`could not dm user ${name}`)});;
+                    member.send({ embeds: [embed] }).catch(error => { console.log(`could not dm user ${name}`) });;
                     channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
                     channel.send(`changed <@${target.user.id}> nickanme to ${name2}`)
                 }
