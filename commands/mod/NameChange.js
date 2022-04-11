@@ -51,39 +51,35 @@ module.exports = {
 
                 }
                 else {
-                    let name1 = target.user.username
-                    let name2 = unidecode(name1)
-                    if (name2 == "") {
+                    var name = member.user.username
+                    if (name) {
                         try {
                             var combining = /[\u0300-\u036F]/g;
-                            name2 = name1.normalize('NFKD').replace(combining, '');
+                            name2 = name.normalize('NFKD').replace(combining, '');
                         }
                         catch
                         {
                             name2 = "Change your name"
                         }
                     }
-                    if (name1 != name2) {
+                    var name2 = unidecode(name2)
+                    if (name != name2) {
                         //if name2 is more then 32 characters long, it will be cut off
                         if (name2.length > 32) {
                             name2 = name2.slice(0, 32)
                         }
-                        target.setNickname(name2)
+                        member.setNickname(name2)
                         const embed = new Discord.MessageEmbed()
                             .setDescription(`Your nickname has been changed to ${name2} in Gamers React.`)
                         try {
-                            target.send({ embeds: [embed] }).catch(error => { message.channel.send(`could not dm ${target.user.tag}`) });;
+                            member.send({ embeds: [embed] }).catch(error => {console.log(`could not dm user ${name}`)});;
                         }
                         catch
                         {
-                            message.channel.send(`could not dm <@${target.user.id}>`)
+        
                         }
-                        //channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
-                        message.channel.send(`changed <@${target.user.id}> nickanme to ${name2}`)
-                    }
-                    else {
-                        target.setNickname("")
-                        message.channel.send(`Reset <@${target.user.id}> nickanme`)
+                        channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
+                        channel.send(`changed <@${target.user.id}> nickanme to ${name2}`)
                     }
                 }
             }
