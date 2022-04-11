@@ -17,7 +17,7 @@ module.exports = {
             if (name) {
                 try {
                     var combining = /[\u0300-\u036F]/g;
-                    name2 = name1.normalize('NFKD').replace(combining, '');
+                    name2 = name.normalize('NFKD').replace(combining, '');
                 }
                 catch
                 {
