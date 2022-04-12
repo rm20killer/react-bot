@@ -44,7 +44,7 @@ const attributeThresholds = {
 async function analyzeText(text, message, client) {
   if (!text) { return }
   if (message.author.bot) { return }
-  if(message.content.toLowerCase().includes("darn")) { return }
+
   channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
   channel2 = client.channels.cache.find(channel => channel.id === "892816609712930836");
 
@@ -105,6 +105,7 @@ async function analyzeText(text, message, client) {
             });
           }
           else if (toxicity > 0.75) {
+            if(message.content.toLowerCase().includes("darn")) { return }
             const embed2 = new Discord.MessageEmbed()
               .setTitle('Message detection')
               .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
@@ -127,6 +128,7 @@ async function analyzeText(text, message, client) {
             });
           }
           else if (insult > 0.75) {
+            if(message.content.toLowerCase().includes("darn")) { return }
             const embed2 = new Discord.MessageEmbed()
               .setTitle('Message detection')
               .setAuthor('Gamers React', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
