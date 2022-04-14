@@ -62,7 +62,7 @@ module.exports = {
                     })
                     if (previousMutes) {
                         if (previousMutes.current === false) {
-                            message.reply("That was not muted by me.")
+                            message.reply("That user was not muted by me.")
                             return;
                         }
                         else {
