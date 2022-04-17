@@ -47,7 +47,7 @@ module.exports = {
                     {
                         message.channel.send(`could not dm <@${target.user.id}>`)
                     }
-                    message.channel.send(`changed <@${target.user.id}> nickanme to ${name1}`)
+                    message.channel.send(`changed <@${target.user.id}> nickname to ${name1}`)
 
                 }
                 else {
