@@ -31,6 +31,24 @@ const fetch = require("node-fetch");
 const mongose= require("mongoose");
 const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
 const wait = require('util').promisify(setTimeout);
+const { GiveawaysManager } = require('discord-giveaways');
+// Starts updating currents giveaways
+client.giveawaysManager = new GiveawaysManager(client, {
+    storage: './giveaways.json',
+    default: {
+        botsCanWin: false,
+        embedColor: '#FF0000',
+        embedColorEnd: '#000000',
+        reaction: '🎉',
+        lastChance: {
+            enabled: true,
+            content: '⚠️ **LAST CHANCE TO ENTER !** ⚠️',
+            threshold: 5000,
+            embedColor: '#FF0000'
+        }
+    }
+});
+
 
 const users = {};
 
@@ -366,3 +384,8 @@ client.on('messageUpdate', (oldMessage, newMessage) => { // Old message may be u
 
 // client.login(process.env.token);
 client.login(config.BotToken);
+client.giveawaysManager.on('giveawayDeleted', (giveaway) => {
+    const channel = client.channels.cache.find(channel => channel.id === "710123089094246482");
+    channel.send('Giveaway with message Id ' + giveaway.messageId + ' was deleted.')
+});
+
