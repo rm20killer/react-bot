@@ -21,8 +21,14 @@ module.exports = {
         let channelID = '629695220065239066';
         message.guild.channels.cache.get(channelID).members.forEach((member) => {
             //give role
-            i++;
-            member.roles.add(role).catch(console.error);
+            //if member has role skip
+            if (member.roles.cache.find(r => r.id === "966097737823178762")) {
+
+            }
+            else{
+                i++;
+                member.roles.add(role).catch(console.error);
+            }
         });
         message.channel.send(`Success! I gave ${i} VC roles!`);
     }
