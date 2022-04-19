@@ -206,7 +206,8 @@ var arr =[
     "game.tv/",
     "streamcommunetiy",
     "preimumgift-ds.",
-    "discorm.gift/X0kD211HPMjf1"
+    "discorm.gift/X0kD211HPMjf1",
+    "discordiairdrop.com/nitro"
 
 	
 ]
