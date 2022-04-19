@@ -39,9 +39,9 @@ module.exports = {
                 newWinnerCount: winnerCount,
                 newPrize: prize
             }).then(() => {
-                interaction.channel.send('Success! Giveaway updated!');
+                message.channel.send('Success! Giveaway updated!');
             }).catch((err) => {
-                interaction.channel.send(`An error has occurred, please check and try again.\n\`${err}\``);
+                message.channel.send(`An error has occurred, please check and try again.\n\`${err}\``);
             });
         }
         else {
