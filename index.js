@@ -390,6 +390,7 @@ client.giveawaysManager.on('giveawayDeleted', (giveaway) => {
 });
 
 client.on('voiceStateUpdate', (oldState, newState) => {
+    return
     console.log("user joined vc")
     const txtChannel = client.channels.cache.get('966101775226634340'); //manually input your own channel
     const newChannelID = newState.channelId;
