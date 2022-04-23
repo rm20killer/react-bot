@@ -395,6 +395,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     const txtChannel = client.channels.cache.get('966101775226634340'); //manually input your own channel
     const newChannelID = newState.channelId;
     const oldChannelID = oldState.channelId;
+    if(newChannelID==oldChannelID) return;
     //console.log(oldState)
     if (oldChannelID === "629695220065239066") { //manually put the voice channel ID
         txtChannel.send(`role removed - ${newState.id}`);
