@@ -21,7 +21,7 @@ module.exports = {
         const boostemote = client.emojis.cache.get(`832556719770566657`);
         //streamers
         if (!shadRole && shasRole) {
-            newMember.guild.channels.cache.get("841018811657355354").send("<@" + newMember.id + "> has got into a gamer react video");
+            newMember.guild.channels.cache.get("841018811657355354").send("<@" + newMember.id + "> has gotten into a Gamers React video.");
             return;
         }
         //Server Booster
