@@ -26,7 +26,7 @@ module.exports = {
                 .setStyle('LINK')
                 .setLabel('GR Website')
                 .setURL("https://gamersreact.com/"))
-        let dontlog = "3ADB63D1"
+        //let dontlog = "3ADB63D1"
         //console.log("dm")
         const channel = client.channels.cache.find(channel => channel.id === "844273354318938174");
         //const channel2 = client.channels.cache.find(channel => channel.id === "885144925509914654");
@@ -56,8 +56,8 @@ module.exports = {
             const nameArray = attachment.name.split('.'); // Split the name 
             const attEx = nameArray[nameArray.length - 1].toLowerCase();
             const videos = ["webm", "mkv", "mov", "mp4", "mpg", "avi", "m4v", "wmv", "mxf", "flv"];
-            const editorprojs = ["wfp", "prproj", "kdenlive", "mlt", "vpj"];
-            const unsupported = ["ofr", "y4m"]; //obscure files that mods just straight up can't open
+            //const editorprojs = ["wfp", "prproj", "kdenlive", "mlt", "vpj"];
+            //const unsupported = ["ofr", "y4m"]; //obscure files that mods just straight up can't open
             if (videos.indexOf(attEx) != -1) {
                 message.reply({ content: "**Submit clips on our website:** \nClick button below to vist the site", components: [row23] }); //Otherwise say this
             }
