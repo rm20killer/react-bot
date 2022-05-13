@@ -1,5 +1,7 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/rm20killer/react-bot/badge)](https://www.codefactor.io/repository/github/rm20killer/react-bot) 
+
 # react-bot V13 
-A general purpose discord bot for [gamers react discord](https://discord.gg/vSSZ5VqjvJ) with some features not in other bots like video quality check.
+A geral purpose discord bot for [gamers react discord](https://discord.gg/vSSZ5VqjvJ) with some features not in other bots like video quality check.
 
 Discord: https://discord.gg/vSSZ5VqjvJ
 # self-host
