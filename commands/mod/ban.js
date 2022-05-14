@@ -10,6 +10,7 @@
 
 const fetch = require("node-fetch");
 const Discord = require('discord.js')
+const ms = require("ms");
 const { Client, Intents, MessageAttachment } = require('discord.js');
 const { generateTranscript } = require('reconlx')
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
@@ -66,45 +67,59 @@ module.exports = {
                 }
 
                 if (target.bannable) {
-                    let durationstext = reason.split(" ")[0];
+                    //let durationstext = reason.split(" ")[0];
                     //let durationstext = durationstext.join();
-                    let durationsarray = durationstext.split("")
-                    let suffix = durationsarray.slice(-1)[0];
+                    //let durationsarray = durationstext.split("")
+                    //let suffix = durationsarray.slice(-1)[0];
+                    //let testTime = args[1]
                     //console.log(durationsarray)
                     //console.log(suffix)
-                    if (suffix === "s" || suffix === "m" || suffix === "h" || suffix === "d" || suffix === "w") {
-                        let time = durationstext.slice(0, -1);
-                        if (suffix === "s") {
-                            time = time * 1
-                        }
-                        else if (suffix === "m") {
-                            time = time * 60
-                        }
-                        else if (suffix === "h") {
-                            time = time * 60 * 60
-                        }
-                        else if (suffix === "d") {
-                            time = time * 60 * 60 * 24
-                        }
-                        else if (suffix === "w") {
-                            time = time * 60 * 60 * 24 * 7
-                        }
-                        else {
-                            time = null;
-                        }
-                        if (time) {
-                            const expires = new Date()
-                            expires.setSeconds(expires.getSeconds() + time)
-                            reason = removeFirstWord(reason);
-                            tempban(client, message, args, target, reason, expires, time);
-                        }
-                        else {
-                            banUser(client, message, args, target, reason)
-                        }
-                    }
-                    else {
+                    let time = ms(args[1])
+                    console.log(time)
+                    if (!time) {
                         banUser(client, message, args, target, reason)
                     }
+                    else {
+                        time = time /1000
+                        const expires = new Date()
+                        expires.setSeconds(expires.getSeconds() + time)
+                        reason = removeFirstWord(reason);
+                        tempban(client, message, args, target, reason, expires, time);
+                    }
+                    //OLD TIME CODE
+                    // if (suffix === "s" || suffix === "m" || suffix === "h" || suffix === "d" || suffix === "w") {
+                    //     let time = durationstext.slice(0, -1);
+                    //     if (suffix === "s") {
+                    //         time = time * 1
+                    //     }
+                    //     else if (suffix === "m") {
+                    //         time = time * 60
+                    //     }
+                    //     else if (suffix === "h") {
+                    //         time = time * 60 * 60
+                    //     }
+                    //     else if (suffix === "d") {
+                    //         time = time * 60 * 60 * 24
+                    //     }
+                    //     else if (suffix === "w") {
+                    //         time = time * 60 * 60 * 24 * 7
+                    //     }
+                    //     else {
+                    //         time = null;
+                    //     }
+                    //     if (time) {
+                    //         const expires = new Date()
+                    //         expires.setSeconds(expires.getSeconds() + time)
+                    //         reason = removeFirstWord(reason);
+                    //         tempban(client, message, args, target, reason, expires, time);
+                    //     }
+                    //     else {
+                    //         banUser(client, message, args, target, reason)
+                    //     }
+                    // }
+                    // else {
+                    //     banUser(client, message, args, target, reason)
+                    // }
                 }
                 else {
                     return message.reply(`I can't ban that user`)

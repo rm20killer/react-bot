@@ -12,6 +12,7 @@ const fetch = require(`node-fetch`);
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 const config = require(`../../config`);
+const ms = require('ms');
 
 const modid = config.ModID
 const adminid = config.AdminID
@@ -44,15 +45,15 @@ module.exports = {
 
       if (!target) { return message.reply(`I can't find that member`) }
       if (target.id === message.author.id) { return message.reply(`You can't mute yourself.`) }
-      try{
+      try {
         if (message.member.roles.cache.find(r => r.name === adminid)) { }
         else {
           if (target.roles.cache.find(r => r.name === modid) || target.roles.cache.find(r => r.name === adminid) || target.roles.cache.find(r => r.id === helper)) {
             return message.reply("Can not mute a mod");
           }
         }
-      }catch{
-        console.log(target.id+" has no roles")
+      } catch {
+        console.log(target.id + " has no roles")
       }
       if (target.user.bot) { return message.reply("You can't mute bots.") }
       const targetmember = (await message.guild.members.fetch()).get(target.id)
@@ -86,51 +87,73 @@ module.exports = {
         }
       })
       if (currentmuted) { return }
-      let durationstext = reason.split(" ")[0];
+      //let durationstext = reason.split(" ")[0];
       //let durationstext = durationstext.join();
-      let durationsarray = durationstext.split("")
-      let suffix = durationsarray.slice(-1)[0];
+      //let durationsarray = durationstext.split("")
+      //let suffix = durationsarray.slice(-1)[0];
+      //let testTime = args[1]
       //console.log(durationsarray)
       //console.log(suffix)
-      if (suffix === "s" || suffix === "m" || suffix === "h" || suffix === "d" || suffix === "w") {
-        let time = durationstext.slice(0, -1);
-        if (suffix === "s") {
-          time = time * 1
-        }
-        else if (suffix === "m") {
-          time = time * 60
-        }
-        else if (suffix === "h") {
-          time = time * 60 * 60
-        }
-        else if (suffix === "d") {
-          time = time * 60 * 60 * 24
-        }
-        else if (suffix === "w") {
-          time = time * 60 * 60 * 24 * 7
-        }
-        else {
-          time = null;
-        }
-        if (time) {
-          //console.log(time)
-          const expires = new Date()
-          expires.setSeconds(expires.getSeconds() + time)
-          //console.log(expires)
-          reason = removeFirstWord(reason);
-          //console.log(reason)
-          tempmute(message, client, targetmember, time, reason, expires);
-        }
-        else {
-          //mute();
-        }
-      }
-      else {
+      let time = ms(args[1])
+      console.log(time)
+      if (!time) {
         const expires = new Date()
         expires.setUTCFullYear(3000)
         mute(message, client, targetmember, reason, expires);
       }
+      else {
+        time = time/1000
+        //console.log(time)
+        const expires = new Date()
+        expires.setSeconds(expires.getSeconds() + time)
+        console.log(expires)
+        reason = removeFirstWord(reason);
+        //console.log(reason)
+        tempmute(message, client, targetmember, time, reason, expires);
+      }
+
+      //OLD TIME CODE
+      // if (suffix === "s" || suffix === "m" || suffix === "h" || suffix === "d" || suffix === "w") {
+      //   let time = durationstext.slice(0, -1);
+      //   if (suffix === "s") {
+      //     time = time * 1
+      //   }
+      //   else if (suffix === "m") {
+      //     time = time * 60
+      //   }
+      //   else if (suffix === "h") {
+      //     time = time * 60 * 60
+      //   }
+      //   else if (suffix === "d") {
+      //     time = time * 60 * 60 * 24
+      //   }
+      //   else if (suffix === "w") {
+      //     time = time * 60 * 60 * 24 * 7
+      //   }
+      //   else {
+      //     time = null;
+      //   }
+      //   if (time) {
+      //     //console.log(time)
+      //     const expires = new Date()
+      //     expires.setSeconds(expires.getSeconds() + time)
+      //     //console.log(expires)
+      //     reason = removeFirstWord(reason);
+      //     //console.log(reason)
+      //     tempmute(message, client, targetmember, time, reason, expires);
+      //   }
+      //   else {
+      //     //mute();
+      //   }
+      // }
+      // else {
+      //   const expires = new Date()
+      //   expires.setUTCFullYear(3000)
+      //   mute(message, client, targetmember, reason, expires);
+      // }
+
       if (message.channel.parent.id === "709806849725038634") {
+
       }
       else {
         message.delete().catch(error => { console.log(error) });
