@@ -1,7 +1,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/rm20killer/react-bot/badge)](https://www.codefactor.io/repository/github/rm20killer/react-bot) 
 [![Discord](https://img.shields.io/discord/629695220065239061?label=Online%20Members&logo=Discord)](https://discord.gg/gamersreact)
-[![license](https://img.shields.io/github/license/rm20killer/react-bot)](https://github.com/rm20killer/react-bot/blob/main/LICENSE)
 [![Youtube](https://img.shields.io/youtube/channel/subscribers/UCvInsdoSCTRGQNuXe7kMjhQ?style=social)](https://www.youtube.com/channel/UCvInsdoSCTRGQNuXe7kMjhQ)
+[![license](https://img.shields.io/github/license/rm20killer/react-bot)](https://github.com/rm20killer/react-bot/blob/main/LICENSE)
 
 # react-bot V13 
 A geral purpose discord bot for [gamers react discord](https://discord.gg/vSSZ5VqjvJ) with some features not in other bots like video quality check.
