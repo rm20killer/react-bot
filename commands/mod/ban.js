@@ -74,7 +74,15 @@ module.exports = {
                     //let testTime = args[1]
                     //console.log(durationsarray)
                     //console.log(suffix)
-                    let time = ms(args[1])
+                    let time = null
+                    if (!args[1])
+                    {
+
+                    }
+                    else {
+                        time = ms(args[1])
+                    }
+                    //time = ms(args[1])
                     console.log(time)
                     if (!time) {
                         banUser(client, message, args, target, reason)
