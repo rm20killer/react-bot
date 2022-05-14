@@ -37,14 +37,17 @@ const getSubscribers = async () => {
       return response.json()
     })
     .then(data => {
-      console.log(data["items"][0].statistics.subscriberCount);
+      //get current time 
+      var currentTime = new Date();
+      var currentTimeString = currentTime.toString();
+      console.log(data["items"][0].statistics.subscriberCount + " subs "+currentTimeString);
       const sub = data["items"][0].statistics.subscriberCount;
       //console.log(oldsub)
       if (sub != oldsub) {
         subr = sub.slice(0, -4);
         subr = (subr / 100).toFixed(2);
         const channel = client.channels.cache.find(channel => channel.id === "849642482702614528");
-        channel.setName("Subscribers: " + subr + " Mil");
+        channel.setName("Subscribers: " + subr + " Mil" + "");
         console.log("channel updated")
         oldsub = sub
         //return(sub)
@@ -58,6 +61,7 @@ function callEveryHour() {
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  getSubscribers();
 
   var nextDate = new Date();
   if (nextDate.getSeconds() === 0) { // You can check for seconds here too
