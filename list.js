@@ -206,10 +206,9 @@ var arr =[
     "game.tv/",
     "streamcommunetiy",
     "preimumgift-ds.",
-    "discorm.gift/X0kD211HPMjf1",
-    "discordiairdrop.com/nitro",
-    "djscordiairdrop.com/nitro",
-    "gg.gg/110o8q"
+    "discorm.gift",
+    "djscordiairdrop.com",
+    "gg.gg/"
     
 
 	
