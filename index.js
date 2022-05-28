@@ -101,7 +101,7 @@ const rolechecker = require('./interaction/rolechecker');
 const bancheck = require('./AutoMod/bancheck');
 
 
-const mee6 = require('./other/mee6');
+const mee6 = require('./Other/mee6');
 //database 
 
 /*
