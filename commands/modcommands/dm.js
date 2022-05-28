@@ -15,8 +15,13 @@ module.exports = {
     async execute(message, args, client) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 
-            var str = message.content
-            const mess = str.split(/>(.+)/)[1]
+
+            //combain args into one string and remove the first arg
+            let mess = args.join(" ")
+            mess = mess.slice(mess.indexOf(" ") + 1)
+
+            //var str = message.content
+            //const mess = str.split(/>(.+)/)[1]
 
             let target = message.mentions.members.first();
             if (!target) {
@@ -29,7 +34,7 @@ module.exports = {
             }
 
             if (!target) { return message.reply(`I can't find that member`) }
-            await target.send(mess).catch(error => { return message.reply(`Could not dm ${target.user.tag}`) });
+            await target.send(mess).catch(error => { console.log(error); return message.reply(`Could not dm ${target.user.tag}`) });
             //message.reply(`DMed user`)
 
         }

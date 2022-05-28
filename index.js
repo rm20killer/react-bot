@@ -99,6 +99,9 @@ const contextmenu = require('./interaction/contextmenu');
 const button = require('./interaction/button');
 const rolechecker = require('./interaction/rolechecker');
 const bancheck = require('./AutoMod/bancheck');
+
+
+const mee6 = require('./other/mee6');
 //database 
 
 /*
@@ -294,6 +297,10 @@ client.on('messageCreate', async message => {
             console.error(error);
             message.reply(error)
         }
+    }
+    if(message.content.startsWith("!"))
+    {
+        mee6.mee6(client,message)
     }
     //if (!message.content.startsWith(prefixl)) return;
     //const args = message.content.trim().split(/ +/g);
