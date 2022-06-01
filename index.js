@@ -260,8 +260,20 @@ client.on('messageCreate', async message => {
         const attachment = attachmentss[1]
         //console.log(attachment[1])
         attachmentD.attachmentexe(attachment, message, client);
-        if (channelParent === "906533207812476988") {
-            attachmentD.imagechecker(attachment, message, client);
+    }
+    if(channelParent === "906533207812476988"){
+        if(attachmentss)
+        {
+            const attachment = attachmentss[1]
+            attachmentD.imagechecker(attachment, message, client);   
+        }
+        else{
+            if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
+
+            }
+            else {
+                message.delete().catch(error => { console.log(error) });
+            }
         }
     }
     if (channelparname != '────🛠Support🛠────') {
