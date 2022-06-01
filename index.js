@@ -208,7 +208,7 @@ client.on('messageCreate', async message => {
             .setTitle("Error")
             .setDescription(`${message.author.tag} has no role but sent a message in ${message.channel.name}`)
             .setTimestamp()
-        message.channel.send({ embed: embed })
+        message.channel.send({ embeds: embed })
         return;
     }
 
