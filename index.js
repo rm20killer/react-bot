@@ -200,12 +200,13 @@ client.on('messageCreate', async message => {
     }
     //if role is null then return
     if (role === null) {
-        const channel = client.channels.cache.find(channel => channel.id === "716762885522456677");
-        let messageContent = "**no message**"
-        messageContent = message.content
-        const embed = new Discord.MessageEmbed()
-            .setDescription(`${message.author.tag} has no role but sent a message in ${message.channel.name}`)
-        message.channel.send({ embeds: embed })
+        //const channel = client.channels.cache.find(channel => channel.id === "716762885522456677");
+        //let messageContent = "**no message**"
+        //messageContent = message.content
+        //const embed = new Discord.MessageEmbed()
+        //    .setDescription(`${message.author.tag} has no role but sent a message in ${message.channel.name}`);
+        console.log(`${message.author.tag} has no role but sent a message in #${message.channel.name}`)
+        //channel.send({ embeds: [embed] })
         return;
     }
 
