@@ -204,10 +204,7 @@ client.on('messageCreate', async message => {
         let messageContent = "**no message**"
         messageContent = message.content
         const embed = new Discord.MessageEmbed()
-            .setColor('#ff0000')
-            .setTitle("Error")
             .setDescription(`${message.author.tag} has no role but sent a message in ${message.channel.name}`)
-            .setTimestamp()
         message.channel.send({ embeds: embed })
         return;
     }
