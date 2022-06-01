@@ -198,6 +198,19 @@ client.on('messageCreate', async message => {
     catch {
         var role = null
     }
+    //if role is null then return
+    if (role === null) {
+        const channel = client.channels.cache.find(channel => channel.id === "716762885522456677");
+        const embed = new Discord.MessageEmbed()
+            .setColor('#ff0000')
+            .setTitle('Error')
+            .setDescription(`${message.author.tag} has no role but sent a message in ${message.channel.name}`)
+            .addField('Message', message.content)
+            .setTimestamp()
+        message.channel.send({ embed: embed })
+        return;
+    }
+
     if (message.guild.id === "629695220065239061" || message.guild.id === "898628981958537266") {
         if (role != null) {
             if (message.member.roles.cache.find(r => r.id === "712512117999271966")) {
