@@ -201,11 +201,13 @@ client.on('messageCreate', async message => {
     //if role is null then return
     if (role === null) {
         const channel = client.channels.cache.find(channel => channel.id === "716762885522456677");
+        let messageContent = "**no message**"
+        messageContent = message.content
         const embed = new Discord.MessageEmbed()
             .setColor('#ff0000')
-            .setTitle('Error')
+            .setTitle("Error")
             .setDescription(`${message.author.tag} has no role but sent a message in ${message.channel.name}`)
-            .addField('Message', message.content)
+            .addField('Message', messageContent)
             .setTimestamp()
         message.channel.send({ embed: embed })
         return;
