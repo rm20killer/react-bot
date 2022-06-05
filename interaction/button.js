@@ -20,6 +20,7 @@ const client = new Client({
 });
 
 const ticketmanger = require('./ticketmanger');
+const votemanager = require('./votemanager');
 const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
 
 module.exports = {
@@ -33,6 +34,9 @@ module.exports = {
                 return
             }
             ticketmanger.ticketmanger(interaction, client)
+        }
+        if(id.startsWith("vote-")){
+            votemanager.votemanager(interaction, client)
         }
     }
 }
