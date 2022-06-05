@@ -33,10 +33,11 @@ module.exports = {
             const embed = new Discord.MessageEmbed()
             .setTitle("Vote Data")
             .setColor("#0099ff")
+            embed.addField(`Total Votes`, `${data.length+1}`, false)
 
             //create a for loop to add the voteID to the embed
             for (let i = 0; i < vote.length; i++) {
-                embed.addField(`Vote ${i+1}`, `${vote[i]}`)
+                embed.addField(`Vote ${i+1}`, `${vote[i]}`,true)
             }
             //send the embed & votedata.json file to the channel
             message.reply({embeds: [embed], files: [{ attachment: `./utils/votedata.json`, name: `votedata.json` }]});
