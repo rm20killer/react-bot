@@ -5,3 +5,4 @@ node_modules/
 file.json
 utils/googlekey.json
 giveaways.json
+utils/votedata.json
