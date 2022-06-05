@@ -37,7 +37,7 @@ const imageData = [
 const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
 module.exports = {
     votemanager: async function (interaction, client) {
-        console.log(interaction)
+        //console.log(interaction)
         const id = interaction.customId;
         const user = interaction.user;
         const userid = user.id;
@@ -81,13 +81,13 @@ module.exports = {
                 if (data.data[i].voteID === newVoteID) {
                     votedForSame = true;
                     hasVoted = true;
-                    console.log("voted for same");
+                    //console.log("voted for same");
                 }
                 else {
                     data.data[i].voteID = newVoteID;
-                    console.log("voted for different");
+                    //console.log("voted for different");
                 }
-                console.log("has voted changed");
+                //console.log("has voted changed");
                 hasVoted = true;
             }
             if(hasVoted){
@@ -96,7 +96,7 @@ module.exports = {
             }
 
         }
-        console.log(hasVoted);
+        //console.log(hasVoted);
         if (hasVoted === false) {
             console.log("voted for first time");
             data.data.push({
