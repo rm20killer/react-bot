@@ -38,7 +38,7 @@ client.on("message", async message => {
     //if message is "startRole"
     //if message not from admin return
     if (message.author.bot) return;
-    if (message.content === "startRole") {
+    if (message.content === "([*!*])startRole") {
         // fetch all members without a role
         const members = await message.guild.members.fetch({
             filter: member => !member.roles.cache.has(memberrole),
