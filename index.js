@@ -61,6 +61,7 @@ const adminid = config.AdminID
 const jrmod = config.jrmod
 const helper = config.helper
 const Hprefixl = config.Hprefixl
+const memberrole = "710128390547701876"
 //Discord.js v13+ is needed for this to work
 
 //required
@@ -335,6 +336,14 @@ client.on('messageCreate', async message => {
 ////////////////////////////////////////////////
 // roles
 client.on('guildMemberUpdate', async function (oldMember, newMember) {
+    if (newMember.pending===false){
+        try{
+            newMember.roles.add(memberRole)
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
     if (newMember.guild.id != "629695220065239061") {
         return;
     }

@@ -13,7 +13,7 @@ module.exports = {
         //channel2.send(`Hey <@${member.id}> welcome to **Gamers React!** To get access to chat head over to <#700789384131379371>`);
         channel2.send(`Hey <@${member.id}> welcome to **Gamers React!**`);
         //give member member role
-        member.roles.add(memberrole);
+        //member.roles.add(memberrole);
         //console.log(member)
         const guildId = member.guild.id;
         const userId = member.user.id;
