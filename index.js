@@ -61,7 +61,7 @@ const adminid = config.AdminID
 const jrmod = config.jrmod
 const helper = config.helper
 const Hprefixl = config.Hprefixl
-const memberrole = "710128390547701876"
+const memberRole = "710128390547701876"
 //Discord.js v13+ is needed for this to work
 
 //required
