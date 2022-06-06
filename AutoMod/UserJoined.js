@@ -6,11 +6,14 @@ const mongo = require('../utils/mongo')
 const muteSChema = require("../Models/mute-schema");
 
 const muterole = "712512117999271966"
-
+const memberrole = "710128390547701876"
 module.exports = {
     async userjoined(member, client) {
         channel2 = client.channels.cache.find(channel => channel.id === "700790402890072205");
-        channel2.send(`Hey <@${member.id}> welcome to **Gamers React!** To get access to chat head over to <#700789384131379371>`);
+        //channel2.send(`Hey <@${member.id}> welcome to **Gamers React!** To get access to chat head over to <#700789384131379371>`);
+        channel2.send(`Hey <@${member.id}> welcome to **Gamers React!**`);
+        //give member member role
+        member.roles.add(memberrole);
         //console.log(member)
         const guildId = member.guild.id;
         const userId = member.user.id;
