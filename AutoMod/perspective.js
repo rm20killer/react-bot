@@ -68,7 +68,7 @@ async function analyzeText(text, message, client) {
             spam = response.data.attributeScores.SPAM.summaryScore.value
             //console.log(toxicity + " " + insult)
             if (toxicity > 0.95) {
-              message.channel.send("<@" + message.author.id + "> your message was delete for toxicity");
+              message.channel.send("<@" + message.author.id + "> your message was deleted for toxicity");
               message.delete().catch(error => { console.log(error) });
               embed.addField("toxicity:", toxicity.toString());
               channel.send({
@@ -91,7 +91,7 @@ async function analyzeText(text, message, client) {
               message.react('🚩').catch(error => { console.log(error) });
             }
             else if (insult > 0.95) {
-              message.channel.send("<@" + message.author.id + "> your message was delete for toxicity");
+              message.channel.send("<@" + message.author.id + "> your message was deleted for toxicity");
               message.delete().catch(error => { console.log(error) });
               embed.addField("insult:", insult.toString())
               channel.send({

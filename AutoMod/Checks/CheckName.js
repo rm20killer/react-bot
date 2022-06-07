@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
 const unidecode = require('unidecode');
 
-const config = require("../config");
+const config = require("../../config");
 const modid = config.ModID
 const adminid = config.AdminID
 const jrmod = config.jrmod

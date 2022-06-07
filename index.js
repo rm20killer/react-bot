@@ -28,7 +28,7 @@ const client = new Client({
 });
 
 const fetch = require("node-fetch");
-const mongose= require("mongoose");
+const mongose = require("mongoose");
 const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
 const wait = require('util').promisify(setTimeout);
 const { GiveawaysManager } = require('discord-giveaways');
@@ -65,10 +65,28 @@ const memberRole = "710128390547701876"
 //Discord.js v13+ is needed for this to work
 
 //required
+client.interactions = new Discord.Collection();
+
+client.button = new Discord.Collection();
+const buttonFolders = fs.readdirSync('./interaction/Buttons/').filter(file => file.endsWith('.js'));
+for (const file of buttonFolders) {
+    const button = require(`./interaction/Buttons/${file}`)
+    client.button.set(button.customId, button);
+};
+
+
+client.slashcommand = new Discord.Collection();
+const slashcommandFolder = fs.readdirSync(`./interaction/slashcommand`).filter(file => file.endsWith('.js'));
+
+for (const file of slashcommandFolder) {
+    const slashcommand = require(`./interaction/slashcommand/${file}`)
+    client.slashcommand.set(slashcommand.data.name, slashcommand);
+};
+
 client.commands = new Discord.Collection();
 const commandFolders = fs.readdirSync('./commands')
 for (const folder of commandFolders) {
-    const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
+    const commandFiles = fs.readdirSync(`./commands/${folder}`)
     for (const file of commandFiles) {
         const command = require(`./commands/${folder}/${file}`);
         client.commands.set(command.name, command);
@@ -76,30 +94,33 @@ for (const folder of commandFolders) {
 }
 
 
-const dmchecker = require('./AutoMod/dmchecker');
-const antiw = require('./AutoMod/malchecker');
+const dmchecker = require('./AutoMod/Checks/dmchecker');
+const antiw = require('./AutoMod/Checks/malchecker');
 const submitclip = require('./AutoMod/submitclip');
 const streamerrole = require('./AutoMod/streamerrole');
-const accountchecker = require('./AutoMod/accountchecker');
+const accountchecker = require('./AutoMod/Checks/accountchecker');
 const attachmentD = require('./AutoMod/attachment');
-const youtubechecker = require('./AutoMod/youtubeChecker');
-const { youtube } = require('./AutoMod/youtubeChecker');
+const youtubechecker = require('./AutoMod/Checks/youtubeChecker');
+const { youtube } = require('./AutoMod/Checks/youtubeChecker');
 const table = require('./AutoMod/tablechecker')
-const userjoined  = require('./AutoMod/UserJoined');
-const mutechecker = require("./AutoMod/mutecheck")
+const userjoined = require('./AutoMod/UserJoined');
+const mutechecker = require("./AutoMod/Checks/mutecheck")
 const pingriz = require('./AutoMod/pingriz');
 const perspective = require('./AutoMod/perspective.js');
-const ReactionChecker = require('./AutoMod/ReactionChecker');
-const CheckName = require('./AutoMod/CheckName');
+const ReactionChecker = require('./AutoMod/Checks/ReactionChecker');
+const CheckName = require('./AutoMod/Checks/CheckName');
+const rolechecker = require('./AutoMod/Checks/rolechecker');
+const bancheck = require('./AutoMod/Checks/bancheck');
+
+
+const interactionFile = require('./interaction/interaction');
 
 //const detector = require('./commands/others/detector')
-const ticketmanger = require('./interaction/ticketmanger');
-const slashcommand = require('./interaction/slashcommand');
-const selectmenu = require('./interaction/selectmenu');
-const contextmenu = require('./interaction/contextmenu');
-const button = require('./interaction/button');
-const rolechecker = require('./interaction/rolechecker');
-const bancheck = require('./AutoMod/bancheck');
+// const ticketmanger = require('./old/ticketmanger');
+// const slashcommand = require('./old/slashcommand');
+// const selectmenu = require('./old/selectmenu');
+// const contextmenu = require('./old/contextmenu');
+// const button = require('./old/button');
 
 
 const mee6 = require('./Other/mee6');
@@ -120,51 +141,38 @@ client.on("ready", async () => {
     client.user.setActivity(`your clips`, { type: "WATCHING" });
     //client.user.setPresence({ activity: [{ name: 'Testing discord.js v13' }], status: 'Online', type: "WATCHING" })
     //console.log(    client.api.applications(client.user.id).commands.get())
-    client.api.applications(client.user.id).commands.post({
-        data: {
-            name: "Report Message",
-            type: 3
-        }
-    })
-    client.api.applications(client.user.id).commands.post({
-        data: {
-            name: "Ticket Ban",
-            type: 2
-        }
-    })
-    client.api.applications(client.user.id).commands.post({
-        data: {
-            name: "Streamer Role",
-            type: 2
-        }
-    })
-    const permissions = [
-        {
-            id: '696134129497931857',
-            type: 'ROLE',
-            permission: true,
-        },
-        {
-            id: '884656687372464179',
-            type: 'ROLE',
-            permission: true,
-        },
-    ];
+    // client.api.applications(client.user.id).commands.post({
+    //     data: {
+    //         name: "Report Message",
+    //         type: 3
+    //     }
+    // })
+    // client.api.applications(client.user.id).commands.post({
+    //     data: {
+    //         name: "Ticket Ban",
+    //         type: 2
+    //     }
+    // })
+    // client.api.applications(client.user.id).commands.post({
+    //     data: {
+    //         name: "Streamer Role",
+    //         type: 2
+    //     }
+    // })
+    // const permissions = [
+    //     {
+    //         id: '696134129497931857',
+    //         type: 'ROLE',
+    //         permission: true,
+    //     },
+    //     {
+    //         id: '884656687372464179',
+    //         type: 'ROLE',
+    //         permission: true,
+    //     },
+    // ];
     mutechecker.mutechecker(client)
     bancheck.backcheck(client)
-    //client.api.applications(client.user.id).commands.get()  //903237399193190460 903243965187391519
-    //client.application.commands.delete('903237399193190460')
-    //.then(console.log)
-    //.catch(console.error);
-    //client.application.commands.delete('903243965187391519')
-    //.then(console.log)
-    //.catch(console.error);
-
-    //client.application.commands.cache.find(c=>c.name==="Ticket Ban").delete();
-    //client.application.commands.cache.find(c=>c.name==="Streamer Role").delete();
-
-
-    //const command = await client.application?.commands.create(data);
 });
 
 ////////////////////////////////////////////////
@@ -172,8 +180,8 @@ client.on("ready", async () => {
 client.on("guildMemberAdd", async member => {
     //console.log("guildMemberAdd works")
     //accountchecker.accountchecker(client,member);
-    userjoined.userjoined(member,client)
-    CheckName.CheckName(member,client)
+    userjoined.userjoined(member, client)
+    CheckName.CheckName(member, client)
     return;
 });
 
@@ -274,13 +282,12 @@ client.on('messageCreate', async message => {
         //console.log(attachment[1])
         attachmentD.attachmentexe(attachment, message, client);
     }
-    if(channelParent === "906533207812476988"){
-        if(attachmentss)
-        {
+    if (channelParent === "906533207812476988") {
+        if (attachmentss) {
             const attachment = attachmentss[1]
-            attachmentD.imagechecker(attachment, message, client);   
+            attachmentD.imagechecker(attachment, message, client);
         }
-        else{
+        else {
             if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
 
             }
@@ -323,9 +330,8 @@ client.on('messageCreate', async message => {
             message.reply(error)
         }
     }
-    if(message.content.startsWith("!"))
-    {
-        mee6.mee6(client,message)
+    if (message.content.startsWith("!")) {
+        mee6.mee6(client, message)
     }
     //if (!message.content.startsWith(prefixl)) return;
     //const args = message.content.trim().split(/ +/g);
@@ -336,11 +342,11 @@ client.on('messageCreate', async message => {
 ////////////////////////////////////////////////
 // roles
 client.on('guildMemberUpdate', async function (oldMember, newMember) {
-    if (newMember.pending===false){
-        try{
+    if (newMember.pending === false) {
+        try {
             newMember.roles.add(memberRole)
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
@@ -363,43 +369,22 @@ if (!shadRole && shasRole) {
 
 //client on reaction
 client.on('messageReactionAdd', async function (reaction, user) {
-	// When a reaction is received, check if the structure is partial
-	if (reaction.partial) {
-		// If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
-		try {
-			await reaction.fetch();
-		} catch (error) {
-			console.error('Something went wrong when fetching the message:', error);
-			// Return as `reaction.message.author` may be undefined/null
-			return;
-		}
-	}
+    // When a reaction is received, check if the structure is partial
+    if (reaction.partial) {
+        // If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
+        try {
+            await reaction.fetch();
+        } catch (error) {
+            console.error('Something went wrong when fetching the message:', error);
+            // Return as `reaction.message.author` may be undefined/null
+            return;
+        }
+    }
     ReactionChecker.ReactionChecker(reaction, user, client);
 });
 
-////////////////////////////////////////////////
-// buttons
-client.on('interactionCreate', async interaction => {
-    if (!interaction.isButton()) return;
-    button.button(interaction, client).catch(error => { console.log(error) });
-});
-
-
-////////////////////////////////////////////////
-// slash commands
-client.on('interactionCreate', async interaction => {
-    if (!interaction.isCommand()) return;
-    slashcommand.slashcommand(interaction, client).catch(error => { console.log(error) });
-});
-//select menu
-client.on('interactionCreate', async interaction => {
-    if (!interaction.isSelectMenu()) return;
-    selectmenu.selectmenu(interaction, client).catch(error => { console.log(error) });
-});
-//context menu
-client.on('interactionCreate', async interaction => {
-    if (!interaction.isContextMenu()) return;
-    contextmenu.contextmenu(interaction, client).catch(error => { console.log(error) });
+client.on('interactionCreate', async function (interaction) {
+    interactionFile.execute(interaction, client);
 });
 
 client.on('messageUpdate', (oldMessage, newMessage) => { // Old message may be undefined
@@ -435,7 +420,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     const txtChannel = client.channels.cache.get('966101775226634340'); //manually input your own channel
     const newChannelID = newState.channelId;
     const oldChannelID = oldState.channelId;
-    if(newChannelID==oldChannelID) return;
+    if (newChannelID == oldChannelID) return;
     //console.log(oldState)
     if (oldChannelID === "629695220065239066") { //manually put the voice channel ID
         txtChannel.send(`role removed - ${newState.id}`);

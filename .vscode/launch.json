@@ -12,7 +12,7 @@
                 "<node_internals>/**",
                 "${workspaceFolder}/node_modules/**"
             ],
-            "program": "${workspaceFolder}\\giverole.js"
+            "program": "${workspaceFolder}\\index.js"
         }
     ]
 }

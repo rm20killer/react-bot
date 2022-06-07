@@ -20,7 +20,7 @@ const client = new Client({
 });
 
 const ticketmanger = require('./ticketmanger');
-const votemanager = require('./votemanager');
+const votemanager = require('../interaction/Buttons/vote');
 const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
 
 module.exports = {

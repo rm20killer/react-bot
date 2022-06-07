@@ -21,7 +21,7 @@ const client = new Client({
     ],
 });
 
-const data = require(`../utils/votedata.json`);
+const data = require(`../../utils/votedata.json`);
 const imageData = [
     "https://cdn.discordapp.com/attachments/982977292747808798/982977874837524500/unknown.png",
     "https://cdn.discordapp.com/attachments/982977292747808798/982977928272949268/unknown.png",
@@ -36,7 +36,8 @@ const imageData = [
 ];
 const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
 module.exports = {
-    votemanager: async function (interaction, client) {
+    customId: "vote",
+    execute: async function (interaction, client) {
         //console.log(interaction)
         const id = interaction.customId;
         const user = interaction.user;

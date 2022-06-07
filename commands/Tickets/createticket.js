@@ -19,7 +19,7 @@ const jrmod = config.jrmod
 const helper = config.helper
 module.exports = {
     name: 'createticket',
-    aliases: ["tcreate"],
+    aliases: ["tcreate2"],
     description: 'create ticket menu',
     usage: '`*createticket`',
     example: '`*createticket`',
@@ -30,16 +30,16 @@ module.exports = {
             let btn = new MessageButton()
                 .setStyle('SECONDARY')
                 .setLabel('General Support')
-                .setCustomId('General');
+                .setCustomId('ticket-General');
             let btn3 = new MessageButton()
                 .setStyle('DANGER')
                 .setLabel('Mute Appeal')
-                .setCustomId('BanAppeal');
+                .setCustomId('ticket-BanAppeal');
 
             let btn5 = new MessageButton()
                 .setStyle('DANGER')
                 .setLabel('User Report')
-                .setCustomId('Player');
+                .setCustomId('ticket-Player');
             let row = new MessageActionRow()
                 .addComponents([btn])
                 .addComponents([btn3])
@@ -49,15 +49,15 @@ module.exports = {
                 .addComponents(new MessageButton()
                     .setStyle('SUCCESS')
                     .setLabel('General Support')
-                    .setCustomId('General'))
+                    .setCustomId('ticket-General'))
                 .addComponents(new MessageButton()
                     .setStyle('SUCCESS')
                     .setLabel('Mute Appeal')
-                    .setCustomId('BanAppeal'))
+                    .setCustomId('ticket-BanAppeal'))
                 .addComponents(new MessageButton()
                     .setStyle('DANGER')
                     .setLabel('User Report')
-                    .setCustomId('Player'));
+                    .setCustomId('ticket-Player'));
 
             const embed = new Discord.MessageEmbed()
                 .setTitle(`**Welcome to ${message.guild.name}!**`)

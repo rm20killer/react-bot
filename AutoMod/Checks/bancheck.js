@@ -1,8 +1,8 @@
-const mongo = require('../utils/mongo')
+const mongo = require('../../utils/mongo')
 const fetch = require(`node-fetch`);
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
-const tempbanSchema = require('../Models/tempban-schema');
+const tempbanSchema = require('../../Models/tempban-schema');
 
 const muterole = "712512117999271966"
 

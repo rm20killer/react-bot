@@ -8,6 +8,7 @@ const helper = config.helper
 
 module.exports = {
     attachmentchecker: function (attachment, message, client) {
+        
         return
         const nameArray = attachment.name.split('.'); // Split the name 
         if (nameArray.length != 1) {
