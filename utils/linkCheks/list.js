@@ -208,7 +208,8 @@ var arr =[
     "preimumgift-ds.",
     "discorm.gift",
     "djscordiairdrop.com",
-    "gg.gg/"
+    "gg.gg/",
+    "djscordsteam."
     
 
 	
