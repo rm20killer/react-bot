@@ -280,12 +280,12 @@ client.on('messageCreate', async message => {
     if (attachmentss) {
         const attachment = attachmentss[1]
         //console.log(attachment[1])
-        attachmentD.attachmentexe(attachment, message, client);
+        attachmentD.attachmentexe(attachment, message);
     }
     if (channelParent === "906533207812476988") {
         if (attachmentss) {
             const attachment = attachmentss[1]
-            attachmentD.imagechecker(attachment, message, client);
+            attachmentD.imagechecker(attachment, message);
         }
         else {
             if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {

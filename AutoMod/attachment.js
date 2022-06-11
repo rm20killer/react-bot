@@ -7,7 +7,7 @@ const adminid = config.AdminID
 const helper = config.helper
 
 module.exports = {
-    attachmentchecker: function (attachment, message, client) {
+    attachmentchecker: function (attachment, message) {
         
         return
         const nameArray = attachment.name.split('.'); // Split the name 
@@ -109,7 +109,7 @@ module.exports = {
     // dmg: mac application installer
     // deb: Debian/Ubuntu package
     // apk: Android application
-    attachmentexe: function (attachment, message, client) {
+    attachmentexe: function (attachment, message) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             return
         }
@@ -147,7 +147,7 @@ module.exports = {
     },
 
 
-    imagechecker: function (attachment, message, client) {
+    imagechecker: function (attachment, message) {
         const nameArray = attachment.name.split('.'); // Split the name 
         const attEx = nameArray[nameArray.length - 1].toLowerCase(); // Grab the last value of the array.
         const Mwidth = attachment.width;
