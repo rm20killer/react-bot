@@ -83,24 +83,15 @@ module.exports = {
             return;
           }
         } finally {
-          //mongoose.connection.close()
         }
       })
       if (currentmuted) { return }
-      //let durationstext = reason.split(" ")[0];
-      //let durationstext = durationstext.join();
-      //let durationsarray = durationstext.split("")
-      //let suffix = durationsarray.slice(-1)[0];
-      //let testTime = args[1]
-      //console.log(durationsarray)
-      //console.log(suffix)
       let time = null
-      if (!args[1])
-      {
+      if (!args[1]) {
 
       }
       else {
-          time = ms(args[1])
+        time = ms(args[1])
       }
       //time = ms(args[1])
       console.log(time)
@@ -110,7 +101,7 @@ module.exports = {
         mute(message, client, targetmember, reason, expires);
       }
       else {
-        time = time/1000
+        time = time / 1000
         //console.log(time)
         const expires = new Date()
         expires.setSeconds(expires.getSeconds() + time)
@@ -119,47 +110,6 @@ module.exports = {
         //console.log(reason)
         tempmute(message, client, targetmember, time, reason, expires);
       }
-
-      //OLD TIME CODE
-      // if (suffix === "s" || suffix === "m" || suffix === "h" || suffix === "d" || suffix === "w") {
-      //   let time = durationstext.slice(0, -1);
-      //   if (suffix === "s") {
-      //     time = time * 1
-      //   }
-      //   else if (suffix === "m") {
-      //     time = time * 60
-      //   }
-      //   else if (suffix === "h") {
-      //     time = time * 60 * 60
-      //   }
-      //   else if (suffix === "d") {
-      //     time = time * 60 * 60 * 24
-      //   }
-      //   else if (suffix === "w") {
-      //     time = time * 60 * 60 * 24 * 7
-      //   }
-      //   else {
-      //     time = null;
-      //   }
-      //   if (time) {
-      //     //console.log(time)
-      //     const expires = new Date()
-      //     expires.setSeconds(expires.getSeconds() + time)
-      //     //console.log(expires)
-      //     reason = removeFirstWord(reason);
-      //     //console.log(reason)
-      //     tempmute(message, client, targetmember, time, reason, expires);
-      //   }
-      //   else {
-      //     //mute();
-      //   }
-      // }
-      // else {
-      //   const expires = new Date()
-      //   expires.setUTCFullYear(3000)
-      //   mute(message, client, targetmember, reason, expires);
-      // }
-
       if (message.channel.parent.id === "709806849725038634") {
 
       }
@@ -252,9 +202,7 @@ const tempmute = async function (message, client, targetmember, time, reason, ex
   const embed2 = new Discord.MessageEmbed()
     .setDescription(`<@${targetmember.user.id}> has been muted for ${timeString}`);
   message.channel.send({ embeds: [embed2] });
-  const embed3 = new Discord.MessageEmbed()
-    .setDescription(`You were tempmuted in Gamers React for ${timeString} | ${reason}`);
-  targetmember.send({ embeds: [embed3] }).catch(error => { message.channel.send(`Could not dm ${targetmember.user.tag}`) });
+  DMUser(targetmember, message, reason, timeString)
 }
 
 const mute = async function (message, client, targetmember, reason, expires) {
@@ -331,9 +279,7 @@ const mute = async function (message, client, targetmember, reason, expires) {
   const embed2 = new Discord.MessageEmbed()
     .setDescription(`<@${targetmember.user.id}> has been muted`)
   message.channel.send({ embeds: [embed2] });
-  const embed3 = new Discord.MessageEmbed()
-    .setDescription(`You were muted in Gamers React for ${reason}`);
-  targetmember.send({ embeds: [embed3] }).catch(error => { message.channel.send(`Could not dm ${targetmember.user.tag}`) });
+  DMUser(targetmember, message, reason)
 }
 
 function removeFirstWord(str) {
@@ -357,4 +303,48 @@ function toHHMMSS(time) {
   if (minutes < 10) { minutes = "0" + minutes; }
   if (seconds < 10) { seconds = "0" + seconds; }
   return hours + ':' + minutes + ':' + seconds;
+}
+
+function DMUser(targetmember, message, reason) {
+  //split reason into array
+  var reasonArray = reason.split(" ");
+  //get last word
+  var lastarray = reasonArray[reasonArray.length - 1];
+  const funcation = lastarray.split("");
+  if (funcation[0] === "-") {
+    if (funcation[1] === "a") {
+      return
+    }
+    else {
+    }
+  }
+  const embed3 = new Discord.MessageEmbed()
+    .setDescription(`You were muted in Gamers React for ${reason}`);
+  targetmember.send({ embeds: [embed3] }).catch(error => {
+    message.channel.send(`Could not dm ${targetmember.user.tag}`)
+    console.log(error);
+    return
+  });
+}
+
+function DMUser(targetmember, message, reason, time) {
+  //split reason into array
+  var reasonArray = reason.split(" ");
+  //get last word
+  var lastarray = reasonArray[reasonArray.length - 1];
+  const funcation = lastarray.split("");
+  if (funcation[0] === "-") {
+    if (funcation[1] === "a") {
+      return
+    }
+    else {
+    }
+  }
+  const embed3 = new Discord.MessageEmbed()
+    .setDescription(`You were tempmuted  in Gamers React for ${time}| ${reason}`);
+  targetmember.send({ embeds: [embed3] }).catch(error => {
+    message.channel.send(`Could not dm ${targetmember.user.tag}`)
+    console.log(error);
+    return
+  });
 }

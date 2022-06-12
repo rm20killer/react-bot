@@ -31,7 +31,7 @@ module.exports = {
     description: 'unmute a user',
     usage: '`*unmute <@user>`',
     example: '``',
-    async execute(message, args, client,mongoose) {
+    async execute(message, args, client, mongoose) {
         if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
             // CODE GOES HERE 🡫 
             let target = message.mentions.members.first();
@@ -44,12 +44,12 @@ module.exports = {
                 }
             }
             if (!target) { return message.reply(`I can't find that member`) }
-            try{
+            try {
                 if (!target.roles.cache.find(r => r.id === muterole)) {
                     message.reply("User is not muted")
                     return;
                 }
-            }catch{
+            } catch {
                 message.reply("User is not muted")
             }
             const guildId = message.guildId
@@ -91,9 +91,7 @@ module.exports = {
                             const embed2 = new Discord.MessageEmbed()
                                 .setDescription(`<@${target.user.id}> has been unmuted`)
                             message.channel.send({ embeds: [embed2] });
-                            const embed3 = new Discord.MessageEmbed()
-                            .setDescription(`You were unmuted in Gamers React`)
-                            target.send({ embeds: [embed3] }).catch(error => { message.channel.send(`Could not dm ${target.user.tag}`) });
+                            DMUser(target, message)
                         }
 
                     }
@@ -111,5 +109,23 @@ module.exports = {
         else {
             message.reply(`You lack perms for this command`)
         }
+    }
+}
+
+function DMUser(targetmember, message) {
+    //split reason into array
+    var reasonArray = message.content.split(" ");
+    //get last word
+    var lastarray = reasonArray[reasonArray.length - 1];
+    const funcation = lastarray.split("");
+    if (funcation[0] === "-") {
+        if (funcation[1] === "a") {
+            return
+        }
+    }
+    else {
+        const embed3 = new Discord.MessageEmbed()
+            .setDescription(`You were unmuted in Gamers React`)
+        targetmember.send({ embeds: [embed3] }).catch(error => { message.channel.send(`Could not dm ${targetmember.user.tag}`) });
     }
 }
