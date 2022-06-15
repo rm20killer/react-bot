@@ -78,7 +78,7 @@ const convertSnowflakeToDate = function (snowflake, epoch = DISCORD_EPOCH) {
 };
 
 const validateSnowflake = function (snowflake, epoch) {
-  if (!Number.isInteger(+snowflake)) {
+  if (!Number.isInteger(Number(snowflake))) {
     throw new Error(
       "That doesn't look like a snowflake. Snowflakes contain only numbers."
     );

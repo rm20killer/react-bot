@@ -384,15 +384,7 @@ client.on("guildMemberUpdate", async function (oldMember, newMember) {
   if (newMember.guild.id === "629695220065239061") {
     rolechecker.rolecheck(oldMember, newMember, client);
   }
-  ` 
-if (!shadRole && shasRole) { 
-    const boostedUsers = newMember.guild.members.cache.array().filter(member => member.roles.cache.find(role => role.name === 'Streamers')); 
-    console.log(boostedUsers.length); // how many members are boosted 
-    for (var i = 0; i < boostedUsers.length; i++) { 
-      newMember.guild.channels.cache.get("841018811657355354").send("<@"+boostedUsers[i].id+ "> has got into a gamer react video"); 
-    } 
-  } 
-`;
+  
 });
 
 //client on reaction
