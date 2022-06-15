@@ -1,4 +1,5 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/rm20killer/react-bot/badge)](https://www.codefactor.io/repository/github/rm20killer/react-bot) 
+[![DeepSource](https://deepsource.io/gh/rm20killer/react-bot.svg/?label=active+issues&show_trend=true&token=y_2qZOsBmw7JGZ0Fx84gqRRd)](https://deepsource.io/gh/rm20killer/react-bot/?ref=repository-badge)
 [![Discord](https://img.shields.io/discord/629695220065239061?label=Online%20Members&logo=Discord)](https://discord.gg/gamersreact)
 [![Youtube](https://img.shields.io/youtube/channel/subscribers/UCvInsdoSCTRGQNuXe7kMjhQ?style=social)](https://www.youtube.com/channel/UCvInsdoSCTRGQNuXe7kMjhQ)
 [![license](https://img.shields.io/github/license/rm20killer/react-bot)](https://github.com/rm20killer/react-bot/blob/main/LICENSE)
