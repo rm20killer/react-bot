@@ -104,17 +104,11 @@ const getInfractionsDetial = async (message, target) => {
                 guildId,
                 userId
             })
-            if (!results) {
-                result = {
+            result = !results ? {
                     warnings: ["No warnings"],
-                }
-            }
-            else {
-                result
-                    = {
+                } : {
                     warnings: results.warnings
                 };
-            }
         } catch (error) {
             console.log(error)
         }
@@ -133,13 +127,9 @@ const getMuteDetial = async (message, target) => {
                 userId
             })
             //console.log(results)
-            if (!results) {
-                result = {
+            result = !results ? {
                     mutes: ["No mutes"],
-                }
-            }
-            else {
-                result = {
+                } : {
                     mutes: results.mutes,
                     expires: results.expires,
                     createdAt: results.createdAt,
@@ -147,7 +137,6 @@ const getMuteDetial = async (message, target) => {
                     current: results.current,
 
                 };
-            }
         } catch (error) {
             console.log(error)
         }
@@ -167,16 +156,11 @@ const getkickDetial = async (message, target) => {
                 userId
             })
             //console.log(results)
-            if (!results) {
-                result = {
+            result = !results ? {
                     kicks: ["No kicks"],
-                };
-            }
-            else {
-                result = {
+                } : {
                     kicks: results.kicks,
                 };
-            }
 
         } catch (error) {
             console.log(error)
