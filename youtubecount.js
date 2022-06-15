@@ -40,7 +40,7 @@ const getSubscribers = async () => {
         const channel = client.channels.cache.find(
           (channel) => channel.id === "849642482702614528"
         );
-        channel.setName("Subscribers: " + subr + " Mil" + "");
+        channel.setName(String("Subscribers: " + subr + " Mil"));
         console.log("channel updated");
         oldsub = sub;
         //return(sub)
