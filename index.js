@@ -384,7 +384,6 @@ client.on("guildMemberUpdate", async function (oldMember, newMember) {
   if (newMember.guild.id === "629695220065239061") {
     rolechecker.rolecheck(oldMember, newMember, client);
   }
-  
 });
 
 //client on reaction

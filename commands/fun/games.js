@@ -54,7 +54,7 @@ module.exports = {
       return message.reply("Games are currently broken");
 
       // CODE GOES HERE 🡫
-      
+
       let applicationID = "";
       if (setgame === "youtube") {
         applicationID = "755600276941176913";

@@ -24,7 +24,7 @@ module.exports = {
         // CODE GOES HERE 🡫
         return;
         //not working anymore
-        
+
         const type = "member";
         if (
           message.channel.permissionOverwrites.edit.find(
@@ -46,7 +46,8 @@ module.exports = {
           message.channel.send({ embeds: [embed] }).catch((err) => {
             console.log(err);
           });
-        } else {}
+        } else {
+        }
       }
     } else {
       message.reply("You lack perms for this command");
