@@ -1,20 +1,20 @@
 const fetch = require(`node-fetch`);
-const Discord = require('discord.js')
-const { Client, Intents } = require('discord.js');
+const Discord = require("discord.js");
+const { Client, Intents } = require("discord.js");
 const config = require(`../../config`);
 const data = require(`../../utils/lifetips.json`);
 
-const modid = config.ModID
-const adminid = config.AdminID
-const jrmod = config.jrmod
-const helper = config.helper
+const modid = config.ModID;
+const adminid = config.AdminID;
+const jrmod = config.jrmod;
+const helper = config.helper;
 
 module.exports = {
-  name: 'lifetips',
-  aliases: [`lifetip`,`tip`],
-  description: '',
-  usage: '``',
-  example: '``',
+  name: "lifetips",
+  aliases: [`lifetip`, `tip`],
+  description: "",
+  usage: "``",
+  example: "``",
   async execute(message, args, client) {
     // CODE GOES HERE 🡫
     //turn json into array
@@ -39,12 +39,10 @@ module.exports = {
           .setFooter(`Tip #${tip.tipID} provided by ${tip.provided}`)
           .setTimestamp();
         message.channel.send({ embeds: [embed] });
-      }
-      else {
+      } else {
         message.channel.send(`${num} is not a valid tip number`);
       }
-    }
-    else{
+    } else {
       let random = Math.floor(Math.random() * tips.length);
       //send tip
       let tip = tips[random];
@@ -58,6 +56,5 @@ module.exports = {
         .setTimestamp();
       message.channel.send({ embeds: [embed] });
     }
-
-  }
-}
+  },
+};

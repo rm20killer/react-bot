@@ -1,201 +1,199 @@
 {
-    "tips" :[
-        {
-            "tipID" : "0",
-            "tip" : "Don't get too involved too fast, dont hesitate to let go when it starts to hurt you.",
-            "provided" : "spark"
-        },
-        {
-            "tipID" : "1",
-            "tip" : "you don't judge a cake just by the flour used or the frosting so don't judge a person on just their orientation or how they look",
-            "provided" : "RM20"
-        },
-        {
-            "tipID" : "2",
-            "tip" : "Don’t add strangers on discord *cough* Susan",
-            "provided" : "Zetti"
-        },
-        {
-            "tipID" : "3",
-            "tip" : "You're not always having bad time, you just gotta learn to focus on the good moments more and stop overthinking and recalling the bad one's.",
-            "provided" : "spark"
-        },
-        {
-            "tipID" : "4",
-            "tip" : "Click Save",
-            "provided" : "Iconicbluejay"
-        },
-        {
-            "tipID" : "5",
-            "tip" : "Don't forget to hydrate :D",
-            "provided" : "Iconicbluejay"
-        },
-        {
-            "tipID" : "6",
-            "tip" : "when life gives you lemons, get rid of them because lemons are sour and you dont need sour things in your life",
-            "provided" : "Gapple"
-        },
-        {
-            "tipID" : "7",
-            "tip" : "Don't be afraid to ask for help, you're not alone",
-            "provided" : "Github Copilot"
-        },
-        {
-            "tipID" : "8",
-            "tip" : "In life when nothing goes right, go left. 😃",
-            "provided" : "Zilla"
-        },
-        {
-            "tipID" : "9",
-            "tip" : "Don't click random nitro links",
-            "provided" : "Iconicbluejay"
-        },
-        {
-            "tipID" : "10",
-            "tip":"Family isn't always blood its the people in your life who want you in there's and who accept you for who you are",
-            "provided" : "Superpeanut"
-        },
-        {
-            "tipID" : "11",
-            "tip":"Don’t ever let yourself down because somethings arent perfect, somethings are just meant to be imperfect which is what gives it personality and makes it special!",
-            "provided" : "Meo"
-        },
-        {
-            "tipID" : "12",
-            "tip":"you don't have to do things  just because other people are just do what you want to do",
-            "provided" : "Superpeanut"
-        },
-        {
-            "tipID" : "13",
-            "tip":"when you're feeling down, just remember that you're not alone",
-            "provided" : "Github Copilot"
-        },
-        {
-            "tipID" : "14",
-            "tip":"being a good person isnt just about being nice to others, it's also about being nice to yourself",
-            "provided" : "Github Copilot"
-        },
-        {
-            "tipID" : "15",
-            "tip":"It's free to be kind",
-            "provided" : "Iconicbluejay"
-        },
-        {
-            "tipID" : "16",
-            "tip":"friends are like a mirror, they reflect your life and your life reflects them",
-            "provided" : "Github Copilot"
-        },
-        {
-            "tipID" : "17",
-            "tip":"life is like a box of chocolates, you never know what you're gonna get",
-            "provided" : "Github Copilot"
-        },
-        {
-            "tipID" : "18",
-            "tip":"you can't be a hero if you're not willing to be a hero",
-            "provided" : "Github Copilot"
-        },
-        {
-            "tipID" : "19",
-            "tip":"nice people are always around, even if they're not in the same room as you",
-            "provided" : "Github Copilot"
-        },
-        {
-            "tipID" : "20",
-            "tip":"saddest thing in life is when you're not being nice to someone you love",
-            "provided" : "Github Copilot"
-        },
-        {
-            "tipID" : "21",
-            "tip":"stop being a bad person",
-            "provided" : "Github Copilot"
-        },
-        {
-            "tipID":"22",
-            "tip":"everyone has a story, but you don't know what it is",
-            "provided" : "Github Copilot"
-        },
-        {
-            "tipID":"23",
-            "tip":"make sure you're not being too hard on yourself",
-            "provided" : "Github Copilot"
-        },
-        {
-            "tipID":"24",
-            "tip":"Turn off the ping when you reply to messages esspecially Iconicbluejay's",
-            "provided" : "Gapple"
-        },
-        {
-            "tipID":"25",
-            "tip":"Circles will never be the answer because their pointless :)",
-            "provided" : "Meo"
-        },
-        {
-            "tipID":"26",
-            "tip":"DON'T CLICK ON RANDOM LINKS",
-            "provided" : "Zetti"
-        },
-        {
-            "tipID":"27",
-            "tip":"DONT CLICK ON RANDOM LINKS ESPECIALLY IF THEY HAVE FREE NITRO FROM STEAM WRITTEN ON IT",
-            "provided":"Ninja"
-        },
-        {
-            "tipID":"28",
-            "tip":"always expect disappointment and you'll never be disappointed",
-            "provided":"Stressless"
-        },
-        {
-            "tipID":"29",
-            "tip":"go sleep",
-            "provided":"Darnia"
-        },
-        {
-            "tipID":"30",
-            "tip":"just because somebody has it better than you doesn't mean you have it bad",
-            "provided":"Zetti"
-        },
-        {
-            "tipID":"31",
-            "tip":"live life one goal at a time and pace yourself. Don't speedrun life",
-            "provided":"Zetti"
-        },
-        {
-            "tipID":"32",
-            "tip":"music is good for your soul",
-            "provided":"Zetti"
-        },
-        {
-            "tipID":"33",
-            "tip":"Don't forget that there is an official GAMERS REACT hypixel GUILD!!! do /g join DarniaX to join!",
-            "provided":"Zetti"
-        },
-        {
-            "tipID":"34",
-            "tip":"If your closest person starts acting and treating you differently suddenly it doesn't always mean they have reasons, they just were playing all along and don't care. Accept it.",
-            "provided":"Spark"
-        },
-        {
-            "tipID":"35",
-            "tip":"If you're not being nice to someone you love, you're not being nice to yourself",
-            "provided":"Github Copilot"
-        },
-        {
-            "tipID":"36",
-            "tip":"Take every day one step at a time. Don’t rush for the next day and it’s worries. Every day will be stressful so don’t rush.",
-            "provided":"Stressless"
-        },
-        {
-            "tipID":"37",
-            "tip":"DONT PROCRASTINATE YOUR HOMEWORK",
-            "provided":"Gapple"
-        },
-        {
-            "tipID":"38",
-            "tip":"Don’t do anything illegal, it’s against the law",
-            "provided":"Zetti"
-        }
-        
-    ]
-
+  "tips": [
+    {
+      "tipID": "0",
+      "tip": "Don't get too involved too fast, dont hesitate to let go when it starts to hurt you.",
+      "provided": "spark"
+    },
+    {
+      "tipID": "1",
+      "tip": "you don't judge a cake just by the flour used or the frosting so don't judge a person on just their orientation or how they look",
+      "provided": "RM20"
+    },
+    {
+      "tipID": "2",
+      "tip": "Don’t add strangers on discord *cough* Susan",
+      "provided": "Zetti"
+    },
+    {
+      "tipID": "3",
+      "tip": "You're not always having bad time, you just gotta learn to focus on the good moments more and stop overthinking and recalling the bad one's.",
+      "provided": "spark"
+    },
+    {
+      "tipID": "4",
+      "tip": "Click Save",
+      "provided": "Iconicbluejay"
+    },
+    {
+      "tipID": "5",
+      "tip": "Don't forget to hydrate :D",
+      "provided": "Iconicbluejay"
+    },
+    {
+      "tipID": "6",
+      "tip": "when life gives you lemons, get rid of them because lemons are sour and you dont need sour things in your life",
+      "provided": "Gapple"
+    },
+    {
+      "tipID": "7",
+      "tip": "Don't be afraid to ask for help, you're not alone",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "8",
+      "tip": "In life when nothing goes right, go left. 😃",
+      "provided": "Zilla"
+    },
+    {
+      "tipID": "9",
+      "tip": "Don't click random nitro links",
+      "provided": "Iconicbluejay"
+    },
+    {
+      "tipID": "10",
+      "tip": "Family isn't always blood its the people in your life who want you in there's and who accept you for who you are",
+      "provided": "Superpeanut"
+    },
+    {
+      "tipID": "11",
+      "tip": "Don’t ever let yourself down because somethings arent perfect, somethings are just meant to be imperfect which is what gives it personality and makes it special!",
+      "provided": "Meo"
+    },
+    {
+      "tipID": "12",
+      "tip": "you don't have to do things  just because other people are just do what you want to do",
+      "provided": "Superpeanut"
+    },
+    {
+      "tipID": "13",
+      "tip": "when you're feeling down, just remember that you're not alone",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "14",
+      "tip": "being a good person isnt just about being nice to others, it's also about being nice to yourself",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "15",
+      "tip": "It's free to be kind",
+      "provided": "Iconicbluejay"
+    },
+    {
+      "tipID": "16",
+      "tip": "friends are like a mirror, they reflect your life and your life reflects them",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "17",
+      "tip": "life is like a box of chocolates, you never know what you're gonna get",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "18",
+      "tip": "you can't be a hero if you're not willing to be a hero",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "19",
+      "tip": "nice people are always around, even if they're not in the same room as you",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "20",
+      "tip": "saddest thing in life is when you're not being nice to someone you love",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "21",
+      "tip": "stop being a bad person",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "22",
+      "tip": "everyone has a story, but you don't know what it is",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "23",
+      "tip": "make sure you're not being too hard on yourself",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "24",
+      "tip": "Turn off the ping when you reply to messages esspecially Iconicbluejay's",
+      "provided": "Gapple"
+    },
+    {
+      "tipID": "25",
+      "tip": "Circles will never be the answer because their pointless :)",
+      "provided": "Meo"
+    },
+    {
+      "tipID": "26",
+      "tip": "DON'T CLICK ON RANDOM LINKS",
+      "provided": "Zetti"
+    },
+    {
+      "tipID": "27",
+      "tip": "DONT CLICK ON RANDOM LINKS ESPECIALLY IF THEY HAVE FREE NITRO FROM STEAM WRITTEN ON IT",
+      "provided": "Ninja"
+    },
+    {
+      "tipID": "28",
+      "tip": "always expect disappointment and you'll never be disappointed",
+      "provided": "Stressless"
+    },
+    {
+      "tipID": "29",
+      "tip": "go sleep",
+      "provided": "Darnia"
+    },
+    {
+      "tipID": "30",
+      "tip": "just because somebody has it better than you doesn't mean you have it bad",
+      "provided": "Zetti"
+    },
+    {
+      "tipID": "31",
+      "tip": "live life one goal at a time and pace yourself. Don't speedrun life",
+      "provided": "Zetti"
+    },
+    {
+      "tipID": "32",
+      "tip": "music is good for your soul",
+      "provided": "Zetti"
+    },
+    {
+      "tipID": "33",
+      "tip": "Don't forget that there is an official GAMERS REACT hypixel GUILD!!! do /g join DarniaX to join!",
+      "provided": "Zetti"
+    },
+    {
+      "tipID": "34",
+      "tip": "If your closest person starts acting and treating you differently suddenly it doesn't always mean they have reasons, they just were playing all along and don't care. Accept it.",
+      "provided": "Spark"
+    },
+    {
+      "tipID": "35",
+      "tip": "If you're not being nice to someone you love, you're not being nice to yourself",
+      "provided": "Github Copilot"
+    },
+    {
+      "tipID": "36",
+      "tip": "Take every day one step at a time. Don’t rush for the next day and it’s worries. Every day will be stressful so don’t rush.",
+      "provided": "Stressless"
+    },
+    {
+      "tipID": "37",
+      "tip": "DONT PROCRASTINATE YOUR HOMEWORK",
+      "provided": "Gapple"
+    },
+    {
+      "tipID": "38",
+      "tip": "Don’t do anything illegal, it’s against the law",
+      "provided": "Zetti"
+    }
+  ]
 }
