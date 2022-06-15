@@ -29,9 +29,9 @@ module.exports = {
                 playerIsOnline = "Online"
             }
 
-            if (player.mcVersion == null) {
+            if (player.mcVersion === null) {
                 playerMinecraftVersion = "Unknown";
-            } else if (player.mcVersion != null) {
+            } else if (player.mcVersion !== null) {
                 playerMinecraftVersion = player.mcVersion;
             }
 
@@ -49,7 +49,7 @@ module.exports = {
                 .addField('Level', `\`${player.level}\``, true)
                 .addField('Karma', `\`${commaNumber(player.karma)}\``, true)
 
-            if (player.guild !== null && player.guild.tag == null) {
+            if (player.guild !== null && player.guild.tag === null) {
                 embed.addField('Guild', `\`${player.guild.name}\``)
             }
 
@@ -64,7 +64,7 @@ module.exports = {
             embed.addField('Status', `\`${playerIsOnline}\``, true)
 
             if (player.rank.includes('MVP+')) {
-                if (player.plusColor == null) {
+                if (player.plusColor === null) {
                     embed.addField('Plus Color', '`Red`')
                 } else {
                     embed.addField('Plus Color', `\`${player.plusColor}\``)

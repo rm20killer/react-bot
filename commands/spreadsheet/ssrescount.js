@@ -67,7 +67,7 @@ var rescount = async function (message) {
         const searcher = sheet.getCell(n, 0).value;
         //console.log(n);
         //console.log(searcher);
-        if (searcher != null) {
+        if (searcher !== null) {
             const embed = await new Discord.MessageEmbed()
                 .setTitle(`Event Signup`)
                 .setAuthor('React Bot', 'https://cdn.discordapp.com/emojis/764541981560537110.png?v=1')
