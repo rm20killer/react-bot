@@ -28,7 +28,7 @@ module.exports = {
       if (args[1] === null) {
         return;
       }
-      message.reply("" + similarity(args[0], args[1]));
+      message.reply(String(similarity(args[0], args[1])));
     } else {
       message.reply("You lack perms for this command");
     }
