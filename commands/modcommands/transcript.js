@@ -1,40 +1,52 @@
-const Discord = require('discord.js')
-const { Client, Intents, MessageAttachment } = require('discord.js');
-const { generateTranscript } = require('reconlx')
+const Discord = require("discord.js");
+const { Client, Intents, MessageAttachment } = require("discord.js");
+const { generateTranscript } = require("reconlx");
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+});
 const config = require("../../config");
-const modid = config.ModID
-const adminid = config.AdminID
-const jrmod = config.jrmod
-const helper = config.helper
+const modid = config.ModID;
+const adminid = config.AdminID;
+const jrmod = config.jrmod;
+const helper = config.helper;
 module.exports = {
-  name: 'transcript',
+  name: "transcript",
   aliases: ["script"],
-  description: 'will create an transcript',
-  usage: '`*transcript [number]`',
-  example: '`*transcript 50`',
+  description: "will create an transcript",
+  usage: "`*transcript [number]`",
+  example: "`*transcript 50`",
   async execute(message, args) {
-    if (message.member.roles.cache.find(r => r.name === modid) || message.member.roles.cache.find(r => r.name === adminid) || message.member.roles.cache.find(r => r.id === helper)) {
-      // CODE GOES HERE 🡫 
+    if (
+      message.member.roles.cache.find((r) => r.name === modid) ||
+      message.member.roles.cache.find((r) => r.name === adminid) ||
+      message.member.roles.cache.find((r) => r.id === helper)
+    ) {
+      // CODE GOES HERE 🡫
       if (args[0]) {
-        message.reply("getting specific amount is currenly broken.")
-      }
-      else {
-        message.channel.messages.fetch({ limit: 100, before: message.id }).then(msgs => {
-          generateTranscript({ guild: message.guild, channel: message.channel, messages: msgs })
-            .then(data => {
-              const file = new MessageAttachment(data, `${message.channel.name}.html`);
+        message.reply("getting specific amount is currenly broken.");
+      } else {
+        message.channel.messages
+          .fetch({ limit: 100, before: message.id })
+          .then((msgs) => {
+            generateTranscript({
+              guild: message.guild,
+              channel: message.channel,
+              messages: msgs,
+            }).then((data) => {
+              const file = new MessageAttachment(
+                data,
+                `${message.channel.name}.html`
+              );
               message.channel.send({ content: "file: ", files: [file] });
             });
-        })
+          });
       }
+    } else {
+      message.reply("You lack perms for this command");
     }
-    else {
-      message.reply("You lack perms for this command")
-    }
-  }
-}
+  },
+};
 
 async function fetchMore(channel, limit = 250) {
   if (!channel) {
@@ -42,7 +54,7 @@ async function fetchMore(channel, limit = 250) {
   }
   if (limit <= 100) {
     return channel.messages.fetch({
-      limit
+      limit,
     });
   }
 

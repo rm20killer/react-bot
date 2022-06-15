@@ -1,28 +1,31 @@
 const mongoose = require("mongoose");
 
-const muteSChema = mongoose.Schema({
+const muteSChema = mongoose.Schema(
+  {
     guildId: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     userId: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    expires:{
-        type: Date,
-        require: true
+    expires: {
+      type: Date,
+      require: true,
     },
-    current:{
+    current: {
       type: Boolean,
-      require: true  
+      require: true,
     },
     mutes: {
-        type: [Object],
-        require: true
-    }
-},{ 
-    timestamps:true
-})
+      type: [Object],
+      require: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = mongoose.model('mute', muteSChema)
+module.exports = mongoose.model("mute", muteSChema);
