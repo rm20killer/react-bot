@@ -86,7 +86,7 @@ var ssrolegive = async function (message, args) {
         console.log(discordID)
         //console.log(n);
         //console.log(searcher);
-        if (discordID != null) {
+        if (discordID !== null) {
             const User = message.guild.members.cache.get(discordID); // Getting the user by ID.
             //const shadRole = User.roles.cache.find(role => role.name === 'Streamers');
             if (User != undefined) { // Checking if the user exists.
