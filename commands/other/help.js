@@ -11,37 +11,38 @@ module.exports = {
   usage: "`*help <command>`",
   example: "`*help ping`",
   async execute(message, args, cleint) {
-    if (!args.length) {
-      return message.reply("enter command");
-    }
+    return;
+    //   if (!args.length) {
+    //     return message.reply("enter command");
+    //   }
 
-    const command =
-      cleint.commands.get(args[0].toLowerCase()) ||
-      cleint.commands.find(
-        (c) => c.aliases && c.aliases.includes(args[0].toLowerCase())
-      );
+    //   const command =
+    //     cleint.commands.get(args[0].toLowerCase()) ||
+    //     cleint.commands.find(
+    //       (c) => c.aliases && c.aliases.includes(args[0].toLowerCase())
+    //     );
 
-    if (!command) {
-      const command404 = new Discord.MessageEmbed()
-        .setAuthor("Error")
-        .setDescription("That isn't a valid command!")
-        .setColor("0x738ADB")
-        .setFooter("Command help");
-      return message.reply({
-        embeds: [command404],
-        allowedMentions: { repliedUser: false },
-      });
-    }
+    //   if (!command) {
+    //     const command404 = new Discord.MessageEmbed()
+    //       .setAuthor("Error")
+    //       .setDescription("That isn't a valid command!")
+    //       .setColor("0x738ADB")
+    //       .setFooter("Command help");
+    //     return message.reply({
+    //       embeds: [command404],
+    //       allowedMentions: { repliedUser: false },
+    //     });
+    //   }
 
-    const help = new Discord.MessageEmbed()
-      .setAuthor("Help")
-      .setTitle(`*${command.name}`)
-      .addField("Description", `\`*${command.name}\` ${command.description}`)
-      .setColor("0x738ADB")
-      .setFooter("Command help");
-    if (command.aliases)
-      help.addField("Aliases", `\`*${command.aliases.join("`, `*")}\``);
-    help.addField("Usage", command.usage);
-    message.reply({ embeds: [help], allowedMentions: { repliedUser: false } });
+    //   const help = new Discord.MessageEmbed()
+    //     .setAuthor("Help")
+    //     .setTitle(`*${command.name}`)
+    //     .addField("Description", `\`*${command.name}\` ${command.description}`)
+    //     .setColor("0x738ADB")
+    //     .setFooter("Command help");
+    //   if (command.aliases)
+    //     help.addField("Aliases", `\`*${command.aliases.join("`, `*")}\``);
+    //   help.addField("Usage", command.usage);
+    //   message.reply({ embeds: [help], allowedMentions: { repliedUser: false } });
   },
 };
