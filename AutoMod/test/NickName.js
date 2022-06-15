@@ -1,4 +1,4 @@
-var combining = /[\u0300-\u036F]/g;
+var combining = /[\u0300-\u036F]/gu;
 var str = "🅴🆄🆉🅸";
 console.log(str)
 console.log(str.normalize('NFKD').replace(combining, ''));
@@ -8,7 +8,7 @@ var unidecode = require('unidecode');
 
 var name = str
 if (name) {
-    var combining = /[\u0300-\u036F]/g;
+    var combining = /[\u0300-\u036F]/gu;
     name2 = name.normalize('NFKD').replace(combining, '');
 }
 var name2 = unidecode(name2)
