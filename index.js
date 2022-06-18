@@ -373,9 +373,12 @@ client.on("messageCreate", async (message) => {
 client.on("guildMemberUpdate", async function (oldMember, newMember) {
   if (newMember.pending === false) {
     try {
-      newMember.roles.add(memberRole);
+      newMember.roles.add(memberRole).catch((error) => {
+        console.log(error);
+      });
     } catch (error) {
       console.log(error);
+      return;
     }
   }
   if (newMember.guild.id != "629695220065239061") {

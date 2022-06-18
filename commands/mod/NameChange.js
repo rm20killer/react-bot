@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
 const config = require(`../../config`);
 const unidecode = require("unidecode");
+const {covertText} = require("../../utils/func/uniecode");
 
 const modid = config.ModID;
 const adminid = config.AdminID;
@@ -58,18 +59,7 @@ module.exports = {
           );
         } else {
           var name = target.user.username;
-          if (name) {
-            try {
-              var combining = /[\u0300-\u036F]/gu;
-              name2 = name.normalize("NFKD").replace(combining, "");
-            } catch {
-              name2 = "Change your name";
-            }
-          }
-          var name2 = unidecode(name2);
-          if (name2 == "") {
-            name2 = "Change your name";
-          }
+          let name2 = await covertText(name);
           if (name != name2) {
             //if name2 is more then 32 characters long, it will be cut off
             if (name2.length > 32) {

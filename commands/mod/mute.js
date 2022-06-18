@@ -224,7 +224,7 @@ const tempmute = async function (
     .setColor(0xff0000)
     .setDescription(`muted for \`${reason}\` for ${timeString}`)
     .addField("muted by", `<@${message.author.id}>`)
-    .setFooter("id: " + targetmember.id + " | today at " + formattedTime);
+    .footer("id: " + targetmember.id + " | today at " + formattedTime);
   channel = client.channels.cache.find(
     (channel) => channel.id === "710123089094246482"
   );
