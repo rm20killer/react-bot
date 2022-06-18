@@ -2,9 +2,8 @@ const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
 
-
 const config = require("../../config");
-const {covertText} = require("../../utils/func/uniecode");
+const { covertText } = require("../../utils/func/uniecode");
 
 module.exports = {
   CheckName: async function (member, client) {
