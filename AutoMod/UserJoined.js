@@ -38,31 +38,32 @@ module.exports = {
     if (sus.arr.includes(name2)) {
       //if bot return
       if (member.user.bot) return;
-      let BadNameEmbed = new Discord.MessageEmbed()
-        .setDescription(`You been kicked for using a banned name on Gamers React.`)
+      let BadNameEmbed = new Discord.MessageEmbed().setDescription(
+        `You been kicked for using a banned name on Gamers React.`
+      );
       try {
         member.send({ embeds: [BadNameEmbed] }).catch((error) => {
           console.log(`could not dm user ${name}`);
         });
-      }
-      catch (error) {
+      } catch (error) {
         console.log(error);
         return;
       }
-      let embed3 = new Discord.MessageEmbed()
-        .setColor("0x738ADB")
-      timestamp = member.user.createdTimestamp.toString().slice(0, -3);;
+      let embed3 = new Discord.MessageEmbed().setColor("0x738ADB");
+      timestamp = member.user.createdTimestamp.toString().slice(0, -3);
       //if timestamp is more than 1 week ago, kick
       if (timestamp > (Date.now() - 604800000).toString().slice(0, -3)) {
         //console.log(`${timestamp} ${(Date.now()-604800000).toString().slice(0, -3)}`);
         //console.log(timestamp < (Date.now() - 604800000));
         member.kick("Suspected user");
-        embed3.setDescription(`<@${member.id}> with a sus name has joined the server & account is 1 week. They have been kicked.`)
-        channel.send({ embeds: [embed3] })
-
-      }
-      else {
-        embed3.setDescription(`<@${member.id}> with a sus name has joined the server. Keep an eye out for them!`)
+        embed3.setDescription(
+          `<@${member.id}> with a sus name has joined the server & account is 1 week. They have been kicked.`
+        );
+        channel.send({ embeds: [embed3] });
+      } else {
+        embed3.setDescription(
+          `<@${member.id}> with a sus name has joined the server. Keep an eye out for them!`
+        );
 
         channel3.send({ embeds: [embed3] });
       }
@@ -108,7 +109,6 @@ module.exports = {
     //message.channel.send({ embeds: [embed2] });
   },
 };
-
 
 const convertSnowflakeToDate = function (snowflake, epoch = DISCORD_EPOCH) {
   const milliseconds = BigInt(snowflake) >> 22n;
