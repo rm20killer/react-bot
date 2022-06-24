@@ -25,19 +25,28 @@ module.exports = {
     ),
 
   async execute(interaction, client) {
-    if(interaction.options._hoistedOptions[0] == undefined) {
-      interaction.reply({content: "You need to specify a user to play against", ephemeral: true});
+    if (interaction.options._hoistedOptions[0] == undefined) {
+      interaction.reply({
+        content: "You need to specify a user to play against",
+        ephemeral: true,
+      });
       return;
     }
     const database = require(`../../utils/data/tictactoe.json`);
     //console.log(database)
     let player1 = interaction.user.id;
     let player2 = interaction.options._hoistedOptions[0].user.id;
-    if(player1 === player2){
-      return interaction.reply({content: "You can't play against yourself", ephemeral : true});
+    if (player1 === player2) {
+      return interaction.reply({
+        content: "You can't play against yourself",
+        ephemeral: true,
+      });
     }
-    if(interaction.options._hoistedOptions[0].user.bot){
-      return interaction.reply({content: "You can't play against a bot", ephemeral : true});
+    if (interaction.options._hoistedOptions[0].user.bot) {
+      return interaction.reply({
+        content: "You can't play against a bot",
+        ephemeral: true,
+      });
     }
     //get data from database and and to file
     let data = await createdata(interaction, database);
@@ -45,7 +54,7 @@ module.exports = {
     await fs.writeFileSync(`./utils/data/tictactoe.json`, dataJSON);
 
     //respond to user
-    let time = Date.now()+60000
+    let time = Date.now() + 60000;
     let embed = new Discord.MessageEmbed()
       .setTitle("Tic Tac Toe")
       .setDescription(
