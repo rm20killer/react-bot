@@ -162,6 +162,7 @@ const interactionFile = require("./interaction/interaction");
 // const button = require('./old/button');
 
 const mee6 = require("./Other/mee6");
+const gameCheck = require("./AutoMod/Keeprunning/games");
 //database
 
 /* 
@@ -177,40 +178,9 @@ mongose.connect(config.Mongoose_SRV,{
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setActivity(`your clips`, { type: "WATCHING" });
-  //client.user.setPresence({ activity: [{ name: 'Testing discord.js v13' }], status: 'Online', type: "WATCHING" })
-  //console.log(    client.api.applications(client.user.id).commands.get())
-  // client.api.applications(client.user.id).commands.post({
-  //     data: {
-  //         name: "Report Message",
-  //         type: 3
-  //     }
-  // })
-  // client.api.applications(client.user.id).commands.post({
-  //     data: {
-  //         name: "Ticket Ban",
-  //         type: 2
-  //     }
-  // })
-  // client.api.applications(client.user.id).commands.post({
-  //     data: {
-  //         name: "Streamer Role",
-  //         type: 2
-  //     }
-  // })
-  // const permissions = [
-  //     {
-  //         id: '696134129497931857',
-  //         type: 'ROLE',
-  //         permission: true,
-  //     },
-  //     {
-  //         id: '884656687372464179',
-  //         type: 'ROLE',
-  //         permission: true,
-  //     },
-  // ];
   mutechecker.mutechecker(client);
   bancheck.backcheck(client);
+  gameCheck.gameCheck(client);
 });
 
 ////////////////////////////////////////////////

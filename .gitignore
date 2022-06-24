@@ -7,3 +7,6 @@ utils/googlekey.json
 giveaways.json
 utils/votedata.json
 temp/rawdata.json
+utils/data/tictactoe.json
+utils/data/userGame.json
+utils/data/tictactoe.json
