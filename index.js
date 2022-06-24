@@ -2,8 +2,8 @@
 
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
+const { REST } = require("@discordjs/rest");
+const { Routes } = require("discord-api-types/v9");
 const fs = require("fs");
 const client = new Client({
   intents: [
@@ -59,7 +59,6 @@ const users = {};
 //       require(`./handler/${h}`)(client);
 // });
 
-
 const config = require("./config");
 client.config = config;
 const prefixl = config.prefix;
@@ -99,30 +98,32 @@ for (const file of slashcommandFolder) {
 client.once("ready", () => {
   // Registering the commands in the client
   const rest = new REST({
-    version: '9'
+    version: "9",
   }).setToken(client.config.BotToken);
   (async () => {
-
     try {
       if (client.config.slashGlobal || !client.config.testGuildID) {
-        await rest.put(
-          Routes.applicationCommands(client.user.id), {
-          body: commands
-        },
-        );
-        console.log('Loaded Slash Commands (GLOBAL)');
+        await rest.put(Routes.applicationCommands(client.user.id), {
+          body: commands,
+        });
+        console.log("Loaded Slash Commands (GLOBAL)");
       } else {
         await rest.put(
-          Routes.applicationGuildCommands(client.user.id, client.config.testGuildID), {
-          body: commands
-        },
+          Routes.applicationGuildCommands(
+            client.user.id,
+            client.config.testGuildID
+          ),
+          {
+            body: commands,
+          }
         );
-        console.log('Loaded Slash Commands (DEVELOPMENT)');
+        console.log("Loaded Slash Commands (DEVELOPMENT)");
       }
-    } catch (e) { console.error(e); }
-
+    } catch (e) {
+      console.error(e);
+    }
   })();
-})
+});
 client.commands = new Discord.Collection();
 const commandFolders = fs.readdirSync("./commands");
 for (const folder of commandFolders) {
