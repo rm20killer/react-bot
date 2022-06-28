@@ -24,7 +24,7 @@ module.exports = {
       } else {
         message.reply({
           content:
-            "**Submit clips on our website:** \nClick button below to vist the site",
+            "**Submit clips on our website:** \nClick button below to visit the site",
           components: [row23],
         }); //Otherwise say this
         return;
