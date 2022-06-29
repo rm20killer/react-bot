@@ -7,6 +7,7 @@ module.exports = {
         const adminid = client.config.AdminID;
         const jrmod = client.config.jrmod;
         const helper = client.config.helper;
+        const memberRole = "710128390547701876"
         if (newMember.pending === false) {
             try {
                 newMember.roles.add(memberRole).catch((error) => {
