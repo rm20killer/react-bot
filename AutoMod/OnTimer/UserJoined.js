@@ -1,7 +1,6 @@
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 
-
 const mongo = require("../utils/mongo");
 const muteSChema = require("../Models/mute-schema");
 
