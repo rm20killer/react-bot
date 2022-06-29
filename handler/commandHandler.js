@@ -9,7 +9,7 @@ module.exports = (client) => {
   if (commandfile.length <= 0) return console.log("No commands Found");
   const commands = [];
   commandfile.forEach((file) => {
-    var command = require(`./interaction/slashcommand/${file}`);
+    var command = require(`../interaction/slashcommand/${file}`);
     commands.push(command.data.toJSON());
     client.slashcommand.set(command.data.name, command);
   });

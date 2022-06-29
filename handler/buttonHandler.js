@@ -7,7 +7,7 @@ module.exports = (client) => {
   if (buttons.length <= 0) return console.log("No buttons Found");
 
   buttons.forEach((file) => {
-    var button = require(`../interaction/Buttons${file}`);
+    var button = require(`../interaction/Buttons/${file}`);
 
     client.button.set(button.customId, button);
   });
