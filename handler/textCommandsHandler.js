@@ -5,7 +5,7 @@ module.exports = (client) => {
         .readdirSync("./commands")
 
     for (const folder of commandFolders) {
-        const commandFiles = fs.readdirSync(`./commands/${folder}`).filter((i) => i.split(".").pop() === "js");;
+        const commandFiles = fs.readdirSync(`./commands/${folder}`).filter((i) => i.split(".").pop() === "js");
         for (const file of commandFiles) {
             const command = require(`../commands/${folder}/${file}`);
             client.commands.set(command.name, command);
