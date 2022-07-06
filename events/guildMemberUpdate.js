@@ -49,7 +49,10 @@ module.exports = {
             if (!hadRole && hasRole) {
                 newMember.guild.channels.cache
                     .get("788078716546318418")
-                    .send(`${boostemote} ` + newMember.displayName + " boosted the server");
+                    .send(`${boostemote} <@${newMember.id}> boosted the server\nThank you 💗`);
+                newMember.guild.channels.cache
+                    .get("629695330153267219")
+                    .send(`${boostemote} <@${newMember.id}> boosted the server\nThank you 💗`);
                 newMember.roles.add("830069139770441728");
                 return;
             }
