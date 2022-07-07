@@ -30,12 +30,11 @@ client.on("ready", async () => {
 });
 const memberrole = "710128390547701876";
 
-const pronoun = "994725428415701152"
-const notification = "994724549209899073"
-const level = "994724373120426107"
-const special = "994724909525770333"
-const staff = "857763887713353758"
-
+const pronoun = "994725428415701152";
+const notification = "994724549209899073";
+const level = "994724373120426107";
+const special = "994724909525770333";
+const staff = "857763887713353758";
 
 //user message
 client.on("message", async (message) => {
@@ -44,8 +43,7 @@ client.on("message", async (message) => {
   if (message.author.bot) return;
   if (message.content === "([*!*])startRole") {
     // fetch all members without a role
-    const members = await message.guild.members.fetch({
-    });
+    const members = await message.guild.members.fetch({});
     console.log(members.size);
 
     const totalMembers = message.guild.memberCount;
@@ -86,19 +84,19 @@ client.login(config.BotToken);
 
 async function isSpecial(member) {
   if (member.roles.cache.find((r) => r.name === "Server Booster")) {
-    return true
+    return true;
   }
   if (member.roles.cache.find((r) => r.name === "Streamers")) {
-    return true
+    return true;
   }
   if (member.roles.cache.find((r) => r.name === "Giveaway Sponsor")) {
-    return true
+    return true;
   }
   if (member.roles.cache.find((r) => r.name === "Event winners")) {
-    return true
+    return true;
   }
   if (member.roles.cache.find((r) => r.name === "Influencer")) {
-    return true
+    return true;
   }
-  return false
+  return false;
 }

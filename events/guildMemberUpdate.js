@@ -6,11 +6,11 @@ module.exports = {
     const jrmod = client.config.jrmod;
     const helper = client.config.helper;
 
-    const pronoun = "994725428415701152"
-    const notification = "994724549209899073"
-    const level = "994724373120426107"
-    const special = "994724909525770333"
-    const staff = "857763887713353758"
+    const pronoun = "994725428415701152";
+    const notification = "994724549209899073";
+    const level = "994724373120426107";
+    const special = "994724909525770333";
+    const staff = "857763887713353758";
 
     const memberRole = "710128390547701876";
     if (newMember.pending === false) {
@@ -51,7 +51,6 @@ module.exports = {
         (role) => role.name === "Streamers"
       ); //Streamers
 
-
       const boostemote = client.emojis.cache.get(`832556719770566657`);
       //streamers
       if (!shadRole && shasRole) {
@@ -90,15 +89,13 @@ module.exports = {
         //console.log("special");
         if (newMember.roles.cache.find((r) => r.id === special)) {
           return;
-        }
-        else {
+        } else {
           newMember.roles.add(special).catch((error) => {
             console.log(error);
           });
-          return
+          return;
         }
-      }
-      else {
+      } else {
         if (newMember.roles.cache.find((r) => r.id === special)) {
           newMember.roles.remove(special).catch((error) => {
             console.log(error);
@@ -112,19 +109,19 @@ module.exports = {
 
 async function isSpecial(member) {
   if (member.roles.cache.find((r) => r.name === "Server Booster")) {
-    return true
+    return true;
   }
   if (member.roles.cache.find((r) => r.name === "Streamers")) {
-    return true
+    return true;
   }
   if (member.roles.cache.find((r) => r.name === "Giveaway Sponsor")) {
-    return true
+    return true;
   }
   if (member.roles.cache.find((r) => r.name === "Event winners")) {
-    return true
+    return true;
   }
   if (member.roles.cache.find((r) => r.name === "Influencer")) {
-    return true
+    return true;
   }
-  return false
+  return false;
 }
