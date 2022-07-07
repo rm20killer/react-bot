@@ -5,10 +5,26 @@ module.exports = {
     const adminid = client.config.AdminID;
     const jrmod = client.config.jrmod;
     const helper = client.config.helper;
+
+    const pronoun = "994725428415701152"
+    const notification = "994724549209899073"
+    const level = "994724373120426107"
+    const special = "994724909525770333"
+    const staff = "857763887713353758"
+
     const memberRole = "710128390547701876";
     if (newMember.pending === false) {
       try {
         newMember.roles.add(memberRole).catch((error) => {
+          console.log(error);
+        });
+        newMember.roles.add(pronoun).catch((error) => {
+          console.log(error);
+        });
+        newMember.roles.add(notification).catch((error) => {
+          console.log(error);
+        });
+        newMember.roles.add(level).catch((error) => {
           console.log(error);
         });
       } catch (error) {
@@ -35,6 +51,7 @@ module.exports = {
         (role) => role.name === "Streamers"
       ); //Streamers
 
+
       const boostemote = client.emojis.cache.get(`832556719770566657`);
       //streamers
       if (!shadRole && shasRole) {
@@ -57,7 +74,7 @@ module.exports = {
           .send(
             `${boostemote} <@${newMember.id}> boosted the server\nThank you 💗`
           );
-        newMember.roles.add("830069139770441728");
+        //newMember.roles.add("830069139770441728");
         return;
       }
       //does nothing if mod
@@ -68,12 +85,46 @@ module.exports = {
       ) {
         return;
       }
-      //dj remove when not boosting
-      if (hadRole && !hasRole) {
-        //console.log("removing DJ")
-        newMember.roles.remove("830069139770441728");
+      const isSpecialBool = await isSpecial(newMember);
+      if (isSpecialBool === true) {
+        //console.log("special");
+        if (newMember.roles.cache.find((r) => r.id === special)) {
+          return;
+        }
+        else {
+          newMember.roles.add(special).catch((error) => {
+            console.log(error);
+          });
+          return
+        }
+      }
+      else {
+        if (newMember.roles.cache.find((r) => r.id === special)) {
+          newMember.roles.remove(special).catch((error) => {
+            console.log(error);
+          });
+        }
       }
     }
     return;
   },
 };
+
+async function isSpecial(member) {
+  if (member.roles.cache.find((r) => r.name === "Server Booster")) {
+    return true
+  }
+  if (member.roles.cache.find((r) => r.name === "Streamers")) {
+    return true
+  }
+  if (member.roles.cache.find((r) => r.name === "Giveaway Sponsor")) {
+    return true
+  }
+  if (member.roles.cache.find((r) => r.name === "Event winners")) {
+    return true
+  }
+  if (member.roles.cache.find((r) => r.name === "Influencer")) {
+    return true
+  }
+  return false
+}

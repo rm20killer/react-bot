@@ -29,6 +29,14 @@ client.on("ready", async () => {
   client.user.setActivity(`your clips`, { type: "WATCHING" });
 });
 const memberrole = "710128390547701876";
+
+const pronoun = "994725428415701152"
+const notification = "994724549209899073"
+const level = "994724373120426107"
+const special = "994724909525770333"
+const staff = "857763887713353758"
+
+
 //user message
 client.on("message", async (message) => {
   //if message is "startRole"
@@ -37,10 +45,9 @@ client.on("message", async (message) => {
   if (message.content === "([*!*])startRole") {
     // fetch all members without a role
     const members = await message.guild.members.fetch({
-      filter: (member) => !member.roles.cache.has(memberrole),
     });
     console.log(members.size);
-    // //get total members in the server
+
     const totalMembers = message.guild.memberCount;
     console.log(totalMembers);
     console.log(members.size);
@@ -48,12 +55,17 @@ client.on("message", async (message) => {
     let count = 0;
     let failed = 0;
     //for each member
-    members.forEach(async (member) => {
+    await members.forEach(async (member) => {
       //if member does not have member role
-      if (!member.roles.cache.has(memberrole)) {
-        //give member member role
+      if (member.roles.cache.has(memberrole)) {
         try {
-          member.roles.add(memberrole);
+          member.roles.add(pronoun);
+          member.roles.add(notification);
+          member.roles.add(level);
+          const isSpecialBool = await isSpecial(member);
+          if (isSpecialBool) {
+            member.roles.add(special);
+          }
           count++;
         } catch {
           console.log("adding member role error");
@@ -71,3 +83,22 @@ client.on("message", async (message) => {
 
 // client.login(process.env.token);
 client.login(config.BotToken);
+
+async function isSpecial(member) {
+  if (member.roles.cache.find((r) => r.name === "Server Booster")) {
+    return true
+  }
+  if (member.roles.cache.find((r) => r.name === "Streamers")) {
+    return true
+  }
+  if (member.roles.cache.find((r) => r.name === "Giveaway Sponsor")) {
+    return true
+  }
+  if (member.roles.cache.find((r) => r.name === "Event winners")) {
+    return true
+  }
+  if (member.roles.cache.find((r) => r.name === "Influencer")) {
+    return true
+  }
+  return false
+}
