@@ -73,7 +73,6 @@ client.on("message", async (message) => {
           }
         }
       }
-
     });
     console.log(`${count} members got the role`);
     console.log(`${totalMembers - count} members did not get the role`);
