@@ -34,8 +34,7 @@ module.exports = {
       message.member.roles.cache.find((r) => r.id === helper)
     ) {
       warn(message, args, client);
-    } 
-    else if(message.author.id === "127863778233548801"){
+    } else if (message.author.id === "127863778233548801") {
       if (!args[0]) {
         return message.reply(`You lack perms for this command`);
       }
@@ -48,19 +47,16 @@ module.exports = {
           return message.reply(`You lack perms for this command`);
         }
       }
-      if(target.id === "624264821621260308"){ 
+      if (target.id === "624264821621260308") {
         warn(message, args, client);
-      }
-      else{
+      } else {
         message.reply(`You lack perms for this command`);
       }
-    }
-    else {
+    } else {
       message.reply(`You lack perms for this command`);
     }
   },
 };
-
 
 async function warn(message, args, client) {
   // CODE GOES HERE 🡫
@@ -86,7 +82,10 @@ async function warn(message, args, client) {
   if (message.member.roles.cache.find((r) => r.name === adminid)) {
   }
   try {
-    if (message.member.roles.cache.find((r) => r.name === adminid)||message.author.id==="127863778233548801") {
+    if (
+      message.member.roles.cache.find((r) => r.name === adminid) ||
+      message.author.id === "127863778233548801"
+    ) {
     } else {
       if (
         target.roles.cache.find((r) => r.name === modid) ||
@@ -230,5 +229,4 @@ async function warn(message, args, client) {
       }
     }
   });
-
 }
