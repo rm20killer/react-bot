@@ -43,7 +43,10 @@ client.on("message", async (message) => {
   if (message.author.bot) return;
   if (message.content === "([*!*])startRole") {
     // fetch all members without a role
-    const members = await message.guild.members.fetch({});
+    const members = await message.guild.members.fetch({
+      //filter for members without member role
+      filter: (m) => m.roles.cache.find((r) => r.id === "926624669799424051"),
+    });
     console.log(members.size);
 
     const totalMembers = message.guild.memberCount;
@@ -54,23 +57,23 @@ client.on("message", async (message) => {
     let failed = 0;
     //for each member
     await members.forEach(async (member) => {
-      //if member does not have member role
-      if (member.roles.cache.has(memberrole)) {
-        try {
-          member.roles.add(pronoun);
-          member.roles.add(notification);
-          member.roles.add(level);
-          const isSpecialBool = await isSpecial(member);
-          if (isSpecialBool) {
-            member.roles.add(special);
+      //check if member is special
+      if (isSpecial(member)) {
+        //check if member has special role
+        if (!member.roles.cache.find((r) => r.id === special)) {
+          //if not give special role
+          try {
+            await member.roles.add(special).catch((error) => {
+              console.log(error);
+              failed++;
+            });
+          } catch (error) {
+            console.log(error);
+            failed++;
           }
-          count++;
-        } catch {
-          console.log("adding member role error");
-          failed++;
-          return;
         }
       }
+
     });
     console.log(`${count} members got the role`);
     console.log(`${totalMembers - count} members did not get the role`);
