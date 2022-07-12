@@ -12,6 +12,6 @@ module.exports = {
   usage: "`*tablecount`",
   example: "`*tablecount`",
   async execute(message, args) {
-    message.reply(file.tableflip + " tables have been fliped");
+    message.reply(file.tableflip + " tables have been flipped.");
   },
 };
