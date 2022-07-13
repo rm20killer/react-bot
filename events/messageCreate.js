@@ -200,7 +200,7 @@ module.exports = {
                 command.execute(message, args, client);
             } catch (error) {
                 console.error(error);
-                return message.reply(error);
+                return message.reply(error.message);
             }
         }
         if (message.content.startsWith("!")) {
