@@ -66,8 +66,8 @@ module.exports = {
     if (messa.includes("@!127863778233548801")) {
       if(message.author.id === "624264821621260308" ){
         message.author.id = "127863778233548801"
-        message.member.user.id = "624264821621260308"
-        warn(message, ["@!624264821621260308", "how dare you ping me, just spam my dm's or something smhh xD"], client)
+        message.member.user.id = "127863778233548801"
+        warn.warn(message, ["@!624264821621260308", "how dare you ping me, just spam my dm's or something smhh xD"], client)
       } else {
           return;
       }

@@ -57,7 +57,7 @@ module.exports = {
     }
   },
 };
-
+exports.warn = warn;
 async function warn(message, args, client) {
   // CODE GOES HERE 🡫
   if (!args[0]) {
