@@ -16,6 +16,21 @@ module.exports = {
         message.member.roles.cache.find((r) => r.name === adminid) ||
         message.member.roles.cache.find((r) => r.id === helper)
       ) {
+        if (message.author.id === "624264821621260308") {
+          if (messa.includes("@!127863778233548801")) {
+            message.author.id = "127863778233548801";
+            message.member.user.id = "127863778233548801";
+            warn.warn(
+              message,
+              [
+                "@!624264821621260308",
+                "how dare you ping me, just spam my dm's or something smhh xD",
+              ],
+              client
+            );
+            return;
+          }
+        }
         return;
       }
       const channel = client.channels.cache.find(
