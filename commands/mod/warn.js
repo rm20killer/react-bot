@@ -223,9 +223,11 @@ async function warn(message, args, client) {
 
       if (message.channel.parent.id === "709806849725038634") {
       } else {
-        if(args[1]==="how dare you ping me, just spam my dm's or something smhh xD")
-        {}
-        else{
+        if (
+          args[1] ===
+          "how dare you ping me, just spam my dm's or something smhh xD"
+        ) {
+        } else {
           message.delete().catch((error) => {
             console.log(error);
           });
