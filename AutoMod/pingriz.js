@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const config = require("../config");
-const warn = require("../commands/mod/warn")
+const warn = require("../commands/mod/warn");
 const modid = config.ModID;
 const adminid = config.AdminID;
 const jrmod = config.jrmod;
@@ -64,12 +64,19 @@ module.exports = {
       });
     }
     if (messa.includes("@!127863778233548801")) {
-      if(message.author.id === "624264821621260308" ){
-        message.author.id = "127863778233548801"
-        message.member.user.id = "624264821621260308"
-        warn(message, ["@!624264821621260308", "how dare you ping me, just spam my dm's or something smhh xD"], client)
+      if (message.author.id === "624264821621260308") {
+        message.author.id = "127863778233548801";
+        message.member.user.id = "624264821621260308";
+        warn(
+          message,
+          [
+            "@!624264821621260308",
+            "how dare you ping me, just spam my dm's or something smhh xD",
+          ],
+          client
+        );
       } else {
-          return;
+        return;
       }
     }
   },
