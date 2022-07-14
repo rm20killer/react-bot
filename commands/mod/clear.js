@@ -11,7 +11,7 @@
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents, MessageAttachment } = require("discord.js");
-const discordTranscripts = require('discord-html-transcripts');
+const discordTranscripts = require("discord-html-transcripts");
 const config = require(`../../config`);
 
 const modid = config.ModID;
@@ -105,15 +105,18 @@ const fbulkdeleteUser = async function (
     })
     .catch((error) => {
       console.log(error);
-      return
+      return;
     });
-    const attachment = await discordTranscripts.createTranscript(message.channel,{
-        limit: amount,
-      });
-    channel.send({
-      content: `Bulk delete file today at <t:${formattedTime}:f> \n(deleted messages sent by <@${target.id}>)`,
-      files: [attachment],
-    });
+  const attachment = await discordTranscripts.createTranscript(
+    message.channel,
+    {
+      limit: amount,
+    }
+  );
+  channel.send({
+    content: `Bulk delete file today at <t:${formattedTime}:f> \n(deleted messages sent by <@${target.id}>)`,
+    files: [attachment],
+  });
 };
 
 const fbulkdelete = async function (client, message, amount, formattedTime) {
@@ -121,11 +124,16 @@ const fbulkdelete = async function (client, message, amount, formattedTime) {
     (channel) => channel.id === "843954692107272243"
   );
   try {
-    let messages = message.channel.messages
-      .fetch({ limit: amount, before: message.id })
-    const attachment = await discordTranscripts.createTranscript(message.channel,{
+    let messages = message.channel.messages.fetch({
       limit: amount,
+      before: message.id,
     });
+    const attachment = await discordTranscripts.createTranscript(
+      message.channel,
+      {
+        limit: amount,
+      }
+    );
     channel.send({
       content: `Bulk delete file today at <t:${formattedTime}:f>`,
       files: [attachment],
@@ -144,7 +152,7 @@ const fbulkdelete = async function (client, message, amount, formattedTime) {
       .catch((error) => {
         console.log(error);
       });
-  } catch(error) {
+  } catch (error) {
     console.log(error);
     return message.reply(`Error`);
   }

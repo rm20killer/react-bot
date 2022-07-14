@@ -3,7 +3,7 @@ const { Client, Intents, MessageAttachment } = require("discord.js");
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
-const discordTranscripts = require('discord-html-transcripts');
+const discordTranscripts = require("discord-html-transcripts");
 const config = require("../../config");
 const modid = config.ModID;
 const adminid = config.AdminID;
@@ -35,14 +35,14 @@ module.exports = {
         if (!reason) reason = "No Reason Specified";
         message.channel.messages.fetch({ limit: 100 }).then((msgs) => {
           const embed = new Discord.MessageEmbed()
-          .setTitle("**Ticket Closed**")
-          .addField("Ticket Owner", `<@${message.channel.topic}>`, true)
-          .addField("Ticket Name:", message.channel.name, true)
-          .addField("Closed by:", message.author.tag, true)
-          .addField("Close Reason", `\`\`\`${reason}\`\`\``)
-          .setFooter(message.guild.name)
-          .setColor(0x4287f5);
-          if(msgs.size < 100) {
+            .setTitle("**Ticket Closed**")
+            .addField("Ticket Owner", `<@${message.channel.topic}>`, true)
+            .addField("Ticket Name:", message.channel.name, true)
+            .addField("Closed by:", message.author.tag, true)
+            .addField("Close Reason", `\`\`\`${reason}\`\`\``)
+            .setFooter(message.guild.name)
+            .setColor(0x4287f5);
+          if (msgs.size < 100) {
             channel
               .send({
                 content: `transcript for ticket ${message.channel.name}-${message.channel.id} `,
@@ -52,8 +52,8 @@ module.exports = {
               .catch((err) => {
                 console.log(err);
               });
-            } else {
-            }
+          } else {
+          }
         });
 
         setTimeout(() => {
