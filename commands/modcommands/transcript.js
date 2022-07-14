@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const { Client, Intents, MessageAttachment } = require("discord.js");
-const discordTranscripts = require('discord-html-transcripts');
+const discordTranscripts = require("discord-html-transcripts");
 
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
@@ -36,14 +36,17 @@ module.exports = {
           const attachment = await discordTranscripts.createTranscript(channel);
           message.reply({
             content: `trascript for <#${channel.id}>`,
-            files: [attachment]
+            files: [attachment],
           });
         } else {
           const messages = await fetchMore(channel, amount);
-          const attachment = await discordTranscripts.generateFromMessages(messages, channel);
+          const attachment = await discordTranscripts.generateFromMessages(
+            messages,
+            channel
+          );
           channel.send({
             content: `trascript for <#${channel.id}>`,
-            files: [attachment]
+            files: [attachment],
           });
         }
       } else {
@@ -51,7 +54,7 @@ module.exports = {
         const attachment = await discordTranscripts.createTranscript(channel);
         message.reply({
           content: `trascript for <#${channel.id}>`,
-          files: [attachment]
+          files: [attachment],
         });
       }
     } else {

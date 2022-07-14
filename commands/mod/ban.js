@@ -11,7 +11,7 @@ const fetch = require("node-fetch");
 const Discord = require("discord.js");
 const ms = require("ms");
 const { Client, Intents, MessageAttachment } = require("discord.js");
-const discordTranscripts = require('discord-html-transcripts');
+const discordTranscripts = require("discord-html-transcripts");
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 const config = require("../../config");
@@ -118,12 +118,15 @@ const fbulkdeleteUser = async function (client, message, amount, target) {
     (channel) => channel.id === "710123089094246482"
   );
   const id = target.id;
-  const attachment = await discordTranscripts.createTranscript(message.channel,{
+  const attachment = await discordTranscripts.createTranscript(
+    message.channel,
+    {
       limit: amount,
-    });
+    }
+  );
   channel.send({
     content: `trascript for <#${channel.id}> messages from <@${target.user.id}> deleted`,
-    files: [attachment]
+    files: [attachment],
   });
   message.channel.messages
     .fetch({
