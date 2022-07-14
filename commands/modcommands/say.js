@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const { Client, Intents, MessageAttachment } = require("discord.js");
-const { generateTranscript } = require("reconlx");
 
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],

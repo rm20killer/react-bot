@@ -11,7 +11,7 @@ const fetch = require("node-fetch");
 const Discord = require("discord.js");
 const ms = require("ms");
 const { Client, Intents, MessageAttachment } = require("discord.js");
-const { generateTranscript } = require("reconlx");
+const discordTranscripts = require('discord-html-transcripts');
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 const config = require("../../config");
@@ -103,40 +103,6 @@ module.exports = {
             reason = removeFirstWord(reason);
             tempban(client, message, args, target, reason, expires, time);
           }
-          //OLD TIME CODE
-          // if (suffix === "s" || suffix === "m" || suffix === "h" || suffix === "d" || suffix === "w") {
-          //     let time = durationstext.slice(0, -1);
-          //     if (suffix === "s") {
-          //         time = time * 1
-          //     }
-          //     else if (suffix === "m") {
-          //         time = time * 60
-          //     }
-          //     else if (suffix === "h") {
-          //         time = time * 60 * 60
-          //     }
-          //     else if (suffix === "d") {
-          //         time = time * 60 * 60 * 24
-          //     }
-          //     else if (suffix === "w") {
-          //         time = time * 60 * 60 * 24 * 7
-          //     }
-          //     else {
-          //         time = null;
-          //     }
-          //     if (time) {
-          //         const expires = new Date()
-          //         expires.setSeconds(expires.getSeconds() + time)
-          //         reason = removeFirstWord(reason);
-          //         tempban(client, message, args, target, reason, expires, time);
-          //     }
-          //     else {
-          //         banUser(client, message, args, target, reason)
-          //     }
-          // }
-          // else {
-          //     banUser(client, message, args, target, reason)
-          // }
         } else {
           return message.reply(`I can't ban that user`);
         }
@@ -152,26 +118,19 @@ const fbulkdeleteUser = async function (client, message, amount, target) {
     (channel) => channel.id === "710123089094246482"
   );
   const id = target.id;
+  const attachment = await discordTranscripts.createTranscript(message.channel,{
+      limit: amount,
+    });
+  channel.send({
+    content: `trascript for <#${channel.id}> messages from <@${target.user.id}> deleted`,
+    files: [attachment]
+  });
   message.channel.messages
     .fetch({
       limit: amount, // Change `100` to however many messages you want to fetch
       before: message.id,
     })
     .then((messages) => {
-      generateTranscript({
-        guild: message.guild,
-        channel: message.channel,
-        messages: messages,
-      }).then((data) => {
-        const file = new MessageAttachment(
-          data,
-          `${message.channel.name}.html`
-        );
-        channel.send({
-          content: `Bulk delete from ban. \n(deleted messages sent by <@${target.id}>)`,
-          files: [file],
-        });
-      });
       const botMessages = [];
       messages
         .filter((m) => m.author.id === id)

@@ -11,8 +11,7 @@
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents, MessageAttachment } = require("discord.js");
-const { generateTranscript } = require("reconlx");
-
+const discordTranscripts = require('discord-html-transcripts');
 const config = require(`../../config`);
 
 const modid = config.ModID;
@@ -79,27 +78,13 @@ const fbulkdeleteUser = async function (
     (channel) => channel.id === "843954692107272243"
   );
   const id = target.id;
-  message.channel.messages
+  let messages = message.channel.messages
     .fetch({
       limit: amount, // Change `100` to however many messages you want to fetch
       before: message.id,
     })
     .then((messages) => {
-      generateTranscript({
-        guild: message.guild,
-        channel: message.channel,
-        messages: messages,
-      }).then((data) => {
-        const file = new MessageAttachment(
-          data,
-          `${message.channel.name}.html`
-        );
-        channel.send({
-          content: `Bulk delete file today at <t:${formattedTime}:f> \n(deleted messages sent by <@${target.id}>)`,
-          files: [file],
-        });
-      });
-      const botMessages = [];
+      Messages = [];
       messages
         .filter((m) => m.author.id === id)
         .forEach((msg) => botMessages.push(msg));
@@ -120,6 +105,14 @@ const fbulkdeleteUser = async function (
     })
     .catch((error) => {
       console.log(error);
+      return
+    });
+    const attachment = await discordTranscripts.createTranscript(message.channel,{
+        limit: amount,
+      });
+    channel.send({
+      content: `Bulk delete file today at <t:${formattedTime}:f> \n(deleted messages sent by <@${target.id}>)`,
+      files: [attachment],
     });
 };
 
@@ -128,24 +121,15 @@ const fbulkdelete = async function (client, message, amount, formattedTime) {
     (channel) => channel.id === "843954692107272243"
   );
   try {
-    message.channel.messages
+    let messages = message.channel.messages
       .fetch({ limit: amount, before: message.id })
-      .then((msgs) => {
-        generateTranscript({
-          guild: message.guild,
-          channel: message.channel,
-          messages: msgs,
-        }).then((data) => {
-          const file = new MessageAttachment(
-            data,
-            `${message.channel.name}.html`
-          );
-          channel.send({
-            content: `Bulk delete file today at <t:${formattedTime}:f>`,
-            files: [file],
-          });
-        });
-      });
+    const attachment = await discordTranscripts.createTranscript(message.channel,{
+      limit: amount,
+    });
+    channel.send({
+      content: `Bulk delete file today at <t:${formattedTime}:f>`,
+      files: [attachment],
+    });
     message.channel
       .bulkDelete(amount)
       .then((messages) => {
@@ -160,7 +144,8 @@ const fbulkdelete = async function (client, message, amount, formattedTime) {
       .catch((error) => {
         console.log(error);
       });
-  } catch {
+  } catch(error) {
+    console.log(error);
     return message.reply(`Error`);
   }
 };

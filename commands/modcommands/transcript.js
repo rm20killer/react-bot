@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const { Client, Intents, MessageAttachment } = require("discord.js");
-const { generateTranscript } = require("reconlx");
+const discordTranscripts = require('discord-html-transcripts');
 
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
@@ -24,23 +24,35 @@ module.exports = {
     ) {
       // CODE GOES HERE 🡫
       if (args[0]) {
-        message.reply("getting specific amount is currenly broken.");
-      } else {
-        message.channel.messages
-          .fetch({ limit: 100, before: message.id })
-          .then((msgs) => {
-            generateTranscript({
-              guild: message.guild,
-              channel: message.channel,
-              messages: msgs,
-            }).then((data) => {
-              const file = new MessageAttachment(
-                data,
-                `${message.channel.name}.html`
-              );
-              message.channel.send({ content: "file: ", files: [file] });
-            });
+        //message.reply("getting specific amount is currenly broken.");
+        //check if args[0] is a number
+        if (isNaN(args[0])) {
+          message.reply("please enter a number");
+          return;
+        }
+        let amount = args[0];
+        const channel = message.channel;
+        if (amount < 100) {
+          const attachment = await discordTranscripts.createTranscript(channel);
+          message.reply({
+            content: `trascript for <#${channel.id}>`,
+            files: [attachment]
           });
+        } else {
+          const messages = await fetchMore(channel, amount);
+          const attachment = await discordTranscripts.generateFromMessages(messages, channel);
+          channel.send({
+            content: `trascript for <#${channel.id}>`,
+            files: [attachment]
+          });
+        }
+      } else {
+        const channel = message.channel;
+        const attachment = await discordTranscripts.createTranscript(channel);
+        message.reply({
+          content: `trascript for <#${channel.id}>`,
+          files: [attachment]
+        });
       }
     } else {
       message.reply("You lack perms for this command");
@@ -80,6 +92,5 @@ async function fetchMore(channel, limit = 250) {
     collection = collection.concat(messages);
     lastId = messages.last().id;
   }
-
   return collection;
 }

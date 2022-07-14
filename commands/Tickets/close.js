@@ -3,8 +3,7 @@ const { Client, Intents, MessageAttachment } = require("discord.js");
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
-const { generateTranscript } = require("reconlx");
-
+const discordTranscripts = require('discord-html-transcripts');
 const config = require("../../config");
 const modid = config.ModID;
 const adminid = config.AdminID;
@@ -35,25 +34,15 @@ module.exports = {
         let reason = message.content.slice(6);
         if (!reason) reason = "No Reason Specified";
         message.channel.messages.fetch({ limit: 100 }).then((msgs) => {
-          generateTranscript({
-            guild: message.guild,
-            channel: message.channel,
-            messages: msgs,
-          }).then((data) => {
-            const file = new MessageAttachment(
-              data,
-              `${message.channel.name}-${message.channel.id}.html`
-            );
-
-            const embed = new Discord.MessageEmbed()
-              .setTitle("**Ticket Closed**")
-              .addField("Ticket Owner", `<@${message.channel.topic}>`, true)
-              .addField("Ticket Name:", message.channel.name, true)
-              .addField("Closed by:", message.author.tag, true)
-              .addField("Close Reason", `\`\`\`${reason}\`\`\``)
-              .setFooter(message.guild.name)
-              .setColor(0x4287f5);
-
+          const embed = new Discord.MessageEmbed()
+          .setTitle("**Ticket Closed**")
+          .addField("Ticket Owner", `<@${message.channel.topic}>`, true)
+          .addField("Ticket Name:", message.channel.name, true)
+          .addField("Closed by:", message.author.tag, true)
+          .addField("Close Reason", `\`\`\`${reason}\`\`\``)
+          .setFooter(message.guild.name)
+          .setColor(0x4287f5);
+          if(msgs.size < 100) {
             channel
               .send({
                 content: `transcript for ticket ${message.channel.name}-${message.channel.id} `,
@@ -63,7 +52,8 @@ module.exports = {
               .catch((err) => {
                 console.log(err);
               });
-          });
+            } else {
+            }
         });
 
         setTimeout(() => {
@@ -77,3 +67,38 @@ module.exports = {
     }
   },
 };
+
+async function fetchMore(channel, limit = 250) {
+  if (!channel) {
+    throw new Error(`Expected channel, got ${typeof channel}.`);
+  }
+  if (limit <= 100) {
+    return channel.messages.fetch({
+      limit,
+    });
+  }
+
+  let collection = new Discord.Collection();
+  let lastId = null;
+  let options = {};
+  let remaining = limit;
+
+  while (remaining > 0) {
+    options.limit = remaining > 100 ? 100 : remaining;
+    remaining = remaining > 100 ? remaining - 100 : 0;
+
+    if (lastId) {
+      options.before = lastId;
+    }
+
+    let messages = await channel.messages.fetch(options);
+
+    if (!messages.last()) {
+      break;
+    }
+
+    collection = collection.concat(messages);
+    lastId = messages.last().id;
+  }
+  return collection;
+}
