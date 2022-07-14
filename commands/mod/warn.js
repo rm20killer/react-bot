@@ -357,13 +357,26 @@ async function warn(message, args, client) {
         console.log(`could not dm ${target.user.tag}`);
       }
     }
-
+    let passed = false;
     //find user in database
     try{
-      const warnings = await WarnSchema.findOne({ where: { guildId:guildId, userId:target.id  } });
-      if (warnings) {
-        warnings.warnings.push(warning);
-        await warnings.save();
+      const Datawarnings = await WarnSchema.findOne({ where: { guildId:guildId, userId:target.id  } });
+      if (Datawarnings) {
+        //console.log(warnings);
+        //push warning to array
+        Datawarnings.warnings.push(warning);
+        newWarning = Datawarnings.warnings;
+        console.log(newWarning);
+        //save to database
+        const updatedRows = await WarnSchema.update(
+          {
+            warnings: newWarning,
+          },
+          {
+            where: { guildId:guildId, userId:target.id  },
+          }
+        );
+        //await warnings.save();
       }
       else{
         const userWarn = await WarnSchema.create({
@@ -372,12 +385,17 @@ async function warn(message, args, client) {
           warnings: [warning],
         });
       }
+      passed = true;
     }
     catch(error){
       console.log(error)
       return message.reply("An error has happened while warning. Warning not saved.");
     }
     finally{
+      if(!passed){
+        return;
+      }
+
       //send message
       var channelParent = message.channel.parent.id;
       channel = client.channels.cache.find(
@@ -395,7 +413,7 @@ async function warn(message, args, client) {
         .setColor(0xffff00)
         .setDescription(`warn for \`${reason}\``)
         .addField("warn by", `<@${message.author.id}>`)
-        .setFooter("id: " + target.id + " | today at " + formattedTime);
+        .setFooter({text:"id: " + target.id + " | today at " + formattedTime});
       try {
         channel.send({ embeds: [embed] });
         const embed2 = new Discord.MessageEmbed().setDescription(

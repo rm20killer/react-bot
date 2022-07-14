@@ -143,13 +143,17 @@ const getMuteData = async (message, target) => {
       //mongoose.connection.close()
       avatarURL = target.user.avatarURL({ format: "png" });
       const embed = new Discord.MessageEmbed()
-        .setAuthor(`${target.user.tag} infractions (mute)`, avatarURL)
+        .setAuthor(
+          {
+            name: `${target.user.tag} infractions (mute)`,
+            iconURL: `${avatarURL}`
+          })
         .setColor(0x0774f8)
         .addField("Total mutes", `${String(mutesAmounr)}`, true)
         .addField("Past 24 hours", `${String(past24hours)}`, true)
         .addField("Past 7 days", `${String(past7day)}`, true)
         .addField("last 10 mutes", result)
-        .setFooter("id: " + target.id);
+        .setFooter({ text: "id: " + target.id });
       message.reply({ embeds: [embed] });
     }
   });
@@ -178,15 +182,16 @@ const getMuteDataDetial = async (message, target, warnId) => {
       avatarURL = target.user.avatarURL({ format: "png" });
       const embed = new Discord.MessageEmbed()
         .setAuthor(
-          `${target.user.tag} mute detail for ID: ${warnId}`,
-          avatarURL
-        )
+          {
+            name: `${target.user.tag} mute detail for ID: ${warnId}`,
+            iconURL: `${avatarURL}`
+          })
         .setColor(0x0774f8)
         .addField("reason", `${reason}`)
         .addField("original mod", `<@${author}>`)
         .addField("At time", `<t:${UNIXTimestamp}:f>`)
         .addField("Duration", `${duration}`)
-        .setFooter("id: " + target.id);
+        .setFooter({ text: "id: " + target.id });
       for (let i = 0; i < Last10Messages.length; i++) {
         const element = Last10Messages[i];
         embed.addField(`Message before mute ${i}`, `${element}`);
@@ -206,6 +211,8 @@ const getInfractions = async (message, target) => {
   var past7day = 0;
   let arrayResult = [];
   var result = "";
+
+  let passed = false;
   try {
     const results = await WarnSchema.findOne({ where: { guildId: guildId, userId: target.id } })
     //console.log(results.dataValues)
@@ -246,18 +253,26 @@ const getInfractions = async (message, target) => {
       i = i + 1;
     }
     //console.log(result)
+    passed = true;
   }
   catch (err) {
     console.log(err)
     return message.reply("error occured while getting infractions")
   }
   finally {
+    if (!passed) {
+      return;
+    }
     if (!result) {
       result = "No result found";
     }
     avatarURL = target.user.avatarURL({ format: "png" });
     const embed = new Discord.MessageEmbed()
-      .setAuthor(`${target.user.tag} infractions`, avatarURL)
+      .setAuthor(
+        {
+          name: `${target.user.tag} infreactions`,
+          iconURL: `${avatarURL}`
+        })
       .setColor(0x0774f8)
       .addField("Total warns", `${String(warningNumber)}`, true)
       .addField("Past 24 hours", `${String(past24hours)}`, true)
@@ -272,22 +287,25 @@ const getInfractions = async (message, target) => {
 const getInfractionsDetial = async (message, target, warnId) => {
   const guildId = message.guildId;
   const userId = target.id;
-  try{
+
+  let passed = false;
+  try {
     const results = await WarnSchema.findOne({ where: { guildId: guildId, userId: target.id } })
-    if(results){
+    if (results) {
       let warnings1 = results.dataValues.warnings;
       let warningDetail = warnings1[warnId];
-      if(!warningDetail){
+      if (!warningDetail) {
         return message.reply(`No warnings found for ${target.user.tag} with ID ${warnId}`)
       }
-      const { author, timestamp, reason,Last10Messages } = warningDetail;
+      const { author, timestamp, reason, Last10Messages } = warningDetail;
       let UNIXTimestamp = Math.round(timestamp / 1000);
       avatarURL = target.user.avatarURL({ format: "png" });
       const embed = new Discord.MessageEmbed()
         .setAuthor(
-          `${target.user.tag} infractions detail for ID: ${warnId}`,
-          avatarURL
-        )
+          {
+            name: `${target.user.tag} infractions detail for ID: ${warnId}`,
+            iconURL: `${avatarURL}`
+          })
         .setColor(0x0774f8)
         .addField("reason", `${reason}`)
         .addField("original mod", `<@${author}>`)
@@ -299,8 +317,9 @@ const getInfractionsDetial = async (message, target, warnId) => {
       }
       message.reply({ embeds: [embed] });
     }
+    passed = true;
   }
-  catch(err){
+  catch (err) {
     console.log(err)
     return message.reply("error occured while getting infractions")
   }
