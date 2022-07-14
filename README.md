@@ -23,7 +23,7 @@ add tokens.
 
 - [discord.js](https://github.com/discordjs/discord.js)
 
-- [reconlx](https://github.com/reconlx/reconlx-api) (For transcript)
+- [Discord.js HTML Transcripts](https://www.npmjs.com/package/discord-html-transcripts)
 
 - [google-spreadsheet](https://www.npmjs.com/package/google-spreadsheet)
 
