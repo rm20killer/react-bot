@@ -33,7 +33,9 @@ module.exports = {
 
         let reason = message.content.slice(6);
         if (!reason) reason = "No Reason Specified";
+        const attachment = await discordTranscripts.createTranscript(message.channel);
         message.channel.messages.fetch({ limit: 100 }).then((msgs) => {
+        
           const embed = new Discord.MessageEmbed()
           .setTitle("**Ticket Closed**")
           .addField("Ticket Owner", `<@${message.channel.topic}>`, true)
@@ -42,18 +44,16 @@ module.exports = {
           .addField("Close Reason", `\`\`\`${reason}\`\`\``)
           .setFooter(message.guild.name)
           .setColor(0x4287f5);
-          if(msgs.size < 100) {
-            channel
-              .send({
-                content: `transcript for ticket ${message.channel.name}-${message.channel.id} `,
-                embeds: [embed],
-                files: [file],
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-            } else {
-            }
+          
+          channel
+          .send({
+            content: `transcript for ticket ${message.channel.name}-${message.channel.id} `,
+            embeds: [embed],
+            files: [attachment],
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         });
 
         setTimeout(() => {
