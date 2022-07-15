@@ -278,7 +278,7 @@ const getInfractions = async (message, target) => {
       .addField("Past 24 hours", `${String(past24hours)}`, true)
       .addField("Past 7 days", `${String(past7day)}`, true)
       .addField("last 10 warnings", result)
-      .setFooter("id: " + target.id);
+      .setFooter({ text: "id: " + target.id })
     message.reply({ embeds: [embed] });
   }
   return;
@@ -310,7 +310,7 @@ const getInfractionsDetial = async (message, target, warnId) => {
         .addField("reason", `${reason}`)
         .addField("original mod", `<@${author}>`)
         .addField("At time", `<t:${UNIXTimestamp}:f>`)
-        .setFooter("id: " + target.id);
+        .setFooter({ text: "id: " + target.id })
       for (let i = 0; i < Last10Messages.length; i++) {
         const element = Last10Messages[i];
         embed.addField(`Message before warning ${i}`, `${element}`);
