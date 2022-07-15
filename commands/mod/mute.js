@@ -201,17 +201,16 @@ const tempmute = async function (
       userId: userId,
       expires: expires,
       current: true,
-      mutes: [mute],
+      mutes: mutesarray,
     });
-    try {
-      var role = targetmember.guild.roles.cache.find(
-        (role) => role.id === muterole
-      );
-      targetmember.roles.add(role);
-    } catch {
-      message.reply("An error has happened while muting.");
-      return;
-    }
+  }
+  try {
+    let role = targetmember.guild.roles.cache.get(muterole)
+    targetmember.roles.add(role);
+  } catch(error) {
+    console.log(error)
+    //message.reply("An error has happened while muting.");
+    return;
   }
   var date = new Date(messagetime * 1000);
   var hours = date.getHours();
@@ -298,15 +297,14 @@ const mute = async function (message, client, targetmember, reason, expires) {
       current: true,
       mutes: mutesarray,
     });
-    try {
-      var role = targetmember.guild.roles.cache.find(
-        (role) => role.id === muterole
-      );
-      targetmember.roles.add(role);
-    } catch {
-      message.reply("An error has happened while muting.");
-      return;
-    }
+  }
+  try {
+    let role = targetmember.guild.roles.cache.get(muterole)
+    targetmember.roles.add(role);
+  } catch(error) {
+    console.log(error)
+    //message.reply("An error has happened while muting.");
+    return;
   }
   var date = new Date(messagetime * 1000);
   var hours = date.getHours();
