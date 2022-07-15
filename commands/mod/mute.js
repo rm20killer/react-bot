@@ -21,8 +21,10 @@ const helper = config.helper;
 
 const muterole = "712512117999271966";
 
-const mongo = require("../../utils/mongo");
-const muteSChema = require("../../Models/mute-schema");
+const { Sequelize, DataTypes, Model } = require('sequelize');
+const sequelize = require('../../utils/Database/sequelize');
+const muteSchema = require('../../utils/Database/Models/mute-schema')(sequelize, DataTypes);
+
 
 module.exports = {
   name: "mute",
@@ -78,28 +80,22 @@ module.exports = {
         reason = "No Reason Provided";
       }
       let currentmuted = false;
-      await mongo().then(async (mongoose) => {
-        try {
-          const previousMutes = await muteSChema.findOne({
-            guildId,
-            userId,
-          });
-          if (previousMutes) {
-            if (previousMutes.current === true) {
-              message.reply("That user is already muted.");
-              currentmuted = true;
-              return;
-            }
-          } else if (targetmember.roles.cache.find((r) => r.id === muterole)) {
-            message.reply(
-              "This user has the mute role but not in my database. Remove role before trying to mute."
-            );
-            currentmuted = true;
-            return;
+      let muteData = await muteSchema.findOne({ where: { guildId: guildId, userId: userId } });
+      if (muteData) {
+        if (muteData.dataValues.current === true) {
+          message.reply("That user is already muted.");
+          currentmuted = true;
+          if (!targetmember.roles.cache.find((r) => r.id === muterole)) {
+            targetmember.roles.add(muterole);
           }
-        } finally {
+          return;
         }
-      });
+        else if (targetmember.roles.cache.find((r) => r.id === muterole)) {
+          message.reply(
+            "This user has the mute role but not in my database. Remove role before trying to mute."
+          );
+        }
+      }
       if (currentmuted) {
         return;
       }
@@ -130,7 +126,8 @@ module.exports = {
           console.log(error);
         });
       }
-    } else {
+    }
+    else {
       message.reply(`You lack perms for this command`);
     }
   },
@@ -178,38 +175,43 @@ const tempmute = async function (
   };
   const guildId = message.guildId;
   const userId = targetmember.id;
-  await mongo().then(async (mongoose) => {
+  const muteData = await muteSchema.findOne({ where: { guildId: guildId, userId: userId } });
+  if (muteData) {
+    muteData.mutes.push(mute);
+    newMute = muteData.mutes;
+
     try {
-      await muteSChema.findOneAndUpdate(
+      const newMutedata = await muteSchema.update(
         {
-          guildId,
-          userId,
-        },
-        {
-          guildId,
-          userId,
-          expires,
+          expires: expires,
           current: true,
-          $push: {
-            mutes: mute,
-          },
+          mutes: newMute
         },
-        {
-          upsert: true,
-        }
-      );
-    } finally {
-      //mongoose.connection.close()
+        { where: { guildId: guildId, userId: userId } });
     }
-  });
-  try {
-    var role = targetmember.guild.roles.cache.find(
-      (role) => role.id === muterole
-    );
-    targetmember.roles.add(role);
-  } catch {
-    message.reply("An error has happened while muting.");
-    return;
+    catch (error) {
+      console.log(error)
+      return message.reply("Error updating mute data")
+    }
+  }
+  else {
+    mutesarray = [mute];
+    const newMutedata = await muteSchema.create({
+      guildId: guildId,
+      userId: userId,
+      expires: expires,
+      current: true,
+      mutes: [mute],
+    });
+    try {
+      var role = targetmember.guild.roles.cache.find(
+        (role) => role.id === muterole
+      );
+      targetmember.roles.add(role);
+    } catch {
+      message.reply("An error has happened while muting.");
+      return;
+    }
   }
   var date = new Date(messagetime * 1000);
   var hours = date.getHours();
@@ -267,38 +269,44 @@ const mute = async function (message, client, targetmember, reason, expires) {
   };
   const guildId = message.guildId;
   const userId = targetmember.id;
-  await mongo().then(async (mongoose) => {
+  const muteData = await muteSchema.findOne({ where: { guildId: guildId, userId: userId } });
+  if (muteData) {
+    //console.log(muteData.mutes)
+    muteData.mutes.push(mute);
+    let newMutedataarray = muteData.mutes;
+
     try {
-      await muteSChema.findOneAndUpdate(
+      const newMutedata = await muteSchema.update(
         {
-          guildId,
-          userId,
-        },
-        {
-          guildId,
-          userId,
-          expires,
+          expires: expires,
           current: true,
-          $push: {
-            mutes: mute,
-          },
+          mutes: newMutedataarray
         },
-        {
-          upsert: true,
-        }
-      );
-    } finally {
-      //mongoose.connection.close()
+        { where: { guildId: guildId, userId: userId } });
     }
-  });
-  try {
-    var role = targetmember.guild.roles.cache.find(
-      (role) => role.id === muterole
-    );
-    targetmember.roles.add(role);
-  } catch {
-    message.reply("an error has happened while muting");
-    return;
+    catch (error) {
+      console.log(error)
+      return message.reply("Error updating mute data")
+    }
+  }
+  else {
+    mutesarray = [mute];
+    const newMutedata = await muteSchema.create({
+      guildId: guildId,
+      userId: userId,
+      expires: expires,
+      current: true,
+      mutes: mutesarray,
+    });
+    try {
+      var role = targetmember.guild.roles.cache.find(
+        (role) => role.id === muterole
+      );
+      targetmember.roles.add(role);
+    } catch {
+      message.reply("An error has happened while muting.");
+      return;
+    }
   }
   var date = new Date(messagetime * 1000);
   var hours = date.getHours();

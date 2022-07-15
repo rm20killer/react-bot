@@ -121,9 +121,9 @@ const removeOne = async (message, target, args, warnId) => {
   const userId = target.id;
   let passed = false
   try {
-    let warnings = await WarnSchema.findone({ where: { guildId: guildId, userId: target.id } })
+    let warnings = await WarnSchema.findOne({ where: { guildId: guildId, userId: target.id } })
     if (warnings) {
-      let newWarning = Datawarnings.warnings
+      let newWarning = warnings.warnings
       if (newWarning[warnId]) {
         newWarning.splice(warnId, 1);
       }
@@ -132,6 +132,7 @@ const removeOne = async (message, target, args, warnId) => {
       }
       await WarnSchema.update({ warnings: newWarning }, { where: { guildId: guildId, userId: target.id } })
     }
+    passed = true
   }
   catch (error) {
     console.log(error)

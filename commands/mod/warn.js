@@ -219,7 +219,6 @@ async function warn(message, args, client) {
       }
 
       //send message
-      var channelParent = message.channel.parent.id;
       channel = client.channels.cache.find(
         (channel) => channel.id === "710123089094246482"
       );

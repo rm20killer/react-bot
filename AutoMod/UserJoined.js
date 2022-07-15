@@ -2,8 +2,9 @@ const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
 
-const mongo = require("../utils/mongo");
-const muteSChema = require("../Models/mute-schema");
+const { Sequelize, DataTypes, Model } = require('sequelize');
+const sequelize = require('../utils/Database/sequelize');
+const muteSchema = require('../utils/Database/Models/mute-schema')(sequelize, DataTypes);
 
 const muterole = "712512117999271966";
 const memberrole = "710128390547701876";
@@ -71,38 +72,18 @@ module.exports = {
     }
     const guildId = member.guild.id;
     const userId = member.user.id;
-    //console.log(guildId)
-    //console.log(userId)
-    await mongo().then(async (mongoose) => {
-      try {
-        const previousMutes = await muteSChema.findOne({
-          guildId,
-          userId,
-        });
-        if (previousMutes) {
-          //console.log(previousMutes)
-          if (previousMutes.current === true) {
-            //console.log("Muted person rejoined")
-            const embed2 = new Discord.MessageEmbed().setDescription(
-              `<@${member.user.id}> joined while still being muted`
-            );
-            channel.send({ embeds: [embed2] });
-            try {
-              var role = member.guild.roles.cache.find(
-                (role) => role.id === muterole
-              );
-              member.roles.add(role);
-            } catch {
-              console.log("adding mute role error");
-              return;
-            }
-            return;
-          }
-        }
-      } finally {
-        //mongoose.connection.close()
-      }
+    const muteData = await muteSchema.findOne({
+      where: {
+        guildId: guildId,
+        userId: userId,
+      },
     });
+    if (muteData) {
+      if (muteData.current === true) {
+        member.roles.add(muterole);
+        channel.send(`<@${member.id}> has joined the server, but they are muted.`);
+      }
+    }
 
     //const embed2 = new Discord.MessageEmbed()
     //    .setDescription(`<@${targetmember.user.id}> has been muted for ${timeString}`)
