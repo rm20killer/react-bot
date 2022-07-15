@@ -1,5 +1,5 @@
-const mutecheck = require('../automod/ontimer/mutecheck.js');
-const bancheck = require('../automod/ontimer/bancheck.js');
+const mutecheck = require("../automod/ontimer/mutecheck.js");
+const bancheck = require("../automod/ontimer/bancheck.js");
 
 module.exports = {
   name: "ready",
