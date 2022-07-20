@@ -19,8 +19,13 @@ const adminid = config.AdminID;
 const jrmod = config.jrmod;
 const helper = config.helper;
 
-const mongo = require("../../utils/mongo");
-const WarnSchema = require("../../Models/warn-schema");
+// const mongo = require("../../utils/mongo");
+// const WarnSchema = require("../../Models/warn-schema");
+
+
+const { Sequelize, DataTypes, Model } = require('sequelize');
+const sequelize = require('../../utils/Database/sequelize');
+const WarnSchema = require('../../utils/Database/Models/warn-schema')(sequelize, DataTypes);
 module.exports = {
   name: "warn",
   aliases: [``],
@@ -57,143 +62,163 @@ module.exports = {
     }
   },
 };
-exports.warn = warn;
-async function warn(message, args, client) {
-  // CODE GOES HERE 🡫
-  if (!args[0]) {
-    return message.reply(`Enter a user.`);
-  }
-  let target = message.mentions.members.first();
-  if (!target) {
-    let id = args[0];
-    try {
-      target = await message.guild.members.fetch(id);
-    } catch {
-      return message.reply(`I can't find that member.`);
-    }
-  }
-  if (!target) {
-    return message.reply(`I can't find that member`);
-  }
 
-  if (target.id === message.author.id) {
-    return message.reply(`You can't warn yourself`);
-  }
-  if (message.member.roles.cache.find((r) => r.name === adminid)) {
-  }
-  try {
-    if (
-      message.member.roles.cache.find((r) => r.name === adminid) ||
-      message.author.id === "127863778233548801"
-    ) {
-    } else {
-      if (
-        target.roles.cache.find((r) => r.name === modid) ||
-        target.roles.cache.find((r) => r.name === adminid) ||
-        target.roles.cache.find((r) => r.id === helper)
-      ) {
-        return message.reply("Can not warn a mod");
+
+async function warn(message, args, client) {
+    // CODE GOES HERE 🡫
+    if (!args[0]) {
+      return message.reply(`Enter a user.`);
+    }
+    let target = message.mentions.members.first();
+    if (!target) {
+      let id = args[0];
+      try {
+        target = await message.guild.members.fetch(id);
+      } catch {
+        return message.reply(`I can't find that member.`);
       }
     }
-  } catch {
-    console.log(target.id + " has no roles");
-  }
-  if (target.user.bot) {
-    return message.reply("You can't warn bots.");
-  }
-
-  const guildId = message.guildId;
-  const userId = target.id;
-  let reason = args.slice(1).join(" ");
-  if (!reason) {
-    reason = "No Reason Provided.";
-  }
-  var Last10Messages = [];
-  await message.channel.messages
-    .fetch({
-      limit: 100, // Change `100` to however many messages you want to fetch
-      before: message.id,
-    })
-    .then((message) => {
-      const botMessages = [];
-      message
-        .filter((m) => m.author.id === target.id)
-        .forEach((msg) => botMessages.push(msg.content));
-      //console.log(botMessages);
-      if (botMessages.length === 0) {
+    if (!target) {
+      return message.reply(`I can't find that member`);
+    }
+  
+    if (target.id === message.author.id) {
+      return message.reply(`You can't warn yourself`);
+    }
+    if (message.member.roles.cache.find((r) => r.name === adminid)) {
+    }
+    try {
+      if (
+        message.member.roles.cache.find((r) => r.name === adminid) ||
+        message.author.id === "127863778233548801"
+      ) {
       } else {
-        for (let i = 0; i < botMessages.length; i++) {
-          if (i < 10) {
-            if (botMessages[i]) {
-              //console.log(botMessages[i])
-              Last10Messages.push(botMessages[i]);
+        if (
+          target.roles.cache.find((r) => r.name === modid) ||
+          target.roles.cache.find((r) => r.name === adminid) ||
+          target.roles.cache.find((r) => r.id === helper)
+        ) {
+          return message.reply("Can not warn a mod");
+        }
+      }
+    } catch {
+      console.log(target.id + " has no roles");
+    }
+    if (target.user.bot) {
+      return message.reply("You can't warn bots.");
+    }
+  
+    const guildId = message.guildId;
+    const userId = target.id;
+    let reason = args.slice(1).join(" ");
+    if (!reason) {
+      reason = "No Reason Provided.";
+    }
+    var Last10Messages = [];
+    await message.channel.messages
+      .fetch({
+        limit: 100, // Change `100` to however many messages you want to fetch
+        before: message.id,
+      })
+      .then((message) => {
+        const botMessages = [];
+        message
+          .filter((m) => m.author.id === target.id)
+          .forEach((msg) => botMessages.push(msg.content));
+        //console.log(botMessages);
+        if (botMessages.length === 0) {
+        } else {
+          for (let i = 0; i < botMessages.length; i++) {
+            if (i < 10) {
+              if (botMessages[i]) {
+                //console.log(botMessages[i])
+                Last10Messages.push(botMessages[i]);
+              }
             }
           }
         }
-      }
-    });
-  //console.log(Last10Messages)
-  const warning = {
-    author: message.member.user.id,
-    timestamp: new Date().getTime(),
-    reason,
-    Last10Messages,
-  };
-  let lastElement1 = args.slice(-1)[0];
-  //console.log(lastElement1)
-  //onsole.log(lastElement1)
-  const Lastarray = lastElement1.split("");
-  if (Lastarray[0] === "-") {
-    if (Lastarray.length > 2) {
-      if (Lastarray[1] === "a") {
-      } else {
-        try {
-          const embed3 = new Discord.MessageEmbed().setDescription(
-            `You were warned in Gamers React for: ${reason}`
-          );
-
-          target.send({ embeds: [embed3] }).catch((error) => {
-            message.channel.send(`Could not dm ${target.user.tag}`);
-          });
-        } catch {
-          console.log(`Could not dm ${target.user.tag}`);
-        }
-      }
-    }
-  } else {
-    try {
-      const embed3 = new Discord.MessageEmbed().setDescription(
-        `You were warned in Gamers React for: ${reason}`
-      );
-
-      target.send({ embeds: [embed3] }).catch((error) => {
-        message.channel.send(`Could not dm ${target.user.tag}`);
       });
-    } catch {
-      console.log(`could not dm ${target.user.tag}`);
-    }
-  }
-  await mongo().then(async (mongoose) => {
-    try {
-      await WarnSchema.findOneAndUpdate(
-        {
-          guildId,
-          userId,
-        },
-        {
-          guildId,
-          userId,
-          $push: {
-            warnings: warning,
-          },
-        },
-        {
-          upsert: true,
+    //console.log(Last10Messages)
+    const warning = {
+      author: message.member.user.id,
+      timestamp: new Date().getTime(),
+      reason,
+      Last10Messages,
+    };
+    let lastElement1 = args.slice(-1)[0];
+    //console.log(lastElement1)
+    //onsole.log(lastElement1)
+    const Lastarray = lastElement1.split("");
+    if (Lastarray[0] === "-") {
+      if (Lastarray.length > 2) {
+        if (Lastarray[1] === "a") {
+        } else {
+          try {
+            const embed3 = new Discord.MessageEmbed().setDescription(
+              `You were warned in Gamers React for: ${reason}`
+            );
+  
+            target.send({ embeds: [embed3] }).catch((error) => {
+              message.channel.send(`Could not dm ${target.user.tag}`);
+            });
+          } catch {
+            console.log(`Could not dm ${target.user.tag}`);
+          }
         }
-      );
-    } finally {
-      //mongoose.connection.close()
-      var channelParent = message.channel.parent.id;
+      }
+    } else {
+      try {
+        const embed3 = new Discord.MessageEmbed().setDescription(
+          `You were warned in Gamers React for: ${reason}`
+        );
+  
+        target.send({ embeds: [embed3] }).catch((error) => {
+          message.channel.send(`Could not dm ${target.user.tag}`);
+        });
+      } catch {
+        console.log(`could not dm ${target.user.tag}`);
+      }
+    }
+    let passed = false;
+    //find user in database
+    try{
+      const Datawarnings = await WarnSchema.findOne({ where: { guildId:guildId, userId:target.id  } });
+      if (Datawarnings) {
+        //console.log(warnings);
+        //push warning to array
+        Datawarnings.warnings.push(warning);
+        newWarning = Datawarnings.warnings;
+        console.log(newWarning);
+        //save to database
+        const updatedRows = await WarnSchema.update(
+          {
+            warnings: newWarning,
+          },
+          {
+            where: { guildId:guildId, userId:target.id  },
+          }
+        );
+        //await warnings.save();
+      }
+      else{
+        const userWarn = await WarnSchema.create({
+          guildId: guildId,
+          userId: target.id,
+          warnings: [warning],
+        });
+      }
+      passed = true;
+    }
+    catch(error){
+      console.log(error)
+      return message.reply("An error has happened while warning. Warning not saved.");
+    }
+    finally{
+      if(!passed){
+        return;
+      }
+
+      //send message
       channel = client.channels.cache.find(
         (channel) => channel.id === "710123089094246482"
       );
@@ -209,7 +234,7 @@ async function warn(message, args, client) {
         .setColor(0xffff00)
         .setDescription(`warn for \`${reason}\``)
         .addField("warn by", `<@${message.author.id}>`)
-        .setFooter("id: " + target.id + " | today at " + formattedTime);
+        .setFooter({text:"id: " + target.id + " | today at " + formattedTime});
       try {
         channel.send({ embeds: [embed] });
         const embed2 = new Discord.MessageEmbed().setDescription(
@@ -223,16 +248,9 @@ async function warn(message, args, client) {
 
       if (message.channel.parent.id === "709806849725038634") {
       } else {
-        if (
-          args[1] ===
-          "how dare you ping me, just spam my dm's or something smhh xD"
-        ) {
-        } else {
-          message.delete().catch((error) => {
-            console.log(error);
-          });
-        }
+        message.delete().catch((error) => {
+          console.log(error);
+        });
       }
     }
-  });
 }

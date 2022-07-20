@@ -36,7 +36,6 @@ client.button = new Discord.Collection();
 client.slashcommand = new Discord.Collection();
 client.commands = new Discord.Collection();
 //collections ended
-
 //import handlers
 [`eventHandler`,"commandHandler","buttonHandler", "textCommandsHandler"]
     .filter(Boolean)

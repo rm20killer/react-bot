@@ -7,8 +7,8 @@ const tempbanSchema = require("../../Models/tempban-schema");
 const muterole = "712512117999271966";
 
 module.exports = {
-  async backcheck(client) {
-    const backchecks = async () => {
+  async bancheck(client) {
+    const banchecks = async () => {
       await mongo().then(async (mongoose) => {
         //console.log("checking mute data")
         const now = new Date();
@@ -39,8 +39,8 @@ module.exports = {
           });
         }
       });
-      setTimeout(backchecks, 1000 * 10);
+      setTimeout(banchecks, 1000 * 10);
     };
-    backchecks();
+    banchecks();
   },
 };
