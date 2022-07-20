@@ -1,11 +1,14 @@
-const { Sequelize, DataTypes, Model, Op } = require('sequelize');
-const sequelize = require('../../utils/Database/sequelize');
-const muteSchema = require('../../utils/Database/Models/mute-schema')(sequelize, DataTypes);
+const { Sequelize, DataTypes, Model, Op } = require("sequelize");
+const sequelize = require("../../utils/Database/sequelize");
+const muteSchema = require("../../utils/Database/Models/mute-schema")(
+  sequelize,
+  DataTypes
+);
 
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const mute = require('../../commands/mod/mute');
+const mute = require("../../commands/mod/mute");
 
 const muterole = "712512117999271966";
 
@@ -27,7 +30,7 @@ module.exports = {
       };
       //find all mutes that are expired
       const mutes = await muteSchema.findAll({
-        where: conditional
+        where: conditional,
       });
       //for each mute
       //console.log(`Found ${mutes.length} mutes`);
@@ -53,9 +56,7 @@ module.exports = {
           );
           //send message to modlog
           const embed2 = new Discord.MessageEmbed().setColor("0x738ADB");
-          embed2.setDescription(
-            `${user.id} mute has expired and has unmuted.`
-          );
+          embed2.setDescription(`${user.id} mute has expired and has unmuted.`);
           channel.send({ embeds: [embed2] });
           try {
             user.send({ embeds: [embed] }).catch((error) => {
@@ -68,10 +69,7 @@ module.exports = {
         }
       }
       //mass update all mutes to not current
-      muteSchema.update(
-        { current: false },
-        { where: conditional }
-      );
+      muteSchema.update({ current: false }, { where: conditional });
       setTimeout(CheckMutes, 1000 * 10);
     };
     CheckMutes();

@@ -1,9 +1,12 @@
-const { Sequelize, DataTypes, Model, Op } = require('sequelize');
-const sequelize = require('../../utils/Database/sequelize');
+const { Sequelize, DataTypes, Model, Op } = require("sequelize");
+const sequelize = require("../../utils/Database/sequelize");
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const tempbans = require('../../utils/Database/Models/tempban-schema')(sequelize, DataTypes);
+const tempbans = require("../../utils/Database/Models/tempban-schema")(
+  sequelize,
+  DataTypes
+);
 
 const muterole = "712512117999271966";
 
@@ -22,8 +25,8 @@ module.exports = {
         current: true,
       };
       const bans = await tempbans.findAll({
-        where: conditional
-      })
+        where: conditional,
+      });
       //console.log(`Found ${bans.length} bans`);
       //for each ban
       for (let i = 0; i < bans.length; i++) {
@@ -38,12 +41,9 @@ module.exports = {
         channel.send({ embeds: [embed2] });
       }
       //mass update all bans to not current
-      await tempbans.update(
-        { current: false },
-        { where: conditional }
-      );
+      await tempbans.update({ current: false }, { where: conditional });
       setTimeout(banchecks, 1000 * 10);
-    }
+    };
     banchecks();
   },
 };

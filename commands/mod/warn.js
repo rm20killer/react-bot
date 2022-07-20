@@ -188,7 +188,7 @@ async function warn(message, args, client) {
         //push warning to array
         Datawarnings.warnings.push(warning);
         newWarning = Datawarnings.warnings;
-        console.log(newWarning);
+        //console.log(newWarning);
         //save to database
         const updatedRows = await WarnSchema.update(
           {

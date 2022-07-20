@@ -12,13 +12,15 @@ const Discord = require("discord.js");
 const ms = require("ms");
 const { Client, Intents, MessageAttachment } = require("discord.js");
 const discordTranscripts = require("discord-html-transcripts");
-const sequelize = require('../../utils/Database/sequelize');
-const { Sequelize, DataTypes, Model, Op } = require('sequelize');
+const sequelize = require("../../utils/Database/sequelize");
+const { Sequelize, DataTypes, Model, Op } = require("sequelize");
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 const config = require("../../config");
-const tempbans = require('../../utils/Database/Models/tempban-schema')(sequelize, DataTypes);
-
+const tempbans = require("../../utils/Database/Models/tempban-schema")(
+  sequelize,
+  DataTypes
+);
 
 const modid = config.ModID;
 const adminid = config.AdminID;
@@ -278,146 +280,146 @@ const tempban = async function (
   const banData = await tempbans.findOne({
     where: {
       guildId: guildId,
-      userId: userId
-    }
-  })
+      userId: userId,
+    },
+  });
   if (banData) {
-    banData.bans.push(ban)
-    newBans = banData.bans
+    banData.bans.push(ban);
+    newBans = banData.bans;
     try {
       const newMutedata = await tempbans.update(
         {
           expires: expires,
           current: true,
-          bans: newBans
+          bans: newBans,
         },
         {
-          where: { guildId: guildId, userId: userId }
-        })
+          where: { guildId: guildId, userId: userId },
+        }
+      );
     } catch (error) {
-      console.log(error)
-      return message.reply("an error has happened while banning")
+      console.log(error);
+      return message.reply("an error has happened while banning");
     }
-  }
-  else {
-    banArray = [ban]
+  } else {
+    banArray = [ban];
     try {
       const newMutedata = await tempbans.create({
         guildId: guildId,
         userId: userId,
         expires: expires,
         current: true,
-        bans: banArray
-      })
+        bans: banArray,
+      });
     } catch (error) {
-      console.log(error)
-      return message.reply("an error has happened while banning")
+      console.log(error);
+      return message.reply("an error has happened while banning");
     }
   }
-    var timeString = toHHMMSS(Bantime);
-    let lastElement1 = args.slice(-1)[0];
-    const Lastarray = lastElement1.split("");
-    if (Lastarray[0] === "-") {
-      if (Lastarray.length > 3) {
-      } else {
-        //var dmed=0
-        try {
-          if (Lastarray[1] === "a" || Lastarray[2] === "a") {
-            //dmed++
-          } else {
-            const embed3 = new Discord.MessageEmbed().setDescription(
-              `You have been banned from Gamers React for ${timeString} | ${reason}`
-            );
-            target.send({ embeds: [embed3] }).catch((error) => {
-              message.channel.send(`could not dm ${target.user.tag}`);
-            });
-          }
-        } catch {
-          console.log(`could not dm ${target.user.tag}`);
-        }
-        try {
-          if (Lastarray[1] === "c" || Lastarray[2] === "c") {
-            fbulkdeleteUser(client, message, 100, target);
-          } else {
-          }
-        } catch {
-          console.log("could not delete messages");
-        }
-      }
+  var timeString = toHHMMSS(Bantime);
+  let lastElement1 = args.slice(-1)[0];
+  const Lastarray = lastElement1.split("");
+  if (Lastarray[0] === "-") {
+    if (Lastarray.length > 3) {
     } else {
+      //var dmed=0
       try {
-        const embed3 = new Discord.MessageEmbed().setDescription(
-          `You have been banned from Gamers React for ${timeString} | ${reason}`
-        );
-        target.send({ embeds: [embed3] }).catch((error) => {
-          message.channel.send(`could not dm ${target.user.tag}`);
-        });
+        if (Lastarray[1] === "a" || Lastarray[2] === "a") {
+          //dmed++
+        } else {
+          const embed3 = new Discord.MessageEmbed().setDescription(
+            `You have been banned from Gamers React for ${timeString} | ${reason}`
+          );
+          target.send({ embeds: [embed3] }).catch((error) => {
+            message.channel.send(`could not dm ${target.user.tag}`);
+          });
+        }
       } catch {
         console.log(`could not dm ${target.user.tag}`);
       }
+      try {
+        if (Lastarray[1] === "c" || Lastarray[2] === "c") {
+          fbulkdeleteUser(client, message, 100, target);
+        } else {
+        }
+      } catch {
+        console.log("could not delete messages");
+      }
     }
-    var channelParent = message.channel.parent.id;
-    channel = client.channels.cache.find(
-      (channel) => channel.id === "710123089094246482"
-    );
-    let time = message.createdTimestamp;
-    var date = new Date(time * 1000);
-    var hours = date.getHours();
-    var minutes = "0" + date.getMinutes();
-    var seconds = "0" + date.getSeconds();
-    var formattedTime =
-      hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
-    const embed = new Discord.MessageEmbed()
-      .setTitle(`[TEMPBAN] ${target.user.tag}`)
-      .setColor(0xff0000)
-      .setDescription(`🔒Temp Banned for \`${reason}\`  for ${timeString}`)
-      .addField("banned by", `<@${message.author.id}>`)
-      .setFooter("id: " + target.id + " | today at " + formattedTime);
+  } else {
     try {
-      target.ban({ reason: `${reason}` });
-      channel.send({ embeds: [embed] });
-      const embed2 = new Discord.MessageEmbed().setDescription(
-        `<@${target.id}> has been banned | ${timeString}`
+      const embed3 = new Discord.MessageEmbed().setDescription(
+        `You have been banned from Gamers React for ${timeString} | ${reason}`
       );
-      message.channel.send({ embeds: [embed2] });
-    } catch (error) {
-      console.log(error);
-      message.reply("an error has happened while banning");
-      return;
-    }
-
-    if (channelParent === "709806849725038634") {
-    } else {
-      message.delete().catch((error) => {
-        console.log(error);
+      target.send({ embeds: [embed3] }).catch((error) => {
+        message.channel.send(`could not dm ${target.user.tag}`);
       });
+    } catch {
+      console.log(`could not dm ${target.user.tag}`);
     }
-  };
-
-  function toHHMMSS(time) {
-    var sec_num = parseInt(time, 10); // don't forget the second param
-    var hours = Math.floor(sec_num / 3600);
-    var minutes = Math.floor((sec_num - hours * 3600) / 60);
-    var seconds = sec_num - hours * 3600 - minutes * 60;
-
-    if (hours < 10) {
-      hours = "0" + hours;
-    }
-    if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-    return hours + ":" + minutes + ":" + seconds;
+  }
+  var channelParent = message.channel.parent.id;
+  channel = client.channels.cache.find(
+    (channel) => channel.id === "710123089094246482"
+  );
+  let time = message.createdTimestamp;
+  var date = new Date(time * 1000);
+  var hours = date.getHours();
+  var minutes = "0" + date.getMinutes();
+  var seconds = "0" + date.getSeconds();
+  var formattedTime =
+    hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
+  const embed = new Discord.MessageEmbed()
+    .setTitle(`[TEMPBAN] ${target.user.tag}`)
+    .setColor(0xff0000)
+    .setDescription(`🔒Temp Banned for \`${reason}\`  for ${timeString}`)
+    .addField("banned by", `<@${message.author.id}>`)
+    .setFooter("id: " + target.id + " | today at " + formattedTime);
+  try {
+    target.ban({ reason: `${reason}` });
+    channel.send({ embeds: [embed] });
+    const embed2 = new Discord.MessageEmbed().setDescription(
+      `<@${target.id}> has been banned | ${timeString}`
+    );
+    message.channel.send({ embeds: [embed2] });
+  } catch (error) {
+    console.log(error);
+    message.reply("an error has happened while banning");
+    return;
   }
 
-  function removeFirstWord(str) {
-    const indexOfSpace = str.indexOf(" ");
-
-    if (indexOfSpace === -1) {
-      return "No Reason Provided";
-    }
-
-    return str.substring(indexOfSpace + 1);
+  if (channelParent === "709806849725038634") {
+  } else {
+    message.delete().catch((error) => {
+      console.log(error);
+    });
   }
+};
+
+function toHHMMSS(time) {
+  var sec_num = parseInt(time, 10); // don't forget the second param
+  var hours = Math.floor(sec_num / 3600);
+  var minutes = Math.floor((sec_num - hours * 3600) / 60);
+  var seconds = sec_num - hours * 3600 - minutes * 60;
+
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  return hours + ":" + minutes + ":" + seconds;
+}
+
+function removeFirstWord(str) {
+  const indexOfSpace = str.indexOf(" ");
+
+  if (indexOfSpace === -1) {
+    return "No Reason Provided";
+  }
+
+  return str.substring(indexOfSpace + 1);
+}
