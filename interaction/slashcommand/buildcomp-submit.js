@@ -27,7 +27,7 @@ module.exports = {
         .setRequired(true)),
 
   async execute(interaction, client) {
-    return interaction.reply({content:"You can't submit a build comp! Just yet, wait for the <#629695330153267219> when you can.", ephemeral: true });
+    //return interaction.reply({content:"You can't submit a build comp! Just yet, wait for the <#629695330153267219> when you can.", ephemeral: true });
     //console.log(interaction);
     let category= interaction.options.data[0].value;
     let screenshot= interaction.options.data[1].attachment.url;

@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Discord = require("discord.js");
+const fs = require("fs");
 module.exports = {
   data: new SlashCommandBuilder()
   .setName("buildcomp-data")
@@ -29,7 +30,7 @@ module.exports = {
 };
 
 
-async function GetData(interactionm,client,userData,indexForUser)
+async function GetData(interaction,client,userData,indexForUser)
 {
     //get all submissions
     let submissions = userData.submissions;
@@ -49,4 +50,8 @@ async function GetData(interactionm,client,userData,indexForUser)
         //add the submission to the embed
         embed.addField(category, screenshot);
     }
+    await interaction.reply({
+        embeds: [embed],
+        ephemeral: true,
+    });
 }
