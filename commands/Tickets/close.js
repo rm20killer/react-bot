@@ -33,27 +33,28 @@ module.exports = {
 
         let reason = message.content.slice(6);
         if (!reason) reason = "No Reason Specified";
-        const attachment = await discordTranscripts.createTranscript(message.channel);
+        const attachment = await discordTranscripts.createTranscript(
+          message.channel
+        );
         message.channel.messages.fetch({ limit: 100 }).then((msgs) => {
-        
           const embed = new Discord.MessageEmbed()
-          .setTitle("**Ticket Closed**")
-          .addField("Ticket Owner", `<@${message.channel.topic}>`, true)
-          .addField("Ticket Name:", message.channel.name, true)
-          .addField("Closed by:", message.author.tag, true)
-          .addField("Close Reason", `\`\`\`${reason}\`\`\``)
-          .setFooter(message.guild.name)
-          .setColor(0x4287f5);
-          
+            .setTitle("**Ticket Closed**")
+            .addField("Ticket Owner", `<@${message.channel.topic}>`, true)
+            .addField("Ticket Name:", message.channel.name, true)
+            .addField("Closed by:", message.author.tag, true)
+            .addField("Close Reason", `\`\`\`${reason}\`\`\``)
+            .setFooter(message.guild.name)
+            .setColor(0x4287f5);
+
           channel
-          .send({
-            content: `transcript for ticket ${message.channel.name}-${message.channel.id} `,
-            embeds: [embed],
-            files: [attachment],
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+            .send({
+              content: `transcript for ticket ${message.channel.name}-${message.channel.id} `,
+              embeds: [embed],
+              files: [attachment],
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         });
 
         setTimeout(() => {

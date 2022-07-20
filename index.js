@@ -37,16 +37,15 @@ client.slashcommand = new Discord.Collection();
 client.commands = new Discord.Collection();
 //collections ended
 //import handlers
-[`eventHandler`,"commandHandler","buttonHandler", "textCommandsHandler"]
-    .filter(Boolean)
-    .forEach(h => {
-      require(`./handler/${h}`)(client);
-});
+[`eventHandler`, "commandHandler", "buttonHandler", "textCommandsHandler"]
+  .filter(Boolean)
+  .forEach((h) => {
+    require(`./handler/${h}`)(client);
+  });
 //import handlers ends
 
 //start client
 client.login(config.BotToken);
-
 
 // giveaway code starts here \\
 

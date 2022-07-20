@@ -13,9 +13,12 @@ const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
 const config = require(`../../config`);
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = require('../../utils/Database/sequelize');
-const muteSchema = require('../../utils/Database/Models/mute-schema')(sequelize, DataTypes);
+const { Sequelize, DataTypes, Model } = require("sequelize");
+const sequelize = require("../../utils/Database/sequelize");
+const muteSchema = require("../../utils/Database/Models/mute-schema")(
+  sequelize,
+  DataTypes
+);
 
 const modid = config.ModID;
 const adminid = config.AdminID;
@@ -58,7 +61,7 @@ module.exports = {
         message.reply("User is not muted");
         return;
       }
-      unmute(message, target, args, client)
+      unmute(message, target, args, client);
     } else {
       message.reply(`You lack perms for this command`);
     }
@@ -137,8 +140,7 @@ async function unmute(message, target, args, client) {
         );
         message.channel.send({ embeds: [embed2] });
         DMUser(target, message);
-      }
-      catch (error) {
+      } catch (error) {
         message.reply("Error unmuting user");
         return;
       }
@@ -149,8 +151,7 @@ async function unmute(message, target, args, client) {
         console.log(error);
       });
     }
-  }
-  else{
+  } else {
     message.reply("No mute data found");
-  };
+  }
 }

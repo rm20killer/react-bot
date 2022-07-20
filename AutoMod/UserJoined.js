@@ -2,9 +2,12 @@ const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
 
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = require('../utils/Database/sequelize');
-const muteSchema = require('../utils/Database/Models/mute-schema')(sequelize, DataTypes);
+const { Sequelize, DataTypes, Model } = require("sequelize");
+const sequelize = require("../utils/Database/sequelize");
+const muteSchema = require("../utils/Database/Models/mute-schema")(
+  sequelize,
+  DataTypes
+);
 
 const muterole = "712512117999271966";
 const memberrole = "710128390547701876";
@@ -81,7 +84,9 @@ module.exports = {
     if (muteData) {
       if (muteData.current === true) {
         member.roles.add(muterole);
-        channel.send(`<@${member.id}> has joined the server, but they are muted.`);
+        channel.send(
+          `<@${member.id}> has joined the server, but they are muted.`
+        );
       }
     }
 
