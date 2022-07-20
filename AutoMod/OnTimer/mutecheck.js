@@ -16,7 +16,7 @@ module.exports = {
       (channel) => channel.id === "710123089094246482"
     );
     const CheckMutes = async () => {
-      console.log("Checking Mutes");
+      //console.log("Checking Mutes");
       //console.log("checking mute data")
       const now = new Date();
       const conditional = {
@@ -30,9 +30,9 @@ module.exports = {
         where: conditional
       });
       //for each mute
-      console.log(`Found ${mutes.length} mutes`);
+      //console.log(`Found ${mutes.length} mutes`);
       for (let i = 0; i < mutes.length; i++) {
-        console.log(mutes[i]);
+        //console.log(mutes[i]);
         //get user from guild
         const guild = client.guilds.cache.find(
           (guild) => guild.id === "629695220065239061"
@@ -41,7 +41,7 @@ module.exports = {
           (member) => member.id === mutes[i].userId
         );
         let role = guild.roles.cache.get(muterole); //added this
-        console.log(user);
+        //console.log(user);
         //if user
         if (user) {
           //remove mute role
