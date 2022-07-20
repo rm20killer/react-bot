@@ -18,9 +18,12 @@ const adminid = config.AdminID;
 const jrmod = config.jrmod;
 const helper = config.helper;
 
-const { Sequelize, DataTypes, Model, Op } = require('sequelize');
-const sequelize = require('../../utils/Database/sequelize');
-const kicksSchema = require('../../utils/Database/Models/kick-schema')(sequelize, DataTypes);
+const { Sequelize, DataTypes, Model, Op } = require("sequelize");
+const sequelize = require("../../utils/Database/sequelize");
+const kicksSchema = require("../../utils/Database/Models/kick-schema")(
+  sequelize,
+  DataTypes
+);
 
 module.exports = {
   name: "kick",
@@ -141,8 +144,10 @@ module.exports = {
         const guildId = message.guildId;
         const userId = target.id;
         const userTag = target.user.tag;
-        try{
-          const kicksdata = await kicksSchema.findOne({ where: { guildId:guildId, userId:target.id  } });
+        try {
+          const kicksdata = await kicksSchema.findOne({
+            where: { guildId: guildId, userId: target.id },
+          });
           if (kicksdata) {
             //console.log(warnings);
             //push warning to array
@@ -154,22 +159,22 @@ module.exports = {
                 kicks: newKick,
               },
               {
-                where: { guildId:guildId, userId:target.id  },
+                where: { guildId: guildId, userId: target.id },
               }
             );
             //await warnings.save();
-          }
-          else{
+          } else {
             const userKick = await kicksSchema.create({
               guildId: guildId,
               userId: target.id,
               kicks: [kick],
             });
           }
-        }
-        catch(error){
-          console.log(error)
-          return message.reply("An error has happened while kicking. kick not saved.");
+        } catch (error) {
+          console.log(error);
+          return message.reply(
+            "An error has happened while kicking. kick not saved."
+          );
         }
         var date = new Date(time * 1000);
         var hours = date.getHours();
