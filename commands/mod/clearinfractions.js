@@ -18,9 +18,12 @@ const jrmod = config.jrmod;
 const helper = config.helper;
 const srmods = config.srmods;
 
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = require('../../utils/Database/sequelize');
-const WarnSchema = require('../../utils/Database/Models/warn-schema')(sequelize, DataTypes);
+const { Sequelize, DataTypes, Model } = require("sequelize");
+const sequelize = require("../../utils/Database/sequelize");
+const WarnSchema = require("../../utils/Database/Models/warn-schema")(
+  sequelize,
+  DataTypes
+);
 module.exports = {
   name: "clearinfractions",
   aliases: [`removewarning`, "removeinfractions", "clearwarning"],
@@ -89,70 +92,69 @@ module.exports = {
 const removeall = async (message, target, args) => {
   const guildId = message.guildId;
   const userId = target.id;
-  let passed = false
+  let passed = false;
   try {
-    WarnSchema.destroy({ where: { guildId: guildId, userId: target.id } })
-    passed = true
-  }
-  catch (error) {
-    console.log(error)
+    WarnSchema.destroy({ where: { guildId: guildId, userId: target.id } });
+    passed = true;
+  } catch (error) {
+    console.log(error);
     return message.reply(`failed to clear warns for ${target.user.tag}`);
-  }
-  finally {
+  } finally {
     if (!passed) {
-      return
+      return;
     }
     avatarURL = target.user.avatarURL({ format: "png" });
     const embed = new Discord.MessageEmbed()
       .setAuthor({
         name: `removed all warning for ${target.user.tag}`,
-        iconURL: avatarURL
+        iconURL: avatarURL,
       })
       .setColor(0x0774f8)
       .addField("executor", `${message.author.tag}`)
-      .setFooter({ text: "id: " + target.id })
+      .setFooter({ text: "id: " + target.id });
     message.reply({ embeds: [embed] });
   }
 };
 
-
 const removeOne = async (message, target, args, warnId) => {
   const guildId = message.guildId;
   const userId = target.id;
-  let passed = false
+  let passed = false;
   try {
-    let warnings = await WarnSchema.findOne({ where: { guildId: guildId, userId: target.id } })
+    let warnings = await WarnSchema.findOne({
+      where: { guildId: guildId, userId: target.id },
+    });
     if (warnings) {
-      let newWarning = warnings.warnings
+      let newWarning = warnings.warnings;
       if (newWarning[warnId]) {
         newWarning.splice(warnId, 1);
-      }
-      else {
+      } else {
         return message.reply(`No warn id found`);
       }
-      await WarnSchema.update({ warnings: newWarning }, { where: { guildId: guildId, userId: target.id } })
+      await WarnSchema.update(
+        { warnings: newWarning },
+        { where: { guildId: guildId, userId: target.id } }
+      );
     }
-    passed = true
-  }
-  catch (error) {
-    console.log(error)
+    passed = true;
+  } catch (error) {
+    console.log(error);
     return message.reply(`failed to clear warns for ${target.user.tag}`);
-  }
-  finally {
+  } finally {
     if (!passed) {
-      return
+      return;
     }
     avatarURL = target.user.avatarURL({ format: "png" });
     const embed = new Discord.MessageEmbed()
       .setAuthor({
         name: `${target.user.tag} infractions removed by ${message.author.tag}`,
-        iconURL: avatarURL
+        iconURL: avatarURL,
       })
       .setColor(0x0774f8)
       .addField("reason", `${reason}`)
       .addField("original mod", `<@${author}>`)
       .addField("At time", `<t:${timestamp}:f>`)
-      .setFooter({text:"id: " + target.id});
+      .setFooter({ text: "id: " + target.id });
     message.reply({ embeds: [embed] });
   }
-}
+};
