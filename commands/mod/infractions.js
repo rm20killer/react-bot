@@ -186,9 +186,14 @@ const getMuteDataDetial = async (message, target, warnId) => {
           `No mutes found for ${target.user.tag} with ID ${warnId}`
         );
       }
-      const { author, timestamp, reason, Last10Messages, duration } =
-        muteDetail;
+      const { author, timestamp, reason, Last10Messages, duration } = muteDetail;
+      //console.log(timestamp);
       let UNIXTimestamp = Math.round(timestamp / 1000);
+      //console.log(UNIXTimestamp);
+      if(timestamp.$numberLong){
+        UNIXTimestamp =  Math.round(timestamp.$numberLong/1000);
+        //console.log(UNIXTimestamp)
+      }
       avatarURL = target.user.avatarURL({ format: "png" });
       const embed = new Discord.MessageEmbed()
         .setAuthor(
@@ -308,7 +313,13 @@ const getInfractionsDetial = async (message, target, warnId) => {
         return message.reply(`No warnings found for ${target.user.tag} with ID ${warnId}`)
       }
       const { author, timestamp, reason, Last10Messages } = warningDetail;
+      //console.log(timestamp);
       let UNIXTimestamp = Math.round(timestamp / 1000);
+      //console.log(UNIXTimestamp);
+      if(timestamp.$numberLong){
+        UNIXTimestamp =  Math.round(timestamp.$numberLong/1000);
+        //console.log(UNIXTimestamp)
+      }
       avatarURL = target.user.avatarURL({ format: "png" });
       const embed = new Discord.MessageEmbed()
         .setAuthor(
