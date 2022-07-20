@@ -1,3 +1,4 @@
+
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const sequelize = require('../utils/Database/sequelize');
 const WarnSchema = require('../utils/Database/Models/warn-schema')(sequelize, DataTypes);
