@@ -40,6 +40,7 @@ async function GetData(interaction, client, userData, indexForUser,usersArray) {
         .setTitle("Build Comp Submissions for <@" + userID + ">")
         .setColor("#0099ff")
         .setDescription("Click on the image to see the image!")
+        .setFooter({text:"id: " + indexForUser});
     //for each submission
     for (let i = 0; i < submissions.length; i++) {
         //get the submission
