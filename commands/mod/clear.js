@@ -78,6 +78,7 @@ const fbulkdeleteUser = async function (
     (channel) => channel.id === "843954692107272243"
   );
   const id = target.id;
+  let botMessages = [];
   let messages = message.channel.messages
     .fetch({
       limit: amount, // Change `100` to however many messages you want to fetch
