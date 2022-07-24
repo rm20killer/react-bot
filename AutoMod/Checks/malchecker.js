@@ -348,14 +348,14 @@ const getVideoinfo = async (youtubeVideoID, message, client) => {
           trigger(message, client);
           return;
         } else if (message.author.bot) return;
-        else if (
-          message.member.roles.cache.find((r) => r.name === modid) ||
+        else if ( //mods
+          message.member.roles.cache.find((r) => r.name === modid) || 
           message.member.roles.cache.find((r) => r.name === adminid) ||
           message.member.roles.cache.find((r) => r.id === helper)
         ) {
           return;
         } else if (
-          message.channel.id === "857939977865265192" ||
+          message.channel.id === "857939977865265192" || //other channels
           message.channel.id === "878531760386871327" ||
           message.channel.id === "775811861492793444" ||
           message.channel.id === "772893417315369000" ||
@@ -363,7 +363,7 @@ const getVideoinfo = async (youtubeVideoID, message, client) => {
           message.channel.id === "723555905056276600"
         ) {
           return;
-        } else if (message.channel.parent.name == "858354610367627284") {
+        } else if (message.channel.parent.id == "858354610367627284") { //ticket channel
           return;
         } else {
           var channelId = data["items"][0].snippet.channelId; //title
