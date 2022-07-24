@@ -18,9 +18,13 @@ module.exports = {
       //if command name is not in commands array
       for (let i = 0; i < commands.length; i++) {
         if (commandName === commands[i]) {
-          message.author.send(
-            `Reminder: Use react bot (*) for moderation commands`
-          );
+          try {
+            message.author.send(
+              `Reminder: Use react bot (*) for moderation commands`
+            );
+          } catch (e) {
+            console.log(e);
+          }
           return;
         }
       }
