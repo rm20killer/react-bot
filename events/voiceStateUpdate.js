@@ -1,7 +1,7 @@
 module.exports = {
   name: "voiceStateUpdate",
   execute(client, oldState, newState) {
-    //return
+    return
     console.log("user joined vc");
     const txtChannel = client.channels.cache.get("966101775226634340"); //manually input your own channel
     const newChannelID = newState.channelId;
