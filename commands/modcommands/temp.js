@@ -20,11 +20,7 @@ module.exports = {
       message.member.roles.cache.find((r) => r.name === "914952404083036170") ||
       message.member.roles.cache.find((r) => r.name === adminid)
     ) {
-      const msg = message.channel.messages.fetch(args[0]);
-      //fetch all reactions from the message
-      //const reactions = await msg.reactions.cache.map(r => r.emoji.name)
-      //log all reactions
-      console.log(msg);
+      
     } else {
       message.reply(`You lack perms for this command`);
     }

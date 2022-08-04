@@ -12,24 +12,33 @@ module.exports = {
     const special = "994724909525770333";
     const staff = "857763887713353758";
 
+
+    //get raidmode from raidmode.json
+    const raidmode = require(`../utils/data/raidmode.json`);
+
     const memberRole = "710128390547701876";
     if (newMember.pending === false) {
-      try {
-        newMember.roles.add(memberRole).catch((error) => {
+      if (oldMember.pending === false) { }
+      else if (newMember.user.bot) { }
+      else if (raidmode.raidmode === true) { }
+      else {
+        try {
+          newMember.roles.add(memberRole).catch((error) => {
+            console.log(error);
+          });
+          newMember.roles.add(pronoun).catch((error) => {
+            console.log(error);
+          });
+          newMember.roles.add(notification).catch((error) => {
+            console.log(error);
+          });
+          newMember.roles.add(level).catch((error) => {
+            console.log(error);
+          });
+        } catch (error) {
           console.log(error);
-        });
-        newMember.roles.add(pronoun).catch((error) => {
-          console.log(error);
-        });
-        newMember.roles.add(notification).catch((error) => {
-          console.log(error);
-        });
-        newMember.roles.add(level).catch((error) => {
-          console.log(error);
-        });
-      } catch (error) {
-        console.log(error);
-        return;
+          return;
+        }
       }
     }
     if (newMember.guild.id != "629695220065239061") {
