@@ -68,7 +68,7 @@ module.exports = {
               (ch) => ch.id === channel[1].id
             );
             channel1.permissionOverwrites.edit(memberRole, {
-              SEND_MESSAGES: null,
+              SEND_MESSAGES: true,
             });
             //ADD one to the counter
             counter++;
