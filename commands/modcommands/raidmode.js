@@ -36,7 +36,7 @@ module.exports = {
                 logchannel.send(`Raid mode is now on by ${message.author.username}`)
             }
             else if (args[0] === 'off') {
-                message.channel.send(`Raid mode is now off\nMake sure to do \`dc.settings mode 1\``)
+                message.channel.send(`Raid mode is now off\nMake sure to do \`dc.settings mode 0\``)
                 //get 700789384131379371 channel and make it invisible to everyone
                 let channel = client.channels.cache.get('700789384131379371')
                 channel.permissionOverwrites.edit(channel.guild.roles.everyone, {
