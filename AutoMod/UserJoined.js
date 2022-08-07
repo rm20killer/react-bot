@@ -11,6 +11,10 @@ const memberrole = "710128390547701876";
 const DISCORD_EPOCH = 1420070400000;
 const sus = require("../utils/linkCheks/sus");
 const { covertText } = require("../utils/func/uniecode");
+
+// const ending = [
+//   "Why not get some roles from <#919884343592247347>",
+// ]
 module.exports = {
   async userjoined(member, client) {
     //kick
@@ -25,12 +29,10 @@ module.exports = {
     channel3 = client.channels.cache.find(
       (channel) => channel.id === "892816609712930836"
     );
-    //channel2.send(`Hey <@${member.id}> welcome to **Gamers React!** To get access to chat head over to <#700789384131379371>`);
-    channel2.send(`Hey <@${member.id}> welcome to **Gamers React!**`);
-    //give member member role
-    //member.roles.add(memberrole);
-    //console.log(member)
-
+    channel2.send(`Hey <@${member.id}> welcome to **Gamers React!** Verify and get access to the server. Why not get some roles from <#919884343592247347>`);
+    
+    
+  
     //check if user name is part of sus list
     //if so send message
     //if not continue
