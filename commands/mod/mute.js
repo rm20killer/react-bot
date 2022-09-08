@@ -63,7 +63,7 @@ module.exports = {
             target.roles.cache.find((r) => r.name === adminid) ||
             target.roles.cache.find((r) => r.id === helper)
           ) {
-            return message.reply("Can not mute a mod");
+            return message.reply("Cannot mute a mod");
           }
         }
       } catch {
