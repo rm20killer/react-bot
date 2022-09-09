@@ -210,6 +210,7 @@ var arr = [
   "djscordiairdrop.com",
   "gg.gg/",
   "djscordsteam.",
+  "dlscjordnitro.com/ar"
 ];
 
 module.exports = { arr };
