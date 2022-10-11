@@ -2,22 +2,22 @@
 
 //imports modules
 const Discord = require("discord.js");
-const { Client, Intents } = require("discord.js");
+const { Client, GatewayIntentBits, Partials } = require("discord.js");
 const client = new Client({
   intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MEMBERS,
-    Intents.FLAGS.GUILD_BANS,
-    Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
-    Intents.FLAGS.GUILD_INVITES,
-    Intents.FLAGS.GUILD_VOICE_STATES,
-    Intents.FLAGS.GUILD_PRESENCES,
-    Intents.FLAGS.GUILD_MESSAGES,
-    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-    Intents.FLAGS.GUILD_MESSAGE_TYPING,
-    Intents.FLAGS.DIRECT_MESSAGES,
-    Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
-    Intents.FLAGS.DIRECT_MESSAGE_TYPING,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildBans,
+    GatewayIntentBits.GuildEmojisAndStickers,
+    GatewayIntentBits.GuildInvites,
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.GuildPresences,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.GuildMessageTyping,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.DirectMessageReactions,
+    GatewayIntentBits.DirectMessageTyping,
   ],
   partials: [`CHANNEL`, `MESSAGE`, `REACTION`],
   autoReconnect: true,
@@ -37,10 +37,11 @@ client.slashcommand = new Discord.Collection();
 client.commands = new Discord.Collection();
 //collections ended
 //import handlers
-[`eventHandler`,"commandHandler","buttonHandler", "textCommandsHandler"]
+// [`eventHandler`,"commandHandler","buttonHandler", "textCommandsHandler"]
+[`eventHandler`]
     .filter(Boolean)
     .forEach(h => {
-      require(`./handler/${h}`)(client);
+      require(`./src/handler/${h}`)(client);
 });
 //import handlers ends
 
@@ -51,28 +52,28 @@ client.login(config.BotToken);
 // giveaway code starts here \\
 
 // Starts updating currents giveaways
-client.giveawaysManager = new GiveawaysManager(client, {
-  storage: "./giveaways.json",
-  default: {
-    botsCanWin: false,
-    embedColor: "#FF0000",
-    embedColorEnd: "#000000",
-    reaction: "🎉",
-    lastChance: {
-      enabled: true,
-      content: "⚠️ **LAST CHANCE TO ENTER !** ⚠️",
-      threshold: 5000,
-      embedColor: "#FF0000",
-    },
-  },
-});
+// client.giveawaysManager = new GiveawaysManager(client, {
+//   storage: "./giveaways.json",
+//   default: {
+//     botsCanWin: false,
+//     embedColor: "#FF0000",
+//     embedColorEnd: "#000000",
+//     reaction: "🎉",
+//     lastChance: {
+//       enabled: true,
+//       content: "⚠️ **LAST CHANCE TO ENTER !** ⚠️",
+//       threshold: 5000,
+//       embedColor: "#FF0000",
+//     },
+//   },
+// });
 
-client.giveawaysManager.on("giveawayDeleted", (giveaway) => {
-  const channel = client.channels.cache.find(
-    (channel) => channel.id === "710123089094246482"
-  );
-  channel.send(
-    "Giveaway with message Id " + giveaway.messageId + " was deleted."
-  );
-});
+// client.giveawaysManager.on("giveawayDeleted", (giveaway) => {
+//   const channel = client.channels.cache.find(
+//     (channel) => channel.id === "710123089094246482"
+//   );
+//   channel.send(
+//     "Giveaway with message Id " + giveaway.messageId + " was deleted."
+//   );
+// });
 // giveaway code ends here \\
