@@ -19,7 +19,7 @@ const client = new Client({
     GatewayIntentBits.DirectMessageReactions,
     GatewayIntentBits.DirectMessageTyping,
   ],
-  partials: [`CHANNEL`, `MESSAGE`, `REACTION`],
+  Partials: [`CHANNEL`, `MESSAGE`, `REACTION`],
   autoReconnect: true,
 });
 const { GiveawaysManager } = require("discord-giveaways");
@@ -52,6 +52,7 @@ client.login(config.BotToken);
 // giveaway code starts here \\
 
 // Starts updating currents giveaways
+
 // client.giveawaysManager = new GiveawaysManager(client, {
 //   storage: "./giveaways.json",
 //   default: {
@@ -76,4 +77,6 @@ client.login(config.BotToken);
 //     "Giveaway with message Id " + giveaway.messageId + " was deleted."
 //   );
 // });
+
+
 // giveaway code ends here \\
