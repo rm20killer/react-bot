@@ -3,5 +3,7 @@
   "cSpell.enableFiletypes": ["!javascript"],
 
   "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": "active"
+  "editor.guides.bracketPairs": "active",
+  "vscode-pets.position": "explorer",
+  "vscode-pets.theme": "forest"
 }

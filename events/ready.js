@@ -16,6 +16,8 @@ const KickSchema = require("../utils/Database/Models/kick-schema")(
   sequelize,
   DataTypes
 );
+
+const qotd = require("../AutoMod/OnTimer/qotd")
 const mutechecker = require("../AutoMod/OnTimer/mutecheck");
 const bancheck = require("../AutoMod/OnTimer/bancheck");
 module.exports = {
@@ -33,8 +35,10 @@ module.exports = {
       console.log("Schema synced");
     }
     //start up timers
+    //qotd.uploadQOTD(client);
     mutechecker.mutechecker(client);
     bancheck.bancheck(client);
+
     console.log("Timers Started");
   },
 };
