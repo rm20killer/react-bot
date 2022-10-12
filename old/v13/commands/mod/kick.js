@@ -11,7 +11,7 @@
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const config = require(`../../config`);
+const config = require(`../../../config`);
 
 const modid = config.ModID;
 const adminid = config.AdminID;
@@ -19,8 +19,8 @@ const jrmod = config.jrmod;
 const helper = config.helper;
 
 const { Sequelize, DataTypes, Model, Op } = require("sequelize");
-const sequelize = require("../../utils/Database/sequelize");
-const kicksSchema = require("../../utils/Database/Models/kick-schema")(
+const sequelize = require("../../src/utils/Database/sequelize");
+const kicksSchema = require("../../src/utils/Database/Models/kick-schema")(
   sequelize,
   DataTypes
 );

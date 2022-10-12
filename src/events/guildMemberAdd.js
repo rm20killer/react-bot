@@ -1,5 +1,5 @@
-const CheckName = require("../AutoMod/userJoined/CheckName");
-const userjoined = require("../AutoMod/UserJoined")
+const CheckName = require("../Scripts/UserJoined/CheckName");
+const userjoined = require("../Scripts/UserJoined/UserJoined")
 
 module.exports = {
     name: 'guildMemberAdd',

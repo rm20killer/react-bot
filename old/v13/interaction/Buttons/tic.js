@@ -8,8 +8,8 @@ module.exports = {
   async execute(interaction, client) {
     //console.log(interaction.message);
     //read database
-    const database = JSON.parse(fs.readFileSync(`./utils/data/tictactoe.json`));
-    //const database = require(`../../utils/data/tictactoe.json`);
+    const database = JSON.parse(fs.readFileSync(`./src/utils/data/tictactoe.json`));
+    //const database = require(`../../src/utils/data/tictactoe.json`);
     let status = interaction.customId.split("-")[1];
     let key = interaction.customId.split("-")[2];
 
@@ -79,7 +79,7 @@ async function acceptStatus(interaction, game, embed, database) {
   let random = Math.floor(Math.random() * 2) + 1;
   game.turn = random;
   let dataJSON = JSON.stringify(database, null, 2);
-  fs.writeFileSync(`./utils/data/tictactoe.json`, dataJSON);
+  fs.writeFileSync(`./src/utils/data/tictactoe.json`, dataJSON);
 
   const top = [];
   const middle = [];
@@ -148,7 +148,7 @@ async function playClicked(interaction, game, embed, database, index) {
       });
     }
     let dataJSON = JSON.stringify(database, null, 2);
-    fs.writeFileSync(`./utils/data/tictactoe.json`, dataJSON);
+    fs.writeFileSync(`./src/utils/data/tictactoe.json`, dataJSON);
   }
   //console.log(square);
 }
@@ -288,7 +288,7 @@ async function GameEnded(interaction, game, database) {
 
 async function saveWiner(player) {
   if (!player) return;
-  let database = JSON.parse(fs.readFileSync(`./utils/data/userGame.json`));
+  let database = JSON.parse(fs.readFileSync(`./src/utils/data/userGame.json`));
   //if player is not in database add them
 
   if (!database.hasOwnProperty(player)) {
@@ -307,12 +307,12 @@ async function saveWiner(player) {
     tictactoe.wins = tictactoe.wins + 1;
   }
   let dataJSON = JSON.stringify(database, null, 2);
-  fs.writeFileSync(`./utils/data/userGame.json`, dataJSON);
+  fs.writeFileSync(`./src/utils/data/userGame.json`, dataJSON);
 }
 
 async function saveLost(player) {
   if (!player) return;
-  let database = JSON.parse(fs.readFileSync(`./utils/data/userGame.json`));
+  let database = JSON.parse(fs.readFileSync(`./src/utils/data/userGame.json`));
   //if player is not in database add them
   if (!database.hasOwnProperty(player)) {
     let tictactoe = {
@@ -330,12 +330,12 @@ async function saveLost(player) {
     tictactoe.loses = tictactoe.loses + 1;
   }
   let dataJSON = JSON.stringify(database, null, 2);
-  fs.writeFileSync(`./utils/data/userGame.json`, dataJSON);
+  fs.writeFileSync(`./src/utils/data/userGame.json`, dataJSON);
 }
 
 async function savetie(player) {
   if (!player) return;
-  let database = JSON.parse(fs.readFileSync(`./utils/data/userGame.json`));
+  let database = JSON.parse(fs.readFileSync(`./src/utils/data/userGame.json`));
   //if player is not in database add them
   if (!database.hasOwnProperty(player)) {
     let tictactoe = {
@@ -353,5 +353,5 @@ async function savetie(player) {
     tictactoe.ties = tictactoe.ties + 1;
   }
   let dataJSON = JSON.stringify(database, null, 2);
-  fs.writeFileSync(`./utils/data/userGame.json`, dataJSON);
+  fs.writeFileSync(`./src/utils/data/userGame.json`, dataJSON);
 }

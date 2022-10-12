@@ -1,7 +1,7 @@
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const config = require(`../../config`);
+const config = require(`../../../config`);
 
 const modid = config.ModID;
 const adminid = config.AdminID;
@@ -10,7 +10,7 @@ const helper = config.helper;
 
 const fs = require("fs");
 
-const datafile = require(`../../utils/votedata.json`);
+const datafile = require(`../../src/utils/votedata.json`);
 module.exports = {
   name: "votedata",
   aliases: [`getvotedata`],
@@ -26,7 +26,7 @@ module.exports = {
     ) {
       //create 10 variables for the 10 votes
       let vote = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-      const dataArray = JSON.parse(fs.readFileSync(`./utils/votedata.json`));
+      const dataArray = JSON.parse(fs.readFileSync(`./src/utils/votedata.json`));
       let data = dataArray.data;
 
       //get the voteID of all the votes
@@ -46,7 +46,7 @@ module.exports = {
       //send the embed & votedata.json file to the channel
       message.reply({
         embeds: [embed],
-        files: [{ attachment: `./utils/votedata.json`, name: `votedata.json` }],
+        files: [{ attachment: `./src/utils/votedata.json`, name: `votedata.json` }],
       });
     } else {
       message.reply(`You lack perms for this command`);

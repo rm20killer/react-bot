@@ -5,7 +5,7 @@ module.exports = {
   async gameCheck(client) {
     const gameChecks = async () => {
       const database = JSON.parse(
-        fs.readFileSync(`./utils/data/tictactoe.json`)
+        fs.readFileSync(`./src/utils/data/tictactoe.json`)
       );
       for (const game of database.gameArray) {
         if (game.timeEnded < new Date().getTime()) {
@@ -15,7 +15,7 @@ module.exports = {
         }
       }
       fs.writeFileSync(
-        `./utils/data/tictactoe.json`,
+        `./src/utils/data/tictactoe.json`,
         JSON.stringify(database, null, 2)
       );
       setTimeout(gameChecks, 1000 * 10);

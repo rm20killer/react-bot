@@ -1,7 +1,7 @@
 const fetch = require(`node-fetch`);
 const Discord = require('discord.js')
 const { Client, Intents } = require('discord.js');
-const config = require(`../../config`);
+const config = require(`../../../config`);
 const fs = require('fs');
 
 const modid = config.ModID
@@ -21,7 +21,7 @@ module.exports = {
             if (!args[0]) {
                 return message.reply(`to configure raid mode, use \`*raidmode <on/off>\``)
             }
-            let raidmode = require(`../../utils/data/raidmode.json`)
+            let raidmode = require(`../../src/utils/data/raidmode.json`)
             if (args[0] === 'on') {
                 message.channel.send(`Raid mode is now on\nMake sure to do \`dc.settings mode 1\``)
                 //get 700789384131379371 channel and make it visible to everyone
@@ -31,7 +31,7 @@ module.exports = {
                 })
                 //change raidmode.json to true
                 raidmode.raidmode = true
-                fs.writeFileSync('./utils/data/raidmode.json', JSON.stringify(raidmode))
+                fs.writeFileSync('./src/utils/data/raidmode.json', JSON.stringify(raidmode))
                 let logchannel = client.channels.cache.get('844273354318938174')
                 logchannel.send(`Raid mode is now on by ${message.author.username}`)
             }
@@ -44,7 +44,7 @@ module.exports = {
                 })
                 //change raidmode.json to false
                 raidmode.raidmode = false
-                fs.writeFileSync('./utils/data/raidmode.json', JSON.stringify(raidmode))
+                fs.writeFileSync('./src/utils/data/raidmode.json', JSON.stringify(raidmode))
                 //send message to log channel
                 let logchannel = client.channels.cache.get('844273354318938174')
                 logchannel.send(`Raid mode is now off by ${message.author.username}`)

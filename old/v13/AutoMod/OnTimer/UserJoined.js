@@ -2,14 +2,14 @@ const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 
 
-const mongo = require("../utils/mongo");
+const mongo = require("../src/utils/mongo");
 const muteSChema = require("../Models/mute-schema");
 
 const muterole = "712512117999271966";
 const memberrole = "710128390547701876";
 const DISCORD_EPOCH = 1420070400000;
-const sus = require("../utils/linkCheks/sus");
-const { covertText } = require("../utils/func/uniecode");
+const sus = require("../src/utils/linkCheks/sus");
+const { covertText } = require("../src/utils/func/uniecode");
 module.exports = {
   async userjoined(member, client) {
     //kick

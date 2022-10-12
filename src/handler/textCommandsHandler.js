@@ -1,6 +1,7 @@
 const fs = require("fs");
 
 module.exports = (client) => {
+  return
   const commandFolders = fs.readdirSync("./commands");
 
   for (const folder of commandFolders) {

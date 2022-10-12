@@ -2,7 +2,7 @@ const fs = require("fs");
 
 module.exports = (client) => {
   const buttons = fs
-    .readdirSync("./interaction/Buttons/")
+    .readdirSync("./src/interaction/Buttons/")
     .filter((i) => i.split(".").pop() === "js");
   if (buttons.length <= 0) return console.log("No buttons Found");
 

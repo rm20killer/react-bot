@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Discord = require("discord.js");
-const { MessageActionRow, MessageButton } = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const fs = require("fs");
 const crypto = require("crypto");
 const { generateKey } = require("crypto");
@@ -32,7 +32,11 @@ module.exports = {
       });
       return;
     }
-    const database = require(`../../utils/data/tictactoe.json`);
+    //check if "../data/tictactoe.json" exists
+    if (!fs.existsSync(`./src/utils/data/data/tictactoe.json`)) {
+      await makegamefile();
+    }
+    let database = require(`../../utils/data/tictactoe.json`);
     //console.log(database)
     let player1 = interaction.user.id;
     let player2 = interaction.options._hoistedOptions[0].user.id;
@@ -51,25 +55,27 @@ module.exports = {
     //get data from database and and to file
     let data = await createdata(interaction, database);
     let dataJSON = JSON.stringify(data, null, 2);
-    await fs.writeFileSync(`./utils/data/tictactoe.json`, dataJSON);
+    await fs.writeFileSync(`./src/utils/data/data/tictactoe.json`, dataJSON);
 
     //respond to user
     let time = Date.now() + 60000;
-    let embed = new Discord.MessageEmbed()
+    let embed = new Discord.EmbedBuilder()
       .setTitle("Tic Tac Toe")
       .setDescription(
         `you have started a game with <@${player2}>. \n  <@${player2}> must accept the game before you can play. \n  You can accept the game by pushing button`
       )
-      .addField("Will time out", `<t:${time.toString().slice(0, -3)}:R>`)
+      .addFields([
+        {name:"Will time out", value:`<t:${time.toString().slice(0, -3)}:R>`}
+      ])
       .setColor("#0099ff");
 
     let key = database.gameArray[database.gameArray.length - 1].key;
-    let acceptButton = new MessageButton()
+    let acceptButton = new ButtonBuilder()
       .setLabel("Accept")
-      .setStyle("SUCCESS")
+      .setStyle(ButtonStyle.Success)
       .setCustomId("tic-accept-" + key);
     //console.log(acceptButton)
-    let row = new MessageActionRow().addComponents([acceptButton]);
+    let row = new ActionRowBuilder().addComponents([acceptButton]);
     //create a button
     interaction.reply({ embeds: [embed], components: [row] });
     //return error("not implemented");
@@ -143,4 +149,19 @@ async function createdata(interaction, database) {
     gameArray: newArray,
   };
   return data2;
+}
+
+
+async function makegamefile()
+{
+  let data = {
+    total: 0,
+    finished: 0,
+    playing: 0,
+    ammountInArray: 0,
+    timeout: 0,
+    gameArray: [],
+  };
+  let dataJSON = JSON.stringify(data, null, 2);
+  await fs.writeFileSync(`./src/utils/data/data/tictactoe.json`, dataJSON);
 }

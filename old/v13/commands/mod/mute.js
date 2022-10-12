@@ -11,7 +11,7 @@
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const config = require(`../../config`);
+const config = require(`../../../config`);
 const ms = require("ms");
 
 const modid = config.ModID;
@@ -22,8 +22,8 @@ const helper = config.helper;
 const muterole = "712512117999271966";
 
 const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = require('../../utils/Database/sequelize');
-const muteSchema = require('../../utils/Database/Models/mute-schema')(sequelize, DataTypes);
+const sequelize = require('../../src/utils/Database/sequelize');
+const muteSchema = require('../../src/utils/Database/Models/mute-schema')(sequelize, DataTypes);
 
 
 module.exports = {

@@ -9,8 +9,8 @@ const muteSchema = require('../utils/Database/Models/mute-schema')(sequelize, Da
 const muterole = "712512117999271966";
 const memberrole = "710128390547701876";
 const DISCORD_EPOCH = 1420070400000;
-const sus = require("../utils/linkCheks/sus");
-const { covertText } = require("../utils/func/uniecode");
+const sus = require("../src/utils/linkCheks/sus");
+const { covertText } = require("../src/utils/func/uniecode");
 
 // const ending = [
 //   "Why not get some roles from <#919884343592247347>",

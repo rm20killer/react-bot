@@ -12,7 +12,7 @@ const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents, MessageAttachment } = require("discord.js");
 const discordTranscripts = require("discord-html-transcripts");
-const config = require(`../../config`);
+const config = require(`../../../config`);
 
 const modid = config.ModID;
 const adminid = config.AdminID;

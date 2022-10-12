@@ -5,7 +5,7 @@ const fs = require("fs");
 module.exports = {
     customId: "buildviwer",
     async execute(interaction, client) {
-        let buildcompSubmitsData = JSON.parse(fs.readFileSync("./utils/data/buildcompSubmits.json", "utf8"));
+        let buildcompSubmitsData = JSON.parse(fs.readFileSync("./src/utils/data/buildcompSubmits.json", "utf8"));
         let usersArray = buildcompSubmitsData.users;
 
         //split customId into an array

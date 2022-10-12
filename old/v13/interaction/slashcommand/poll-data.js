@@ -22,7 +22,7 @@ module.exports = {
             return;
         }
         else {
-            let data = JSON.parse(fs.readFileSync(`./utils/data/vote/${guildId}/${voteID}.json`));
+            let data = JSON.parse(fs.readFileSync(`./src/utils/data/vote/${guildId}/${voteID}.json`));
             //get options from file
             let options = data.options;
             let votes = []
@@ -51,7 +51,7 @@ module.exports = {
             }
             await interaction.reply({
                 embeds: [embed],
-                files: [{ attachment: `./utils/data/vote/${guildId}/${voteID}.json`, name: `votedata.json` }],
+                files: [{ attachment: `./src/utils/data/vote/${guildId}/${voteID}.json`, name: `votedata.json` }],
             });;
             return;
         }
@@ -60,7 +60,7 @@ module.exports = {
 
 async function verifyID(voteID, guildId) {
     //check if there is a file
-    let file = fs.existsSync(`./utils/data/vote/${guildId}/${voteID}.json`);
+    let file = fs.existsSync(`./src/utils/data/vote/${guildId}/${voteID}.json`);
     if (file === false) {
         return false;
     }

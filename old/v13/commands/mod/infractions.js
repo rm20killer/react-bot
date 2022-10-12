@@ -12,17 +12,17 @@
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const config = require(`../../config`);
-const mongo = require("../../utils/mongo");
+const config = require(`../../../config`);
+const mongo = require("../../src/utils/mongo");
 const ms = require("ms");
 
 //const warnSchema = require("../../Models/warn-schema");
 const muteSchema = require("../../Models/mute-schema");
 
 const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = require('../../utils/Database/sequelize');
-const WarnSchema = require('../../utils/Database/Models/warn-schema')(sequelize, DataTypes);
-const MuteSchema = require('../../utils/Database/Models/mute-schema')(sequelize, DataTypes);
+const sequelize = require('../../src/utils/Database/sequelize');
+const WarnSchema = require('../../src/utils/Database/Models/warn-schema')(sequelize, DataTypes);
+const MuteSchema = require('../../src/utils/Database/Models/mute-schema')(sequelize, DataTypes);
 const modid = config.ModID;
 const adminid = config.AdminID;
 const jrmod = config.jrmod;

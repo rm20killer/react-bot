@@ -4,8 +4,8 @@ const { Client, Intents } = require("discord.js");
 const fs = require("fs");
 const { AmariBot } = require("amaribot.js");
 
-const config = require(`../../config`);
-const mongo = require("../../utils/mongo");
+const config = require(`../../../config`);
+const mongo = require("../../src/utils/mongo");
 const warnSchema = require("../../Models/warn-schema");
 const muteSchema = require("../../Models/mute-schema");
 const kickSchema = require("../../Models/kick-schema");

@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize");
-const { Postgresql_SRV } = require("../../config");
-const config = require("../../config");
+const { Postgresql_SRV } = require("../../../config");
+const config = require("../../../config");
 const fs = require("fs");
 
 module.exports = new Sequelize(
@@ -15,7 +15,7 @@ module.exports = new Sequelize(
     dialectOptions: {
       ssl: {
         require: true,
-        ca: fs.readFileSync("./utils/ca-certificate.crt").toString(),
+        ca: fs.readFileSync("./src/utils/ca-certificate.crt").toString(),
       },
       native: true,
     },

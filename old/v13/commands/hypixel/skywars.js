@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-const { base } = require("../../utils/embed");
-const { hypixel, errors } = require("../../utils/hypixel");
+const { base } = require("../../src/utils/embed");
+const { hypixel, errors } = require("../../src/utils/hypixel");
 const commaNumber = require("comma-number");
 module.exports = {
   name: "skywars",

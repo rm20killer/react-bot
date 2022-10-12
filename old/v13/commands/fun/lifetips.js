@@ -1,8 +1,8 @@
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const config = require(`../../config`);
-const data = require(`../../utils/lifetips.json`);
+const config = require(`../../../config`);
+const data = require(`../../src/utils/lifetips.json`);
 
 const modid = config.ModID;
 const adminid = config.AdminID;

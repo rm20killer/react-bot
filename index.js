@@ -37,8 +37,8 @@ client.slashcommand = new Discord.Collection();
 client.commands = new Discord.Collection();
 //collections ended
 //import handlers
-// [`eventHandler`,"commandHandler","buttonHandler", "textCommandsHandler"]
-[`eventHandler`]
+ [`eventHandler`,"commandHandler","buttonHandler", "textCommandsHandler"]
+// [`eventHandler`]
     .filter(Boolean)
     .forEach(h => {
       require(`./src/handler/${h}`)(client);

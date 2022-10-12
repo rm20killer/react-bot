@@ -5,9 +5,9 @@ const { Client, Intents } = require("discord.js");
 let psl = require("psl");
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-const config = require("../../config");
-const list = require(`../../utils/linkCheks/list`);
-const allowlist = require(`../../utils/linkCheks/allowlist`);
+const config = require("../../../config");
+const list = require(`../../src/utils/linkCheks/list`);
+const allowlist = require(`../../src/utils/linkCheks/allowlist`);
 
 const youtubeKey = config.youtubeKey;
 

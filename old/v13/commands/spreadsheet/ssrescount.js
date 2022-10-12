@@ -23,12 +23,12 @@ const client = new Client({
 
 const { MessageActionRow, MessageButton } = require("discord.js");
 
-const config = require("../../config");
+const config = require("../../../config");
 const modid = config.ModID;
 const adminid = config.AdminID;
 const jrmod = config.jrmod;
 const helper = config.helper;
-const creds = require("../../utils/googlekey.json");
+const creds = require("../../src/utils/googlekey.json");
 //const doc = new GoogleSpreadsheet(config.spreadsheet);
 const doc = new GoogleSpreadsheet(
   "1keR2ubqTVfkrkEuDTSAa5fbZm_U08gTNfE-75bUcVX4"

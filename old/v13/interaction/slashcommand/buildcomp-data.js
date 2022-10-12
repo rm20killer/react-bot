@@ -7,7 +7,7 @@ module.exports = {
   .setDescription("get data for your build comp submission"),
   async execute(interaction, client) {
     //return interaction.reply("Pong!");
-    let buildcompSubmitsData = JSON.parse(fs.readFileSync("./utils/data/buildcompSubmits.json", "utf8"));
+    let buildcompSubmitsData = JSON.parse(fs.readFileSync("./src/utils/data/buildcompSubmits.json", "utf8"));
     let usersArray = buildcompSubmitsData.users;
     let userData
     let indexForUser

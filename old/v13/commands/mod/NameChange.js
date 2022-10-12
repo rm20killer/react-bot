@@ -1,9 +1,9 @@
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const config = require(`../../config`);
+const config = require(`../../../config`);
 const unidecode = require("unidecode");
-const { covertText } = require("../../utils/func/uniecode");
+const { covertText } = require("../../src/utils/func/uniecode");
 
 const modid = config.ModID;
 const adminid = config.AdminID;

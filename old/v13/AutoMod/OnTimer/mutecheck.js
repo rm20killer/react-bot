@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes, Model, Op } = require("sequelize");
-const sequelize = require("../../utils/Database/sequelize");
-const muteSchema = require("../../utils/Database/Models/mute-schema")(
+const sequelize = require("../../src/utils/Database/sequelize");
+const muteSchema = require("../../src/utils/Database/Models/mute-schema")(
   sequelize,
   DataTypes
 );

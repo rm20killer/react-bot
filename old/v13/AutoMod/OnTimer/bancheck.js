@@ -1,9 +1,9 @@
 const { Sequelize, DataTypes, Model, Op } = require("sequelize");
-const sequelize = require("../../utils/Database/sequelize");
+const sequelize = require("../../src/utils/Database/sequelize");
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const tempbans = require("../../utils/Database/Models/tempban-schema")(
+const tempbans = require("../../src/utils/Database/Models/tempban-schema")(
   sequelize,
   DataTypes
 );

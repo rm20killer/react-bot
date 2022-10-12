@@ -10,7 +10,7 @@ module.exports = {
     const channel = client.channels.cache.get('1019656636610121828');
     //const channel = client.channels.cache.find((channel) => channel.id === "1019656636610121828");
     const uploadQOTD = async () => {
-        const database = JSON.parse(fs.readFileSync(`./utils/data/qotd.json`))
+        const database = JSON.parse(fs.readFileSync(`./src/utils/data/qotd.json`))
         var today = new Date();
         var dd = String(today.getUTCDate()).padStart(2, '0');
         var mm = String(today.getUTCMonth() + 1).padStart(2, '0'); //January is 0!

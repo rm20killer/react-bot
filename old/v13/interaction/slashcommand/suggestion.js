@@ -26,19 +26,19 @@ module.exports = {
         let category = interaction.options.data[0].value;
         let suggestion = interaction.options.data[1].value;
         //check if file exists
-        if (fs.existsSync("./utils/data/suggestions.json")) {
+        if (fs.existsSync("./src/utils/data/suggestions.json")) {
         } else {
             //create file
             let data = {
                 movie: [],
                 game: [],
             };
-            const newFile = fs.createWriteStream(`./utils/data/suggestions.json"`);
+            const newFile = fs.createWriteStream(`./src/utils/data/suggestions.json"`);
             await newFile.write(JSON.stringify(data, null, 2));
             newFile.end();
         }
         //push suggestion to file
-        let suggestionsData = JSON.parse(fs.readFileSync("./utils/data/suggestions.json", "utf8"));
+        let suggestionsData = JSON.parse(fs.readFileSync("./src/utils/data/suggestions.json", "utf8"));
         let data = {
             suggestion: suggestion,
             userID: interaction.user.id,
@@ -50,7 +50,7 @@ module.exports = {
         else if (category === "game") {
             suggestionsData.game.push(data);
         }
-        fs.writeFileSync("./utils/data/suggestions.json", JSON.stringify(suggestionsData, null, 2));
+        fs.writeFileSync("./src/utils/data/suggestions.json", JSON.stringify(suggestionsData, null, 2));
         await interaction.reply({ content: "Your suggestion has been added to the list!", ephemeral: true });
         //get size of the category
         let size = 0;

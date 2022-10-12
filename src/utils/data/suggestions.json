@@ -1,0 +1,15 @@
+{
+  "movie": [
+    {
+      "suggestion": "a cool movie",
+      "userID": "227490301688676354",
+      "accepted": false
+    },
+    {
+      "suggestion": "a cool movie",
+      "userID": "227490301688676354",
+      "accepted": true
+    }
+  ],
+  "game": []
+}

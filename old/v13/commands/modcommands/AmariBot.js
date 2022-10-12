@@ -1,7 +1,7 @@
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const config = require(`../../config`);
+const config = require(`../../../config`);
 const { AmariBot, Leaderboard } = require("amaribot.js");
 
 const modid = config.ModID;

@@ -12,20 +12,20 @@
 const fetch = require(`node-fetch`);
 const Discord = require("discord.js");
 const { Client, Intents } = require("discord.js");
-const config = require(`../../config`);
+const config = require(`../../../config`);
 
 const modid = config.ModID;
 const adminid = config.AdminID;
 const jrmod = config.jrmod;
 const helper = config.helper;
 
-// const mongo = require("../../utils/mongo");
+// const mongo = require("../../src/utils/mongo");
 // const WarnSchema = require("../../Models/warn-schema");
 
 
 const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = require('../../utils/Database/sequelize');
-const WarnSchema = require('../../utils/Database/Models/warn-schema')(sequelize, DataTypes);
+const sequelize = require('../../src/utils/Database/sequelize');
+const WarnSchema = require('../../src/utils/Database/Models/warn-schema')(sequelize, DataTypes);
 module.exports = {
   name: "warn",
   aliases: [``],

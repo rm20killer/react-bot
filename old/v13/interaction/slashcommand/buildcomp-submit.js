@@ -33,7 +33,7 @@ module.exports = {
     let screenshot= interaction.options.data[1].attachment.url;
     let user= interaction.user.id;
     //read buildcompSubmits.json
-    let buildcompSubmitsData = JSON.parse(fs.readFileSync("./utils/data/buildcompSubmits.json", "utf8"));
+    let buildcompSubmitsData = JSON.parse(fs.readFileSync("./src/utils/data/buildcompSubmits.json", "utf8"));
     //check if user has already submitted a build comp
     let usersArray = buildcompSubmitsData.users;
     //check which array the user is in
@@ -76,7 +76,7 @@ async function NewUser(interaction,buildcompSubmitsData){
     }
     users.push(UserSubmiittion);
     buildcompSubmitsData.users = users;
-    fs.writeFileSync("./utils/data/buildcompSubmits.json", JSON.stringify(buildcompSubmitsData, null, 2));
+    fs.writeFileSync("./src/utils/data/buildcompSubmits.json", JSON.stringify(buildcompSubmitsData, null, 2));
     const embed = new Discord.MessageEmbed()
     .setTitle("Build Comp image uploaded")
     .setDescription(`Your build comp has been submitted for ${interaction.options.data[0].value}`)
@@ -109,7 +109,7 @@ async function NonNewUser(interaction, buildcompSubmitsData, userData,indexForUs
         userData.submissions = submissions;
         //save the new user data
         buildcompSubmitsData.users[indexForUser] = userData;
-        await fs.writeFileSync("./utils/data/buildcompSubmits.json", JSON.stringify(buildcompSubmitsData, null, 2));
+        await fs.writeFileSync("./src/utils/data/buildcompSubmits.json", JSON.stringify(buildcompSubmitsData, null, 2));
         const embed = new Discord.MessageEmbed()
         .setTitle("Build Comp image updated")
         .setDescription(`Your build comp has been submitted for ${interaction.options.data[0].value} has been updated with`)
@@ -133,7 +133,7 @@ async function NonNewUser(interaction, buildcompSubmitsData, userData,indexForUs
         userData.submissions = submissions;
         //save the new user data
         buildcompSubmitsData.users[indexForUser] = userData;
-        await fs.writeFileSync("./utils/data/buildcompSubmits.json", JSON.stringify(buildcompSubmitsData, null, 2));
+        await fs.writeFileSync("./src/utils/data/buildcompSubmits.json", JSON.stringify(buildcompSubmitsData, null, 2));
         //send the user a message
         const embed = new Discord.MessageEmbed()
         .setTitle("Build Comp image uploaded")
@@ -152,7 +152,7 @@ async function NonNewUser(interaction, buildcompSubmitsData, userData,indexForUs
         //user has submitted all build comps
         userData.all9 = true;
         buildcompSubmitsData.users[indexForUser] = userData;
-        fs.writeFileSync("./utils/data/buildcompSubmits.json", JSON.stringify(buildcompSubmitsData, null, 2));
+        fs.writeFileSync("./src/utils/data/buildcompSubmits.json", JSON.stringify(buildcompSubmitsData, null, 2));
         //send the user a message
         const embed = new Discord.MessageEmbed()
         .setTitle("Build Comp Submitted")

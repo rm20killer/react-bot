@@ -29,7 +29,7 @@ module.exports = {
 
         if (category) {
             //find all suggestions in the category that are accepted
-            let suggestionsData = JSON.parse(fs.readFileSync("./utils/data/suggestions.json", "utf8"));
+            let suggestionsData = JSON.parse(fs.readFileSync("./src/utils/data/suggestions.json", "utf8"));
             let suggestions = [];
             if (category === "movie") {
                 for (let i = 0; i < suggestionsData.movie.length; i++) {
@@ -48,17 +48,17 @@ module.exports = {
             //send the suggestions array to the user as a file
             let file = JSON.stringify(suggestions, null, 2)
             //save as file
-            const newfile = fs.createWriteStream("./utils/data/AcceptedSuggestions.json");
+            const newfile = fs.createWriteStream("./src/utils/data/AcceptedSuggestions.json");
             await newfile.write(file);
             newfile.end();
             await interaction.reply({ content: "Here are all the accepted suggestions for that category", files: [{
-                attachment: "./utils/data/AcceptedSuggestions.json",
+                attachment: "./src/utils/data/AcceptedSuggestions.json",
                 name: "suggestions.json"
             }], ephemeral: true });
         }
         else {
             //get all suggestions that are accepted
-            let suggestionsData = JSON.parse(fs.readFileSync("./utils/data/suggestions.json", "utf8"));
+            let suggestionsData = JSON.parse(fs.readFileSync("./src/utils/data/suggestions.json", "utf8"));
             let suggestions = [];
             for (let i = 0; i < suggestionsData.movie.length; i++) {
                 if (suggestionsData.movie[i].accepted === true) {
@@ -73,11 +73,11 @@ module.exports = {
             //send the suggestions as a file
             let file = JSON.stringify(suggestions, null, 2)
             //save as file
-            const newfile = fs.createWriteStream("./utils/data/AcceptedSuggestions.json");
+            const newfile = fs.createWriteStream("./src/utils/data/AcceptedSuggestions.json");
             await newfile.write(file);
             newfile.end();
             await interaction.reply({ content: "Here are all the accepted suggestions", files: [{
-                attachment: "./utils/data/AcceptedSuggestions.json",
+                attachment: "./src/utils/data/AcceptedSuggestions.json",
                 name: "suggestions.json"
             }], ephemeral: true });
         }

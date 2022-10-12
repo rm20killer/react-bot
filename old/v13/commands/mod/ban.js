@@ -12,12 +12,12 @@ const Discord = require("discord.js");
 const ms = require("ms");
 const { Client, Intents, MessageAttachment } = require("discord.js");
 const discordTranscripts = require("discord-html-transcripts");
-const sequelize = require("../../utils/Database/sequelize");
+const sequelize = require("../../src/utils/Database/sequelize");
 const { Sequelize, DataTypes, Model, Op } = require("sequelize");
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-const config = require("../../config");
-const tempbans = require("../../utils/Database/Models/tempban-schema")(
+const config = require("../../../config");
+const tempbans = require("../../src/utils/Database/Models/tempban-schema")(
   sequelize,
   DataTypes
 );
