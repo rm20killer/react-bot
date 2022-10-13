@@ -3,10 +3,10 @@ config.js
 node_modules/
 
 file.json
-utils/googlekey.json
+src/utils/googlekey.json
 giveaways.json
-utils/votedata.json
+src/utils/votedata.json
 temp/rawdata.json
-utils/data/
+src/utils/data/
 
-utils/ca-certificate.crt
+src/utils/ca-certificate.crt
