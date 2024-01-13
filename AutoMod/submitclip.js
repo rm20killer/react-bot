@@ -24,8 +24,7 @@ module.exports = {
       } else {
         message.reply({
           content:
-            "**Submit clips on our website:** \nClick button below to visit the site",
-          components: [row23],
+            "**Please submit your clip by making a <#858354762855874560> **, our website is currently down and not taking any submissions.",
         }); //Otherwise say this
         return;
       }
