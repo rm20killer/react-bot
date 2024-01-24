@@ -9,6 +9,7 @@ const modid = config.ModID;
 const adminid = config.AdminID;
 const jrmod = config.jrmod;
 const helper = config.helper;
+const AllowedParent = ["1131260044743278634","858354610367627284","1128367437981687868"]
 module.exports = {
   name: "close",
   aliases: ["tclose", "tend"],
@@ -22,7 +23,7 @@ module.exports = {
       message.member.roles.cache.find((r) => r.id === helper)
     ) {
       //console.log("closing ticket")
-      if (message.channel.parent.id === "858354610367627284") {
+      if(AllowedParent.includes(message.channel.parent.id)){
         // CODE GOES HERE 🡫
         const channelParent = message.channel.parent.id;
         const channel = client.channels.cache.find(
