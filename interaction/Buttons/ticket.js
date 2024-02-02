@@ -54,6 +54,10 @@ module.exports = {
       //General
       var ids = "General";
     }
+    if (id === "ticket-clip")
+    {
+      var ids = "Clip Submission"
+    }
     let mess = await interaction.reply(`Creating a ${ids} ticket`);
     interaction.guild.channels.cache.forEach((c) => {
       //console.log("interaction got")
@@ -105,6 +109,12 @@ async function createChannel(id, interaction, member, parent) {
     var format = "```diff\n- Question:```";
     var ids = "General";
   }
+  if (id === "ticket-clip")
+  {
+    var format = "```diff\n- Video:\n- Person to credit:\n- any info we should now:```"
+    var ids = "Clip Submission"
+  }
+
   let memberrole = "629695220065239061";
   let modrole = "696134129497931857";
   let helperrole = "884656687372464179";
