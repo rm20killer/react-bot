@@ -111,7 +111,7 @@ async function createChannel(id, interaction, member, parent) {
   }
   if (id === "ticket-clip")
   {
-    var format = "```diff\n- Video:\n- Person to credit:\n- any info we should now:```"
+    var format = "```diff\n- Video:\n- Person to credit:\n- Any info we should know:```"
     var ids = "Clip Submission"
   }
 
