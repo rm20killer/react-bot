@@ -12,7 +12,7 @@
   "dependencies": {
     "@discordjs/rest": "^0.5.0",
     "amaribot.js": "^1.6.1",
-    "axios": "^0.21.1",
+    "axios": "^0.28.0",
     "comma-number": "^2.1.0",
     "discord-giveaways": "^5.2.1",
     "discord-html-transcripts": "^2.5.8",
