@@ -85,12 +85,12 @@ module.exports = {
                 }
             }
             if (message.author.id === client.user.id) return;
-            if (message.channel.id === "629695352454250508") {
-                const channel = client.channels.cache.find(
-                    (channel) => channel.id === "707304184524832879"
-                );
-                channel.send("Reminder: Publish message in <#629695352454250508>");
-            }
+            //if (message.channel.id === "629695352454250508") {
+                //const channel = client.channels.cache.find(
+                //    (channel) => channel.id === "707304184524832879"
+                //);
+                //channel.send("Reminder: Publish message in <#629695352454250508>");
+            //}
 
             if (
                 channelparname == "────💬 chatting 💬────" ||
