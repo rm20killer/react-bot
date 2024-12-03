@@ -21,7 +21,7 @@
     "google-spreadsheet": "^3.3.0",
     "googleapis": "^103.0.0",
     "hypixel-api-reborn": "^10.0.0",
-    "mongoose": "^6.4.0",
+    "mongoose": "^8.8.3",
     "node-fetch": "^2.6.1",
     "node-forge": "^1.2.1",
     "pg": "^8.7.3",
