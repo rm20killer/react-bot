@@ -8,13 +8,11 @@ const youtubechecker = require("../AutoMod/Checks/youtubeChecker");
 const { youtube } = require("../AutoMod/Checks/youtubeChecker");
 const table = require("../AutoMod/tablechecker");
 const userjoined = require("../AutoMod/UserJoined");
-const mutechecker = require("../AutoMod/OnTimer/mutecheck");
 const pingriz = require("../AutoMod/pingriz");
 const perspective = require("../AutoMod/perspective.js");
 const ReactionChecker = require("../AutoMod/Reactions/ReactionChecker");
 const CheckName = require("../AutoMod/userJoined/CheckName");
 const rolechecker = require("../AutoMod/Checks/rolechecker");
-const bancheck = require("../AutoMod/OnTimer/bancheck");
 
 const interactionFile = require("../interaction/interaction");
 
